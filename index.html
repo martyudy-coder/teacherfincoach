@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Fin Coach - Financial Freedom for Educators</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; background: #f8fafc; }
+    
+    /* Auth Screen */
+    .auth-container { min-height: 100vh; background: linear-gradient(135deg, #EBF4FF 0%, #E0F2E9 100%); display: flex; align-items: center; justify-content: center; padding: 20px; }
+    .auth-card { background: white; border-radius: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); padding: 48px; max-width: 480px; width: 100%; }
+    .logo { width: 80px; height: 80px; background: #2563eb; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 40px; }
+    h1 { text-align: center; font-size: 32px; margin-bottom: 8px; color: #1e293b; }
+    .subtitle { text-align: center; color: #64748b; margin-bottom: 32px; font-size: 15px; }
+    
+    /* Forms */
+    .form-group { margin-bottom: 20px; }
+    label { display: block; font-weight: 500; margin-bottom: 8px; color: #334155; font-size: 14px; }
+    input, select { width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 16px; transition: border-color 0.2s; }
+    input:focus, select:focus { outline: none; border-color: #2563eb; }
+    .btn { width: 100%; padding: 14px; background: #2563eb; color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background 0.2s; margin-top: 8px; }
+    .btn:hover { background: #1d4ed8; }
+    .btn:disabled { background: #cbd5e1; cursor: not-allowed; }
+    .btn-secondary { background: #64748b; }
+    .btn-secondary:hover { background: #475569; }
+    
+    /* Onboarding */
+    .onboard-container { min-height: 100vh; background: linear-gradient(135deg, #EBF4FF 0%, #E0F2E9 100%); display: flex; align-items: center; justify-content: center; padding: 20px; }
+    .onboard-card { background: white; border-radius: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); padding: 48px; max-width: 720px; width: 100%; max-height: 90vh; overflow-y: auto; }
+    .progress-bar { display: flex; justify-content: space-between; margin-bottom: 40px; }
+    .progress-step { flex: 1; height: 8px; background: #e2e8f0; margin: 0 4px; border-radius: 4px; }
+    .progress-step.active { background: #2563eb; }
+    .coach-intro { background: #eff6ff; border-radius: 12px; padding: 24px; margin-bottom: 24px; line-height: 1.6; }
+    .checkbox-group { display: flex; align-items: center; padding: 16px; border: 2px solid #e2e8f0; border-radius: 12px; margin-bottom: 12px; cursor: pointer; transition: all 0.2s; }
+    .checkbox-group:hover { border-color: #2563eb; background: #f0f9ff; }
+    .checkbox-group.selected { border-color: #2563eb; background: #eff6ff; }
+    .checkbox-group input[type="checkbox"] { margin-right: 12px; width: 20px; height: 20px; accent-color: #2563eb; }
+    
+    /* Dashboard */
+    .dashboard { min-height: 100vh; background: #f8fafc; padding-bottom: 80px; }
+    .header { background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; padding: 32px 24px; border-radius: 0 0 32px 32px; }
+    .header h1 { font-size: 28px; margin-bottom: 8px; }
+    .header p { color: #bfdbfe; font-size: 14px; }
+    .content { max-width: 768px; margin: 0 auto; padding: 16px; }
+    .card { background: white; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 24px; margin-bottom: 16px; }
+    .card h2 { font-size: 18px; margin-bottom: 16px; color: #1e293b; }
+    
+    /* Trial Banner */
+    .trial-banner { background: linear-gradient(135deg, #fef3c7, #fed7aa); border: 2px solid #f59e0b; border-radius: 12px; padding: 16px; margin-bottom: 16px; text-align: center; }
+    .trial-banner-expired { background: linear-gradient(135deg, #fee2e2, #fecaca); border: 2px solid #ef4444; }
+    
+    /* Tip Card */
+    .tip-card { background: linear-gradient(135deg, #fef3c7, #fde68a); border: 2px solid #fbbf24; }
+    .tip-card.personal { background: linear-gradient(135deg, #dbeafe, #bfdbfe); border: 2px solid #3b82f6; }
+    .tip-card.highlight { background: linear-gradient(135deg, #fef3c7, #fed7aa); border: 2px solid #f59e0b; }
+    
+    /* Module Cards */
+    .module-card { background: white; border: 2px solid #e2e8f0; border-radius: 16px; padding: 20px; margin-bottom: 12px; cursor: pointer; transition: all 0.2s; }
+    .module-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); transform: translateY(-2px); }
+    .module-card.locked { opacity: 0.6; cursor: not-allowed; }
+    .module-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .module-icon { font-size: 32px; }
+    .module-title { font-size: 18px; font-weight: 600; color: #1e293b; }
+    .module-subtitle { color: #64748b; font-size: 14px; margin-bottom: 8px; }
+    .badge { display: inline-block; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; margin-left: 8px; }
+    .badge-completed { background: #22c55e; color: white; }
+    .badge-locked { background: #ef4444; color: white; }
+    
+    /* Module Detail */
+    .module-detail { min-height: 100vh; background: #f8fafc; padding-bottom: 80px; }
+    .back-btn { color: #bfdbfe; border: none; background: none; cursor: pointer; font-size: 14px; margin-bottom: 16px; padding: 8px 0; }
+    .back-btn:hover { color: white; }
+    .coach-tip { background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 12px; padding: 20px; margin-bottom: 24px; }
+    .coach-tip-icon { font-size: 32px; margin-bottom: 8px; }
+    .coach-tip-title { font-weight: 600; color: #1e40af; margin-bottom: 8px; }
+    .content-section { line-height: 1.7; color: #334155; }
+    .content-section h3 { font-size: 20px; color: #1e293b; margin: 24px 0 12px; }
+    .content-section p { margin-bottom: 16px; }
+    .content-section ul { margin-left: 24px; margin-bottom: 16px; }
+    .content-section li { margin-bottom: 8px; }
+    .highlight-box { background: #fef3c7; border: 2px solid #fbbf24; border-radius: 12px; padding: 16px; margin: 16px 0; font-weight: 500; color: #78350f; line-height: 1.6; }
+    .action-steps { background: #eff6ff; border: 2px solid #3b82f6; border-radius: 12px; padding: 20px; margin: 24px 0; }
+    .action-steps h4 { color: #1e40af; margin-bottom: 12px; }
+    
+    /* Quiz */
+    .quiz-container { background: white; border-radius: 16px; padding: 24px; margin-top: 24px; }
+    .quiz-question { margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid #e2e8f0; }
+    .quiz-question:last-child { border-bottom: none; }
+    .question-text { font-weight: 600; margin-bottom: 16px; color: #1e293b; }
+    .quiz-option { display: flex; align-items: center; padding: 14px; border: 2px solid #e2e8f0; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; }
+    .quiz-option:hover { border-color: #2563eb; background: #f0f9ff; }
+    .quiz-option.selected { border-color: #2563eb; background: #eff6ff; }
+    .quiz-option input[type="radio"] { margin-right: 12px; width: 18px; height: 18px; accent-color: #2563eb; }
+    .result-box { border-radius: 12px; padding: 24px; margin-bottom: 24px; text-align: center; }
+    .result-box.pass { background: #d1fae5; border: 2px solid #22c55e; }
+    .result-box.fail { background: #fee2e2; border: 2px solid #ef4444; }
+    .result-box h3 { font-size: 24px; margin-bottom: 8px; }
+    
+    /* Calculators */
+    .calc-card { background: white; border-radius: 16px; padding: 24px; margin-bottom: 16px; border: 2px solid #e2e8f0; cursor: pointer; transition: all 0.2s; }
+    .calc-card:hover { border-color: #2563eb; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .calc-card.locked { opacity: 0.6; cursor: not-allowed; }
+    .calc-result { background: #eff6ff; border: 2px solid #3b82f6; border-radius: 12px; padding: 20px; margin-top: 20px; text-align: center; }
+    .calc-result-big { font-size: 36px; font-weight: bold; color: #1e40af; margin-bottom: 8px; }
+    .calc-result-label { color: #64748b; font-size: 14px; }
+    
+    /* Bottom Nav */
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 12px 0; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); z-index: 100; }
+    .nav-item { display: flex; flex-direction: column; align-items: center; padding: 8px; border: none; background: none; cursor: pointer; color: #64748b; font-size: 11px; transition: color 0.2s; }
+    .nav-item.active { color: #2563eb; }
+    .nav-item.locked { opacity: 0.5; cursor: not-allowed; }
+    .nav-icon { font-size: 24px; margin-bottom: 4px; }
+    
+    /* Paywall */
+    .paywall-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 200; padding: 20px; }
+    .paywall-card { background: white; border-radius: 24px; padding: 48px; max-width: 500px; width: 100%; text-align: center; }
+    .paywall-card h2 { font-size: 28px; margin-bottom: 16px; color: #1e293b; }
+    .paywall-features { text-align: left; margin: 24px 0; }
+    .paywall-features li { padding: 12px 0; border-bottom: 1px solid #e2e8f0; }
+    .paywall-price { font-size: 48px; font-weight: bold; color: #2563eb; margin: 24px 0; }
+    
+    /* Utility */
+    .hidden { display: none !important; }
+    .progress-bar-fill { height: 12px; background: #e2e8f0; border-radius: 6px; overflow: hidden; }
+    .progress-bar-inner { height: 100%; background: #2563eb; transition: width 0.3s; }
+  </style>
+</head>
+<body>
+
+  <!-- AUTH SCREEN -->
+  <div id="auth-screen" class="auth-container">
+    <div class="auth-card">
+      <div class="logo">📚</div>
+      <h1>Teacher Fin Coach</h1>
+      <p class="subtitle">Financial freedom for educators</p>
+      
+      <form id="signup-form">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="name" placeholder="Jane Smith" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="email" placeholder="you@school.edu" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="password" placeholder="••••••••" minlength="8" required>
+        </div>
+        <button type="submit" class="btn">Start Free Trial (14 Days)</button>
+        <p style="text-align: center; font-size: 12px; color: #64748b; margin-top: 12px;">No credit card required • Cancel anytime</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ONBOARDING SCREEN -->
+  <div id="onboarding-screen" class="onboard-container hidden">
+    <div class="onboard-card">
+      <div class="progress-bar">
+        <div class="progress-step active" id="prog1"></div>
+        <div class="progress-step" id="prog2"></div>
+        <div class="progress-step" id="prog3"></div>
+      </div>
+
+      <!-- Step 1 -->
+      <div id="step1" class="onboard-step">
+        <h1 style="text-align: center; margin-bottom: 24px;">👋 Hey there, I'm Coach Marty</h1>
+        <div class="coach-intro">
+          <p style="margin-bottom: 12px;">I spent 31 years teaching high school PE—17 years coaching boys varsity basketball, 10 years as athletic director.</p>
+          <p style="margin-bottom: 12px;">Now retired, my passion is <strong>helping teachers build wealth</strong>.</p>
+          <p>I've seen too many great educators struggle financially because nobody taught them the game. Let's change that.</p>
+        </div>
+        <button class="btn" onclick="goToStep(2)">Let's Get Started →</button>
+      </div>
+
+      <!-- Step 2 -->
+      <div id="step2" class="onboard-step hidden">
+        <h1 style="margin-bottom: 24px;">Tell me about yourself</h1>
+        <div class="form-group">
+          <label>Years teaching?</label>
+          <input type="number" id="years" placeholder="5" min="0">
+        </div>
+        <div class="form-group">
+          <label>State?</label>
+          <select id="state">
+            <option value="">Select state</option>
+            <option value="California">California</option>
+            <option value="Texas">Texas</option>
+            <option value="Florida">Florida</option>
+            <option value="New York">New York</option>
+            <option value="Pennsylvania">Pennsylvania</option>
+            <option value="Illinois">Illinois</option>
+            <option value="Ohio">Ohio</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <button class="btn" onclick="goToStep(3)" id="step2btn" disabled>Continue →</button>
+      </div>
+
+      <!-- Step 3 -->
+      <div id="step3" class="onboard-step hidden">
+        <h1 style="margin-bottom: 24px;">What brings you here?</h1>
+        <div class="checkbox-group" onclick="toggleGoal(1)">
+          <input type="checkbox" id="goal1">
+          <label for="goal1" style="margin: 0; cursor: pointer; flex: 1;">Learn the basics of 403(b) and 457(b)</label>
+        </div>
+        <div class="checkbox-group" onclick="toggleGoal(2)">
+          <input type="checkbox" id="goal2">
+          <label for="goal2" style="margin: 0; cursor: pointer; flex: 1;">Maximize my contributions</label>
+        </div>
+        <div class="checkbox-group" onclick="toggleGoal(3)">
+          <input type="checkbox" id="goal3">
+          <label for="goal3" style="margin: 0; cursor: pointer; flex: 1;">Reduce fees and avoid traps</label>
+        </div>
+        <div class="checkbox-group" onclick="toggleGoal(4)">
+          <input type="checkbox" id="goal4">
+          <label for="goal4" style="margin: 0; cursor: pointer; flex: 1;">Plan for retirement</label>
+        </div>
+        <button class="btn" onclick="finishOnboarding()" id="step3btn" disabled>Complete Setup ✓</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="dashboard-screen" class="dashboard hidden">
+    <div class="header">
+      <h1>Welcome back, <span id="user-name-dash">Friend</span>! 👋</h1>
+      <p>Let's keep building your financial future</p>
+    </div>
+    <div class="content">
+      <div id="trial-banner" class="trial-banner hidden">
+        <div style="font-size: 18px; font-weight: 600; color: #78350f; margin-bottom: 4px;">
+          ⏰ <span id="trial-days-left">14</span> days left in your free trial
+        </div>
+        <p style="font-size: 14px; color: #92400e;">Unlock lifetime access for just $39 before your trial ends!</p>
+      </div>
+
+      <div class="card">
+        <h2>Your 2026 Opportunity</h2>
+        <div style="background: linear-gradient(135deg, #d1fae5, #dbeafe); border: 2px solid #22c55e; border-radius: 12px; padding: 20px; text-align: center;">
+          <div style="font-size: 36px; font-weight: bold; color: #15803d; margin-bottom: 8px;">$47,000</div>
+          <p style="color: #334155;">Maximum dual contribution (403(b) + 457(b)) for 2026</p>
+          <p style="font-size: 12px; color: #64748b; margin-top: 4px;">Age 50+: $62,000 total</p>
+        </div>
+      </div>
+
+      <div class="card tip-card highlight" id="daily-tip">
+        <div style="display: flex; align-items: start; gap: 12px;">
+          <div style="font-size: 32px;">💡</div>
+          <div style="flex: 1;">
+            <h3 style="font-weight: 600; margin-bottom: 8px; color: #78350f;">⭐ Coach's Tip</h3>
+            <p id="tip-text" style="color: #78350f; line-height: 1.6; margin-bottom: 8px;"></p>
+            <p style="font-size: 13px; color: #92400e; font-style: italic;" id="tip-author"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Your Progress</h2>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; color: #64748b;">
+          <span>Core Modules Completed</span>
+          <span><strong id="progress-count">0 / 8</strong></span>
+        </div>
+        <div class="progress-bar-fill">
+          <div class="progress-bar-inner" id="progress-bar-inner" style="width: 0%;"></div>
+        </div>
+        <p style="font-size: 14px; color: #64748b; margin-top: 12px;" id="progress-message">Ready to learn? Head to the Learn tab! 📚</p>
+      </div>
+
+      <div class="card">
+        <h2>Quick Actions</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <button onclick="showScreen('learn')" style="padding: 20px; background: #eff6ff; border: 2px solid #bfdbfe; border-radius: 12px; cursor: pointer; text-align: left;">
+            <div style="font-size: 24px; margin-bottom: 8px;">📚</div>
+            <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Start Learning</div>
+          </button>
+          <button onclick="showScreen('tools')" style="padding: 20px; background: #f0fdf4; border: 2px solid #bbf7d0; border-radius: 12px; cursor: pointer; text-align: left;">
+            <div style="font-size: 24px; margin-bottom: 8px;">🧮</div>
+            <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Run Calculator</div>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <button class="nav-item active" onclick="showScreen('dashboard')">
+        <div class="nav-icon">🏠</div>
+        <div>Home</div>
+      </button>
+      <button class="nav-item" onclick="showScreen('learn')">
+        <div class="nav-icon">📚</div>
+        <div>Learn</div>
+      </button>
+      <button class="nav-item" onclick="showScreen('tools')">
+        <div class="nav-icon">🧮</div>
+        <div>Tools</div>
+      </button>
+      <button class="nav-item" onclick="alert('Coming soon!')">
+        <div class="nav-icon">👤</div>
+        <div>Profile</div>
+      </button>
+    </div>
+  </div>
+
+  <!-- LEARN SCREEN -->
+  <div id="learn-screen" class="dashboard hidden">
+    <div class="header">
+      <h1>Learn Hub</h1>
+      <p>Build your financial knowledge</p>
+    </div>
+    <div class="content">
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <div style="font-size: 14px; color: #64748b;">Your Progress</div>
+            <div style="font-size: 24px; font-weight: bold;" id="learn-progress">0 / 8 Complete</div>
+          </div>
+          <div style="font-size: 48px;" id="learn-emoji">📚</div>
+        </div>
+      </div>
+
+      <div id="modules-list"></div>
+    </div>
+    <div class="bottom-nav">
+      <button class="nav-item" onclick="showScreen('dashboard')">
+        <div class="nav-icon">🏠</div>
+        <div>Home</div>
+      </button>
+      <button class="nav-item active" onclick="showScreen('learn')">
+        <div class="nav-icon">📚</div>
+        <div>Learn</div>
+      </button>
+      <button class="nav-item" onclick="showScreen('tools')">
+        <div class="nav-icon">🧮</div>
+        <div>Tools</div>
+      </button>
+      <button class="nav-item" onclick="alert('Coming soon!')">
+        <div class="nav-icon">👤</div>
+        <div>Profile</div>
+      </button>
+    </div>
+  </div>
+
+  <!-- TOOLS SCREEN -->
+  <div id="tools-screen" class="dashboard hidden">
+    <div class="header">
+      <h1>Financial Calculators</h1>
+      <p>Plan your retirement with precision</p>
+    </div>
+    <div class="content">
+      <div class="calc-card" onclick="openCalculator('compound')">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div style="font-size: 48px;">📈</div>
+          <div style="flex: 1;">
+            <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 4px; color: #1e293b;">Compound Interest Calculator</h3>
+            <p style="font-size: 14px; color: #64748b;">See how your investments grow over time</p>
+          </div>
+          <div style="font-size: 24px; color: #cbd5e1;">→</div>
+        </div>
+      </div>
+
+      <div class="calc-card" onclick="openCalculator('fees')">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div style="font-size: 48px;">⚠️</div>
+          <div style="flex: 1;">
+            <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 4px; color: #1e293b;">Fee Comparison Tool</h3>
+            <p style="font-size: 14px; color: #64748b;">Calculate how much fees really cost you</p>
+          </div>
+          <div style="font-size: 24px; color: #cbd5e1;">→</div>
+        </div>
+      </div>
+
+      <div class="calc-card" onclick="openCalculator('dual')">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div style="font-size: 48px;">🚀</div>
+          <div style="flex: 1;">
+            <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 4px; color: #1e293b;">Dual-Plan Maximizer</h3>
+            <p style="font-size: 14px; color: #64748b;">See the power of maxing both 403(b) and 457(b)</p>
+          </div>
+          <div style="font-size: 24px; color: #cbd5e1;">→</div>
+        </div>
+      </div>
+
+      <div class="card" style="background: #eff6ff; border: 2px solid #3b82f6;">
+        <p style="font-size: 14px; color: #1e40af; line-height: 1.6;"><strong>💡 Coach's Tip:</strong> These calculators use industry-standard formulas. Run multiple scenarios to see what works best for your situation!</p>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <button class="nav-item" onclick="showScreen('dashboard')">
+        <div class="nav-icon">🏠</div>
+        <div>Home</div>
+      </button>
+      <button class="nav-item" onclick="showScreen('learn')">
+        <div class="nav-icon">📚</div>
+        <div>Learn</div>
+      </button>
+      <button class="nav-item active" onclick="showScreen('tools')">
+        <div class="nav-icon">🧮</div>
+        <div>Tools</div>
+      </button>
+      <button class="nav-item" onclick="alert('Coming soon!')">
+        <div class="nav-icon">👤</div>
+        <div>Profile</div>
+      </button>
+    </div>
+  </div>
+
+  <!-- CALCULATOR SCREENS -->
+  <div id="calc-compound" class="dashboard hidden">
+    <div class="header">
+      <button class="back-btn" onclick="showScreen('tools')">← Back to Calculators</button>
+      <h1>📈 Compound Interest Calculator</h1>
+      <p>Watch your money grow over time</p>
+    </div>
+    <div class="content">
+      <div class="card">
+        <div class="form-group">
+          <label>Initial Investment</label>
+          <input type="number" id="comp-initial" value="10000" placeholder="10000">
+        </div>
+        <div class="form-group">
+          <label>Monthly Contribution</label>
+          <input type="number" id="comp-monthly" value="500" placeholder="500">
+        </div>
+        <div class="form-group">
+          <label>Annual Return Rate (%)</label>
+          <input type="number" id="comp-rate" value="7" placeholder="7" step="0.1">
+        </div>
+        <div class="form-group">
+          <label>Years</label>
+          <input type="number" id="comp-years" value="30" placeholder="30">
+        </div>
+        <button class="btn" onclick="calculateCompound()">Calculate</button>
+        
+        <div id="comp-result" class="hidden calc-result">
+          <div class="calc-result-big" id="comp-final"></div>
+          <div class="calc-result-label">Final Balance</div>
+          <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #bfdbfe;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+              <span style="color: #64748b;">Total Contributed:</span>
+              <strong id="comp-contributed"></strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: #64748b;">Total Earnings:</span>
+              <strong id="comp-earnings" style="color: #22c55e;"></strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="calc-fees" class="dashboard hidden">
+    <div class="header">
+      <button class="back-btn" onclick="showScreen('tools')">← Back to Calculators</button>
+      <h1>⚠️ Fee Comparison Tool</h1>
+      <p>See how fees eat away at your returns</p>
+    </div>
+    <div class="content">
+      <div class="card">
+        <div class="form-group">
+          <label>Starting Balance</label>
+          <input type="number" id="fee-balance" value="100000" placeholder="100000">
+        </div>
+        <div class="form-group">
+          <label>Annual Contribution</label>
+          <input type="number" id="fee-contrib" value="10000" placeholder="10000">
+        </div>
+        <div class="form-group">
+          <label>Years</label>
+          <input type="number" id="fee-years" value="20" placeholder="20">
+        </div>
+        <div class="form-group">
+          <label>Annual Return Rate (%)</label>
+          <input type="number" id="fee-return" value="7" placeholder="7" step="0.1">
+        </div>
+        <div class="form-group">
+          <label>High Fee (%) - Typical high-cost vendor</label>
+          <input type="number" id="fee-high" value="2.0" placeholder="2.0" step="0.1">
+        </div>
+        <div class="form-group">
+          <label>Low Fee (%) - Low-cost index fund</label>
+          <input type="number" id="fee-low" value="0.15" placeholder="0.15" step="0.01">
+        </div>
+        <button class="btn" onclick="calculateFees()">Calculate Difference</button>
+        
+        <div id="fee-result" class="hidden calc-result">
+          <div class="calc-result-big" id="fee-diff" style="color: #ef4444;"></div>
+          <div class="calc-result-label">Money Lost to High Fees</div>
+          <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #bfdbfe;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+              <span style="color: #64748b;">With High Fees:</span>
+              <strong id="fee-high-result"></strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: #64748b;">With Low Fees:</span>
+              <strong id="fee-low-result" style="color: #22c55e;"></strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="calc-dual" class="dashboard hidden">
+    <div class="header">
+      <button class="back-btn" onclick="showScreen('tools')">← Back to Calculators</button>
+      <h1>🚀 Dual-Plan Maximizer</h1>
+      <p>The teacher's secret weapon</p>
+    </div>
+    <div class="content">
+      <div class="card">
+        <div class="form-group">
+          <label>Your Age</label>
+          <input type="number" id="dual-age" value="35" placeholder="35">
+        </div>
+        <div class="form-group">
+          <label>Retirement Age</label>
+          <input type="number" id="dual-retire" value="60" placeholder="60">
+        </div>
+        <div class="form-group">
+          <label>Annual 403(b) Contribution</label>
+          <input type="number" id="dual-403b" value="23500" placeholder="23500">
+        </div>
+        <div class="form-group">
+          <label>Annual 457(b) Contribution</label>
+          <input type="number" id="dual-457b" value="23500" placeholder="23500">
+        </div>
+        <div class="form-group">
+          <label>Expected Annual Return (%)</label>
+          <input type="number" id="dual-return" value="7" placeholder="7" step="0.1">
+        </div>
+        <button class="btn" onclick="calculateDual()">Calculate</button>
+        
+        <div id="dual-result" class="hidden calc-result">
+          <div class="calc-result-big" id="dual-total"></div>
+          <div class="calc-result-label">Total at Retirement</div>
+          <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #bfdbfe;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+              <span style="color: #64748b;">403(b) Balance:</span>
+              <strong id="dual-403b-result"></strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+              <span style="color: #64748b;">457(b) Balance:</span>
+              <strong id="dual-457b-result"></strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: #64748b;">Years to Retirement:</span>
+              <strong id="dual-years"></strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE DETAIL -->
+  <div id="module-screen" class="module-detail hidden">
+    <div class="header">
+      <button class="back-btn" onclick="showScreen('learn')">← Back to Learn Hub</button>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span id="module-icon-detail" style="font-size: 40px;">📊</span>
+        <div>
+          <h1 id="module-title-detail" style="font-size: 24px; margin-bottom: 4px;">Module Title</h1>
+          <p id="module-subtitle-detail" style="font-size: 14px; color: #bfdbfe;">Subtitle</p>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="coach-tip">
+        <div class="coach-tip-icon">🏀</div>
+        <div class="coach-tip-title">💡 From Coach Marty:</div>
+        <p id="module-intro" style="color: #334155; line-height: 1.6;"></p>
+      </div>
+
+      <div class="card content-section" id="module-content"></div>
+
+      <div class="quiz-container">
+        <h2 style="margin-bottom: 24px;">📝 Knowledge Check</h2>
+        <div id="quiz-questions"></div>
+        <button class="btn" id="submit-quiz-btn" onclick="submitQuiz()" disabled>Submit Quiz</button>
+        <div id="quiz-results" class="hidden"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAYWALL OVERLAY -->
+  <div id="paywall" class="paywall-overlay hidden">
+    <div class="paywall-card">
+      <div style="font-size: 64px; margin-bottom: 16px;">🔒</div>
+      <h2>Your Free Trial Has Ended</h2>
+      <p style="color: #64748b; margin-bottom: 24px;">Unlock lifetime access to continue your financial education journey!</p>
+      
+      <div class="paywall-features">
+        <ul style="list-style: none;">
+          <li>✅ All 8 comprehensive modules</li>
+          <li>✅ Interactive quizzes & progress tracking</li>
+          <li>✅ 3 powerful financial calculators</li>
+          <li>✅ Downloadable PDFs & checklists</li>
+          <li>✅ "Ask Coach Marty" AI chat support</li>
+          <li>✅ Lifetime access - pay once, learn forever</li>
+        </ul>
+      </div>
+
+      <div class="paywall-price">$39</div>
+      <p style="color: #64748b; font-size: 14px; margin-bottom: 24px;">One-time payment • Lifetime access • 30-day money-back guarantee</p>
+      
+      <button class="btn" onclick="processPayment()" style="margin-bottom: 12px;">Unlock Lifetime Access</button>
+      <button class="btn btn-secondary" onclick="logout()">Sign Out</button>
+    </div>
+  </div>
+
+  <script>
+    // ============================================
+    // CONFIGURATION - REPLACE WITH YOUR API KEYS
+    // ============================================
+    
+    const CONFIG = {
+      // Supabase Configuration
+      SUPABASE_URL: 'YOUR_SUPABASE_URL_HERE',  // e.g., 'https://abcdefgh.supabase.co'
+      SUPABASE_KEY: 'YOUR_SUPABASE_ANON_KEY_HERE',  // Your public anon key
+      
+      // ConvertKit Configuration
+      CONVERTKIT_API_KEY: 'YOUR_CONVERTKIT_API_KEY_HERE',
+      CONVERTKIT_FORM_ID: 'YOUR_CONVERTKIT_FORM_ID_HERE',
+      
+      // Lemon Squeezy Configuration
+      LEMON_SQUEEZY_STORE_ID: 'YOUR_STORE_ID_HERE',
+      LEMON_SQUEEZY_PRODUCT_ID: 'YOUR_PRODUCT_ID_HERE',
+      
+      // Trial Configuration
+      TRIAL_DAYS: 14,
+      PRODUCT_PRICE: 39
+    };
+
+    // ============================================
+    // DATA - DAILY TIPS & MODULES
+    // ============================================
+    
+    const dailyTips = [
+      { text: "The 457(b) plan is your secret weapon for early retirement—penalty-free withdrawals at ANY age after separation!", author: "Finance Tip", type: "highlight" },
+      { text: "After 31 years, the best decision I made was maxing my 457(b). It gave me freedom to retire on my terms.", author: "Coach Marty", type: "personal" },
+      { text: "Big news: WEP & GPO were eliminated in January 2025! You can now collect FULL Social Security alongside your pension.", author: "Update", type: "highlight" },
+      { text: "A 2% fee on $100k costs $2,000/year. Over 20 years? That's $40,000+ you'll never see.", author: "Reality Check", type: "highlight" },
+      { text: "For 2026: You can contribute $23,500 to BOTH 403(b) AND 457(b) = $47,000 total. Age 50+: $62,000 total!", author: "Limits", type: "highlight" }
+    ];
+
+    const modules = [
+      { 
+        id: 1, 
+        icon: '📊', 
+        title: '403(b) vs 457(b): What\'s the Difference?', 
+        subtitle: 'Understanding your dual retirement advantage', 
+        intro: "During my years as athletic director, I sat through countless vendor presentations. One thing always confused teachers: 'What's the difference between a 403(b) and a 457(b)?' Let me break it down in a way that finally makes sense.", 
+        content: `
+          <h3>What Are They?</h3>
+          <p>Both are tax-deferred retirement accounts designed specifically for public employees like teachers. You contribute pre-tax dollars (meaning it reduces your taxable income NOW), the money grows tax-free while it's invested, and you pay regular income tax when you withdraw it in retirement.</p>
+          <p>Think of them as two separate buckets where you can stash money for retirement, and Uncle Sam doesn't tax you on it until you actually use it.</p>
+          
+          <div class='highlight-box'>
+            Here's the BIG difference: A 457(b) lets you withdraw money penalty-free at ANY age after you separate from your employer. If you retire at 52, you can access your 457(b) immediately—no waiting until 59½, no 10% penalty. This is HUGE for teachers who want flexibility.
+          </div>
+          
+          <h3>The 403(b) - Your Long-Term Builder</h3>
+          <p>The 403(b) is more restrictive. If you withdraw before age 59½, you'll pay a 10% penalty PLUS income tax (ouch). But that's okay—this is your long-term wealth builder. You let this grow untouched until traditional retirement age.</p>
+          
+          <h3>The 457(b) - Your Flexibility Fund</h3>
+          <p>The 457(b) is your secret weapon. Want to retire early? The 457(b) gives you penalty-free access the day you separate from service. This is the account that buys you freedom.</p>
+          
+          <h3>The Rule of 55 - Your 403(b) Early Access Loophole</h3>
+          <p>Here's something most teachers don't know: If you retire or separate from service in the year you turn 55 or later, you CAN access your 403(b) penalty-free—no waiting until 59½!</p>
+          <p>This is called the <strong>Rule of 55</strong>, and it's a game-changer for teachers who want to retire in their mid-to-late 50s.</p>
+          
+          <p><strong>How It Works:</strong></p>
+          <ul>
+            <li>You must separate from service (retire or leave your employer) in the calendar year you turn 55 or later</li>
+            <li>Only applies to the 403(b) at the employer you just left</li>
+            <li>Does NOT apply to old 403(b)s from previous employers (those still wait until 59½)</li>
+            <li>Does NOT apply to IRAs (those always wait until 59½)</li>
+          </ul>
+          
+          <div class='highlight-box'>
+            ⚠️ CRITICAL: The money must STAY in your 403(b)! If you roll it over to an IRA after retiring, you LOSE the Rule of 55 benefit and must wait until 59½. Keep it in the 403(b) if you need early access!
+          </div>
+          
+          <p><strong>Example:</strong> You turn 55 in June 2026 and retire in August 2026. You can immediately access your current employer's 403(b) penalty-free—but ONLY if you leave the money in the 403(b). Roll it to an IRA? You just locked it until 59½.</p>
+          
+          <p><strong>The Strategy:</strong></p>
+          <ul>
+            <li><strong>457(b)</strong> = Access at ANY age after retirement (your ultimate flexibility fund)</li>
+            <li><strong>403(b) with Rule of 55</strong> = Access at 55+ if you retire that year AND leave money in the 403(b)</li>
+            <li>Together? You have MAXIMUM early retirement options.</li>
+          </ul>
+          
+          <p><strong>Common Mistake:</strong> Many teachers retire at 56, immediately roll their 403(b) to an IRA (thinking it's "simpler"), then realize they can't touch it for 3+ years without a penalty. Don't make this mistake!</p>
+          
+          <h3>Why Max BOTH?</h3>
+          <p>Here's what most teachers don't realize: You can contribute the MAXIMUM to BOTH accounts in the same year. That's $23,500 to your 403(b) AND $23,500 to your 457(b) = $47,000 total in 2026. If you're 50 or older, you get catch-up contributions: $31,000 to each = $62,000 total!</p>
+          <p>No other profession has this advantage. Not doctors, not lawyers, not engineers. Just public employees like teachers. Use it!</p>
+          
+          <div class="action-steps">
+            <h4>📋 What To Do TODAY:</h4>
+            <ul>
+              <li>Check if your district offers BOTH 403(b) and 457(b) plans (call HR or payroll)</li>
+              <li>If you're currently contributing to one, consider adding the other</li>
+              <li>If you're planning early retirement (before 59½), prioritize maxing the 457(b) first</li>
+              <li>If you're planning to retire at 55-59, keep your 403(b) in the plan—don't roll it to an IRA!</li>
+            </ul>
+          </div>
+        `, 
+        quiz: [
+          { q: "What's the main advantage of a 457(b) over a 403(b)?", options: ["Higher contribution limits", "Penalty-free withdrawals at any age after separation from employment", "Better investment options", "Lower fees"], answer: 1 },
+          { q: "Can you contribute to BOTH a 403(b) AND a 457(b) in the same year?", options: ["No, you must choose one", "Yes, but the combined total cannot exceed $23,500", "Yes, you can max out BOTH ($47,000 total for 2026)", "Only if you're age 50+"], answer: 2 },
+          { q: "Under the Rule of 55, can you access your 403(b) penalty-free if you retire at 57?", options: ["No, must wait until 59½", "Yes, but only if the money stays in the 403(b)", "Yes, even if you roll it to an IRA", "Only the 457(b) is accessible"], answer: 1 },
+          { q: "What happens to the Rule of 55 benefit if you roll your 403(b) into an IRA after retiring at 56?", options: ["Nothing changes, IRA has same rules", "You lose the Rule of 55 and must wait until 59½", "You get even better access", "The rule still applies to the IRA"], answer: 1 }
+        ]
+      },
+      {
+        id: 2,
+        icon: '⚠️',
+        title: 'Spotting High-Fee Traps',
+        subtitle: 'Protecting yourself from vendor pitfalls',
+        intro: "I'll never forget when a colleague showed me her statement. She'd been contributing $500/month for 15 years—should have had around $150,000. She had $98,000. Where did $52,000 go? Fees. High, hidden, unnecessary fees.",
+        content: `
+          <h3>The Vendor Problem</h3>
+          <p>Your district approves 20-30+ vendors for your retirement accounts. Some are excellent—Vanguard, Fidelity, Schwab. Some are absolutely terrible—charging 2-3% annually when you could pay 0.03-0.20%.</p>
+          <p>The problem? Your district treats them all as equals. They hand you a list and say "pick one." But picking the wrong vendor is like volunteering to give away tens of thousands of dollars.</p>
+          
+          <div class='highlight-box'>
+            Math time: $100,000 with a 2% annual fee costs you $2,000 every single year. With a 0.15% fee? Only $150/year. Over 20 years with 7% growth, high fees can cost you $40,000-$50,000 or MORE. That's a year or two of salary—gone.
+          </div>
+          
+          <h3>Red Flag #1: Annuities</h3>
+          <p>Insurance salespeople love pushing annuities to teachers. "Guaranteed returns!" they promise. What they don't emphasize: fees of 2-3%+ annually, surrender charges if you try to leave (often 5-10 years of penalties), and returns that barely keep up with inflation after fees.</p>
+          
+          <h3>Red Flag #2: Loaded Mutual Funds</h3>
+          <p>These charge an upfront commission (called a "load") of 3-5%. So if you invest $10,000, only $9,500-$9,700 actually gets invested. The rest goes to the salesperson. Then they ALSO charge ongoing fees of 1-2% annually. Double dipping!</p>
+          
+          <h3>Red Flag #3: Expense Ratios Over 1%</h3>
+          <p>This is the annual percentage fee charged by the fund. Anything over 1% is highway robbery for a basic stock fund. Quality index funds charge 0.03-0.20%. If someone's charging you 1.5%, they're taking advantage.</p>
+          
+          <h3>Green Lights - The Good Vendors</h3>
+          <p>Look for these names: <strong>Vanguard</strong> (often 0.03-0.15% expense ratios), <strong>Fidelity</strong> (many funds at 0.015-0.10%), <strong>Schwab</strong>, <strong>TIAA</strong> (stick to their low-cost index options, not their annuities).</p>
+          <p>These companies compete on LOW fees. They make their money from having millions of customers, not by charging YOU high fees.</p>
+          
+          <h3>How to Check Your Current Fees</h3>
+          <p>1. Log into your account<br>2. Look for "expense ratio" or "annual fees"<br>3. Add up all the fees (fund fees + admin fees + any other charges)<br>4. If total fees are over 0.50%, you're probably overpaying</p>
+          
+          <div class="action-steps">
+            <h4>📋 What To Do TODAY:</h4>
+            <ul>
+              <li>Log into your 403(b)/457(b) account and find your expense ratios</li>
+              <li>Add up ALL fees (don't forget administrative fees)</li>
+              <li>If total fees are over 0.50%, research switching to a low-cost vendor</li>
+              <li>Call your district's benefits office and ask: "Which vendors offer low-cost index funds with expense ratios under 0.20%?"</li>
+            </ul>
+          </div>
+        `,
+        quiz: [
+          { q: "What's a reasonable expense ratio for a low-cost index fund?", options: ["2.0-3.0%", "1.0-1.5%", "0.5-0.8%", "0.03-0.20%"], answer: 3 },
+          { q: "What are surrender charges?", options: ["Withdrawal penalties from the IRS", "Penalties for moving your money to another vendor within a certain timeframe (typically 5-10 years)", "Annual taxes", "Administrative fees"], answer: 1 },
+          { q: "How much can high fees (2% vs 0.15%) cost you over 20 years on $100,000?", options: ["About $5,000", "About $15,000", "$40,000-$50,000 or more", "Fees don't compound, so it's just $3,700"], answer: 2 }
+        ]
+      },
+      {
+        id: 3,
+        icon: '📈',
+        title: 'Index Funds 101 for Teachers',
+        subtitle: 'Simple, low-cost investing that actually works',
+        intro: "For years, I thought investing was complicated—you needed to pick winning stocks, time the market, study financial reports. Then I learned about index funds and realized I'd been overthinking it. The smartest investment strategy is also the simplest.",
+        content: `
+          <h3>What Is an Index Fund?</h3>
+          <p>An index fund is a type of mutual fund that owns a little piece of hundreds or thousands of companies all at once. Instead of trying to pick which companies will do well, you buy them ALL.</p>
+          <p>For example: An S&P 500 index fund owns stock in all 500 of the biggest U.S. companies—Apple, Microsoft, Amazon, Johnson & Johnson, Coca-Cola, and 495 others. When you buy one share of an S&P 500 index fund, you own a tiny piece of all 500.</p>
+          <p>Think of it this way: Instead of trying to pick which students in your class will be valedictorian, you just invest in the entire class succeeding together.</p>
+          
+          <div class='highlight-box'>
+            Here's the data that convinced me: Over 20+ year periods, index funds beat about 90% of actively managed funds. Why? Lower fees, no emotional decisions, and you capture the market's natural growth. The average U.S. stock market has returned about 10% annually over the past 50+ years. Index funds let you capture almost all of that.
+          </div>
+          
+          <h3>Why Index Funds Are Perfect for Teachers</h3>
+          <p><strong>Simple:</strong> Buy it and forget it. No need to watch the market, read financial news, or make trades. Like assigning independent reading—students work on their own while you focus on other priorities.</p>
+          <p><strong>Low Fees:</strong> Most index funds charge 0.03-0.20% annually. Compare that to actively managed funds at 1-2%+.</p>
+          <p><strong>Diversification:</strong> You're instantly invested in hundreds or thousands of companies. If one fails, you barely notice. Like having multiple assessment methods instead of one high-stakes test.</p>
+          <p><strong>Proven:</strong> Decades of research show index funds outperform most alternatives over the long term.</p>
+          
+          <h3>Which Index Fund Should You Choose?</h3>
+          <p>For most teachers, I recommend one of these three:</p>
+          <p><strong>1. S&P 500 Index Fund</strong> - Owns the 500 biggest U.S. companies. Simple, reliable, proven track record. Like teaching the core curriculum—it covers the essentials.</p>
+          <p><strong>2. Total Stock Market Index Fund</strong> - Owns essentially every publicly traded U.S. company (3,000+). Even more diversified than the S&P 500. Like comprehensive curriculum that covers every standard.</p>
+          <p><strong>3. Target-Date Fund</strong> - Automatically adjusts from aggressive (more stocks) when you're young to conservative (more bonds) as you near retirement. Set it and truly forget it. Like a self-paced course that adjusts to student progress.</p>
+          
+          <h3>What About Timing the Market?</h3>
+          <p>Don't. Seriously, don't even try.</p>
+          <p>The best investors in the world can't consistently time the market. The best strategy? Invest consistently (every paycheck) regardless of whether the market is up or down. This is called "dollar-cost averaging" and it's your friend.</p>
+          <p>When the market drops? Great—you're buying shares on sale, like stocking up on school supplies during back-to-school sales. When it goes up? Great—your existing shares are worth more. Either way, you win over the long term.</p>
+          
+          <div class="action-steps">
+            <h4>📋 What To Do TODAY:</h4>
+            <ul>
+              <li>Log into your 403(b)/457(b) account</li>
+              <li>Look for an S&P 500 index fund, Total Stock Market index fund, or Target-Date fund</li>
+              <li>Check the expense ratio (should be under 0.20%)</li>
+              <li>If you're not invested in anything yet, start with one of these three options</li>
+              <li>Set up automatic contributions from every paycheck</li>
+            </ul>
+          </div>
+        `,
+        quiz: [
+          { q: "What does an S&P 500 index fund own?", options: ["Only technology stocks", "The 500 biggest U.S. companies", "International companies only", "Government bonds"], answer: 1 },
+          { q: "What percentage of actively managed funds do index funds beat over 20+ year periods?", options: ["About 50%", "About 70%", "About 90%", "About 30%"], answer: 2 },
+          { q: "Should you try to time the market (buy low, sell high)?", options: ["Yes, that's how you maximize returns", "Only if you're experienced", "No—even professional investors can't consistently time the market", "Yes, but only during crashes"], answer: 2 }
+        ]
+      },
+      {
+        id: 4,
+        icon: '🎉',
+        title: 'Pension + Social Security—And the Big WEP Win!',
+        subtitle: 'Understanding your guaranteed income streams',
+        intro: "For years, I watched colleagues stress about WEP (Windfall Elimination Provision) slashing their Social Security. Teachers in non-SS states who worked other jobs felt cheated. Well, I've got incredible news that changes everything.",
+        content: `
+          <div class='highlight-box'>
+            🎉 BREAKING NEWS: As of January 5, 2025, WEP (Windfall Elimination Provision) and GPO (Government Pension Offset) have been PERMANENTLY REPEALED by Congress. This is a MASSIVE win for teachers across America!
+          </div>
+          
+          <h3>What This Means for You</h3>
+          <p>If you teach in a "non-Social Security state" (California, Texas, Ohio, Colorado, Louisiana, Illinois, Massachusetts, Missouri, Nevada, Maine, Alaska, Connecticut) AND you worked other jobs where you DID pay into Social Security, you NOW get your FULL Social Security benefit—no reduction!</p>
+          <p>Before this law change, WEP could reduce your Social Security by $500+ per month. That's $6,000+ per year you were losing. Now? You get every penny you earned. It's like finally getting full credit for all those before-school and after-school hours you've put in!</p>
+          
+          <h3>How Teacher Pensions Work</h3>
+          <p>Most teacher pension formulas look like this: <strong>Years of Service × Final Average Salary × Multiplier</strong></p>
+          <p>Example: 30 years × $80,000 final salary × 2% multiplier = $48,000 per year for life</p>
+          <p>The multiplier varies by state (typically 1.5-2.5%). Some states use your highest 3 years of salary, others use 5 years. Think of it like calculating a final grade—different weights for different components.</p>
+          
+          <h3>Social Security for Teachers</h3>
+          <p>If you teach in a Social Security state (most states), you're paying into both your pension AND Social Security. You'll get both in retirement.</p>
+          <p>If you teach in a non-SS state but worked other jobs (summer jobs, previous careers, part-time work), you'll now get your full Social Security benefit thanks to WEP repeal.</p>
+          
+          <h3>The Three-Legged Stool</h3>
+          <p>Think of retirement income as a three-legged stool (or like a well-designed lesson with multiple learning activities):</p>
+          <p><strong>Leg 1:</strong> Pension (guaranteed, monthly income for life)</p>
+          <p><strong>Leg 2:</strong> Social Security (guaranteed, inflation-adjusted)</p>
+          <p><strong>Leg 3:</strong> Personal savings (403(b), 457(b), IRAs—this is what YOU control)</p>
+          <p>Most teachers over-rely on Legs 1 and 2. The teachers who retire wealthy? They built a STRONG Leg 3 by maxing out their 403(b) and 457(b) plans.</p>
+          
+          <h3>When to Start Taking Benefits</h3>
+          <p>This is a personal decision, but here are the basics:</p>
+          <p><strong>Social Security:</strong> You can start as early as age 62 (reduced benefit) or wait until 70 (maximum benefit). Each year you wait increases your monthly payment by about 8%. Like earning tenure—the longer you wait, the better your position!</p>
+          <p><strong>Pension:</strong> Most teachers can retire with full benefits at age 60-65 (varies by state). Early retirement is often available with reduced benefits.</p>
+          
+          <div class="action-steps">
+            <h4>📋 What To Do TODAY:</h4>
+            <ul>
+              <li>Visit your state's pension website and create an account (CalSTRS, TRS, etc.)</li>
+              <li>Use their calculator to estimate your monthly pension at different retirement ages</li>
+              <li>Create a Social Security account at ssa.gov to see your estimated benefit</li>
+              <li>Add up all three legs of your stool to see your total projected retirement income</li>
+            </ul>
+          </div>
+        `,
+        quiz: [
+          { q: "Does WEP still reduce Social Security benefits for teachers?", options: ["Yes, it still applies", "False—WEP was permanently eliminated in January 2025", "Only in certain states", "Only if you have a pension over $50,000"], answer: 1 },
+          { q: "What's the typical formula for teacher pensions?", options: ["Age × Years of Service × Multiplier", "Years of Service × Final Average Salary × Multiplier", "Total Contributions × Interest Rate", "Years of Service × $1,000"], answer: 1 },
+          { q: "Do teachers in California pay into Social Security?", options: ["Yes, all California teachers pay SS", "No—California is a non-Social Security state for teachers", "Only elementary teachers", "Only if they choose to opt in"], answer: 1 }
+        ]
+      },
+      {
+        id: 5,
+        icon: '🏥',
+        title: 'HSA Strategy for Healthcare',
+        subtitle: 'The triple tax advantage nobody talks about',
+        intro: "When I was teaching, HSAs (Health Savings Accounts) weren't even on my radar. Then I learned they have a triple tax advantage—better than 403(b)s, better than IRAs, better than everything. It's like discovering a hidden bonus in your benefits package that's been there all along!",
+        content: `
+          <h3>What Is an HSA?</h3>
+          <p>An HSA is a savings account specifically for medical expenses. To qualify, you need to be enrolled in a "high-deductible health plan" (HDHP). Check with your district—many offer these plans during open enrollment.</p>
+          <p>2026 contribution limits: $4,300 (individual) or $8,750 (family). If you're 55+, add $1,000 catch-up contribution.</p>
+          
+          <div class='highlight-box'>
+            IMPORTANT: Even if your school district doesn't offer an HSA directly, you can open one yourself at Fidelity, Lively, or HSA Bank. You contribute after-tax money, then deduct it on your tax return—same result! It's like submitting a reimbursement form—you get the money back at tax time.
+          </div>
+          
+          <h3>The Triple Tax Advantage</h3>
+          <p><strong>Advantage #1: Tax-Deductible Contributions</strong><br>Money goes in pre-tax (or you deduct it on your tax return). This lowers your taxable income NOW.</p>
+          <p><strong>Advantage #2: Tax-Free Growth</strong><br>Invest your HSA money (yes, you can invest it in stocks!), and all growth is tax-free. Forever.</p>
+          <p><strong>Advantage #3: Tax-Free Withdrawals</strong><br>Use the money for qualified medical expenses, and you NEVER pay tax on it. Not when it goes in, not while it grows, not when you take it out.</p>
+          <p>No other account in existence has all three. 403(b)s and IRAs have #1 and #2, but you pay tax on withdrawals. Roth IRAs have #2 and #3, but contributions aren't deductible. HSAs have all three! It's like getting an A+ without any of the usual grade penalties!</p>
+          
+          <h3>The Secret Strategy</h3>
+          <p>Here's what savvy people do: You don't have to spend HSA money immediately. If you can afford it, pay for current medical expenses out-of-pocket, and let your HSA grow invested for 20-30 years.</p>
+          <p>Why? Because in retirement, healthcare is EXPENSIVE. Having a six-figure HSA balance growing tax-free is like having a private healthcare fund that Uncle Sam can never touch. Think of it as your emergency lesson plans folder—you might not need it today, but you'll be grateful it's there when you do!</p>
+          <p>Plus, after age 65, you can withdraw HSA money for ANY reason (not just medical) and only pay regular income tax—making it work just like a traditional IRA, but with more flexibility.</p>
+          
+          <h3>What Counts as Qualified Medical Expenses?</h3>
+          <p>Almost everything: Doctor visits, prescriptions, dental, vision, therapy, surgery, medical equipment, even some over-the-counter medications. The IRS has a detailed list (Publication 502).</p>
+          
+          <h3>Should Every Teacher Have an HSA?</h3>
+          <p>Not necessarily. If you have high ongoing medical costs (like managing a chronic condition with frequent doctor visits), a traditional low-deductible plan might be better. But if you're relatively healthy and can handle a higher deductible? An HSA is one of the best wealth-building tools available.</p>
+          
+          <div class="action-steps">
+            <h4>📋 What To Do TODAY:</h4>
+            <ul>
+              <li>Check if your district offers a high-deductible health plan (HDHP) during open enrollment</li>
+              <li>Compare your current healthcare costs vs. an HDHP with HSA</li>
+              <li>If you're relatively healthy, consider switching during next open enrollment</li>
+              <li>Open an HSA at Fidelity or Lively if your district doesn't offer one</li>
+              <li>Start contributing at least enough to cover your annual deductible</li>
+            </ul>
+          </div>
+        `,
+        quiz: [
+          { q: "What makes HSAs unique compared to 403(b)s and IRAs?", options: ["Higher contribution limits", "Triple tax advantage (deductible, tax-free growth, tax-free withdrawals)", "No age restrictions", "Guaranteed returns"], answer: 1 },
+          { q: "What's the 2026 HSA contribution limit for a family plan?", options: ["$4,300", "$6,000", "$8,750", "$10,000"], answer: 2 },
+          { q: "Can you invest HSA money in stocks and index funds?", options: ["No, HSAs must stay in cash", "Yes, most HSA providers allow investing once you meet a minimum balance", "Only bonds are allowed", "Investing HSA money is illegal"], answer: 1 }
+        ]
+      },
+      {
+        id: 6,
+        icon: '💰',
+        title: 'Budgeting on Teacher Pay',
+        subtitle: 'Making your salary work year-round',
+        intro: "Those summer months were always tight. I coached basketball camps, tutored on the side, did summer school—and still had to budget carefully. After 31 years, here's what I learned about making teacher pay work. Think of budgeting like classroom management—it's all about systems and consistency!",
+        content: `
+          <h3>The Summer Income Gap</h3>
+          <p>Most districts offer two options:</p>
+          <p><strong>10-Month Pay:</strong> Bigger paychecks September-June, nothing in July-August (like cramming for finals—intense but short-term)</p>
+          <p><strong>12-Month Pay:</strong> Smaller paychecks spread evenly over the entire year (like pacing a unit plan—steady and consistent)</p>
+          <p>Neither option is "better"—it depends on your discipline. If you tend to overspend, 12-month forces you to budget. If you're disciplined, 10-month lets you earn interest on money in summer.</p>
+          
+          <h3>Teacher Side Hustles That Actually Work</h3>
+          <p><strong>Summer School:</strong> Often pays 1.5-2x your daily rate. Two weeks = $2,000-$3,000 extra. Like getting paid double for teaching what you already know!</p>
+          <p><strong>Tutoring:</strong> $30-60/hour depending on your area and subject. SAT/ACT prep pays even more. Your expertise is valuable—charge accordingly!</p>
+          <p><strong>Coaching:</strong> Sports camps, club teams, private lessons. I made $3,000-$5,000 every summer coaching.</p>
+          <p><strong>Curriculum Writing:</strong> Many districts pay teachers to develop curriculum during summer. You're doing what you love and getting paid for it!</p>
+          <p><strong>Online Teaching:</strong> VIPKid, Outschool, or creating a course on Udemy/Teachable.</p>
+          <p>⚠️ <strong>Avoid:</strong> MLMs (multi-level marketing). They prey on teachers. If someone's trying to recruit you to sell essential oils, makeup, or supplements, run. It's like pyramid schemes disguised as "business opportunities."</p>
+          
+          <h3>The Emergency Fund</h3>
+          <p>Teachers MUST have an emergency fund. Period. Aim for 3-6 months of expenses saved in cash (high-yield savings account earning 4-5% right now).</p>
+          <p>Why? Your car breaks down right before parent-teacher conferences. Your kid needs braces. The summer income gap hits harder than expected. Medical emergency. Without an emergency fund, you're forced to use credit cards or pull from retirement (terrible idea). Think of it as your substitute teacher fund—always ready when you need backup!</p>
+          <p>Can't save $10,000 immediately? Start with $50-100 per paycheck. Build it slowly. The peace of mind is worth it.</p>
+          
+          <h3>The 50/30/20 Budget Rule</h3>
+          <p>A simple framework for teacher budgets (think of it like distributing class time):</p>
+          <p><strong>50% Needs:</strong> Rent/mortgage, utilities, groceries, insurance, minimum debt payments (your non-negotiables, like core instruction time)</p>
+          <p><strong>30% Wants:</strong> Dining out, hobbies, entertainment, non-essential shopping (your enrichment activities)</p>
+          <p><strong>20% Savings:</strong> Retirement (403(b)/457(b)), emergency fund, extra debt payments (your professional development—investing in your future!)</p>
+          <p>If you're in a high-cost-of-living area (NYC, SF, LA), your percentages might look more like 60/20/20. The key is making sure SOMETHING goes to savings.</p>
+          
+          <h3>The Secret to Teacher Wealth</h3>
+          <p>It's not about earning more (though that helps). It's about systematizing your savings. Set up automatic payroll deductions for retirement. Set up automatic transfers to your savings account on payday. Pay yourself first, THEN spend what's left.</p>
+          <p>The teachers I know who retired wealthy didn't have the highest salaries. They had the best habits. Like the most effective teachers—it's not about charisma, it's about consistent systems!</p>
+          
+          <div class="action-steps">
+            <h4>📋 What To Do TODAY:</h4>
+            <ul>
+              <li>Calculate your true monthly expenses (track for one month if needed)</li>
+              <li>Set up automatic transfer of $50-100 to savings account on payday</li>
+              <li>If you don't have one yet, open a high-yield savings account (Ally, Marcus, or similar)</li>
+              <li>Review your pay stub—are you on 10-month or 12-month pay? Consider switching if current option isn't working</li>
+              <li>List 2-3 potential summer side hustles you'd actually enjoy</li>
+            </ul>
+          </div>
+        `,
+        quiz: [
+          { q: "What's the difference between 10-month pay and 12-month pay?", options: ["10-month pays more total", "10-month gives bigger paychecks during school year but nothing in summer; 12-month spreads it evenly", "12-month includes a bonus", "They're exactly the same total"], answer: 1 },
+          { q: "How much should a teacher's emergency fund cover?", options: ["1 month of expenses", "3-6 months of expenses", "1 year of expenses", "Not necessary if you have credit cards"], answer: 1 },
+          { q: "What's the 50/30/20 budgeting rule?", options: ["50% savings, 30% needs, 20% wants", "50% needs, 30% wants, 20% savings", "50% housing, 30% food, 20% other", "It's a withdrawal strategy"], answer: 1 }
+        ]
+      },
+      {
+        id: 7,
+        icon: '🚀',
+        title: 'Dual-Plan Maximizing',
+        subtitle: 'The ultimate teacher advantage',
+        intro: "This is where it all comes together. After 31 years teaching and coaching, here's what I learned: The teachers who retire wealthy aren't the ones with the highest salaries. They're the ones who understood the dual-plan advantage and used it ruthlessly. Think of it like preparing students for both the SAT and AP exams—you're doubling your opportunities!",
+        content: `
+          <div class='highlight-box'>
+            2026 Contribution Limits:<br>
+            <strong>Under 50:</strong> $23,500 each (403(b) + 457(b)) = $47,000 total per year<br>
+            <strong>Age 50+:</strong> $31,000 each (403(b) + 457(b)) = $62,000 total per year<br><br>
+            NO OTHER PROFESSION HAS THIS DUAL-PLAN ADVANTAGE! It's like having two retirement accounts with full contribution limits each—a benefit uniquely available to public educators!
+          </div>
+          
+          <h3>The Strategy: Max the 457(b) First</h3>
+          <p>If you might retire before age 59½, prioritize maxing your 457(b) FIRST. Why? Penalty-free access at ANY age after you separate from your employer.</p>
+          <p>Let's say you retire at age 55. Your 403(b)? Locked until 59½ (with few exceptions). Your 457(b)? Available immediately, no penalty.</p>
+          <p>This gives you a 4-5 year bridge to live on while your 403(b) continues growing. It's the ultimate flexibility tool. Think of it like having both a first-day-of-school lesson plan AND a flexible backup plan—you're prepared for any scenario!</p>
+          
+          <h3>Then Pile Into the 403(b)</h3>
+          <p>Once you've maxed the 457(b), put every remaining dollar into your 403(b). This is your long-term wealth builder—the account you'll likely let grow until traditional retirement age or beyond.</p>
+          
+          <h3>Don't Forget the Roth IRA</h3>
+          <p>Outside of your employer plans, you can ALSO contribute to a Roth IRA: $7,000 in 2026 ($8,000 if age 50+).</p>
+          <p>Roth IRAs are funded with after-tax money, but they grow completely tax-free forever. In retirement, every penny you withdraw is tax-free. This is your tax diversification—some money taxed now (Roth), some money taxed later (403(b)/457(b)). Like differentiating instruction—multiple approaches to reach the same goal!</p>
+          <p>Pro tip: Open your Roth IRA at Vanguard, Fidelity, or Schwab—WAY better investment options than most district-approved vendors.</p>
+          
+          <h3>The Math That Changed My Retirement</h3>
+          <p>Let me show you real numbers:</p>
+          <p>Teacher, age 35, maxes BOTH plans at $47,000/year.</p>
+          <p>Assumes 7% average annual return (conservative for stocks over 25 years).</p>
+          <p>By age 60 (25 years later): Approximately <strong>$3.0 MILLION</strong></p>
+          <p>Add your pension? You're living better than most doctors and lawyers—and you did it on a teacher's salary.</p>
+          
+          <h3>But I Can't Afford $47,000/Year!</h3>
+          <p>Most teachers can't, especially early career. That's okay! Start with whatever you CAN afford:</p>
+          <p>$200/month = $2,400/year (better than 70% of Americans)<br>
+          $500/month = $6,000/year (you're in the top 25%)<br>
+          $1,000/month = $12,000/year (you're crushing it)</p>
+          <p>The key is starting NOW and increasing your contributions every time you get a raise. Got a 3% cost-of-living increase? Put 2% toward lifestyle, 1% toward retirement. Like adding one new teaching strategy each year—small changes compound into major improvements!</p>
+          
+          <h3>The Catch-Up Provision</h3>
+          <p>Age 50+? You get extra "catch-up" contributions: An additional $7,500 per account = $15,000 extra per year.</p>
+          <p>This is designed for people who didn't save enough early in their careers. But here's the secret: If you START maxing both plans in your 30s-40s, you don't NEED catch-up. You're already set.</p>
+          
+          <div class="action-steps">
+            <h4>📋 What To Do TODAY:</h4>
+            <ul>
+              <li>Calculate what % of your salary you're currently saving for retirement</li>
+              <li>If it's under 15%, identify ONE expense you can cut to increase it</li>
+              <li>Call your district's benefits office and ask: "Do we offer both 403(b) and 457(b) plans?"</li>
+              <li>If yes, set a goal to contribute to BOTH (even if it's just $100/month to start in each)</li>
+              <li>Use the Dual-Plan Calculator in the Tools section to project your retirement balance</li>
+            </ul>
+          </div>
+        `,
+        quiz: [
+          { q: "What's the total you can contribute to BOTH plans in 2026 if you're under 50?", options: ["$23,500 (you must split between both)", "$31,000 total", "$47,000 total ($23,500 to EACH plan)", "$62,000 total"], answer: 2 },
+          { q: "Why should you max the 457(b) BEFORE the 403(b) if you plan to retire early?", options: ["Lower fees", "Higher returns", "Penalty-free access at any age after retirement from your employer", "Better investment options"], answer: 2 },
+          { q: "If you contribute $1,000/month ($12,000/year) for 25 years at 7% growth, approximately how much will you have?", options: ["$300,000", "$500,000", "$760,000", "$1 million+"], answer: 2 }
+        ]
+      },
+      {
+        id: 8,
+        icon: '✅',
+        title: 'How to Actually Sign Up & Get Started',
+        subtitle: 'Stop procrastinating—here\'s the step-by-step',
+        intro: "Here's what I see: Teachers KNOW they should save for retirement. They've sat through the presentations. They've read the materials. But they don't START. Why? Fear of doing it wrong. Let me remove that fear right now. Think of this as your lesson plan for financial freedom—clear steps, no confusion!",
+        content: `
+          <h3>The #1 Thing Holding Teachers Back</h3>
+          <p>It's FEAR. Fear of picking the wrong vendor. Fear of choosing the wrong investments. Fear of messing up the paperwork. Fear of committing to something they don't fully understand.</p>
+          <p>Let me tell you the truth: Getting started is 1-2 hours of work. But once it's set up, it runs on AUTOPILOT. You'll never think about it again—the money just comes out of your paycheck and grows automatically. Like setting up your gradebook at the start of the year—painful for an afternoon, then smooth sailing all year!</p>
+          <p>The hardest part is starting. So let's do it together, step by step.</p>
+          
+          <h3>Step 1: Get Your District's Approved Vendor List</h3>
+          <p>Contact your payroll or HR department and ask: "Can I get the list of approved 403(b) and 457(b) vendors?"</p>
+          <p>They'll send you a list of 15-30 companies. Your job: Look for the LOW-FEE vendors.</p>
+          <p><strong>Top choices:</strong> Vanguard, Fidelity, Schwab, TIAA (low-cost index options only)</p>
+          <p><strong>Avoid:</strong> Insurance companies pushing annuities, anyone who cold-calls you, anyone promising "guaranteed" high returns (as suspicious as a student claiming they "totally did the homework" but can't show you!)</p>
+          
+          <h3>Step 2: Call the Vendor and Start the Enrollment</h3>
+          <p>Call your chosen vendor (or visit their website) and say: "I'm a teacher and I want to open a 403(b) account."</p>
+          <p>They'll send you an enrollment form (often available online). You'll need:</p>
+          <ul>
+            <li>Your Social Security number</li>
+            <li>Date of birth</li>
+            <li>Employer information (school district name and address)</li>
+            <li>Beneficiary information (who gets the money if something happens to you—typically spouse or children)</li>
+          </ul>
+          <p>This takes 10-15 minutes. Do it during lunch or after school. Easier than entering a semester's worth of grades!</p>
+          
+          <h3>Step 3: Complete the Salary Reduction Agreement (SRA)</h3>
+          <p>This is THE most important form. The SRA is what tells payroll to automatically deduct money from your paycheck and send it to your retirement account.</p>
+          <p>You can get this form from:</p>
+          <p>1. Your chosen vendor (they'll send it with your enrollment packet), OR<br>
+          2. Your district's payroll office</p>
+          <p>Fill it out with:</p>
+          <ul>
+            <li>How much per paycheck (start with $50-100 if you're nervous—you can always increase it later)</li>
+            <li>Which account (403(b), 457(b), or both)</li>
+            <li>Your signature and date</li>
+          </ul>
+          <p>Submit this to your payroll office. Keep a copy for your records! File it like you would your credential documents—safely stored and easy to find.</p>
+          
+          <div class='highlight-box'>
+            💡 Pro Tip: Ask the vendor directly: "Do you offer Roth 403(b) or Roth 457(b) options?" Some districts allow BOTH traditional (pre-tax) and Roth (after-tax) versions. Roth accounts grow 100% tax-free forever—worth considering! It's like choosing between teaching methods—traditional works great, but Roth offers unique advantages for the right situation!
+          </div>
+          
+          <h3>Step 4: Choose Your Investments</h3>
+          <p>Once your account is open and funded, you need to choose what to invest in. Log into your account online (the vendor will send you login info).</p>
+          <p>For most teachers, I recommend ONE of these:</p>
+          <p><strong>Option 1: S&P 500 Index Fund</strong> (Vanguard: VFIAX, Fidelity: FXAIX)<br>
+          Simple, reliable, owns the 500 biggest U.S. companies. Check the expense ratio—should be under 0.10%. Like using a proven curriculum—reliable and effective!</p>
+          <p><strong>Option 2: Total Stock Market Index Fund</strong> (Vanguard: VTSAX, Fidelity: FSKAX)<br>
+          Even more diversified—owns 3,000+ U.S. companies. Expense ratio under 0.10%.</p>
+          <p><strong>Option 3: Target-Date Fund</strong> (Choose the year closest to when you'll retire)<br>
+          These automatically adjust from aggressive (stocks) to conservative (bonds) as you near retirement. Ultimate "set it and forget it" option. Look for one with expense ratio under 0.20%. Like differentiated instruction—it adjusts to your needs automatically!</p>
+          <p>Not sure? Go with Option 1 or 3. You can always change it later. It's easier to switch investments than to change your teaching schedule!</p>
+          
+          <h3>Step 5: Wait for Deductions to Start</h3>
+          <p>It typically takes 1-2 pay periods for payroll to process everything. Check your next pay stub to confirm the deduction is happening.</p>
+          <p>See it there? Congratulations—you're now a retirement saver! 🎉 As exciting as seeing your first class succeed on a difficult test!</p>
+          
+          <h3>Step 6: Set It on Autopilot</h3>
+          <p>That's it. You're done. The money comes out automatically. Invests automatically. Grows automatically.</p>
+          <p>What should you do now? NOTHING. Don't check it every day. Don't panic when the market drops (and it will—that's normal). Just let it grow for 20-30 years. Like plants in your classroom—water occasionally, but mostly let them grow on their own!</p>
+          <p>The only thing you should do: Increase your contribution amount every time you get a raise. Got a 3% cost-of-living increase? Bump your retirement contribution by 1%.</p>
+          
+          <h3>What If I Already Have an Account But I'm Not Sure It's Good?</h3>
+          <p>Check three things:</p>
+          <p>1. Log in and find the expense ratios of your investments. Are they over 0.50%? You're probably overpaying.<br>
+          2. Check if you have "surrender charges" or "early withdrawal penalties" beyond the normal IRS rules. That's a sign of a high-fee annuity.<br>
+          3. Compare your vendor to the good ones (Vanguard, Fidelity, Schwab). If yours is way more expensive, consider switching.</p>
+          <p>You CAN move your money to a better vendor—it's called a "403(b) exchange" or "trustee-to-trustee transfer." Your new vendor can help you do this. Think of it like transferring schools—paperwork required, but totally doable!</p>
+          
+          <h3>Remember This</h3>
+          <p>The teachers who retire wealthy aren't smarter than you. They just STARTED earlier and stayed consistent.</p>
+          <p>You don't need to be perfect. You just need to BEGIN.</p>
+          <p>Today. Right now. Make the call, start the paperwork, and give your future self the gift of financial freedom. Your future retired self will thank you—like your students years later thanking you for pushing them to succeed!</p>
+          
+          <div class="action-steps">
+            <h4>📋 What To Do TODAY:</h4>
+            <ul>
+              <li>Call or email your HR/payroll office: "Can you send me the list of approved 403(b) and 457(b) vendors?"</li>
+              <li>Research 2-3 vendors from the list (Vanguard, Fidelity, Schwab preferred)</li>
+              <li>Call your chosen vendor and say: "I'd like to open a 403(b) account"</li>
+              <li>Complete the enrollment form (10-15 minutes)</li>
+              <li>Request or download the Salary Reduction Agreement (SRA)</li>
+              <li>Fill out the SRA for at least $50-100 per paycheck</li>
+              <li>Submit SRA to payroll office</li>
+              <li>Mark your calendar to check your pay stub in 2 pay periods</li>
+            </ul>
+          </div>
+        `,
+        quiz: [
+          { q: "What form is required to authorize payroll to start deducting retirement contributions?", options: ["W-4 tax form", "SRA (Salary Reduction Agreement)", "1099 form", "No form is needed"], answer: 1 },
+          { q: "How long does it typically take for retirement deductions to start showing up on your paycheck?", options: ["Immediately", "1-2 pay periods", "6 months", "1 year"], answer: 1 },
+          { q: "According to Coach Marty, what's the #1 thing that stops teachers from starting retirement savings?", options: ["Don't earn enough money", "Don't care about retirement", "FEAR of doing it wrong or picking the wrong option", "Prefer investing in real estate"], answer: 2 }
+        ]
+      }
+    ];
+
+    // ============================================
+    // USER DATA & STATE MANAGEMENT
+    // ============================================
+    
+    let userData = {
+      name: '',
+      email: '',
