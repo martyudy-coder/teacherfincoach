@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 1: How Teacher Retirement Systems Actually Work - TeacherFinCoach</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #06b6d4 100%);
+            min-height: 100vh;
+        }
+        h1, h2 { font-family: 'Righteous', sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen bg-gray-50">
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex items-center justify-between mb-2">
+                    <a href="dashboard.html" class="text-white hover:text-blue-100 font-medium">← Back to Dashboard</a>
+                    <span class="text-blue-200 text-sm font-semibold">MODULE 1 OF 9</span>
+                </div>
+                <h1 class="text-4xl font-bold mb-2">📊 How Teacher Retirement Systems Actually Work</h1>
+                <p class="text-blue-100 text-lg">Discover the 30% income gap and why your pension alone isn't enough</p>
+            </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto p-4 space-y-6">
+            <!-- State Selector -->
+            <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-purple-600">
+                <div class="flex items-start gap-3">
+                    <div class="text-3xl">📍</div>
+                    <div class="flex-1">
+                        <label class="block font-bold text-lg text-gray-900 mb-2">Select Your State:</label>
+                        <select id="state-selector" class="w-full p-3 border-2 border-gray-300 rounded-lg text-base font-medium">
+                            <option value="california">California</option>
+                            <option value="texas">Texas</option>
+                            <option value="newyork">New York</option>
+                            <option value="florida">Florida</option>
+                            <option value="illinois">Illinois</option>
+                            <option value="generic">Other State</option>
+                        </select>
+                        <p class="text-sm text-gray-600 mt-2 italic">All content will adapt to show your state's specific pension system</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Important Notice Disclaimer -->
+            <div class="bg-blue-50 border-l-4 border-blue-600 rounded-lg p-5">
+                <div class="flex items-start gap-3">
+                    <div class="text-3xl">📋</div>
+                    <div>
+                        <div class="font-bold text-lg text-blue-900 mb-2">Important Notice</div>
+                        <p class="text-sm text-gray-700 leading-relaxed mb-2">
+                            The strategies and examples discussed in this course are for educational purposes only. Teacher Fin Coach does not recommend specific investment products, financial institutions, or vendors.
+                        </p>
+                        <p class="text-sm text-gray-700 leading-relaxed mb-2">
+                            When we mention types of investments (such as "low-cost index funds") or categories of financial institutions, these are educational examples only, not endorsements or recommendations.
+                        </p>
+                        <div class="text-sm text-gray-700 mt-3">
+                            <strong>Always:</strong>
+                            <ul class="list-disc ml-5 mt-1 space-y-1">
+                                <li>Read all prospectuses and disclosure documents</li>
+                                <li>Compare multiple vendors before making decisions</li>
+                                <li>Consider consulting a fee-only fiduciary financial advisor</li>
+                                <li>Understand all fees and surrender charges before investing</li>
+                            </ul>
+                        </div>
+                        <p class="text-xs text-gray-600 mt-3 italic">Teacher Fin Coach is an educational platform and does not provide individualized investment advice.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coach Intro -->
+            <div class="bg-blue-50 border-l-4 border-blue-600 rounded-lg p-5">
+                <div class="flex items-start gap-3">
+                    <div class="text-3xl">🏀</div>
+                    <div>
+                        <div class="font-bold text-xl text-blue-900 mb-2">💬 From Coach Marty:</div>
+                        <p class="text-gray-700 leading-relaxed">
+                            I spent 31 years teaching PE and coaching basketball in California. For the first 15 years, I thought my <span id="pension-name-1">CalSTRS</span> pension 
+                            would be enough for retirement. "Teachers have great benefits," everyone said. Then I actually did the math. 
+                            Let me show you what nobody told me when I started teaching—and what EVERY educator needs to understand about 
+                            the retirement income gap.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="bg-white rounded-xl shadow-md p-6 space-y-8">
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-3">The Promise vs. The Reality</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        When you started teaching, you probably heard some version of this: <strong>"Don't worry about retirement—you have a pension!"</strong>
+                    </p>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        And that's true! <span id="state-name">California</span> teachers are part of <strong id="pension-system">CalSTRS</strong> (<span id="pension-full-name">California State Teachers' Retirement System</span>), 
+                        <span id="pension-context">one of the largest and most well-funded pension systems in the United States.</span> It's a <strong>defined-benefit pension</strong>, 
+                        meaning you'll receive a guaranteed monthly paycheck for the rest of your life after you retire.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed">
+                        But here's the part they conveniently leave out: <strong>Your <span id="pension-name-2">CalSTRS</span> pension will only replace about <span id="replacement-range">60-70%</span> of your final salary.</strong>
+                    </p>
+                    <p class="text-gray-700 leading-relaxed mt-4">
+                        Think about that for a second. If you're making $100,000 in your final year of teaching, <span id="pension-name-3">CalSTRS</span> will pay you about 
+                        <span id="payment-range">$60,000-$70,000</span> per year in retirement. That's a <strong>$30,000-$40,000 annual income drop</strong>.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-3">The 30% Income Gap (This Is the Big One)</h2>
+                    <div class="bg-yellow-50 border-2 border-yellow-400 rounded-xl p-6 mb-4">
+                        <div class="text-3xl font-bold text-gray-900 mb-3">Here's the Math:</div>
+                        <div class="space-y-2 text-lg">
+                            <div>Your Final Salary: <strong>$100,000/year</strong></div>
+                            <div><span id="pension-name-4">CalSTRS</span> Pension (70%): <strong>$70,000/year</strong></div>
+                            <div class="pt-3 border-t-2 border-yellow-400">
+                                <div class="text-red-600 font-bold text-xl">THE GAP: <strong>$30,000/year</strong> 😱</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Now here's where it gets scary. You're not retired for just a few years—you could live another <strong>25-30 years</strong> after retiring at 62. 
+                        That $30,000 annual gap adds up:
+                    </p>
+                    <div class="bg-red-50 border-2 border-red-300 rounded-xl p-5 mb-4">
+                        <div class="text-xl font-bold text-gray-900 mb-2">Over 25 years of retirement:</div>
+                        <div class="text-3xl font-bold text-red-700">$30,000 × 25 years = $750,000</div>
+                        <div class="text-sm text-gray-600 mt-2">That's three-quarters of a MILLION dollars in lost income.</div>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">
+                        And that's NOT accounting for inflation. In reality, the purchasing power gap grows even larger over time. 
+                        This is why so many retired teachers struggle financially—not because they were bad with money, but because 
+                        nobody explained this gap to them when they were young.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-3">How <span id="pension-name-5">CalSTRS</span> Actually Calculates Your Pension</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Understanding how your pension is calculated is crucial. <span id="pension-name-6">CalSTRS</span> uses a simple formula <span id="formula-context">(if you're in CalSTRS 2% at 62, 
+                        which covers most teachers hired after 2013)</span>:
+                    </p>
+                    <div class="bg-blue-50 border-2 border-blue-300 rounded-xl p-5 mb-4">
+                        <div class="font-bold text-lg text-gray-900 mb-3"><span id="pension-name-7">CalSTRS</span> Formula <span id="formula-note">(2% at 62)</span>:</div>
+                        <div class="bg-white rounded-lg p-4 mb-4 font-mono text-center text-lg">
+                            Years of Service × <span id="multiplier-display">2%</span> × Final Compensation = Annual Pension
+                        </div>
+                        <div class="space-y-3" id="formula-examples">
+                            <!-- Dynamically populated -->
+                        </div>
+                    </div>
+                    <div id="tier-note" class="bg-purple-50 border-l-4 border-purple-500 rounded-lg p-4">
+                        <!-- Dynamically populated if needed -->
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-3">Why Most Teachers Retire at <span id="typical-replacement">60-70%</span></h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Let's be real: Most teachers don't work 40 years. Here's why:
+                    </p>
+                    <ul class="space-y-2 ml-6 text-gray-700">
+                        <li>• <strong>Career changers</strong> who become teachers in their 30s or 40s</li>
+                        <li>• <strong>Teachers who retire early</strong> due to burnout, health issues, or family needs</li>
+                        <li>• <strong>Life happens</strong>—raising kids, caring for aging parents, relocating for a spouse's job</li>
+                        <li>• <strong>Many teachers want OUT by 62</strong>, not continuing to 67 or 70</li>
+                    </ul>
+                    <p class="text-gray-700 leading-relaxed mt-4">
+                        The typical <span id="state-name-2">California</span> teacher retires with <strong>25-30 years of service</strong>, which means a pension 
+                        that replaces <strong id="typical-range">50-60%</strong> of their final salary. Even teachers with 35 years only hit <span id="years-35-percent">70%</span>.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed mt-4">
+                        For simplicity, we refer to this as the <strong>"30% gap"</strong>—the average shortfall between what your 
+                        pension provides and what you actually need.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-3">But Wait—Don't My Expenses Drop in Retirement?</h2>
+                    <p class="text-gray-700 leading-relaxed mb-3">
+                        This is what everyone thinks. "I won't need as much money—no work clothes, no commute, no work lunches!" 
+                        And yes, some expenses do drop. But NEW expenses appear:
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-red-50 border-2 border-red-300 rounded-lg p-4">
+                            <div class="font-bold text-red-900 mb-2">Expenses That INCREASE:</div>
+                            <ul class="space-y-1 text-sm text-gray-700">
+                                <li>✅ Healthcare costs (even with Medicare, premiums, co-pays, prescriptions)</li>
+                                <li>✅ Travel & hobbies (you finally have TIME!)</li>
+                                <li>✅ Home maintenance (house doesn't get younger)</li>
+                                <li>✅ Long-term care insurance or care costs</li>
+                                <li>✅ Helping adult children or grandkids</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 border-2 border-green-300 rounded-lg p-4">
+                            <div class="font-bold text-green-900 mb-2">Expenses That STAY:</div>
+                            <ul class="space-y-1 text-sm text-gray-700">
+                                <li>✅ Housing (mortgage/rent, property taxes)</li>
+                                <li>✅ Utilities</li>
+                                <li>✅ Food & groceries</li>
+                                <li>✅ Car insurance & maintenance</li>
+                                <li>✅ Phone, internet, subscriptions</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">
+                        Financial planners say you need <strong>80-90% of your pre-retirement income</strong> to maintain your standard of living. 
+                        <span id="pension-name-8">CalSTRS</span> gets you to <span id="range-provided">50-70%</span>. <strong>That's a 20-40% gap.</strong>
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-3">The Inflation Factor (This Sneaks Up on You)</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        <span id="pension-name-9">CalSTRS</span> pensions include a <strong id="cola-rate">2%</strong> annual Cost of Living Adjustment (COLA). Sounds good, right?
+                    </p>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Except inflation averages 3-4% per year historically. That means your pension's purchasing power slowly DECLINES over time.
+                    </p>
+                    <div class="bg-orange-50 border-2 border-orange-400 rounded-xl p-5">
+                        <div class="font-bold text-lg text-gray-900 mb-2">Real-World Example:</div>
+                        <div class="space-y-2 text-gray-700">
+                            <div>Year 1 of retirement: $70,000 pension feels comfortable</div>
+                            <div>Year 10: With <span id="cola-rate-2">2%</span> COLA, you're at $85,000... but inflation means that buys what $60,000 used to buy</div>
+                            <div>Year 20: You're losing purchasing power EVERY year</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mt-4">
+                        This is why you need supplemental savings that can grow with (or faster than) inflation—NOT just to fill the initial gap, 
+                        but to keep pace with rising costs over 25-30 years.
+                    </p>
+                </section>
+
+                <!-- WEP Section - stays the same for all states -->
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-3">Social Security: The Good News for 2025! 🎉</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Here's something HUGE that just changed: For decades, teachers got screwed on Social Security benefits. 
+                        But as of <strong>January 2025</strong>, that penalty was eliminated. Let me explain what this means for you.
+                    </p>
+                    
+                    <div class="bg-blue-50 border-2 border-blue-400 rounded-lg p-5 mb-4">
+                        <div class="font-bold text-lg text-blue-900 mb-3">📚 What is the Windfall Elimination Provision (WEP)?</div>
+                        <p class="text-gray-700 leading-relaxed mb-3">
+                            The WEP was a 1983 law that <strong>reduced Social Security benefits</strong> for people who also received a pension 
+                            from work where they didn't pay Social Security taxes—like teachers with <span id="pension-name-wep">CalSTRS</span>.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed mb-3">
+                            Here's why it existed: Social Security's benefit formula is progressive—it replaces a higher percentage of income 
+                            for lower earners. But if you worked 10 years in the private sector (paying into Social Security) and 25 years 
+                            teaching (paying into <span id="pension-name-wep-2">CalSTRS</span> instead), Social Security would see only your 10 years of reported earnings and think 
+                            you were a low-income worker. WEP corrected this by reducing your Social Security benefit.
+                        </p>
+                        <div class="bg-white rounded-lg p-4 mt-3">
+                            <div class="font-semibold text-gray-900 mb-2">Before WEP Repeal (Pre-2025):</div>
+                            <div class="text-gray-700">If you earned Social Security credits from a summer job, part-time work, or career before teaching, 
+                            your Social Security benefit could be reduced by up to <strong>$500-600/month</strong>. Ouch.</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 border-2 border-green-400 rounded-lg p-5 mb-4">
+                        <div class="font-bold text-lg text-green-900 mb-3">🎉 The 2025 WEP Repeal: What Changed</div>
+                        <p class="text-gray-700 leading-relaxed mb-3">
+                            In December 2024, Congress passed the <strong>Social Security Fairness Act</strong>, which repealed WEP 
+                            (and its cousin, GPO—Government Pension Offset). Effective <strong>January 2025</strong>, teachers now receive 
+                            their <strong>FULL Social Security benefits</strong> based on their work history—no more penalties!
+                        </p>
+                        <div class="bg-white rounded-lg p-4 mt-3">
+                            <div class="font-semibold text-gray-900 mb-2">After WEP Repeal (2025 and Beyond):</div>
+                            <div class="text-gray-700">If you worked 10+ years in jobs where you paid Social Security taxes (private sector, 
+                            non-teaching jobs, summer work, etc.), you now get your <strong>FULL</strong> Social Security benefit—typically 
+                            an extra <strong>$300-800/month</strong> in retirement. This is HUGE!</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-purple-50 border-2 border-purple-400 rounded-lg p-5 mb-4">
+                        <div class="font-bold text-lg text-purple-900 mb-3">💰 Real-World Impact: What This Means for You</div>
+                        <div class="space-y-3 text-gray-700">
+                            <div class="bg-white rounded-lg p-4">
+                                <div class="font-semibold text-gray-900 mb-1">Scenario 1: Career Changer</div>
+                                <div class="text-sm">
+                                    You worked in marketing for 12 years (paying Social Security taxes), then became a teacher at 35. 
+                                    Under the old WEP rules, your Social Security benefit would've been slashed by ~$400/month. Now? 
+                                    <strong>You get the full benefit you earned—about $1,200/month.</strong>
+                                </div>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <div class="font-semibold text-gray-900 mb-1">Scenario 2: Summer Jobs & Part-Time Work</div>
+                                <div class="text-sm">
+                                    You worked retail, restaurants, or other jobs during college and summers, accumulating 10 years of 
+                                    Social Security credits. Old rules: benefit reduced by $300-500/month. New rules: 
+                                    <strong>Full benefit of ~$800-1,000/month.</strong>
+                                </div>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <div class="font-semibold text-gray-900 mb-1">Scenario 3: Lifelong Teacher (No Other Jobs)</div>
+                                <div class="text-sm">
+                                    You started teaching at 22 and never worked jobs that paid Social Security taxes. WEP repeal 
+                                    doesn't affect you directly—<strong>you weren't eligible for Social Security benefits anyway</strong>. 
+                                    But your <span id="pension-name-wep-3">CalSTRS</span> pension remains unchanged.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-yellow-50 border-l-4 border-yellow-500 rounded-lg p-4 mb-4">
+                        <p class="text-sm font-semibold text-yellow-900 mb-2">⚠️ Important Note:</p>
+                        <p class="text-sm text-gray-700">
+                            To qualify for Social Security benefits, you need at least <strong>40 credits</strong> (roughly 10 years of work 
+                            in jobs where you paid Social Security taxes). If you've only taught and never worked other jobs, you won't receive 
+                            Social Security—but you also weren't affected by WEP. Your <span id="pension-name-wep-4">CalSTRS</span> pension is your primary retirement income.
+                        </p>
+                    </div>
+
+                    <p class="text-gray-700 leading-relaxed">
+                        <strong>Bottom line:</strong> If you worked non-teaching jobs before or during your teaching career, the WEP repeal 
+                        could add <strong>$300-800/month</strong> to your retirement income. That's $3,600-$9,600 per year—real money that 
+                        helps close the 30% gap! Check your Social Security statement at <strong>ssa.gov/myaccount</strong> to see your estimated benefits.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-3">Enter: 403(b) and 457(b) Accounts</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        This is why <span id="state-name-3">California</span> (and every state) offers teachers <strong>supplemental retirement accounts</strong> on top of your pension. 
+                        These aren't optional extras for "rich teachers"—they're ESSENTIAL tools to fill the gap.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-green-50 border-2 border-green-400 rounded-lg p-5">
+                            <div class="text-3xl mb-2">💰</div>
+                            <div class="font-bold text-lg text-gray-900 mb-2">403(b) Account</div>
+                            <div class="text-sm text-gray-700 mb-3">Tax-deferred retirement savings. Money grows tax-free until you withdraw it in retirement.</div>
+                            <div class="text-xs text-gray-600">Similar to a 401(k), but specifically for educators and non-profit employees</div>
+                        </div>
+                        <div class="bg-purple-50 border-2 border-purple-400 rounded-lg p-5">
+                            <div class="text-3xl mb-2">🏦</div>
+                            <div class="font-bold text-lg text-gray-900 mb-2">457(b) Account</div>
+                            <div class="text-sm text-gray-700 mb-3">Deferred compensation plan. The BEST part: No 10% early withdrawal penalty—access at ANY age when you retire.</div>
+                            <div class="text-xs text-gray-600">Unique to government employees—this is a HUGE advantage</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">
+                        These accounts exist <strong>specifically</strong> to fill the 20-40% income gap your pension leaves behind. 
+                        In Modules 2-9, you'll learn exactly how to use them—how they work, how much to contribute, which vendors to choose, 
+                        and how to actually sign up.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-3">Coach Marty's Real Talk: My $15,000 Mistake</h2>
+                    <div class="bg-blue-50 border-l-4 border-blue-600 rounded-lg p-5">
+                        <p class="text-gray-700 leading-relaxed mb-3">
+                            I'm going to be brutally honest with you. When I first learned about 403(b) accounts, I was in my late 20s. 
+                            A colleague showed me the projections. I KNEW I should sign up. But I procrastinated for <strong>TWO FULL YEARS</strong>.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed mb-3">
+                            Why? I was intimidated. I didn't understand the forms. I was afraid of picking the "wrong" investment. 
+                            I kept thinking, "I'll do it next month." Then next month became next year.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed mb-3">
+                            That two-year delay cost me about <strong>$15,000 in lost compound growth</strong>. Not $15,000 in contributions—I mean 
+                            $15,000 in growth I'll NEVER get back because I started late.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed font-bold">
+                            Don't be me. The pension is great—but it's NOT enough. You need BOTH.
+                        </p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-3">The Basketball Analogy (Because I Can't Help Myself)</h2>
+                    <p class="text-gray-700 leading-relaxed mb-3">
+                        Think of your retirement like a basketball game. <span id="pension-name-10">CalSTRS</span> is your <strong>starting five</strong>—solid, reliable, 
+                        they'll get you through most of the game. But can you win a championship with ONLY your starting five? No. 
+                        You need a <strong>bench</strong>.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed mb-3">
+                        Your 403(b) and 457(b) are your bench players. When your starters (pension) get tired or injured (inflation, unexpected expenses), 
+                        your bench steps up and keeps you in the game. Champions build depth. So should you.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Key Takeaways from Module 1</h2>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border-l-4 border-blue-500">
+                            <div class="text-2xl">1️⃣</div>
+                            <div class="text-gray-700">
+                                <strong><span id="pension-name-11">CalSTRS</span> is a strong pension</strong>, but it only replaces <span id="takeaway-range">50-70%</span> of your income (most teachers never hit the 80% cap)
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border-l-4 border-blue-500">
+                            <div class="text-2xl">2️⃣</div>
+                            <div class="text-gray-700">
+                                The <strong>30% income gap</strong> is real—$750,000+ in lost income over a typical retirement
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border-l-4 border-blue-500">
+                            <div class="text-2xl">3️⃣</div>
+                            <div class="text-gray-700">
+                                Your expenses won't drop 30% in retirement (healthcare, travel, inflation all increase costs)
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border-l-4 border-blue-500">
+                            <div class="text-2xl">4️⃣</div>
+                            <div class="text-gray-700">
+                                <strong>403(b) and 457(b) accounts</strong> exist specifically to fill this gap—they're not optional luxuries
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border-l-4 border-blue-500">
+                            <div class="text-2xl">5️⃣</div>
+                            <div class="text-gray-700">
+                                Starting early = <strong>massive difference</strong> due to compound growth (even delaying 2 years costs tens of thousands)
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="bg-green-50 border-2 border-green-400 rounded-lg p-5">
+                    <p class="font-bold text-green-900 mb-2">🎯 What's Next?</p>
+                    <p class="text-gray-700">
+                        Now you understand THE PROBLEM. In Module 2, we'll start building THE SOLUTION. You'll learn the difference 
+                        between 403(b) and 457(b) accounts, why you might need BOTH, and how they work together to fill your income gap.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Quiz Section -->
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">📝 Knowledge Check</h2>
+                <div id="quiz-container"></div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="flex items-center justify-between">
+                <a href="dashboard.html" class="bg-gray-200 hover:bg-gray-300 px-6 py-3 rounded-lg font-semibold text-gray-700 transition">
+                    ← Back to Dashboard
+                </a>
+                <button id="next-btn" disabled class="bg-gray-300 text-gray-500 px-6 py-3 rounded-lg font-semibold cursor-not-allowed">
+                    Next: Module 2 →
+                </button>
+            </div>
+        </div>
+
+        <footer class="mt-12 pb-8 text-center text-gray-600">
+            <div class="max-w-4xl mx-auto px-6">
+                <p class="text-sm mb-3">&copy; 2026 TeacherFinCoach. Building Wealth for Educators.</p>
+                <p class="text-xs text-gray-600 mb-2">
+                    <strong>Educational Purposes Only:</strong> Teacher Fin Coach provides general educational information about retirement planning for teachers. 
+                    This content does not constitute financial, investment, tax, or legal advice. All information is for educational purposes only.
+                </p>
+                <p class="text-xs text-gray-500">
+                    Consult with a qualified financial advisor, tax professional, or attorney for personalized guidance based on your individual circumstances. 
+                    <a href="terms.html" class="underline hover:text-gray-700">Terms & Disclaimers</a>
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // State-specific data
+        const stateData = {
+            california: {
+                stateName: "California",
+                pensionSystem: "CalSTRS",
+                pensionFullName: "California State Teachers' Retirement System",
+                pensionContext: "one of the largest and most well-funded pension systems in the United States.",
+                multiplier: 0.02,
+                multiplierDisplay: "2%",
+                formulaNote: "(2% at 62)",
+                formulaContext: "(if you're in CalSTRS 2% at 62, which covers most teachers hired after 2013)",
+                replacementRange: "60-70%",
+                paymentRange: "$60,000-$70,000",
+                typicalReplacement: "60-70%",
+                typicalRange: "50-60%",
+                years35Percent: "70%",
+                rangeProvided: "50-70%",
+                takeawayRange: "50-70%",
+                colaRate: "2%",
+                tierNote: `<p class="text-sm font-semibold text-purple-900 mb-1">⚠️ Note for CalSTRS 2% at 60 Members:</p>
+                          <p class="text-sm text-gray-700">If you were hired before 2013, you're likely in "2% at 60" with slightly more generous benefits. 
+                          The formula is the same, but you can retire at 60 instead of 62 with full benefits. You still face the income gap.</p>`,
+                examples: [
+                    { years: 25, percent: 50, amount: "$50k" },
+                    { years: 30, percent: 60, amount: "$60k" },
+                    { years: 35, percent: 70, amount: "$70k" },
+                    { years: 40, percent: 80, amount: "$80k (cap)" }
+                ]
+            },
+            texas: {
+                stateName: "Texas",
+                pensionSystem: "TRS",
+                pensionFullName: "Teacher Retirement System of Texas",
+                pensionContext: "serving educators across the Lone Star State.",
+                multiplier: 0.023,
+                multiplierDisplay: "2.3%",
+                formulaNote: "",
+                formulaContext: "",
+                replacementRange: "57-69%",
+                paymentRange: "$57,500-$69,000",
+                typicalReplacement: "57-69%",
+                typicalRange: "57.5-69%",
+                years35Percent: "80.5%",
+                rangeProvided: "57.5-69%",
+                takeawayRange: "57-69%",
+                colaRate: "varies (often 0-1%)",
+                tierNote: "",
+                examples: [
+                    { years: 25, percent: 57.5, amount: "$57.5k" },
+                    { years: 30, percent: 69, amount: "$69k" },
+                    { years: 35, percent: 80.5, amount: "$80.5k" },
+                    { years: 40, percent: 90, amount: "$90k (cap)" }
+                ]
+            },
+            newyork: {
+                stateName: "New York",
+                pensionSystem: "NYSTRS",
+                pensionFullName: "New York State Teachers' Retirement System",
+                pensionContext: "one of the nation's premier public pension funds.",
+                multiplier: 0.0167,
+                multiplierDisplay: "1.67%",
+                formulaNote: "(Tier 6)",
+                formulaContext: "(most teachers hired after April 2012 are in Tier 6)",
+                replacementRange: "50-58%",
+                paymentRange: "$50,000-$58,000",
+                typicalReplacement: "50-58%",
+                typicalRange: "41.75-50%",
+                years35Percent: "58.45%",
+                rangeProvided: "41.75-58%",
+                takeawayRange: "50-58%",
+                colaRate: "1.5%",
+                tierNote: `<p class="text-sm font-semibold text-purple-900 mb-1">⚠️ Note for Tier 4 & 5 Members:</p>
+                          <p class="text-sm text-gray-700">If you were hired before April 2012, you're in Tier 4 or 5 with a more generous 2% formula. 
+                          Tier 6 (1.67%) applies to most teachers hired after 2012.</p>`,
+                examples: [
+                    { years: 25, percent: 41.75, amount: "$41.75k" },
+                    { years: 30, percent: 50, amount: "$50k" },
+                    { years: 35, percent: 58.45, amount: "$58.45k" },
+                    { years: 40, percent: 66.8, amount: "$66.8k" }
+                ]
+            },
+            florida: {
+                stateName: "Florida",
+                pensionSystem: "FRS",
+                pensionFullName: "Florida Retirement System",
+                pensionContext: "covering educators throughout the Sunshine State.",
+                multiplier: 0.016,
+                multiplierDisplay: "1.6%",
+                formulaNote: "(Pension Plan)",
+                formulaContext: "",
+                replacementRange: "48-56%",
+                paymentRange: "$48,000-$56,000",
+                typicalReplacement: "48-56%",
+                typicalRange: "40-48%",
+                years35Percent: "56%",
+                rangeProvided: "40-56%",
+                takeawayRange: "48-56%",
+                colaRate: "typically 0-3% (not guaranteed)",
+                tierNote: "",
+                examples: [
+                    { years: 25, percent: 40, amount: "$40k" },
+                    { years: 30, percent: 48, amount: "$48k" },
+                    { years: 35, percent: 56, amount: "$56k" },
+                    { years: 40, percent: 64, amount: "$64k" }
+                ]
+            },
+            illinois: {
+                stateName: "Illinois",
+                pensionSystem: "TRS",
+                pensionFullName: "Teachers' Retirement System of Illinois",
+                pensionContext: "serving Illinois educators.",
+                multiplier: 0.022,
+                multiplierDisplay: "2.2%",
+                formulaNote: "",
+                formulaContext: "",
+                replacementRange: "66-77%",
+                paymentRange: "$66,000-$77,000",
+                typicalReplacement: "66-77%",
+                typicalRange: "55-66%",
+                years35Percent: "77%",
+                rangeProvided: "55-77%",
+                takeawayRange: "66-77%",
+                colaRate: "3% (automatic)",
+                tierNote: "",
+                examples: [
+                    { years: 25, percent: 55, amount: "$55k" },
+                    { years: 30, percent: 66, amount: "$66k" },
+                    { years: 35, percent: 77, amount: "$77k" },
+                    { years: 40, percent: 75, amount: "$75k (cap applies)" }
+                ]
+            },
+            generic: {
+                stateName: "your state",
+                pensionSystem: "your state's teacher pension system",
+                pensionFullName: "your state's teacher retirement system",
+                pensionContext: "like most teacher pension systems nationwide.",
+                multiplier: 0.02,
+                multiplierDisplay: "2%",
+                formulaNote: "(typical)",
+                formulaContext: "(formulas vary by state - this is a common example)",
+                replacementRange: "60-70%",
+                paymentRange: "$60,000-$70,000",
+                typicalReplacement: "60-70%",
+                typicalRange: "50-60%",
+                years35Percent: "70%",
+                rangeProvided: "50-70%",
+                takeawayRange: "60-70%",
+                colaRate: "varies by state (often 1-3%)",
+                tierNote: `<p class="text-sm font-semibold text-purple-900 mb-1">⚠️ State-Specific Details:</p>
+                          <p class="text-sm text-gray-700">Each state has its own pension formula and rules. For your specific state's details, 
+                          visit your state retirement system's website or contact them directly. The principles of the 30% gap apply nationwide.</p>`,
+                examples: [
+                    { years: 25, percent: 50, amount: "~$50k" },
+                    { years: 30, percent: 60, amount: "~$60k" },
+                    { years: 35, percent: 70, amount: "~$70k" },
+                    { years: 40, percent: 80, amount: "~$80k" }
+                ]
+            }
+        };
+
+        // Function to update content based on selected state
+        function updateContent(state) {
+            const data = stateData[state];
+            
+            // Update all pension system names
+            document.querySelectorAll('[id^="pension-name"], [id^="pension-system"]').forEach(el => {
+                el.textContent = data.pensionSystem;
+            });
+            
+            // Update specific elements
+            document.getElementById('pension-full-name').textContent = data.pensionFullName;
+            document.getElementById('pension-context').textContent = data.pensionContext;
+            document.querySelectorAll('[id^="state-name"]').forEach(el => {
+                el.textContent = data.stateName;
+            });
+            
+            // Update ranges and percentages
+            document.getElementById('replacement-range').textContent = data.replacementRange;
+            document.getElementById('payment-range').textContent = data.paymentRange;
+            document.getElementById('typical-replacement').textContent = data.typicalReplacement;
+            document.getElementById('typical-range').textContent = data.typicalRange;
+            document.getElementById('years-35-percent').textContent = data.years35Percent;
+            document.getElementById('range-provided').textContent = data.rangeProvided;
+            document.getElementById('takeaway-range').textContent = data.takeawayRange;
+            
+            // Update formula section
+            document.getElementById('multiplier-display').textContent = data.multiplierDisplay;
+            document.getElementById('formula-note').textContent = data.formulaNote;
+            document.getElementById('formula-context').textContent = data.formulaContext;
+            
+            // Update COLA
+            document.querySelectorAll('[id^="cola-rate"]').forEach(el => {
+                el.textContent = data.colaRate;
+            });
+            
+            // Update formula examples
+            const examplesContainer = document.getElementById('formula-examples');
+            examplesContainer.innerHTML = data.examples.map(ex => `
+                <div>
+                    <div class="font-semibold text-gray-900">Example: ${ex.years} years of service</div>
+                    <div class="text-gray-700">${ex.years} years × ${data.multiplierDisplay} = <strong>${ex.percent}% replacement rate</strong></div>
+                    <div class="text-sm text-gray-600">If your final salary is $100k, your pension is ${ex.amount}/year</div>
+                </div>
+            `).join('');
+            
+            // Update tier note
+            document.getElementById('tier-note').innerHTML = data.tierNote;
+            if (!data.tierNote) {
+                document.getElementById('tier-note').style.display = 'none';
+            } else {
+                document.getElementById('tier-note').style.display = 'block';
+            }
+            
+            // Update quiz questions to match state
+            renderQuiz();
+        }
+
+        // State selector event listener
+        document.getElementById('state-selector').addEventListener('change', (e) => {
+            updateContent(e.target.value);
+        });
+
+        // Quiz data
+        const quiz = [
+            {
+                q: "What percentage of your final salary does your state's pension typically replace for most teachers?",
+                opts: ["90-100%", "80-90%", "60-70%", "40-50%"],
+                correct: 2,
+                explanation: "Most teachers retire with 25-35 years of service, which typically means their pension replaces 50-70% of their final salary. Even with 40 years (often the maximum), most states cap benefits around 80%."
+            },
+            {
+                q: "What is the '30% income gap'?",
+                opts: [
+                    "The amount your pension system deducts from your paycheck",
+                    "The difference between what your pension provides and what you need in retirement",
+                    "A tax on retirement income",
+                    "The fee charged by 403(b) vendors"
+                ],
+                correct: 1,
+                explanation: "The 30% gap refers to the shortfall between what your pension provides (typically 60-70% of final salary) and what you actually need to maintain your standard of living in retirement (80-90%)."
+            },
+            {
+                q: "How do most state pension systems calculate your annual pension?",
+                opts: [
+                    "Your age × percentage × final salary",
+                    "Years of service × percentage × final compensation",
+                    "Your contributions × investment returns",
+                    "Final salary × 70%"
+                ],
+                correct: 1,
+                explanation: "Most state pension systems use a formula like: Years of Service × Multiplier (varies by state, typically 1.6-2.3%) × Final Compensation. For example, California's CalSTRS uses 2%, Texas TRS uses 2.3%."
+            },
+            {
+                q: "Why don't your expenses drop by 30% in retirement?",
+                opts: [
+                    "Healthcare costs, travel, and inflation increase expenses",
+                    "Teachers spend more money after retiring",
+                    "Social Security takes 30% of your pension",
+                    "Property taxes double after retirement"
+                ],
+                correct: 0,
+                explanation: "While some expenses drop (commuting, work clothes), others increase significantly: healthcare costs, travel and hobbies, home maintenance, and the impact of inflation over 25-30 years of retirement. Financial experts recommend 80-90% of pre-retirement income."
+            },
+            {
+                q: "What are 403(b) and 457(b) accounts designed to do?",
+                opts: [
+                    "Replace your pension entirely",
+                    "Fill the 30% income gap your pension leaves behind",
+                    "Pay for health insurance in retirement",
+                    "Provide short-term emergency savings"
+                ],
+                correct: 1,
+                explanation: "403(b) and 457(b) accounts exist specifically to supplement your pension and fill the 20-40% income gap. They're not optional extras—they're essential tools that work alongside your pension to provide the 80-90% income replacement you need."
+            }
+        ];
+
+        let answers = [];
+        let score = null;
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            
+            if (score === null) {
+                let html = '<div class="space-y-6">';
+                quiz.forEach((q, qIdx) => {
+                    html += `
+                        <div class="border-b pb-4">
+                            <div class="font-semibold text-gray-900 mb-3">${qIdx + 1}. ${q.q}</div>
+                            <div class="space-y-2">
+                    `;
+                    q.opts.forEach((opt, oIdx) => {
+                        const isSelected = answers[qIdx] === oIdx;
+                        html += `
+                            <label class="flex items-center p-3 border-2 rounded-lg cursor-pointer transition ${
+                                isSelected ? 'border-blue-600 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
+                            }">
+                                <input type="radio" name="q${qIdx}" ${isSelected ? 'checked' : ''} 
+                                       onchange="selectAnswer(${qIdx}, ${oIdx})"
+                                       class="w-4 h-4 text-blue-600">
+                                <span class="ml-3 text-gray-700">${opt}</span>
+                            </label>
+                        `;
+                    });
+                    html += '</div></div>';
+                });
+                
+                const allAnswered = answers.length === quiz.length;
+                html += `
+                    <button onclick="submitQuiz()" ${allAnswered ? '' : 'disabled'}
+                            class="w-full py-3 rounded-lg font-semibold transition ${
+                                allAnswered 
+                                ? 'bg-blue-600 hover:bg-blue-700 text-white' 
+                                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                            }">
+                        Submit Quiz
+                    </button>
+                </div>`;
+                container.innerHTML = html;
+            } else {
+                const correct = answers.filter((ans, idx) => ans === quiz[idx].correct).length;
+                const passed = score >= 60;
+                
+                let html = `
+                    <div class="rounded-lg p-6 mb-6 ${passed ? 'bg-green-50 border-2 border-green-300' : 'bg-red-50 border-2 border-red-300'}">
+                        <div class="text-2xl font-bold mb-2">
+                            ${passed ? '✅ Great job! You passed!' : '❌ Not quite—review the material and try again!'}
+                        </div>
+                        <div class="text-lg">
+                            Your score: <strong>${score}%</strong> (${correct} out of ${quiz.length} correct)
+                        </div>
+                        ${passed ? '<div class="mt-3 text-green-800">🎉 Module complete! Ready to move on to Module 2!</div>' : ''}
+                    </div>
+                    <div class="space-y-4 mb-6">
+                `;
+                
+                quiz.forEach((q, qIdx) => {
+                    const isCorrect = answers[qIdx] === q.correct;
+                    html += `
+                        <div class="border-b pb-4">
+                            <div class="font-semibold mb-2">${qIdx + 1}. ${q.q}</div>
+                            <div class="p-3 rounded-lg mb-2 ${isCorrect ? 'bg-green-50 border border-green-300' : 'bg-red-50 border border-red-300'}">
+                                <div class="font-semibold ${isCorrect ? 'text-green-900' : 'text-red-900'}">
+                                    Your answer: ${q.opts[answers[qIdx]]}
+                                </div>
+                            </div>
+                    `;
+                    if (!isCorrect) {
+                        html += `
+                            <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg mb-2">
+                                <div class="text-sm font-semibold text-blue-900">Correct answer:</div>
+                                <div class="text-blue-800">${q.opts[q.correct]}</div>
+                            </div>
+                        `;
+                    }
+                    html += `<div class="text-sm text-gray-600 italic">${q.explanation}</div></div>`;
+                });
+                
+                html += `
+                    </div>
+                    <button onclick="resetQuiz()" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition">
+                        Retake Quiz
+                    </button>
+                `;
+                container.innerHTML = html;
+                
+                if (passed) {
+                    const nextBtn = document.getElementById('next-btn');
+                    nextBtn.disabled = false;
+                    nextBtn.className = 'bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition';
+                    nextBtn.onclick = () => window.location.href = 'module2.html';
+                }
+            }
+        }
+
+        function selectAnswer(qIdx, oIdx) {
+            answers[qIdx] = oIdx;
+            renderQuiz();
+        }
+
+        function submitQuiz() {
+            const correct = answers.filter((ans, idx) => ans === quiz[idx].correct).length;
+            score = Math.round((correct / quiz.length) * 100);
+            renderQuiz();
+        }
+
+        function resetQuiz() {
+            answers = [];
+            score = null;
+            renderQuiz();
+            window.scrollTo(0, document.getElementById('quiz-container').offsetTop - 100);
+        }
+
+        // Initial render with California as default
+        updateContent('california');
+        renderQuiz();
+    </script>
+</body>
+</html>

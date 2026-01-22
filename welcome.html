@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to TeacherFinCoach</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #06b6d4 100%);
+            min-height: 100vh;
+        }
+        h1, h2 { font-family: 'Righteous', sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen py-12 px-4">
+        <div class="max-w-4xl mx-auto">
+            <!-- Logo Header -->
+            <div class="text-center mb-8">
+                <img src="IMG_1337.jpeg" alt="TFC Logo" class="w-24 h-auto mx-auto mb-4">
+                <h1 class="text-5xl font-bold text-white mb-2">Welcome to TeacherFinCoach!</h1>
+                <p class="text-xl text-white/90">You're about to discover how to build real wealth using benefits you already have</p>
+            </div>
+
+            <!-- Main Welcome Card -->
+            <div class="bg-white rounded-2xl shadow-2xl p-8 mb-6">
+                <!-- Personal Greeting -->
+                <div class="bg-gradient-to-r from-blue-50 to-purple-50 border-l-4 border-blue-600 rounded-lg p-6 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">
+                        <span id="greeting">Great to have you here</span>, <span id="state-name">California</span> Teacher! 🎉
+                    </h2>
+                    <p class="text-gray-700" id="personalized-intro">
+                        I've customized this entire course specifically for your state's pension system and your retirement timeline.
+                    </p>
+                </div>
+
+                <!-- Coach Marty Introduction -->
+                <div class="mb-8">
+                    <div class="flex items-start gap-4 mb-6">
+                        <div class="text-6xl">🏀</div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Meet Coach Marty</h3>
+                            <p class="text-sm text-gray-600 font-semibold">Your Guide to Teacher Retirement Wealth</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 text-gray-700 leading-relaxed">
+                        <p>
+                            Hey there! I'm Coach Marty. I spent 31 years teaching PE and coaching varsity basketball in California. 
+                            I loved every minute of it—the wins, the losses, the life lessons, teaching kids about teamwork and perseverance.
+                        </p>
+                        <p>
+                            But here's the thing: <strong>whether you're teaching 2nd grade, high school English, art, music, special education, 
+                            or AP Calculus—we ALL face the same retirement challenges.</strong> The pension gap doesn't care what subject you teach.
+                        </p>
+                        <p>
+                            What I didn't love was watching my fellow teachers make costly retirement mistakes. Teachers losing 
+                            tens of thousands to high fees. Teachers who waited too long to start saving. Teachers who had NO IDEA their 
+                            pension would only replace 60-70% of their income.
+                        </p>
+                        <p>
+                            I made some of those mistakes too. I procrastinated for TWO YEARS before signing up for my 403(b). 
+                            That delay cost me $15,000 in lost growth that I'll never get back.
+                        </p>
+                        <p class="font-semibold text-lg text-blue-900">
+                            I created TeacherFinCoach so you don't have to learn these lessons the hard way. Whether you're a kindergarten 
+                            teacher, a high school math teacher, or anything in between—you're going to discover exactly how to fill the 
+                            retirement income gap and build real wealth, starting today.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- What You'll Learn -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">What You'll Learn in This Course:</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex gap-4 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-600">
+                            <div class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+                            <div>
+                                <div class="font-semibold text-gray-900">The 30% Income Gap (And Why Your Pension Isn't Enough)</div>
+                                <div class="text-sm text-gray-600 mt-1">Discover exactly how much you'll be short in retirement—and what to do about it</div>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 p-4 bg-purple-50 rounded-lg border-l-4 border-purple-600">
+                            <div class="flex-shrink-0 w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+                            <div>
+                                <div class="font-semibold text-gray-900">403(b) vs 457(b): The Dynamic Duo</div>
+                                <div class="text-sm text-gray-600 mt-1">Why you need BOTH accounts and how they work together to fill your gap</div>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 p-4 bg-green-50 rounded-lg border-l-4 border-green-600">
+                            <div class="flex-shrink-0 w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+                            <div>
+                                <div class="font-semibold text-gray-900">Avoiding the Costly Mistakes</div>
+                                <div class="text-sm text-gray-600 mt-1">High-fee vendors, bad investments, and procrastination—how to avoid losing thousands</div>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-600">
+                            <div class="flex-shrink-0 w-10 h-10 bg-yellow-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+                            <div>
+                                <div class="font-semibold text-gray-900">Your Step-by-Step Action Plan</div>
+                                <div class="text-sm text-gray-600 mt-1">Exactly how to sign up, which vendors to choose, and how much to contribute</div>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 p-4 bg-red-50 rounded-lg border-l-4 border-red-600">
+                            <div class="flex-shrink-0 w-10 h-10 bg-red-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
+                            <div>
+                                <div class="font-semibold text-gray-900">Long-Term Wealth Building Strategies</div>
+                                <div class="text-sm text-gray-600 mt-1">Advanced strategies to maximize growth and retire with confidence</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Structure -->
+                <div class="bg-gray-50 rounded-xl p-6 mb-8">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">📚 Course Structure</h3>
+                    <div class="grid md:grid-cols-3 gap-4 text-sm">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-blue-600">9</div>
+                            <div class="text-gray-600">Comprehensive Modules</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-purple-600">4</div>
+                            <div class="text-gray-600">Interactive Calculators</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-green-600">~2</div>
+                            <div class="text-gray-600">Hours Total Time</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 text-center mt-4 italic">
+                        Complete at your own pace. Most teachers finish in 1-2 sessions.
+                    </p>
+                </div>
+
+                <!-- What Makes This Different -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Why This Course is Different:</h3>
+                    <div class="space-y-2 text-gray-700">
+                        <div class="flex items-start gap-3">
+                            <span class="text-green-600 font-bold">✓</span>
+                            <span><strong>State-specific:</strong> Customized for YOUR pension system (not generic advice)</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-green-600 font-bold">✓</span>
+                            <span><strong>Created by a teacher:</strong> Real classroom experience, not theory from financial advisors</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-green-600 font-bold">✓</span>
+                            <span><strong>For ALL educators:</strong> Elementary, middle, high school, art, music, special ed—this works for everyone</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-green-600 font-bold">✓</span>
+                            <span><strong>Action-focused:</strong> Step-by-step guides you can implement TODAY</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-green-600 font-bold">✓</span>
+                            <span><strong>No jargon:</strong> Explained like I'm talking to you in the teacher's lounge</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="bg-gradient-to-r from-green-50 to-blue-50 border-2 border-green-500 rounded-xl p-6 text-center">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Ready to Build Your Retirement Wealth?</h3>
+                    <p class="text-gray-700 mb-6">
+                        Your customized course is waiting. Let's turn that pension into a championship retirement!
+                    </p>
+                    <button onclick="window.location.href='dashboard.html'" 
+                            class="bg-green-600 hover:bg-green-700 text-white px-12 py-4 rounded-xl font-bold text-xl transition shadow-lg hover:shadow-xl">
+                        Let's Get Started! 🚀
+                    </button>
+                    <p class="text-sm text-gray-600 mt-4">Takes about 2 hours total • Start anytime • Complete at your pace</p>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="text-center text-white text-sm">
+                <p>&copy; 2026 TeacherFinCoach. Building Wealth for Educators.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load user data from localStorage
+        const userDataStr = localStorage.getItem('teacherfincoach_user');
+        
+        if (userDataStr) {
+            const userData = JSON.parse(userDataStr);
+            
+            // Update state name
+            const stateNames = {
+                'california': 'California',
+                'texas': 'Texas',
+                'newyork': 'New York',
+                'florida': 'Florida',
+                'illinois': 'Illinois',
+                'other': ''
+            };
+            
+            const stateName = stateNames[userData.state] || '';
+            document.getElementById('state-name').textContent = stateName;
+            
+            // Personalized greeting based on years teaching
+            const years = parseInt(userData.yearsTeaching);
+            let greeting = 'Welcome';
+            if (years < 5) {
+                greeting = 'Welcome, Rising Star';
+            } else if (years < 15) {
+                greeting = 'Welcome, Veteran Educator';
+            } else {
+                greeting = 'Welcome, Master Teacher';
+            }
+            document.getElementById('greeting').textContent = greeting;
+            
+            // Personalized intro based on retirement timeline
+            const yearsToRetirement = parseInt(userData.retirementAge) - parseInt(userData.currentAge);
+            let intro = "I've customized this entire course specifically for your state's pension system and your retirement timeline.";
+            
+            if (yearsToRetirement <= 5) {
+                intro = `With just ${yearsToRetirement} years until retirement, this course will show you how to maximize your savings NOW while there's still time. Every month counts!`;
+            } else if (yearsToRetirement <= 15) {
+                intro = `With ${yearsToRetirement} years until retirement, you're in the perfect position to build serious wealth. This course will show you exactly how.`;
+            } else {
+                intro = `With ${yearsToRetirement} years until retirement, you have TIME on your side—the most powerful tool in investing. This course will help you make the most of it.`;
+            }
+            
+            document.getElementById('personalized-intro').textContent = intro;
+        }
+    </script>
+</body>
+</html>
