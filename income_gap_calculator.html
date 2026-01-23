@@ -89,6 +89,26 @@
             margin-top: 4px;
         }
 
+        .label-link {
+            display: block;
+            margin-top: 8px;
+            padding: 10px;
+            background: #e3f2fd;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #1976D2;
+        }
+
+        .label-link a {
+            color: #1976D2;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .label-link a:hover {
+            text-decoration: underline;
+        }
+
         input[type="number"],
         input[type="text"],
         select {
@@ -175,6 +195,19 @@
             font-weight: bold;
             font-style: normal;
             color: #1976D2;
+        }
+
+        .wep-warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .wep-warning strong {
+            color: #856404;
         }
 
         .calculate-btn {
@@ -397,51 +430,10 @@
         <form id="gapCalculator">
             <!-- Primary User Information -->
             <div class="form-group">
-                <label for="state">Which state do you teach in?</label>
-                <select id="state" required>
-                    <option value="">Select your state...</option>
-                    <option value="california">California (CalSTRS)</option>
-                    <option value="texas">Texas (TRS)</option>
-                    <option value="newyork">New York (NYSTRS)</option>
-                    <option value="florida">Florida (FRS)</option>
-                    <option value="illinois">Illinois (TRS)</option>
-                    <option value="other">Other State</option>
-                </select>
-            </div>
-
-            <div class="form-group">
                 <label for="salary">Current Annual Salary
                     <div class="label-hint">Enter your gross annual salary</div>
                 </label>
                 <input type="number" id="salary" placeholder="e.g., 75000" required min="0">
-            </div>
-
-            <div class="form-group">
-                <label for="yearsService">Years of Service at Retirement
-                    <div class="label-hint">Total years you'll work in education</div>
-                </label>
-                <input type="number" id="yearsService" placeholder="e.g., 30" required min="0">
-            </div>
-
-            <div class="form-group">
-                <label for="retirementAge">Retirement Age
-                    <div class="label-hint">Age affects pension calculation</div>
-                </label>
-                <input type="number" id="retirementAge" placeholder="e.g., 62" required min="50" max="75">
-            </div>
-
-            <div class="form-group">
-                <label for="socialSecurity">Expected Monthly Social Security (Optional)
-                    <div class="label-hint">Check <a href="https://www.ssa.gov/myaccount/" target="_blank">ssa.gov/myaccount</a> for your estimate. Leave at $0 if you don't qualify or are unsure.</div>
-                </label>
-                <input type="number" id="socialSecurity" placeholder="e.g., 1500" min="0" value="0">
-            </div>
-
-            <div class="form-group">
-                <label for="currentSavings">Current Retirement Savings (403b, 457b, IRAs)
-                    <div class="label-hint">Enter 0 if starting fresh</div>
-                </label>
-                <input type="number" id="currentSavings" placeholder="e.g., 50000" required min="0">
             </div>
 
             <div class="form-group">
@@ -451,51 +443,190 @@
                 <input type="number" id="yearsToRetirement" placeholder="e.g., 20" required min="0">
             </div>
 
+            <div class="form-group">
+                <label for="state">Which state do you teach in?
+                    <div class="label-hint">We'll provide a link to your state's pension calculator</div>
+                </label>
+                <select id="state" required>
+                    <option value="">Select your state...</option>
+                    <option value="alabama">Alabama</option>
+                    <option value="alaska">Alaska</option>
+                    <option value="arizona">Arizona</option>
+                    <option value="arkansas">Arkansas</option>
+                    <option value="california">California</option>
+                    <option value="colorado">Colorado</option>
+                    <option value="connecticut">Connecticut</option>
+                    <option value="delaware">Delaware</option>
+                    <option value="florida">Florida</option>
+                    <option value="georgia">Georgia</option>
+                    <option value="hawaii">Hawaii</option>
+                    <option value="idaho">Idaho</option>
+                    <option value="illinois">Illinois</option>
+                    <option value="indiana">Indiana</option>
+                    <option value="iowa">Iowa</option>
+                    <option value="kansas">Kansas</option>
+                    <option value="kentucky">Kentucky</option>
+                    <option value="louisiana">Louisiana</option>
+                    <option value="maine">Maine</option>
+                    <option value="maryland">Maryland</option>
+                    <option value="massachusetts">Massachusetts</option>
+                    <option value="michigan">Michigan</option>
+                    <option value="minnesota">Minnesota</option>
+                    <option value="mississippi">Mississippi</option>
+                    <option value="missouri">Missouri</option>
+                    <option value="montana">Montana</option>
+                    <option value="nebraska">Nebraska</option>
+                    <option value="nevada">Nevada</option>
+                    <option value="newhampshire">New Hampshire</option>
+                    <option value="newjersey">New Jersey</option>
+                    <option value="newmexico">New Mexico</option>
+                    <option value="newyork">New York</option>
+                    <option value="northcarolina">North Carolina</option>
+                    <option value="northdakota">North Dakota</option>
+                    <option value="ohio">Ohio</option>
+                    <option value="oklahoma">Oklahoma</option>
+                    <option value="oregon">Oregon</option>
+                    <option value="pennsylvania">Pennsylvania</option>
+                    <option value="rhodeisland">Rhode Island</option>
+                    <option value="southcarolina">South Carolina</option>
+                    <option value="southdakota">South Dakota</option>
+                    <option value="tennessee">Tennessee</option>
+                    <option value="texas">Texas</option>
+                    <option value="utah">Utah</option>
+                    <option value="vermont">Vermont</option>
+                    <option value="virginia">Virginia</option>
+                    <option value="washington">Washington</option>
+                    <option value="westvirginia">West Virginia</option>
+                    <option value="wisconsin">Wisconsin</option>
+                    <option value="wyoming">Wyoming</option>
+                </select>
+                <div id="stateCalculatorLink" class="label-link" style="display: none;"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="monthlyPension">Estimated Monthly Pension
+                    <div class="label-hint">Use your state's calculator (link above) to get your pension estimate, then enter it here</div>
+                </label>
+                <input type="number" id="monthlyPension" placeholder="e.g., 4500" required min="0">
+            </div>
+
+            <div class="form-group">
+                <label for="socialSecurity">Expected Monthly Social Security
+                    <div class="label-hint"><strong>Don't know your estimate?</strong> <a href="https://www.ssa.gov/myaccount/" target="_blank" style="color: #1976D2; font-weight: 600;">Go to SSA.gov to get it</a></div>
+                </label>
+                <input type="number" id="socialSecurity" placeholder="e.g., 1500" min="0" value="0">
+                <div class="wep-warning">
+                    <strong>⚠️ Teachers with pensions:</strong> Your Social Security may be reduced by the Windfall Elimination Provision (WEP). Use the SSA calculator for your actual estimate.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="currentSavings">Current Retirement Savings (403b, 457b, IRAs)
+                    <div class="label-hint">Enter 0 if starting fresh</div>
+                </label>
+                <input type="number" id="currentSavings" placeholder="e.g., 50000" required min="0">
+            </div>
+
             <!-- Spouse Section -->
             <div class="checkbox-container" onclick="document.getElementById('includeSpouse').click();">
                 <input type="checkbox" id="includeSpouse" onclick="event.stopPropagation();">
-                <label for="includeSpouse" class="checkbox-label">👫 Include spouse's pension? (common for dual-teacher households)</label>
+                <label for="includeSpouse" class="checkbox-label">👫 Include spouse's income & pension? (common for dual-teacher households)</label>
             </div>
 
             <div class="coach-note">
-                Many teacher couples overlook this — your spouse's pension can close a huge chunk of the gap. Plug in their estimate from their annual statement and see the difference!
+                Many teacher couples overlook this — your spouse's pension and savings can close a huge chunk of the gap. Include their information to see your complete household retirement picture!
             </div>
 
             <div id="spouseSection" class="spouse-section">
                 <div class="spouse-section-title">👫 Spouse's Information</div>
 
                 <div class="form-group">
+                    <label for="spouseSalary">Spouse's Current Annual Salary</label>
+                    <input type="number" id="spouseSalary" placeholder="e.g., 68000" min="0">
+                </div>
+
+                <div class="form-group">
+                    <label for="spouseYearsToRetirement">Spouse's Years Until Retirement</label>
+                    <input type="number" id="spouseYearsToRetirement" placeholder="e.g., 15" min="0">
+                </div>
+
+                <div class="form-group">
                     <label for="spouseState">Spouse's State</label>
                     <select id="spouseState">
                         <option value="">Select state...</option>
-                        <option value="california">California (CalSTRS)</option>
-                        <option value="texas">Texas (TRS)</option>
-                        <option value="newyork">New York (NYSTRS)</option>
-                        <option value="florida">Florida (FRS)</option>
-                        <option value="illinois">Illinois (TRS)</option>
-                        <option value="other">Other State</option>
+                        <option value="alabama">Alabama</option>
+                        <option value="alaska">Alaska</option>
+                        <option value="arizona">Arizona</option>
+                        <option value="arkansas">Arkansas</option>
+                        <option value="california">California</option>
+                        <option value="colorado">Colorado</option>
+                        <option value="connecticut">Connecticut</option>
+                        <option value="delaware">Delaware</option>
+                        <option value="florida">Florida</option>
+                        <option value="georgia">Georgia</option>
+                        <option value="hawaii">Hawaii</option>
+                        <option value="idaho">Idaho</option>
+                        <option value="illinois">Illinois</option>
+                        <option value="indiana">Indiana</option>
+                        <option value="iowa">Iowa</option>
+                        <option value="kansas">Kansas</option>
+                        <option value="kentucky">Kentucky</option>
+                        <option value="louisiana">Louisiana</option>
+                        <option value="maine">Maine</option>
+                        <option value="maryland">Maryland</option>
+                        <option value="massachusetts">Massachusetts</option>
+                        <option value="michigan">Michigan</option>
+                        <option value="minnesota">Minnesota</option>
+                        <option value="mississippi">Mississippi</option>
+                        <option value="missouri">Missouri</option>
+                        <option value="montana">Montana</option>
+                        <option value="nebraska">Nebraska</option>
+                        <option value="nevada">Nevada</option>
+                        <option value="newhampshire">New Hampshire</option>
+                        <option value="newjersey">New Jersey</option>
+                        <option value="newmexico">New Mexico</option>
+                        <option value="newyork">New York</option>
+                        <option value="northcarolina">North Carolina</option>
+                        <option value="northdakota">North Dakota</option>
+                        <option value="ohio">Ohio</option>
+                        <option value="oklahoma">Oklahoma</option>
+                        <option value="oregon">Oregon</option>
+                        <option value="pennsylvania">Pennsylvania</option>
+                        <option value="rhodeisland">Rhode Island</option>
+                        <option value="southcarolina">South Carolina</option>
+                        <option value="southdakota">South Dakota</option>
+                        <option value="tennessee">Tennessee</option>
+                        <option value="texas">Texas</option>
+                        <option value="utah">Utah</option>
+                        <option value="vermont">Vermont</option>
+                        <option value="virginia">Virginia</option>
+                        <option value="washington">Washington</option>
+                        <option value="westvirginia">West Virginia</option>
+                        <option value="wisconsin">Wisconsin</option>
+                        <option value="wyoming">Wyoming</option>
                     </select>
+                    <div id="spouseStateCalculatorLink" class="label-link" style="display: none;"></div>
                 </div>
 
                 <div class="form-group">
                     <label for="spousePension">Spouse's Estimated Monthly Pension
-                        <div class="label-hint">From their pension statement or estimate</div>
+                        <div class="label-hint">From their state calculator or pension statement</div>
                     </label>
                     <input type="number" id="spousePension" placeholder="e.g., 3500" min="0" value="0">
                 </div>
 
                 <div class="form-group">
-                    <label for="spouseSocialSecurity">Spouse's Expected Monthly Social Security (Optional)
-                        <div class="label-hint">Their benefit estimate if they qualify</div>
+                    <label for="spouseSocialSecurity">Spouse's Expected Monthly Social Security
+                        <div class="label-hint">From <a href="https://www.ssa.gov/myaccount/" target="_blank" style="color: #1976D2; font-weight: 600;">SSA.gov</a></div>
                     </label>
                     <input type="number" id="spouseSocialSecurity" placeholder="e.g., 1200" min="0" value="0">
                 </div>
 
                 <div class="form-group">
-                    <label for="spouseAge">Spouse's Age
-                        <div class="label-hint">For planning purposes</div>
+                    <label for="spouseSavings">Spouse's Current Retirement Savings
+                        <div class="label-hint">Their 403b, 457b, IRAs, etc.</div>
                     </label>
-                    <input type="number" id="spouseAge" placeholder="e.g., 58" min="50" max="75">
+                    <input type="number" id="spouseSavings" placeholder="e.g., 35000" min="0" value="0">
                 </div>
             </div>
 
@@ -537,7 +668,7 @@
 
                 <div class="savings-impact">
                     <div class="savings-impact-text" id="savingsImpact">
-                        💡 Your spouse's pension reduces your household gap by $0/month!
+                        💡 Your spouse's pension and income reduce your household gap significantly!
                     </div>
                 </div>
             </div>
@@ -593,6 +724,16 @@
     </div>
 
     <script>
+        // State pension calculator links
+        const stateCalculatorLinks = {
+            california: { name: 'CalSTRS', url: 'https://www.calstrs.com/retirement-calculator' },
+            texas: { name: 'Texas TRS', url: 'https://www.trs.texas.gov/Pages/ActiveMember/estimate_retirement_benefits.aspx' },
+            newyork: { name: 'NYSTRS', url: 'https://www.nystrs.org/NYSTRS/media/PDF/Library/Benefits/Pension-Calculator.pdf' },
+            florida: { name: 'Florida FRS', url: 'https://www.myfrs.com/FRSPlanChoice.htm' },
+            illinois: { name: 'Illinois TRS', url: 'https://trs.illinois.gov/members/calculators/index.html' },
+            // Add more states as needed - for now, generic message for others
+        };
+
         // Toggle spouse section
         document.getElementById('includeSpouse').addEventListener('change', function() {
             const spouseSection = document.getElementById('spouseSection');
@@ -603,41 +744,39 @@
             }
         });
 
-        // Pension calculation functions
-        function calculatePension(state, salary, yearsService, retirementAge) {
-            let monthlyPension = 0;
+        // Show state calculator link
+        document.getElementById('state').addEventListener('change', function() {
+            const linkDiv = document.getElementById('stateCalculatorLink');
+            const state = this.value;
             
-            // Simplified pension formulas based on state
-            switch(state) {
-                case 'california':
-                    // CalSTRS: 2% at 60 formula (simplified)
-                    let factor = retirementAge >= 60 ? 0.02 : 0.018;
-                    monthlyPension = (salary * yearsService * factor) / 12;
-                    break;
-                case 'texas':
-                    // TRS: 2.3% formula
-                    monthlyPension = (salary * yearsService * 0.023) / 12;
-                    break;
-                case 'newyork':
-                    // NYSTRS: 2% formula
-                    monthlyPension = (salary * yearsService * 0.02) / 12;
-                    break;
-                case 'florida':
-                    // FRS: 1.6% formula
-                    monthlyPension = (salary * yearsService * 0.016) / 12;
-                    break;
-                case 'illinois':
-                    // TRS: 2.2% formula
-                    monthlyPension = (salary * yearsService * 0.022) / 12;
-                    break;
-                case 'other':
-                    // Generic 2% formula
-                    monthlyPension = (salary * yearsService * 0.02) / 12;
-                    break;
+            if (state) {
+                if (stateCalculatorLinks[state]) {
+                    linkDiv.innerHTML = `📊 Calculate your pension: <a href="${stateCalculatorLinks[state].url}" target="_blank">${stateCalculatorLinks[state].name} Calculator</a>`;
+                } else {
+                    linkDiv.innerHTML = `📊 Search Google for: "<strong>${this.options[this.selectedIndex].text} teacher pension calculator</strong>"`;
+                }
+                linkDiv.style.display = 'block';
+            } else {
+                linkDiv.style.display = 'none';
             }
+        });
+
+        // Show spouse state calculator link
+        document.getElementById('spouseState').addEventListener('change', function() {
+            const linkDiv = document.getElementById('spouseStateCalculatorLink');
+            const state = this.value;
             
-            return Math.round(monthlyPension);
-        }
+            if (state) {
+                if (stateCalculatorLinks[state]) {
+                    linkDiv.innerHTML = `📊 Calculate spouse's pension: <a href="${stateCalculatorLinks[state].url}" target="_blank">${stateCalculatorLinks[state].name} Calculator</a>`;
+                } else {
+                    linkDiv.innerHTML = `📊 Search Google for: "<strong>${this.options[this.selectedIndex].text} teacher pension calculator</strong>"`;
+                }
+                linkDiv.style.display = 'block';
+            } else {
+                linkDiv.style.display = 'none';
+            }
+        });
 
         function formatCurrency(amount) {
             return new Intl.NumberFormat('en-US', {
@@ -665,26 +804,27 @@
             e.preventDefault();
 
             // Get primary user inputs
-            const state = document.getElementById('state').value;
             const salary = parseFloat(document.getElementById('salary').value);
-            const yearsService = parseFloat(document.getElementById('yearsService').value);
-            const retirementAge = parseFloat(document.getElementById('retirementAge').value);
+            const yearsToRetirement = parseFloat(document.getElementById('yearsToRetirement').value);
+            const monthlyPension = parseFloat(document.getElementById('monthlyPension').value);
             const socialSecurity = parseFloat(document.getElementById('socialSecurity').value) || 0;
             const currentSavings = parseFloat(document.getElementById('currentSavings').value);
-            const yearsToRetirement = parseFloat(document.getElementById('yearsToRetirement').value);
 
             // Check if spouse is included
             const includeSpouse = document.getElementById('includeSpouse').checked;
+            let spouseSalary = 0;
+            let spouseYearsToRetirement = 0;
             let spousePension = 0;
             let spouseSocialSecurity = 0;
+            let spouseSavings = 0;
 
             if (includeSpouse) {
+                spouseSalary = parseFloat(document.getElementById('spouseSalary').value) || 0;
+                spouseYearsToRetirement = parseFloat(document.getElementById('spouseYearsToRetirement').value) || yearsToRetirement;
                 spousePension = parseFloat(document.getElementById('spousePension').value) || 0;
                 spouseSocialSecurity = parseFloat(document.getElementById('spouseSocialSecurity').value) || 0;
+                spouseSavings = parseFloat(document.getElementById('spouseSavings').value) || 0;
             }
-
-            // Calculate primary pension
-            const monthlyPension = calculatePension(state, salary, yearsService, retirementAge);
 
             // Calculate income needed (70% of current salary is common rule of thumb)
             const monthlyIncomeNeeded = (salary * 0.70) / 12;
@@ -695,24 +835,32 @@
 
             // Calculate household gap if spouse included
             let householdMonthlyGap = individualMonthlyGap;
-            let gapReduction = 0;
-
-            if (includeSpouse) {
+            let householdIncomeNeeded = monthlyIncomeNeeded;
+            
+            if (includeSpouse && spouseSalary > 0) {
+                const spouseMonthlyIncomeNeeded = (spouseSalary * 0.70) / 12;
+                householdIncomeNeeded = monthlyIncomeNeeded + spouseMonthlyIncomeNeeded;
                 const totalHouseholdIncome = totalMonthlyIncome + spousePension + spouseSocialSecurity;
-                householdMonthlyGap = Math.max(0, monthlyIncomeNeeded - totalHouseholdIncome);
-                gapReduction = individualMonthlyGap - householdMonthlyGap;
+                householdMonthlyGap = Math.max(0, householdIncomeNeeded - totalHouseholdIncome);
             }
 
             // Use household gap for savings calculation if spouse included
-            const activeGap = includeSpouse ? householdMonthlyGap : individualMonthlyGap;
+            const activeGap = includeSpouse && spouseSalary > 0 ? householdMonthlyGap : individualMonthlyGap;
             const totalNeeded = activeGap * 12 * 25; // 25 years of income needed
 
             // Calculate savings growth
             const growthRate = 0.07; // 7% annual return
             const futureSavings = futureValue(currentSavings, growthRate, yearsToRetirement);
+            
+            // Add spouse savings growth if applicable
+            let totalFutureSavings = futureSavings;
+            if (includeSpouse && spouseSavings > 0) {
+                const spouseFutureSavings = futureValue(spouseSavings, growthRate, spouseYearsToRetirement);
+                totalFutureSavings = futureSavings + spouseFutureSavings;
+            }
 
             // Calculate monthly contribution needed
-            const remainingNeeded = Math.max(0, totalNeeded - futureSavings);
+            const remainingNeeded = Math.max(0, totalNeeded - totalFutureSavings);
             const monthlyContribution = remainingNeeded > 0 
                 ? calculateMonthlyPayment(remainingNeeded, growthRate, yearsToRetirement)
                 : 0;
@@ -723,20 +871,35 @@
             document.getElementById('gapAmount').textContent = formatCurrency(activeGap);
 
             // Show/hide household comparison
-            if (includeSpouse) {
+            if (includeSpouse && spouseSalary > 0) {
                 document.getElementById('householdComparison').style.display = 'block';
                 document.getElementById('individualGap').textContent = formatCurrency(individualMonthlyGap) + '/mo';
                 document.getElementById('householdGap').textContent = formatCurrency(householdMonthlyGap) + '/mo';
-                document.getElementById('savingsImpact').textContent = 
-                    `💡 Your spouse's pension reduces your household gap by ${formatCurrency(gapReduction)}/month ($${formatCurrency(gapReduction * 12)}/year)!`;
+                
+                const gapReduction = individualMonthlyGap - householdMonthlyGap;
+                if (gapReduction > 0) {
+                    document.getElementById('savingsImpact').textContent = 
+                        `💡 Your spouse's pension and income reduce your household gap by ${formatCurrency(gapReduction)}/month (${formatCurrency(gapReduction * 12)}/year)!`;
+                } else {
+                    document.getElementById('savingsImpact').textContent = 
+                        `💡 Your combined household income provides a complete retirement picture!`;
+                }
             } else {
                 document.getElementById('householdComparison').style.display = 'none';
             }
 
-            document.getElementById('savingsGrowth').innerHTML = 
-                `Your ${formatCurrency(currentSavings)} will grow to approximately 
-                <strong>${formatCurrency(futureSavings)}</strong> by retirement 
-                (assuming 7% annual growth).`;
+            // Savings growth display
+            if (includeSpouse && spouseSavings > 0) {
+                document.getElementById('savingsGrowth').innerHTML = 
+                    `Your combined savings (${formatCurrency(currentSavings + spouseSavings)}) will grow to approximately 
+                    <strong>${formatCurrency(totalFutureSavings)}</strong> by retirement 
+                    (assuming 7% annual growth).`;
+            } else {
+                document.getElementById('savingsGrowth').innerHTML = 
+                    `Your ${formatCurrency(currentSavings)} will grow to approximately 
+                    <strong>${formatCurrency(futureSavings)}</strong> by retirement 
+                    (assuming 7% annual growth).`;
+            }
 
             if (monthlyContribution === 0) {
                 document.getElementById('contributionHeader').textContent = '🎉 You\'re On Track!';
