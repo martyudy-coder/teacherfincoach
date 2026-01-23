@@ -433,14 +433,14 @@
                 <label for="salary">Current Annual Salary
                     <div class="label-hint">Enter your gross annual salary</div>
                 </label>
-                <input type="number" id="salary" placeholder="e.g., 75000" required min="0">
+                <input type="number" id="salary" placeholder="e.g., 75000" required min="0" step="1000">
             </div>
 
             <div class="form-group">
                 <label for="yearsToRetirement">Years Until Retirement
                     <div class="label-hint">Time horizon for growth</div>
                 </label>
-                <input type="number" id="yearsToRetirement" placeholder="e.g., 20" required min="0">
+                <input type="number" id="yearsToRetirement" placeholder="e.g., 20" required min="1" max="50">
             </div>
 
             <div class="form-group">
@@ -507,14 +507,14 @@
                 <label for="monthlyPension">Estimated Monthly Pension
                     <div class="label-hint">Use your state's calculator (link above) to get your pension estimate, then enter it here</div>
                 </label>
-                <input type="number" id="monthlyPension" placeholder="e.g., 4500" required min="0">
+                <input type="number" id="monthlyPension" placeholder="e.g., 4500" required min="0" step="100">
             </div>
 
             <div class="form-group">
                 <label for="socialSecurity">Expected Monthly Social Security
                     <div class="label-hint"><strong>Don't know your estimate?</strong> <a href="https://www.ssa.gov/myaccount/" target="_blank" style="color: #1976D2; font-weight: 600;">Go to SSA.gov to get it</a></div>
                 </label>
-                <input type="number" id="socialSecurity" placeholder="e.g., 1500" min="0" value="0">
+                <input type="number" id="socialSecurity" placeholder="e.g., 1500" min="0" value="0" step="100">
                 <div class="wep-warning">
                     <strong>⚠️ Teachers with pensions:</strong> Your Social Security may be reduced by the Windfall Elimination Provision (WEP). Use the SSA calculator for your actual estimate.
                 </div>
@@ -524,7 +524,7 @@
                 <label for="currentSavings">Current Retirement Savings (403b, 457b, IRAs)
                     <div class="label-hint">Enter 0 if starting fresh</div>
                 </label>
-                <input type="number" id="currentSavings" placeholder="e.g., 50000" required min="0">
+                <input type="number" id="currentSavings" placeholder="e.g., 50000" required min="0" step="1000">
             </div>
 
             <!-- Spouse Section -->
@@ -542,12 +542,12 @@
 
                 <div class="form-group">
                     <label for="spouseSalary">Spouse's Current Annual Salary</label>
-                    <input type="number" id="spouseSalary" placeholder="e.g., 68000" min="0">
+                    <input type="number" id="spouseSalary" placeholder="e.g., 68000" min="0" step="1000">
                 </div>
 
                 <div class="form-group">
                     <label for="spouseYearsToRetirement">Spouse's Years Until Retirement</label>
-                    <input type="number" id="spouseYearsToRetirement" placeholder="e.g., 15" min="0">
+                    <input type="number" id="spouseYearsToRetirement" placeholder="e.g., 15" min="1" max="50">
                 </div>
 
                 <div class="form-group">
@@ -612,21 +612,21 @@
                     <label for="spousePension">Spouse's Estimated Monthly Pension
                         <div class="label-hint">From their state calculator or pension statement</div>
                     </label>
-                    <input type="number" id="spousePension" placeholder="e.g., 3500" min="0" value="0">
+                    <input type="number" id="spousePension" placeholder="e.g., 3500" min="0" value="0" step="100">
                 </div>
 
                 <div class="form-group">
                     <label for="spouseSocialSecurity">Spouse's Expected Monthly Social Security
                         <div class="label-hint">From <a href="https://www.ssa.gov/myaccount/" target="_blank" style="color: #1976D2; font-weight: 600;">SSA.gov</a></div>
                     </label>
-                    <input type="number" id="spouseSocialSecurity" placeholder="e.g., 1200" min="0" value="0">
+                    <input type="number" id="spouseSocialSecurity" placeholder="e.g., 1200" min="0" value="0" step="100">
                 </div>
 
                 <div class="form-group">
                     <label for="spouseSavings">Spouse's Current Retirement Savings
                         <div class="label-hint">Their 403b, 457b, IRAs, etc.</div>
                     </label>
-                    <input type="number" id="spouseSavings" placeholder="e.g., 35000" min="0" value="0">
+                    <input type="number" id="spouseSavings" placeholder="e.g., 35000" min="0" value="0" step="1000">
                 </div>
             </div>
 
@@ -731,7 +731,6 @@
             newyork: { name: 'NYSTRS', url: 'https://www.nystrs.org/NYSTRS/media/PDF/Library/Benefits/Pension-Calculator.pdf' },
             florida: { name: 'Florida FRS', url: 'https://www.myfrs.com/FRSPlanChoice.htm' },
             illinois: { name: 'Illinois TRS', url: 'https://trs.illinois.gov/members/calculators/index.html' },
-            // Add more states as needed - for now, generic message for others
         };
 
         // Toggle spouse section
@@ -787,17 +786,26 @@
             }).format(amount);
         }
 
-        // Calculate future value with compound interest
-        function futureValue(presentValue, rate, years) {
-            return presentValue * Math.pow(1 + rate, years);
+        // VERIFIED: Calculate future value with compound interest
+        // Formula: FV = PV × (1 + r)^n
+        function calculateFutureValue(presentValue, annualRate, years) {
+            return presentValue * Math.pow(1 + annualRate, years);
         }
 
-        // Calculate monthly payment needed to reach goal
-        function calculateMonthlyPayment(futureValue, rate, years) {
-            const monthlyRate = rate / 12;
-            const months = years * 12;
-            if (monthlyRate === 0) return futureValue / months;
-            return (futureValue * monthlyRate) / (Math.pow(1 + monthlyRate, months) - 1);
+        // VERIFIED: Calculate monthly payment needed to reach future value
+        // Formula: PMT = FV × (r / ((1+r)^n - 1))
+        // Where r = monthly rate, n = total months
+        function calculateMonthlyContribution(futureValueNeeded, annualRate, years) {
+            const monthlyRate = annualRate / 12;
+            const totalMonths = years * 12;
+            
+            if (monthlyRate === 0) {
+                return futureValueNeeded / totalMonths;
+            }
+            
+            // PMT = FV × (r / ((1+r)^n - 1))
+            const denominator = Math.pow(1 + monthlyRate, totalMonths) - 1;
+            return (futureValueNeeded * monthlyRate) / denominator;
         }
 
         document.getElementById('gapCalculator').addEventListener('submit', function(e) {
@@ -826,7 +834,7 @@
                 spouseSavings = parseFloat(document.getElementById('spouseSavings').value) || 0;
             }
 
-            // Calculate income needed (70% of current salary is common rule of thumb)
+            // Calculate income needed (70% of current salary)
             const monthlyIncomeNeeded = (salary * 0.70) / 12;
 
             // Calculate individual gap
@@ -845,24 +853,28 @@
             }
 
             // Use household gap for savings calculation if spouse included
-            const activeGap = includeSpouse && spouseSalary > 0 ? householdMonthlyGap : individualMonthlyGap;
-            const totalNeeded = activeGap * 12 * 25; // 25 years of income needed
+            const activeGap = (includeSpouse && spouseSalary > 0) ? householdMonthlyGap : individualMonthlyGap;
+            
+            // Total needed: Gap × 12 months × 25 years (4% withdrawal rule)
+            const totalNeeded = activeGap * 12 * 25;
 
-            // Calculate savings growth
-            const growthRate = 0.07; // 7% annual return
-            const futureSavings = futureValue(currentSavings, growthRate, yearsToRetirement);
+            // Calculate savings growth at 7% annual return
+            const annualGrowthRate = 0.07;
+            const futureSavings = calculateFutureValue(currentSavings, annualGrowthRate, yearsToRetirement);
             
             // Add spouse savings growth if applicable
             let totalFutureSavings = futureSavings;
             if (includeSpouse && spouseSavings > 0) {
-                const spouseFutureSavings = futureValue(spouseSavings, growthRate, spouseYearsToRetirement);
+                const spouseFutureSavings = calculateFutureValue(spouseSavings, annualGrowthRate, spouseYearsToRetirement);
                 totalFutureSavings = futureSavings + spouseFutureSavings;
             }
 
-            // Calculate monthly contribution needed
+            // Calculate remaining amount needed
             const remainingNeeded = Math.max(0, totalNeeded - totalFutureSavings);
-            const monthlyContribution = remainingNeeded > 0 
-                ? calculateMonthlyPayment(remainingNeeded, growthRate, yearsToRetirement)
+            
+            // Calculate monthly contribution
+            const monthlyContribution = (remainingNeeded > 0) 
+                ? calculateMonthlyContribution(remainingNeeded, annualGrowthRate, yearsToRetirement)
                 : 0;
 
             // Update display
@@ -901,6 +913,7 @@
                     (assuming 7% annual growth).`;
             }
 
+            // Contribution needed display
             if (monthlyContribution === 0) {
                 document.getElementById('contributionHeader').textContent = '🎉 You\'re On Track!';
                 document.getElementById('contributionAmount').innerHTML = 
