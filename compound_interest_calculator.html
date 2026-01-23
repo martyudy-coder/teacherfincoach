@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compound Interest Calculator - TeacherFinCoach</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #06b6d4 100%);
+            min-height: 100vh;
+        }
+        h1, h2 { font-family: 'Righteous', sans-serif; }
+        
+        .growth-bar {
+            animation: growIn 1.5s ease-out;
+        }
+        
+        @keyframes growIn {
+            from { width: 0; opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen py-8 px-4">
+        <div class="max-w-4xl mx-auto">
+            <!-- Back Button -->
+            <a href="dashboard.html" class="inline-block mb-6 text-white hover:text-blue-100 font-semibold">
+                ← Back to Dashboard
+            </a>
+
+            <!-- Calculator Disclaimer -->
+            <div class="bg-yellow-50 border-l-4 border-yellow-500 rounded-lg p-6 mb-6">
+                <div class="flex items-start gap-3">
+                    <div class="text-3xl">⚠️</div>
+                    <div>
+                        <p class="font-bold text-yellow-900 mb-2">Calculator Disclaimer</p>
+                        <p class="text-sm text-gray-700 leading-relaxed">
+                            This calculator provides educational projections based on assumed rates of return. Actual investment returns will vary 
+                            and are not guaranteed. Past performance does not predict future results. This tool does not constitute financial advice.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Calculator Card -->
+            <div class="bg-white rounded-2xl shadow-2xl p-8 mb-6">
+                <div class="text-center mb-8">
+                    <div class="text-6xl mb-4">📈</div>
+                    <h1 class="text-3xl font-bold text-gray-900 mb-2">Compound Interest Calculator</h1>
+                    <p class="text-gray-600">See the magic of compound growth over time</p>
+                </div>
+
+                <!-- Coach Marty Tip -->
+                <div class="bg-blue-50 border-l-4 border-blue-600 rounded-lg p-5 mb-8">
+                    <div class="flex items-start gap-3">
+                        <div class="text-3xl">🏀</div>
+                        <div>
+                            <p class="font-bold text-blue-900 mb-2">Coach Marty Says:</p>
+                            <p class="text-gray-700 text-sm leading-relaxed">
+                                Compound interest is like practice—consistency matters more than intensity. A teacher who saves $300/month for 
+                                30 years ends up with MORE than someone who saves $500/month for 20 years. Time in the market beats timing the market!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input Fields -->
+                <div class="space-y-6 mb-8">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            Monthly Contribution
+                        </label>
+                        <div class="relative">
+                            <span class="absolute left-4 top-4 text-gray-600 font-semibold">$</span>
+                            <input type="number" id="monthly" value="400" min="50" max="3000" step="50"
+                                   class="w-full pl-8 pr-4 py-3 border-2 border-gray-300 rounded-lg text-lg focus:border-blue-600 focus:outline-none">
+                        </div>
+                        <input type="range" id="monthly-slider" min="50" max="3000" step="50" value="400" 
+                               class="w-full mt-2">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            Number of Years
+                        </label>
+                        <input type="number" id="years" value="30" min="1" max="45" step="1"
+                               class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-lg focus:border-blue-600 focus:outline-none">
+                        <input type="range" id="years-slider" min="1" max="45" step="1" value="30" 
+                               class="w-full mt-2">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            Expected Annual Return
+                        </label>
+                        <div class="relative">
+                            <input type="number" id="return" value="7" min="3" max="12" step="0.5"
+                                   class="w-full pr-10 px-4 py-3 border-2 border-gray-300 rounded-lg text-lg focus:border-blue-600 focus:outline-none">
+                            <span class="absolute right-4 top-4 text-gray-600 font-semibold">%</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Historical stock market average is ~7-8%</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            Starting Balance (Optional)
+                        </label>
+                        <div class="relative">
+                            <span class="absolute left-4 top-4 text-gray-600 font-semibold">$</span>
+                            <input type="number" id="starting" value="0" min="0" max="500000" step="1000"
+                                   class="w-full pl-8 pr-4 py-3 border-2 border-gray-300 rounded-lg text-lg focus:border-blue-600 focus:outline-none">
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Leave at $0 if starting fresh</p>
+                    </div>
+                </div>
+
+                <!-- Calculate Button -->
+                <button onclick="calculate()" 
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-lg font-bold text-lg transition mb-8">
+                    Calculate My Future Wealth
+                </button>
+
+                <!-- Results -->
+                <div id="results" class="hidden">
+                    <!-- Big Number -->
+                    <div class="bg-gradient-to-r from-green-50 to-blue-50 border-2 border-green-500 rounded-xl p-8 text-center mb-8">
+                        <p class="text-sm font-semibold text-gray-700 mb-2">YOUR FUTURE BALANCE</p>
+                        <p class="text-6xl font-bold text-green-600 mb-4" id="future-value">$0</p>
+                        <p class="text-gray-700 text-sm">after <span id="years-display">30</span> years</p>
+                    </div>
+
+                    <!-- Breakdown -->
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-blue-50 border-2 border-blue-400 rounded-xl p-6">
+                            <p class="text-sm text-gray-600 mb-1">Total You Contributed</p>
+                            <p class="text-3xl font-bold text-blue-600" id="total-contributed">$0</p>
+                            <p class="text-xs text-gray-500 mt-2">Money you put in from your paycheck</p>
+                        </div>
+
+                        <div class="bg-green-50 border-2 border-green-400 rounded-xl p-6">
+                            <p class="text-sm text-gray-600 mb-1">Growth from Compound Interest</p>
+                            <p class="text-3xl font-bold text-green-600" id="total-growth">$0</p>
+                            <p class="text-xs text-gray-500 mt-2">FREE MONEY from compound growth!</p>
+                        </div>
+                    </div>
+
+                    <!-- Visual Growth Bar -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-bold text-gray-900 mb-4">Where Your Money Comes From</h3>
+                        <div class="relative h-16 bg-gray-200 rounded-lg overflow-hidden flex">
+                            <div id="contribution-bar" class="growth-bar bg-blue-500 flex items-center justify-center text-white font-semibold" style="width: 0%">
+                                <span id="contribution-percent"></span>
+                            </div>
+                            <div id="growth-bar" class="growth-bar bg-green-500 flex items-center justify-center text-white font-semibold" style="width: 0%">
+                                <span id="growth-percent"></span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mt-4 text-center text-sm">
+                            <div>
+                                <div class="w-4 h-4 bg-blue-500 rounded mx-auto mb-1"></div>
+                                <p class="font-semibold">Your Contributions</p>
+                            </div>
+                            <div>
+                                <div class="w-4 h-4 bg-green-500 rounded mx-auto mb-1"></div>
+                                <p class="font-semibold">Compound Growth</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Power of Starting Early -->
+                    <div class="bg-yellow-50 border-2 border-yellow-500 rounded-xl p-6 mb-8">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">⏰ The Power of Starting Early</h3>
+                        <div class="space-y-4">
+                            <div class="bg-white rounded-lg p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <p class="font-semibold text-gray-900">If you started 5 years ago:</p>
+                                    <p class="text-2xl font-bold text-green-600" id="five-years-earlier">$0</p>
+                                </div>
+                                <p class="text-sm text-red-600 font-semibold" id="lost-by-waiting">Lost $X by waiting!</p>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <p class="font-semibold text-gray-900">If you start 5 years from now:</p>
+                                    <p class="text-2xl font-bold text-orange-600" id="five-years-later">$0</p>
+                                </div>
+                                <p class="text-sm text-red-600 font-semibold" id="lost-by-delaying">Will lose $X by delaying!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Year-by-Year Growth (Sample) -->
+                    <div class="bg-gray-50 rounded-xl p-6 mb-8">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Growth Over Time (Sample Years)</h3>
+                        <div class="space-y-3" id="year-by-year">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Key Insights -->
+                    <div class="bg-blue-50 border-l-4 border-blue-600 rounded-lg p-6">
+                        <h3 class="text-lg font-bold text-blue-900 mb-3">💡 Key Insights:</h3>
+                        <div class="space-y-2 text-sm text-gray-700">
+                            <p><strong>• Time is your superpower:</strong> <span id="insight-time"></span></p>
+                            <p><strong>• Consistency beats intensity:</strong> <span id="insight-consistency"></span></p>
+                            <p><strong>• The earlier, the better:</strong> <span id="insight-early"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="text-center text-white text-sm pb-8">
+                <p>&copy; 2026 TeacherFinCoach. Building Wealth for Educators.</p>
+                <p class="text-xs text-white/80 mt-2">
+                    Educational purposes only. Not financial advice. 
+                    <a href="terms.html" class="underline hover:text-white">Terms & Disclaimers</a>
+                </p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Sync sliders
+        document.getElementById('monthly').addEventListener('input', function() {
+            document.getElementById('monthly-slider').value = this.value;
+        });
+        document.getElementById('monthly-slider').addEventListener('input', function() {
+            document.getElementById('monthly').value = this.value;
+        });
+
+        document.getElementById('years').addEventListener('input', function() {
+            document.getElementById('years-slider').value = this.value;
+        });
+        document.getElementById('years-slider').addEventListener('input', function() {
+            document.getElementById('years').value = this.value;
+        });
+
+        function calculate() {
+            const monthly = parseFloat(document.getElementById('monthly').value);
+            const years = parseInt(document.getElementById('years').value);
+            const annualReturn = parseFloat(document.getElementById('return').value) / 100;
+            const starting = parseFloat(document.getElementById('starting').value);
+
+            const monthlyRate = annualReturn / 12;
+            const months = years * 12;
+
+            // Future value formula: FV = P(1+r)^n + PMT * [(1+r)^n - 1] / r
+            const startingGrowth = starting * Math.pow(1 + monthlyRate, months);
+            const contributionsGrowth = monthly * (Math.pow(1 + monthlyRate, months) - 1) / monthlyRate;
+            const futureValue = startingGrowth + contributionsGrowth;
+
+            const totalContributed = starting + (monthly * months);
+            const totalGrowth = futureValue - totalContributed;
+
+            // Calculate "5 years earlier" scenario
+            const earlierMonths = (years + 5) * 12;
+            const earlierStartingGrowth = starting * Math.pow(1 + monthlyRate, earlierMonths);
+            const earlierContributionsGrowth = monthly * (Math.pow(1 + monthlyRate, earlierMonths) - 1) / monthlyRate;
+            const fiveYearsEarlier = earlierStartingGrowth + earlierContributionsGrowth;
+            const lostByWaiting = fiveYearsEarlier - futureValue;
+
+            // Calculate "5 years later" scenario
+            const laterMonths = Math.max(1, (years - 5) * 12);
+            const laterStartingGrowth = starting * Math.pow(1 + monthlyRate, laterMonths);
+            const laterContributionsGrowth = monthly * (Math.pow(1 + monthlyRate, laterMonths) - 1) / monthlyRate;
+            const fiveYearsLater = laterStartingGrowth + laterContributionsGrowth;
+            const lostByDelaying = futureValue - fiveYearsLater;
+
+            // Update display
+            document.getElementById('future-value').textContent = '$' + futureValue.toLocaleString('en-US', {maximumFractionDigits: 0});
+            document.getElementById('years-display').textContent = years;
+            document.getElementById('total-contributed').textContent = '$' + totalContributed.toLocaleString('en-US', {maximumFractionDigits: 0});
+            document.getElementById('total-growth').textContent = '$' + totalGrowth.toLocaleString('en-US', {maximumFractionDigits: 0});
+
+            // Visual bar
+            const contributionPercent = (totalContributed / futureValue) * 100;
+            const growthPercent = (totalGrowth / futureValue) * 100;
+            
+            document.getElementById('contribution-bar').style.width = contributionPercent + '%';
+            document.getElementById('contribution-percent').textContent = Math.round(contributionPercent) + '%';
+            document.getElementById('growth-bar').style.width = growthPercent + '%';
+            document.getElementById('growth-percent').textContent = Math.round(growthPercent) + '%';
+
+            // Early vs late
+            document.getElementById('five-years-earlier').textContent = '$' + fiveYearsEarlier.toLocaleString('en-US', {maximumFractionDigits: 0});
+            document.getElementById('lost-by-waiting').textContent = 'Lost $' + lostByWaiting.toLocaleString('en-US', {maximumFractionDigits: 0}) + ' by waiting!';
+            document.getElementById('five-years-later').textContent = '$' + fiveYearsLater.toLocaleString('en-US', {maximumFractionDigits: 0});
+            document.getElementById('lost-by-delaying').textContent = 'Will lose $' + lostByDelaying.toLocaleString('en-US', {maximumFractionDigits: 0}) + ' by delaying!';
+
+            // Year-by-year growth (show key milestones)
+            const milestones = [5, 10, 15, 20, 25, 30, years];
+            const uniqueMilestones = [...new Set(milestones)].filter(y => y <= years).sort((a,b) => a-b);
+            
+            let yearByYearHTML = '';
+            uniqueMilestones.forEach(year => {
+                const m = year * 12;
+                const sg = starting * Math.pow(1 + monthlyRate, m);
+                const cg = monthly * (Math.pow(1 + monthlyRate, m) - 1) / monthlyRate;
+                const balance = sg + cg;
+                
+                yearByYearHTML += `
+                    <div class="flex items-center justify-between py-2 border-b border-gray-200">
+                        <span class="font-semibold text-gray-700">Year ${year}:</span>
+                        <span class="text-xl font-bold text-green-600">$${balance.toLocaleString('en-US', {maximumFractionDigits: 0})}</span>
+                    </div>
+                `;
+            });
+            document.getElementById('year-by-year').innerHTML = yearByYearHTML;
+
+            // Dynamic insights
+            const growthMultiple = (futureValue / totalContributed).toFixed(1);
+            document.getElementById('insight-time').textContent = `Over ${years} years, your ${totalContributed.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 0})} grows to ${futureValue.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 0})}. That's ${growthMultiple}x your contributions!`;
+            
+            document.getElementById('insight-consistency').textContent = `Investing $${monthly}/month consistently is better than trying to time the market or making irregular lump sums.`;
+            
+            document.getElementById('insight-early').textContent = `Starting just 5 years earlier would give you $${lostByWaiting.toLocaleString('en-US', {maximumFractionDigits: 0})} MORE. Don't wait!`;
+
+            // Show results
+            document.getElementById('results').classList.remove('hidden');
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+</body>
+</html>
