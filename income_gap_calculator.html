@@ -4,418 +4,761 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Income Gap Calculator - TeacherFinCoach</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #06b6d4 100%);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            padding: 20px;
         }
-        h1, h2 { font-family: 'Righteous', sans-serif; }
-        
-        .gap-bar {
-            animation: pulse 2s ease-in-out infinite;
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+
+        .back-link {
+            display: inline-block;
+            color: #667eea;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .disclaimer {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+
+        .disclaimer-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #856404;
+        }
+
+        .disclaimer-text {
+            color: #856404;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .label-hint {
+            font-size: 13px;
+            color: #666;
+            font-weight: 400;
+            margin-top: 4px;
+        }
+
+        input[type="number"],
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="number"]:focus,
+        input[type="text"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+
+        .checkbox-container:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .checkbox-label {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .spouse-section {
+            display: none;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border: 2px solid #667eea;
+        }
+
+        .spouse-section.active {
+            display: block;
+        }
+
+        .spouse-section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .coach-note {
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-style: italic;
+        }
+
+        .coach-note::before {
+            content: "🏀 Coach Marty says: ";
+            font-weight: bold;
+            font-style: normal;
+            color: #1976D2;
+        }
+
+        .calculate-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 10px;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .results {
+            display: none;
+            margin-top: 40px;
+        }
+
+        .results.active {
+            display: block;
+        }
+
+        .results-header {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .income-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .breakdown-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #e0e0e0;
+        }
+
+        .breakdown-card.highlight {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+        }
+
+        .breakdown-label {
+            font-size: 14px;
+            margin-bottom: 8px;
+            opacity: 0.8;
+        }
+
+        .breakdown-amount {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .comparison-section {
+            background: #fff;
+            border: 3px solid #667eea;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .comparison-title {
+            font-size: 20px;
+            color: #667eea;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .comparison-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .comparison-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .comparison-label {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .comparison-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .savings-impact {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+
+        .savings-impact-text {
+            color: #155724;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .info-box-title {
+            font-weight: 600;
+            color: #1976D2;
+            margin-bottom: 10px;
+        }
+
+        .action-steps {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .action-steps h3 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .step {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            align-items: start;
+        }
+
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .income-breakdown {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="min-h-screen py-8 px-4">
-        <div class="max-w-4xl mx-auto">
-            <!-- Back Button -->
-            <a href="dashboard.html" class="inline-block mb-6 text-white hover:text-blue-100 font-semibold">
-                ← Back to Dashboard
-            </a>
+    <div class="container">
+        <a href="dashboard.html" class="back-link">← Back to Dashboard</a>
 
-            <!-- Calculator Disclaimer -->
-            <div class="bg-yellow-50 border-l-4 border-yellow-500 rounded-lg p-6 mb-6">
-                <div class="flex items-start gap-3">
-                    <div class="text-3xl">⚠️</div>
-                    <div>
-                        <p class="font-bold text-yellow-900 mb-2">Calculator Disclaimer</p>
-                        <p class="text-sm text-gray-700 leading-relaxed">
-                            This calculator provides educational estimates based on the information you provide. Results are hypothetical projections 
-                            and do not guarantee future performance. Actual pension amounts, Social Security benefits, and investment returns will vary. 
-                            This tool does not constitute financial advice.
-                        </p>
+        <div class="disclaimer">
+            <div class="disclaimer-title">⚠️ Calculator Disclaimer</div>
+            <div class="disclaimer-text">
+                This calculator provides educational estimates based on the information you provide. Results are hypothetical projections
+                and do not guarantee future performance. Actual pension amounts, Social Security benefits, and investment returns will vary.
+                This tool does not constitute financial advice.
+            </div>
+        </div>
+
+        <h1>📊 Income Gap Calculator</h1>
+        <div class="subtitle">Calculate your retirement income gap and how much you need to save</div>
+
+        <form id="gapCalculator">
+            <!-- Primary User Information -->
+            <div class="form-group">
+                <label for="state">Which state do you teach in?</label>
+                <select id="state" required>
+                    <option value="">Select your state...</option>
+                    <option value="california">California (CalSTRS)</option>
+                    <option value="texas">Texas (TRS)</option>
+                    <option value="newyork">New York (NYSTRS)</option>
+                    <option value="florida">Florida (FRS)</option>
+                    <option value="illinois">Illinois (TRS)</option>
+                    <option value="other">Other State</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="salary">Current Annual Salary
+                    <div class="label-hint">Enter your gross annual salary</div>
+                </label>
+                <input type="number" id="salary" placeholder="e.g., 75000" required min="0">
+            </div>
+
+            <div class="form-group">
+                <label for="yearsService">Years of Service at Retirement
+                    <div class="label-hint">Total years you'll work in education</div>
+                </label>
+                <input type="number" id="yearsService" placeholder="e.g., 30" required min="0">
+            </div>
+
+            <div class="form-group">
+                <label for="retirementAge">Retirement Age
+                    <div class="label-hint">Age affects pension calculation</div>
+                </label>
+                <input type="number" id="retirementAge" placeholder="e.g., 62" required min="50" max="75">
+            </div>
+
+            <div class="form-group">
+                <label for="socialSecurity">Expected Monthly Social Security (Optional)
+                    <div class="label-hint">Check <a href="https://www.ssa.gov/myaccount/" target="_blank">ssa.gov/myaccount</a> for your estimate. Leave at $0 if you don't qualify or are unsure.</div>
+                </label>
+                <input type="number" id="socialSecurity" placeholder="e.g., 1500" min="0" value="0">
+            </div>
+
+            <div class="form-group">
+                <label for="currentSavings">Current Retirement Savings (403b, 457b, IRAs)
+                    <div class="label-hint">Enter 0 if starting fresh</div>
+                </label>
+                <input type="number" id="currentSavings" placeholder="e.g., 50000" required min="0">
+            </div>
+
+            <div class="form-group">
+                <label for="yearsToRetirement">Years Until Retirement
+                    <div class="label-hint">Time horizon for growth</div>
+                </label>
+                <input type="number" id="yearsToRetirement" placeholder="e.g., 20" required min="0">
+            </div>
+
+            <!-- Spouse Section -->
+            <div class="checkbox-container" onclick="document.getElementById('includeSpouse').click();">
+                <input type="checkbox" id="includeSpouse" onclick="event.stopPropagation();">
+                <label for="includeSpouse" class="checkbox-label">👫 Include spouse's pension? (common for dual-teacher households)</label>
+            </div>
+
+            <div class="coach-note">
+                Many teacher couples overlook this — your spouse's pension can close a huge chunk of the gap. Plug in their estimate from their annual statement and see the difference!
+            </div>
+
+            <div id="spouseSection" class="spouse-section">
+                <div class="spouse-section-title">👫 Spouse's Information</div>
+
+                <div class="form-group">
+                    <label for="spouseState">Spouse's State</label>
+                    <select id="spouseState">
+                        <option value="">Select state...</option>
+                        <option value="california">California (CalSTRS)</option>
+                        <option value="texas">Texas (TRS)</option>
+                        <option value="newyork">New York (NYSTRS)</option>
+                        <option value="florida">Florida (FRS)</option>
+                        <option value="illinois">Illinois (TRS)</option>
+                        <option value="other">Other State</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="spousePension">Spouse's Estimated Monthly Pension
+                        <div class="label-hint">From their pension statement or estimate</div>
+                    </label>
+                    <input type="number" id="spousePension" placeholder="e.g., 3500" min="0" value="0">
+                </div>
+
+                <div class="form-group">
+                    <label for="spouseSocialSecurity">Spouse's Expected Monthly Social Security (Optional)
+                        <div class="label-hint">Their benefit estimate if they qualify</div>
+                    </label>
+                    <input type="number" id="spouseSocialSecurity" placeholder="e.g., 1200" min="0" value="0">
+                </div>
+
+                <div class="form-group">
+                    <label for="spouseAge">Spouse's Age
+                        <div class="label-hint">For planning purposes</div>
+                    </label>
+                    <input type="number" id="spouseAge" placeholder="e.g., 58" min="50" max="75">
+                </div>
+            </div>
+
+            <button type="submit" class="calculate-btn">Calculate My Income Gap</button>
+        </form>
+
+        <!-- Results Section -->
+        <div id="results" class="results">
+            <div class="results-header">Your Retirement Income Breakdown</div>
+
+            <div class="income-breakdown">
+                <div class="breakdown-card">
+                    <div class="breakdown-label">Monthly Pension</div>
+                    <div class="breakdown-amount" id="pensionAmount">$0</div>
+                </div>
+                <div class="breakdown-card">
+                    <div class="breakdown-label">Monthly Social Security</div>
+                    <div class="breakdown-amount" id="ssAmount">$0</div>
+                </div>
+                <div class="breakdown-card highlight">
+                    <div class="breakdown-label">Monthly Income Gap</div>
+                    <div class="breakdown-amount" id="gapAmount">$0</div>
+                </div>
+            </div>
+
+            <!-- Household Comparison (shown when spouse included) -->
+            <div id="householdComparison" class="comparison-section" style="display: none;">
+                <div class="comparison-title">💑 Individual vs. Household Gap Comparison</div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-label">Your Individual Gap:</div>
+                    <div class="comparison-amount" id="individualGap">$0/mo</div>
+                </div>
+
+                <div class="comparison-row">
+                    <div class="comparison-label">Combined Household Gap:</div>
+                    <div class="comparison-amount" id="householdGap">$0/mo</div>
+                </div>
+
+                <div class="savings-impact">
+                    <div class="savings-impact-text" id="savingsImpact">
+                        💡 Your spouse's pension reduces your household gap by $0/month!
                     </div>
                 </div>
             </div>
 
-            <!-- Main Calculator Card -->
-            <div class="bg-white rounded-2xl shadow-2xl p-8 mb-6">
-                <div class="text-center mb-8">
-                    <div class="text-6xl mb-4">📊</div>
-                    <h1 class="text-3xl font-bold text-gray-900 mb-2">Income Gap Calculator</h1>
-                    <p class="text-gray-600">Calculate your retirement income gap and how much you need to save</p>
-                </div>
+            <div class="info-box">
+                <div class="info-box-title">💰 Your Current Savings Will Grow!</div>
+                <div id="savingsGrowth"></div>
+            </div>
 
-                <!-- Input Fields -->
-                <div class="space-y-6 mb-8">
-                    <!-- State Selection -->
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">
-                            Which state do you teach in?
-                        </label>
-                        <select id="state" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-lg focus:border-blue-600 focus:outline-none">
-                            <option value="california">California (CalSTRS)</option>
-                            <option value="texas">Texas (TRS)</option>
-                            <option value="newyork">New York (NYSTRS)</option>
-                            <option value="florida">Florida (FRS)</option>
-                            <option value="illinois">Illinois (TRS)</option>
-                            <option value="generic">Other State</option>
-                        </select>
-                    </div>
+            <div class="info-box">
+                <div class="info-box-title" id="contributionHeader">MONTHLY CONTRIBUTION NEEDED</div>
+                <div id="contributionAmount"></div>
+            </div>
 
-                    <!-- Salary -->
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">
-                            Current Annual Salary
-                        </label>
-                        <div class="relative">
-                            <span class="absolute left-4 top-4 text-gray-600 font-semibold">$</span>
-                            <input type="number" id="salary" value="75000" min="30000" max="150000" step="1000"
-                                   class="w-full pl-8 pr-4 py-3 border-2 border-gray-300 rounded-lg text-lg focus:border-blue-600 focus:outline-none">
-                        </div>
-                        <input type="range" id="salary-slider" min="30000" max="150000" step="1000" value="75000" 
-                               class="w-full mt-2">
-                    </div>
-
-                    <!-- Years of Service -->
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">
-                            Years of Service at Retirement
-                        </label>
-                        <input type="number" id="years" value="30" min="10" max="40" step="1"
-                               class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-lg focus:border-blue-600 focus:outline-none">
-                        <input type="range" id="years-slider" min="10" max="40" step="1" value="30" 
-                               class="w-full mt-2">
-                    </div>
-
-                    <!-- Retirement Age -->
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">
-                            Retirement Age
-                        </label>
-                        <input type="number" id="retirement-age" value="62" min="55" max="75" step="1"
-                               class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-lg focus:border-blue-600 focus:outline-none">
-                        <p class="text-xs text-gray-500 mt-1">Age affects pension calculation</p>
-                    </div>
-
-                    <!-- Social Security (NEW!) -->
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">
-                            Expected Monthly Social Security (Optional)
-                        </label>
-                        <div class="relative">
-                            <span class="absolute left-4 top-4 text-gray-600 font-semibold">$</span>
-                            <input type="number" id="social-security" value="0" min="0" max="4000" step="100"
-                                   class="w-full pl-8 pr-4 py-3 border-2 border-gray-300 rounded-lg text-lg focus:border-blue-600 focus:outline-none">
-                        </div>
-                        <p class="text-xs text-gray-500 mt-1">
-                            Check <a href="https://www.ssa.gov/myaccount/" target="_blank" class="text-blue-600 underline">ssa.gov/myaccount</a> 
-                            for your estimate. Leave at $0 if you don't qualify or are unsure.
-                        </p>
-                    </div>
-
-                    <!-- Current Savings -->
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">
-                            Current Retirement Savings (403b, 457b, IRAs)
-                        </label>
-                        <div class="relative">
-                            <span class="absolute left-4 top-4 text-gray-600 font-semibold">$</span>
-                            <input type="number" id="current-savings" value="0" min="0" max="5000000" step="10000"
-                                   class="w-full pl-8 pr-4 py-3 border-2 border-gray-300 rounded-lg text-lg focus:border-blue-600 focus:outline-none">
-                        </div>
-                        <p class="text-xs text-gray-500 mt-1">Enter 0 if starting fresh</p>
-                    </div>
-
-                    <!-- Years Until Retirement -->
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">
-                            Years Until Retirement
-                        </label>
-                        <input type="number" id="years-until" value="20" min="1" max="40" step="1"
-                               class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-lg focus:border-blue-600 focus:outline-none">
+            <div class="action-steps">
+                <h3>Next Steps:</h3>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Set up automatic contributions</div>
+                        <div>to your 403(b) and/or 457(b)</div>
                     </div>
                 </div>
-
-                <!-- Calculate Button -->
-                <button onclick="calculate()" 
-                        class="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-lg font-bold text-lg transition mb-8">
-                    Calculate My Income Gap
-                </button>
-
-                <!-- Results -->
-                <div id="results" class="hidden">
-                    <!-- Income Breakdown Bar -->
-                    <div class="mb-8">
-                        <h3 class="text-xl font-bold text-gray-900 mb-4 text-center">Your Retirement Income Breakdown</h3>
-                        <div class="relative h-20 bg-gray-200 rounded-lg overflow-hidden flex">
-                            <div id="pension-bar" class="bg-green-500 flex items-center justify-center text-white font-bold transition-all duration-500" style="width: 0%">
-                                <span id="pension-bar-text"></span>
-                            </div>
-                            <div id="ss-bar" class="bg-blue-500 flex items-center justify-center text-white font-bold transition-all duration-500" style="width: 0%">
-                                <span id="ss-bar-text"></span>
-                            </div>
-                            <div id="gap-bar" class="gap-bar bg-red-500 flex items-center justify-center text-white font-bold transition-all duration-500" style="width: 0%">
-                                <span id="gap-bar-text"></span>
-                            </div>
-                        </div>
-                        <div class="flex justify-around mt-4 text-sm">
-                            <div class="text-center">
-                                <div class="w-4 h-4 bg-green-500 rounded mx-auto mb-1"></div>
-                                <p class="font-semibold">Pension</p>
-                            </div>
-                            <div id="ss-legend" class="text-center hidden">
-                                <div class="w-4 h-4 bg-blue-500 rounded mx-auto mb-1"></div>
-                                <p class="font-semibold">Social Security</p>
-                            </div>
-                            <div class="text-center">
-                                <div class="w-4 h-4 bg-red-500 rounded mx-auto mb-1"></div>
-                                <p class="font-semibold">Gap to Fill</p>
-                            </div>
-                        </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Choose low-cost index funds</div>
+                        <div>(0.15% fees or less)</div>
                     </div>
-
-                    <!-- Key Numbers -->
-                    <div class="grid md:grid-cols-2 gap-6 mb-8">
-                        <div class="bg-green-50 border-2 border-green-500 rounded-xl p-6">
-                            <p class="text-sm text-gray-600 mb-1">Monthly Pension</p>
-                            <p class="text-4xl font-bold text-green-600" id="pension-amount">$0</p>
-                        </div>
-
-                        <div id="ss-card" class="bg-blue-50 border-2 border-blue-500 rounded-xl p-6 hidden">
-                            <p class="text-sm text-gray-600 mb-1">Monthly Social Security</p>
-                            <p class="text-4xl font-bold text-blue-600" id="ss-amount">$0</p>
-                        </div>
-
-                        <div class="bg-red-50 border-2 border-red-500 rounded-xl p-6">
-                            <p class="text-sm text-gray-600 mb-1">Monthly Income Gap</p>
-                            <p class="text-4xl font-bold text-red-600" id="gap-amount">$0</p>
-                        </div>
-
-                        <div class="bg-yellow-50 border-2 border-yellow-500 rounded-xl p-6">
-                            <p class="text-sm text-gray-600 mb-1">Total Needed to Fill Gap</p>
-                            <p class="text-4xl font-bold text-yellow-600" id="total-needed">$0</p>
-                        </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Increase contributions by 1% each year</div>
+                        <div>as your salary grows</div>
                     </div>
-
-                    <!-- Future Savings Card (Conditional) -->
-                    <div id="future-savings-card" class="bg-blue-50 border-2 border-blue-500 rounded-xl p-6 mb-8 hidden">
-                        <div class="flex items-start gap-3">
-                            <span class="text-3xl">💰</span>
-                            <div>
-                                <p class="font-bold text-blue-900 mb-2">Your Current Savings Will Grow!</p>
-                                <p class="text-gray-700 mb-2">
-                                    Your <span id="current-savings-display">$0</span> will grow to approximately 
-                                    <span class="font-bold text-blue-600" id="future-savings-amount">$0</span> by retirement 
-                                    (assuming 7% annual growth).
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Monthly Contribution -->
-                    <div id="contribution-card" class="bg-gradient-to-r from-green-50 to-blue-50 border-2 border-green-500 rounded-xl p-8 text-center mb-8">
-                        <p class="text-sm font-semibold text-gray-700 mb-2">MONTHLY CONTRIBUTION NEEDED</p>
-                        <p class="text-6xl font-bold text-green-600 mb-2" id="monthly-contribution">$0</p>
-                        <p class="text-sm text-gray-700" id="contribution-message"></p>
-                    </div>
-
-                    <!-- On Track Message (Conditional) -->
-                    <div id="on-track-message" class="bg-green-100 border-2 border-green-500 rounded-xl p-6 mb-8 hidden">
-                        <div class="flex items-start gap-3">
-                            <span class="text-4xl">🎉</span>
-                            <div>
-                                <p class="font-bold text-green-900 text-xl mb-2">You're On Track!</p>
-                                <p class="text-gray-700">
-                                    Your current savings will grow to cover your income gap! Keep your savings invested and maintain your course.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Action Steps -->
-                    <div class="bg-gray-50 rounded-xl p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">Next Steps:</h3>
-                        <div class="space-y-3 text-gray-700">
-                            <div class="flex items-start gap-3">
-                                <span class="text-xl">1️⃣</span>
-                                <div>
-                                    <p><strong>Set up automatic contributions</strong> to your 403(b) and/or 457(b)</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <span class="text-xl">2️⃣</span>
-                                <div>
-                                    <p><strong>Choose low-cost index funds</strong> (0.15% fees or less)</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <span class="text-xl">3️⃣</span>
-                                <div>
-                                    <p><strong>Increase contributions by 1% each year</strong> as your salary grows</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <span class="text-xl">4️⃣</span>
-                                <div>
-                                    <p><strong>Complete the remaining modules</strong> to learn vendor selection and enrollment</p>
-                                </div>
-                            </div>
-                        </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">Complete the remaining modules</div>
+                        <div>to learn vendor selection and enrollment</div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Footer -->
-            <footer class="text-center text-white text-sm pb-8">
-                <p>&copy; 2026 TeacherFinCoach. Building Wealth for Educators.</p>
-                <p class="text-xs text-white/80 mt-2">
-                    Educational purposes only. Not financial advice. 
-                    <a href="terms.html" class="underline hover:text-white">Terms & Disclaimers</a>
-                </p>
-            </footer>
+        <div class="footer">
+            <div>© 2026 TeacherFinCoach. Building Wealth for Educators.</div>
+            <div style="margin-top: 10px;">Educational purposes only. Not financial advice.</div>
+            <div style="margin-top: 5px;"><a href="terms.html" style="color: #667eea;">Terms & Disclaimers</a></div>
         </div>
     </div>
 
     <script>
-        // State-specific pension formulas
-        const stateData = {
-            california: { multiplier: 0.02, ageFactor62: 1.0, ageFactor60: 0.90, ageFactor55: 0.77 },
-            texas: { multiplier: 0.023, ageFactor62: 1.0, ageFactor60: 0.92, ageFactor55: 0.80 },
-            newyork: { multiplier: 0.0167, ageFactor62: 1.0, ageFactor60: 0.95, ageFactor55: 0.85 },
-            florida: { multiplier: 0.016, ageFactor62: 1.0, ageFactor60: 0.94, ageFactor55: 0.82 },
-            illinois: { multiplier: 0.022, ageFactor62: 1.0, ageFactor60: 0.92, ageFactor55: 0.80 },
-            generic: { multiplier: 0.02, ageFactor62: 1.0, ageFactor60: 0.92, ageFactor55: 0.80 }
-        };
-
-        // Sync sliders
-        document.getElementById('salary').addEventListener('input', function() {
-            document.getElementById('salary-slider').value = this.value;
-        });
-        document.getElementById('salary-slider').addEventListener('input', function() {
-            document.getElementById('salary').value = this.value;
+        // Toggle spouse section
+        document.getElementById('includeSpouse').addEventListener('change', function() {
+            const spouseSection = document.getElementById('spouseSection');
+            if (this.checked) {
+                spouseSection.classList.add('active');
+            } else {
+                spouseSection.classList.remove('active');
+            }
         });
 
-        document.getElementById('years').addEventListener('input', function() {
-            document.getElementById('years-slider').value = this.value;
-        });
-        document.getElementById('years-slider').addEventListener('input', function() {
-            document.getElementById('years').value = this.value;
-        });
+        // Pension calculation functions
+        function calculatePension(state, salary, yearsService, retirementAge) {
+            let monthlyPension = 0;
+            
+            // Simplified pension formulas based on state
+            switch(state) {
+                case 'california':
+                    // CalSTRS: 2% at 60 formula (simplified)
+                    let factor = retirementAge >= 60 ? 0.02 : 0.018;
+                    monthlyPension = (salary * yearsService * factor) / 12;
+                    break;
+                case 'texas':
+                    // TRS: 2.3% formula
+                    monthlyPension = (salary * yearsService * 0.023) / 12;
+                    break;
+                case 'newyork':
+                    // NYSTRS: 2% formula
+                    monthlyPension = (salary * yearsService * 0.02) / 12;
+                    break;
+                case 'florida':
+                    // FRS: 1.6% formula
+                    monthlyPension = (salary * yearsService * 0.016) / 12;
+                    break;
+                case 'illinois':
+                    // TRS: 2.2% formula
+                    monthlyPension = (salary * yearsService * 0.022) / 12;
+                    break;
+                case 'other':
+                    // Generic 2% formula
+                    monthlyPension = (salary * yearsService * 0.02) / 12;
+                    break;
+            }
+            
+            return Math.round(monthlyPension);
+        }
 
-        function calculate() {
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(amount);
+        }
+
+        // Calculate future value with compound interest
+        function futureValue(presentValue, rate, years) {
+            return presentValue * Math.pow(1 + rate, years);
+        }
+
+        // Calculate monthly payment needed to reach goal
+        function calculateMonthlyPayment(futureValue, rate, years) {
+            const monthlyRate = rate / 12;
+            const months = years * 12;
+            if (monthlyRate === 0) return futureValue / months;
+            return (futureValue * monthlyRate) / (Math.pow(1 + monthlyRate, months) - 1);
+        }
+
+        document.getElementById('gapCalculator').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get primary user inputs
             const state = document.getElementById('state').value;
             const salary = parseFloat(document.getElementById('salary').value);
-            const years = parseInt(document.getElementById('years').value);
-            const retirementAge = parseInt(document.getElementById('retirement-age').value);
-            const socialSecurity = parseFloat(document.getElementById('social-security').value);
-            const currentSavings = parseFloat(document.getElementById('current-savings').value);
-            const yearsUntil = parseInt(document.getElementById('years-until').value);
+            const yearsService = parseFloat(document.getElementById('yearsService').value);
+            const retirementAge = parseFloat(document.getElementById('retirementAge').value);
+            const socialSecurity = parseFloat(document.getElementById('socialSecurity').value) || 0;
+            const currentSavings = parseFloat(document.getElementById('currentSavings').value);
+            const yearsToRetirement = parseFloat(document.getElementById('yearsToRetirement').value);
 
-            const pensionData = stateData[state];
+            // Check if spouse is included
+            const includeSpouse = document.getElementById('includeSpouse').checked;
+            let spousePension = 0;
+            let spouseSocialSecurity = 0;
 
-            // Determine age factor
-            let ageFactor = pensionData.ageFactor62;
-            if (retirementAge >= 62) ageFactor = pensionData.ageFactor62;
-            else if (retirementAge >= 60) ageFactor = pensionData.ageFactor60;
-            else ageFactor = pensionData.ageFactor55;
-
-            // Calculate monthly pension (capped at 90% of salary)
-            const annualPension = Math.min(salary * years * pensionData.multiplier * ageFactor, salary * 0.90);
-            const monthlyPension = annualPension / 12;
-
-            // Calculate gap
-            const monthlySalary = salary / 12;
-            const totalIncome = monthlyPension + socialSecurity;
-            const gap = Math.max(0, monthlySalary - totalIncome);
-
-            // Calculate total needed (gap × 300 months = 25 years)
-            const totalNeeded = gap * 300; // Using 4% withdrawal rule (25x annual expenses)
-
-            // Calculate future value of current savings
-            const futureValue = currentSavings * Math.pow(1.07, yearsUntil);
-
-            // Calculate remaining needed
-            const remainingNeeded = Math.max(0, totalNeeded - futureValue);
-
-            // Calculate monthly contribution using PMT formula
-            const monthlyRate = 0.07 / 12;
-            const months = yearsUntil * 12;
-            let monthlyContribution = 0;
-            
-            if (remainingNeeded > 0) {
-                monthlyContribution = (remainingNeeded * monthlyRate) / (Math.pow(1 + monthlyRate, months) - 1);
+            if (includeSpouse) {
+                spousePension = parseFloat(document.getElementById('spousePension').value) || 0;
+                spouseSocialSecurity = parseFloat(document.getElementById('spouseSocialSecurity').value) || 0;
             }
+
+            // Calculate primary pension
+            const monthlyPension = calculatePension(state, salary, yearsService, retirementAge);
+
+            // Calculate income needed (70% of current salary is common rule of thumb)
+            const monthlyIncomeNeeded = (salary * 0.70) / 12;
+
+            // Calculate individual gap
+            const totalMonthlyIncome = monthlyPension + socialSecurity;
+            const individualMonthlyGap = Math.max(0, monthlyIncomeNeeded - totalMonthlyIncome);
+
+            // Calculate household gap if spouse included
+            let householdMonthlyGap = individualMonthlyGap;
+            let gapReduction = 0;
+
+            if (includeSpouse) {
+                const totalHouseholdIncome = totalMonthlyIncome + spousePension + spouseSocialSecurity;
+                householdMonthlyGap = Math.max(0, monthlyIncomeNeeded - totalHouseholdIncome);
+                gapReduction = individualMonthlyGap - householdMonthlyGap;
+            }
+
+            // Use household gap for savings calculation if spouse included
+            const activeGap = includeSpouse ? householdMonthlyGap : individualMonthlyGap;
+            const totalNeeded = activeGap * 12 * 25; // 25 years of income needed
+
+            // Calculate savings growth
+            const growthRate = 0.07; // 7% annual return
+            const futureSavings = futureValue(currentSavings, growthRate, yearsToRetirement);
+
+            // Calculate monthly contribution needed
+            const remainingNeeded = Math.max(0, totalNeeded - futureSavings);
+            const monthlyContribution = remainingNeeded > 0 
+                ? calculateMonthlyPayment(remainingNeeded, growthRate, yearsToRetirement)
+                : 0;
 
             // Update display
-            document.getElementById('pension-amount').textContent = '$' + monthlyPension.toLocaleString('en-US', {maximumFractionDigits: 0});
-            document.getElementById('gap-amount').textContent = '$' + gap.toLocaleString('en-US', {maximumFractionDigits: 0});
-            document.getElementById('total-needed').textContent = '$' + totalNeeded.toLocaleString('en-US', {maximumFractionDigits: 0});
-            document.getElementById('monthly-contribution').textContent = '$' + monthlyContribution.toLocaleString('en-US', {maximumFractionDigits: 0});
+            document.getElementById('pensionAmount').textContent = formatCurrency(monthlyPension);
+            document.getElementById('ssAmount').textContent = formatCurrency(socialSecurity);
+            document.getElementById('gapAmount').textContent = formatCurrency(activeGap);
 
-            // Social Security display
-            if (socialSecurity > 0) {
-                document.getElementById('ss-amount').textContent = '$' + socialSecurity.toLocaleString('en-US', {maximumFractionDigits: 0});
-                document.getElementById('ss-card').classList.remove('hidden');
-                document.getElementById('ss-legend').classList.remove('hidden');
+            // Show/hide household comparison
+            if (includeSpouse) {
+                document.getElementById('householdComparison').style.display = 'block';
+                document.getElementById('individualGap').textContent = formatCurrency(individualMonthlyGap) + '/mo';
+                document.getElementById('householdGap').textContent = formatCurrency(householdMonthlyGap) + '/mo';
+                document.getElementById('savingsImpact').textContent = 
+                    `💡 Your spouse's pension reduces your household gap by ${formatCurrency(gapReduction)}/month ($${formatCurrency(gapReduction * 12)}/year)!`;
             } else {
-                document.getElementById('ss-card').classList.add('hidden');
-                document.getElementById('ss-legend').classList.add('hidden');
+                document.getElementById('householdComparison').style.display = 'none';
             }
 
-            // Visual bar
-            const pensionPercent = (monthlyPension / monthlySalary) * 100;
-            const ssPercent = (socialSecurity / monthlySalary) * 100;
-            const gapPercent = (gap / monthlySalary) * 100;
+            document.getElementById('savingsGrowth').innerHTML = 
+                `Your ${formatCurrency(currentSavings)} will grow to approximately 
+                <strong>${formatCurrency(futureSavings)}</strong> by retirement 
+                (assuming 7% annual growth).`;
 
-            document.getElementById('pension-bar').style.width = pensionPercent + '%';
-            document.getElementById('pension-bar-text').textContent = Math.round(pensionPercent) + '%';
-            
-            if (socialSecurity > 0) {
-                document.getElementById('ss-bar').style.width = ssPercent + '%';
-                document.getElementById('ss-bar-text').textContent = Math.round(ssPercent) + '%';
+            if (monthlyContribution === 0) {
+                document.getElementById('contributionHeader').textContent = '🎉 You\'re On Track!';
+                document.getElementById('contributionAmount').innerHTML = 
+                    `Your current savings will grow to cover your income gap! Keep your savings invested and maintain your course.`;
             } else {
-                document.getElementById('ss-bar').style.width = '0%';
-            }
-            
-            document.getElementById('gap-bar').style.width = gapPercent + '%';
-            document.getElementById('gap-bar-text').textContent = Math.round(gapPercent) + '%';
-
-            // Current savings message
-            if (currentSavings > 0) {
-                document.getElementById('current-savings-display').textContent = '$' + currentSavings.toLocaleString('en-US', {maximumFractionDigits: 0});
-                document.getElementById('future-savings-amount').textContent = '$' + futureValue.toLocaleString('en-US', {maximumFractionDigits: 0});
-                document.getElementById('future-savings-card').classList.remove('hidden');
-            } else {
-                document.getElementById('future-savings-card').classList.add('hidden');
-            }
-
-            // On track or needs saving
-            if (futureValue >= totalNeeded) {
-                document.getElementById('contribution-card').classList.add('hidden');
-                document.getElementById('on-track-message').classList.remove('hidden');
-            } else {
-                document.getElementById('contribution-card').classList.remove('hidden');
-                document.getElementById('on-track-message').classList.add('hidden');
-                
-                const message = `To fill your $${gap.toLocaleString('en-US', {maximumFractionDigits: 0})}/month gap over ${yearsUntil} years`;
-                document.getElementById('contribution-message').textContent = message;
+                document.getElementById('contributionHeader').textContent = 'MONTHLY CONTRIBUTION NEEDED';
+                document.getElementById('contributionAmount').innerHTML = 
+                    `<div style="font-size: 36px; font-weight: bold; color: #667eea; margin: 10px 0;">
+                        ${formatCurrency(monthlyContribution)}
+                    </div>
+                    <div style="margin-top: 10px;">
+                        This monthly contribution will help you bridge the ${formatCurrency(activeGap)}/month gap.
+                    </div>`;
             }
 
             // Show results
-            document.getElementById('results').classList.remove('hidden');
-            document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
+            document.getElementById('results').classList.add('active');
+            
+            // Scroll to results
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
     </script>
 </body>
 </html>
