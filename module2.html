@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 2: Your Two Retirement Tools - TeacherFinCoach</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #667eea;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .module-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .module-number {
+            color: #667eea;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            color: #333;
+            margin: 10px 0 15px 0;
+            font-size: 32px;
+        }
+
+        .module-subtitle {
+            color: #666;
+            font-size: 18px;
+        }
+
+        .progress-bar {
+            background: #f0f0f0;
+            height: 8px;
+            border-radius: 10px;
+            margin: 30px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .content-section {
+            margin: 40px 0;
+        }
+
+        .content-section h2 {
+            color: #333;
+            font-size: 26px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .content-section h3 {
+            color: #667eea;
+            font-size: 20px;
+            margin: 25px 0 15px 0;
+        }
+
+        .content-section p {
+            color: #444;
+            font-size: 17px;
+            margin-bottom: 15px;
+        }
+
+        .coach-tip {
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+
+        .coach-tip::before {
+            content: "📚 Coach Marty's Teaching Tip: ";
+            font-weight: bold;
+            color: #1976D2;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .coach-tip p {
+            color: #1565C0;
+            margin: 0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            margin: 30px 0;
+            border-collapse: collapse;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            font-size: 18px;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            font-size: 16px;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .highlight-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box h3 {
+            color: #856404;
+            margin-top: 0;
+        }
+
+        .highlight-box p {
+            color: #856404;
+        }
+
+        .example-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+
+        .example-box h3 {
+            color: #155724;
+            margin-top: 0;
+        }
+
+        .example-box p {
+            color: #155724;
+        }
+
+        .calculator-cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .calculator-cta h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .calculator-cta p {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 17px;
+        }
+
+        .calculator-btn {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 15px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: transform 0.2s;
+        }
+
+        .calculator-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .key-takeaways {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        .key-takeaways h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .key-takeaways ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .key-takeaways li {
+            padding: 10px 0 10px 35px;
+            position: relative;
+            color: #444;
+            font-size: 16px;
+        }
+
+        .key-takeaways li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .quiz-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 40px;
+        }
+
+        .quiz-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            border: none;
+        }
+
+        .quiz-question {
+            background: white;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+        }
+
+        .quiz-question h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .quiz-options {
+            list-style: none;
+            padding: 0;
+        }
+
+        .quiz-options li {
+            padding: 12px;
+            margin: 8px 0;
+            background: #f8f9fa;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quiz-options li:hover {
+            background: #e9ecef;
+        }
+
+        .quiz-options input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .submit-quiz-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+
+        .submit-quiz-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .quiz-result {
+            display: none;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .quiz-result.pass {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+        }
+
+        .quiz-result.fail {
+            background: #f8d7da;
+            border: 2px solid #dc3545;
+            color: #721c24;
+        }
+
+        .next-module-btn {
+            display: none;
+            width: 100%;
+            padding: 15px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .next-module-btn:hover {
+            background: #218838;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .content-section h2 {
+                font-size: 22px;
+            }
+
+            .comparison-table {
+                font-size: 14px;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="dashboard.html" class="back-link">← Back to Dashboard</a>
+
+        <div class="module-header">
+            <div class="module-number">Module 2</div>
+            <h1>Your Two Retirement Tools: 403(b) and 457(b)</h1>
+            <div class="module-subtitle">Understanding both accounts and why you need them</div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressBar"></div>
+        </div>
+
+        <!-- SECTION 1: THE TWO FILING CABINETS -->
+        <div class="content-section">
+            <h2>Think of It Like Two Different Filing Cabinets</h2>
+            <p>You know how in your classroom you have different filing systems? Maybe one cabinet for lesson plans and another for student records? Your retirement accounts work the same way.</p>
+            
+            <p>As a teacher, you have access to <strong>two separate retirement accounts</strong>:</p>
+            <ul style="margin-left: 30px; margin-top: 15px;">
+                <li style="margin-bottom: 10px;"><strong>403(b):</strong> Think of this as your "main supplies budget" - the foundational account most teachers know about</li>
+                <li style="margin-bottom: 10px;"><strong>457(b):</strong> Think of this as your "field trip fund" - a separate account with special rules that most teachers don't know exists</li>
+            </ul>
+
+            <div class="coach-tip">
+                <p>Just like you wouldn't limit yourself to only one filing cabinet in your classroom, you shouldn't limit yourself to only one retirement account. Using both 403(b) AND 457(b) is like having two separate ways to organize and grow your retirement savings!</p>
+            </div>
+        </div>
+
+        <!-- SECTION 2: WHAT IS A 403(b)? -->
+        <div class="content-section">
+            <h2>What is a 403(b)?</h2>
+            <p>Your 403(b) is the retirement account most teachers are familiar with. It's the education world's version of a 401(k) that private sector workers use.</p>
+
+            <h3>How It Works:</h3>
+            <p><strong>Pre-Tax Contributions:</strong> Money comes out of your paycheck BEFORE taxes are taken out. It's like getting a tax deduction on every contribution.</p>
+            
+            <p><strong>2025 Contribution Limit:</strong> You can contribute up to <strong>$23,500 per year</strong> (or $31,000 if you're 50 or older with catch-up contributions).</p>
+            
+            <p><strong>Tax-Deferred Growth:</strong> Your money grows without being taxed each year - like seeds growing in a greenhouse without being disturbed.</p>
+            
+            <p><strong>Withdrawal Rules:</strong> You can access this money at age 59½ without penalties. If you withdraw earlier, there's typically a 10% early withdrawal penalty (plus regular income taxes).</p>
+
+            <div class="coach-tip">
+                <p>Think of your 403(b) like planning a year's worth of lesson plans. You put in the work upfront (contributions now), and it pays off over time (growth for retirement). The earlier you start, the more prepared you'll be!</p>
+            </div>
+        </div>
+
+        <!-- SECTION 3: WHAT IS A 457(b)? -->
+        <div class="content-section">
+            <h2>What is a 457(b)?</h2>
+            <p>Here's where it gets exciting! A 457(b) is like a secret weapon that most teachers don't know about. It's a <strong>completely separate</strong> retirement account with some unique advantages.</p>
+
+            <h3>How It Works:</h3>
+            <p><strong>Also Pre-Tax:</strong> Just like the 403(b), money comes out before taxes.</p>
+            
+            <p><strong>SEPARATE Contribution Limit:</strong> You can contribute up to <strong>$23,500 per year</strong> (or $31,000 if 50+) - this is IN ADDITION to your 403(b) contribution!</p>
+            
+            <p><strong>The Big Advantage - No 10% Penalty:</strong> This is HUGE. With a 457(b), you can access your money when you leave your job (even before age 59½) WITHOUT the 10% early withdrawal penalty. You still pay regular income taxes, but no penalty!</p>
+
+            <div class="highlight-box">
+                <h3>🎯 Why This Matters for Teachers:</h3>
+                <p>Planning to retire at 55 after 30 years? The 457(b) lets you access that money immediately with no penalty. It's like having an emergency backup lesson plan that you can actually use!</p>
+            </div>
+        </div>
+
+        <!-- SECTION 4: SIDE-BY-SIDE COMPARISON -->
+        <div class="content-section">
+            <h2>403(b) vs 457(b): Quick Comparison</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>403(b)</th>
+                        <th>457(b)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Who Can Use It?</strong></td>
+                        <td>Teachers & school employees</td>
+                        <td>Teachers & school employees</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2025 Contribution Limit</strong></td>
+                        <td>$23,500 ($31,000 if 50+)</td>
+                        <td>$23,500 ($31,000 if 50+)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tax Treatment</strong></td>
+                        <td>Pre-tax (lowers current taxes)</td>
+                        <td>Pre-tax (lowers current taxes)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>When Can You Access?</strong></td>
+                        <td>Age 59½ (or 55 with Rule of 55)</td>
+                        <td>When you leave your job (any age!)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Early Withdrawal Penalty</strong></td>
+                        <td>10% penalty if before 59½</td>
+                        <td><strong>NO penalty!</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Required Minimum Distributions</strong></td>
+                        <td>Age 73</td>
+                        <td>Age 73</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECTION 5: THE POWER OF USING BOTH -->
+        <div class="content-section">
+            <h2>Why You Need BOTH Accounts</h2>
+            <p>Here's the game-changer that most teachers miss: <strong>these contribution limits are separate!</strong></p>
+
+            <p>This means you can contribute to BOTH accounts in the same year:</p>
+            <ul style="margin-left: 30px; margin-top: 15px; margin-bottom: 20px;">
+                <li style="margin-bottom: 10px;">403(b): $23,500</li>
+                <li style="margin-bottom: 10px;">457(b): $23,500</li>
+                <li style="margin-bottom: 10px;"><strong>Total: $47,000 per year!</strong></li>
+            </ul>
+
+            <p>Remember Module 1 where we discovered that 30% retirement income gap? Using both accounts is how you close it!</p>
+
+            <div class="coach-tip">
+                <p>Think of it like differentiating instruction in your classroom. Some students need extra support in reading, others in math. Using both accounts lets you "differentiate" your retirement strategy - the 403(b) for long-term growth, and the 457(b) for flexibility if you retire early or need emergency access.</p>
+            </div>
+        </div>
+
+        <!-- SECTION 6: REAL TEACHER EXAMPLE -->
+        <div class="content-section">
+            <h2>Real Teacher Example: How Maria Uses Both</h2>
+            
+            <div class="example-box">
+                <h3>📚 Maria - 4th Grade Teacher in California</h3>
+                <p><strong>Salary:</strong> $85,000/year</p>
+                <p><strong>Years to retirement:</strong> 25 years</p>
+                <p><strong>CalSTRS pension at retirement:</strong> ~$4,800/month</p>
+                <p><strong>Monthly income gap to fill:</strong> $1,200</p>
+                
+                <p style="margin-top: 15px;"><strong>Maria's Strategy:</strong></p>
+                <p>Maria contributes to BOTH accounts:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>403(b): $500/month ($6,000/year)</li>
+                    <li>457(b): $400/month ($4,800/year)</li>
+                    <li><strong>Total savings: $900/month</strong></li>
+                </ul>
+                
+                <p style="margin-top: 15px;"><strong>The Result:</strong></p>
+                <p>After 25 years with 7% average annual returns:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>403(b) grows to: ~$395,000</li>
+                    <li>457(b) grows to: ~$316,000</li>
+                    <li><strong>Total: $711,000!</strong></li>
+                </ul>
+                
+                <p style="margin-top: 15px;">That $711,000 can provide the $1,200/month she needs to close her retirement gap - and she has the flexibility of the 457(b) if she retires before 59½!</p>
+            </div>
+        </div>
+
+        <!-- SECTION 7: WHICH SHOULD YOU CONTRIBUTE TO FIRST? -->
+        <div class="content-section">
+            <h2>Which Account Should You Contribute to First?</h2>
+            <p>Great question! Here's Coach Marty's simple priority system:</p>
+
+            <h3>Step 1: Start with 403(b)</h3>
+            <p>If you're just starting out, begin with your 403(b). It's more widely available and easier to set up. Aim for at least 10-15% of your salary.</p>
+
+            <h3>Step 2: Add 457(b) When Ready</h3>
+            <p>Once you're comfortable with your 403(b) contributions, add the 457(b). Even small amounts make a difference!</p>
+
+            <h3>Step 3: Max Both If Possible</h3>
+            <p>If you can save more, max out both accounts. This is the fastest way to close your retirement income gap.</p>
+
+            <div class="highlight-box">
+                <h3>💡 Not Sure How Much to Contribute?</h3>
+                <p>Use our Contribution Strategy Calculator to see exactly how much you should put into each account based on your personal situation!</p>
+            </div>
+        </div>
+
+        <!-- CALCULATOR CTA -->
+        <div class="calculator-cta">
+            <h3>🧮 Ready to Build Your Personal Strategy?</h3>
+            <p>Our Contribution Strategy Calculator will show you exactly how much to contribute to each account based on your salary, age, and retirement goals.</p>
+            <a href="contribution_strategy_calculator.html" class="calculator-btn">Try the Calculator →</a>
+        </div>
+
+        <!-- KEY TAKEAWAYS -->
+        <div class="key-takeaways">
+            <h3>🎯 Key Takeaways - Module 2</h3>
+            <ul>
+                <li>You have access to TWO separate retirement accounts: 403(b) and 457(b)</li>
+                <li>Both are pre-tax accounts that reduce your current taxable income</li>
+                <li>403(b): Standard retirement account with $23,500 annual limit (2025)</li>
+                <li>457(b): Special account with NO early withdrawal penalty and same $23,500 limit</li>
+                <li>These limits are SEPARATE - you can contribute $47,000/year total!</li>
+                <li>Using both accounts is key to closing your 30% retirement income gap</li>
+                <li>The 457(b)'s flexibility makes it perfect for teachers planning early retirement</li>
+                <li>Start with 403(b), then add 457(b) as you're able to save more</li>
+            </ul>
+        </div>
+
+        <!-- QUIZ SECTION -->
+        <div class="quiz-section">
+            <h2>✓ Knowledge Check - Test Your Understanding</h2>
+            <p style="margin-bottom: 20px;">Answer these questions to make sure you understand the key concepts. You need 4 out of 5 correct to pass.</p>
+
+            <form id="quizForm">
+                <!-- Question 1 -->
+                <div class="quiz-question">
+                    <h3>1. What is the 2025 contribution limit for a 403(b) if you're under age 50?</h3>
+                    <ul class="quiz-options">
+                        <li><input type="radio" name="q1" value="a"> $19,500</li>
+                        <li><input type="radio" name="q1" value="b"> $22,500</li>
+                        <li><input type="radio" name="q1" value="c"> $23,500</li>
+                        <li><input type="radio" name="q1" value="d"> $31,000</li>
+                    </ul>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="quiz-question">
+                    <h3>2. What's the main advantage of a 457(b) compared to a 403(b)?</h3>
+                    <ul class="quiz-options">
+                        <li><input type="radio" name="q2" value="a"> Higher contribution limits</li>
+                        <li><input type="radio" name="q2" value="b"> No 10% early withdrawal penalty</li>
+                        <li><input type="radio" name="q2" value="c"> Tax-free withdrawals in retirement</li>
+                        <li><input type="radio" name="q2" value="d"> Guaranteed investment returns</li>
+                    </ul>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="quiz-question">
+                    <h3>3. If you contribute the maximum to both a 403(b) and 457(b) in 2025, how much total can you save (under age 50)?</h3>
+                    <ul class="quiz-options">
+                        <li><input type="radio" name="q3" value="a"> $23,500</li>
+                        <li><input type="radio" name="q3" value="b"> $31,000</li>
+                        <li><input type="radio" name="q3" value="c"> $47,000</li>
+                        <li><input type="radio" name="q3" value="d"> $62,000</li>
+                    </ul>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="quiz-question">
+                    <h3>4. When can you access money in your 457(b) without the 10% penalty?</h3>
+                    <ul class="quiz-options">
+                        <li><input type="radio" name="q4" value="a"> Only at age 59½</li>
+                        <li><input type="radio" name="q4" value="b"> When you leave your job (any age)</li>
+                        <li><input type="radio" name="q4" value="c"> Only after age 65</li>
+                        <li><input type="radio" name="q4" value="d"> Only in case of emergency</li>
+                    </ul>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="quiz-question">
+                    <h3>5. Which account should most teachers start contributing to first?</h3>
+                    <ul class="quiz-options">
+                        <li><input type="radio" name="q5" value="a"> 457(b) because it has no penalty</li>
+                        <li><input type="radio" name="q5" value="b"> 403(b) because it's more widely available</li>
+                        <li><input type="radio" name="q5" value="c"> It doesn't matter - both are equally good starting points</li>
+                        <li><input type="radio" name="q5" value="d"> Neither - you should only contribute to a Roth IRA</li>
+                    </ul>
+                </div>
+
+                <button type="submit" class="submit-quiz-btn">Submit Quiz</button>
+            </form>
+
+            <div id="quizResult" class="quiz-result"></div>
+            <a href="module3.html" id="nextModuleBtn" class="next-module-btn">Continue to Module 3 →</a>
+        </div>
+    </div>
+
+    <script>
+        // Progress bar animation
+        window.addEventListener('scroll', function() {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrolled = window.scrollY;
+            const progress = (scrolled / documentHeight) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        });
+
+        // Quiz functionality
+        document.getElementById('quizForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Correct answers
+            const answers = {
+                q1: 'c', // $23,500
+                q2: 'b', // No 10% early withdrawal penalty
+                q3: 'c', // $47,000
+                q4: 'b', // When you leave your job
+                q5: 'b'  // 403(b) first
+            };
+            
+            let score = 0;
+            let totalQuestions = Object.keys(answers).length;
+            
+            // Check answers
+            for (let question in answers) {
+                const selected = document.querySelector(`input[name="${question}"]:checked`);
+                if (selected && selected.value === answers[question]) {
+                    score++;
+                }
+            }
+            
+            // Display result
+            const resultDiv = document.getElementById('quizResult');
+            const nextBtn = document.getElementById('nextModuleBtn');
+            const percentage = Math.round((score / totalQuestions) * 100);
+            
+            if (score >= 4) {
+                resultDiv.className = 'quiz-result pass';
+                resultDiv.innerHTML = `
+                    <h3>🎉 Excellent Work!</h3>
+                    <p>You scored ${score} out of ${totalQuestions} (${percentage}%)</p>
+                    <p>You've mastered the key differences between 403(b) and 457(b) accounts! You're ready to move on to Module 3 where we'll explore the costly mistakes teachers make.</p>
+                `;
+                nextBtn.style.display = 'block';
+            } else {
+                resultDiv.className = 'quiz-result fail';
+                resultDiv.innerHTML = `
+                    <h3>📚 Almost There!</h3>
+                    <p>You scored ${score} out of ${totalQuestions} (${percentage}%)</p>
+                    <p>Review the material above and try again. You need at least 4 correct answers to continue. Focus on understanding the contribution limits, the key differences between accounts, and when you can access your money.</p>
+                `;
+                nextBtn.style.display = 'none';
+            }
+            
+            resultDiv.style.display = 'block';
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+    </script>
+</body>
+</html>
