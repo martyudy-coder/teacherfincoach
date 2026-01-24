@@ -40,8 +40,8 @@
         }
 
         .disclaimer {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
+            background: #E8F7F5;
+            border-left: 4px solid #6BC9BC;
             padding: 15px;
             margin-bottom: 30px;
             border-radius: 5px;
@@ -50,11 +50,11 @@
         .disclaimer-title {
             font-weight: bold;
             margin-bottom: 8px;
-            color: #856404;
+            color: #2E5C8A;
         }
 
         .disclaimer-text {
-            color: #856404;
+            color: #2E5C8A;
             font-size: 14px;
             line-height: 1.6;
         }
@@ -87,26 +87,6 @@
             color: #666;
             font-weight: 400;
             margin-top: 4px;
-        }
-
-        .label-link {
-            display: block;
-            margin-top: 8px;
-            padding: 10px;
-            background: #E8F7F5;
-            border-radius: 5px;
-            font-size: 14px;
-            color: #2E5C8A;
-        }
-
-        .label-link a {
-            color: #2E5C8A;
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        .label-link a:hover {
-            text-decoration: underline;
         }
 
         input[type="number"],
@@ -417,8 +397,8 @@
         <form id="gapCalculator">
             <!-- Primary User Information -->
             <div class="form-group">
-                <label for="salary">Current Annual Salary
-                    <div class="label-hint">Enter your gross annual salary</div>
+                <label for="salary">Your Projected Annual Salary at Retirement
+                    <div class="label-hint">Estimate what you'll earn in your final years. <strong>Quick calculation:</strong> Multiply years until retirement × 2%, then add that percentage to your current salary. <strong>Example:</strong> Make $60,000 now with 10 years left? 10 years × 2% = 20%. Add 20% = $72,000</div>
                 </label>
                 <input type="number" id="salary" placeholder="e.g., 75000" required min="0" step="1000">
             </div>
@@ -431,68 +411,8 @@
             </div>
 
             <div class="form-group">
-                <label for="state">Which state do you teach in?
-                    <div class="label-hint">We'll provide a link to your state's pension calculator</div>
-                </label>
-                <select id="state" required>
-                    <option value="">Select your state...</option>
-                    <option value="alabama">Alabama</option>
-                    <option value="alaska">Alaska</option>
-                    <option value="arizona">Arizona</option>
-                    <option value="arkansas">Arkansas</option>
-                    <option value="california">California</option>
-                    <option value="colorado">Colorado</option>
-                    <option value="connecticut">Connecticut</option>
-                    <option value="delaware">Delaware</option>
-                    <option value="florida">Florida</option>
-                    <option value="georgia">Georgia</option>
-                    <option value="hawaii">Hawaii</option>
-                    <option value="idaho">Idaho</option>
-                    <option value="illinois">Illinois</option>
-                    <option value="indiana">Indiana</option>
-                    <option value="iowa">Iowa</option>
-                    <option value="kansas">Kansas</option>
-                    <option value="kentucky">Kentucky</option>
-                    <option value="louisiana">Louisiana</option>
-                    <option value="maine">Maine</option>
-                    <option value="maryland">Maryland</option>
-                    <option value="massachusetts">Massachusetts</option>
-                    <option value="michigan">Michigan</option>
-                    <option value="minnesota">Minnesota</option>
-                    <option value="mississippi">Mississippi</option>
-                    <option value="missouri">Missouri</option>
-                    <option value="montana">Montana</option>
-                    <option value="nebraska">Nebraska</option>
-                    <option value="nevada">Nevada</option>
-                    <option value="newhampshire">New Hampshire</option>
-                    <option value="newjersey">New Jersey</option>
-                    <option value="newmexico">New Mexico</option>
-                    <option value="newyork">New York</option>
-                    <option value="northcarolina">North Carolina</option>
-                    <option value="northdakota">North Dakota</option>
-                    <option value="ohio">Ohio</option>
-                    <option value="oklahoma">Oklahoma</option>
-                    <option value="oregon">Oregon</option>
-                    <option value="pennsylvania">Pennsylvania</option>
-                    <option value="rhodeisland">Rhode Island</option>
-                    <option value="southcarolina">South Carolina</option>
-                    <option value="southdakota">South Dakota</option>
-                    <option value="tennessee">Tennessee</option>
-                    <option value="texas">Texas</option>
-                    <option value="utah">Utah</option>
-                    <option value="vermont">Vermont</option>
-                    <option value="virginia">Virginia</option>
-                    <option value="washington">Washington</option>
-                    <option value="westvirginia">West Virginia</option>
-                    <option value="wisconsin">Wisconsin</option>
-                    <option value="wyoming">Wyoming</option>
-                </select>
-                <div id="stateCalculatorLink" class="label-link" style="display: none;"></div>
-            </div>
-
-            <div class="form-group">
                 <label for="monthlyPension">Estimated Monthly Pension
-                    <div class="label-hint">Use your state's calculator (link above) to get your pension estimate, then enter it here</div>
+                    <div class="label-hint">Use your state's teacher pension calculator (search: "your state teacher pension calculator") to get your estimate, then enter it here</div>
                 </label>
                 <input type="number" id="monthlyPension" placeholder="e.g., 4500" required min="0" step="100">
             </div>
@@ -525,7 +445,9 @@
                 <div class="spouse-section-title">👫 Spouse's Information</div>
 
                 <div class="form-group">
-                    <label for="spouseSalary">Spouse's Current Annual Salary</label>
+                    <label for="spouseSalary">Spouse's Projected Annual Salary at Retirement
+                        <div class="label-hint">Use the same calculation method (years left × 2%, add to current salary)</div>
+                    </label>
                     <input type="number" id="spouseSalary" placeholder="e.g., 68000" min="0" step="1000">
                 </div>
 
@@ -535,66 +457,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="spouseState">Spouse's State</label>
-                    <select id="spouseState">
-                        <option value="">Select state...</option>
-                        <option value="alabama">Alabama</option>
-                        <option value="alaska">Alaska</option>
-                        <option value="arizona">Arizona</option>
-                        <option value="arkansas">Arkansas</option>
-                        <option value="california">California</option>
-                        <option value="colorado">Colorado</option>
-                        <option value="connecticut">Connecticut</option>
-                        <option value="delaware">Delaware</option>
-                        <option value="florida">Florida</option>
-                        <option value="georgia">Georgia</option>
-                        <option value="hawaii">Hawaii</option>
-                        <option value="idaho">Idaho</option>
-                        <option value="illinois">Illinois</option>
-                        <option value="indiana">Indiana</option>
-                        <option value="iowa">Iowa</option>
-                        <option value="kansas">Kansas</option>
-                        <option value="kentucky">Kentucky</option>
-                        <option value="louisiana">Louisiana</option>
-                        <option value="maine">Maine</option>
-                        <option value="maryland">Maryland</option>
-                        <option value="massachusetts">Massachusetts</option>
-                        <option value="michigan">Michigan</option>
-                        <option value="minnesota">Minnesota</option>
-                        <option value="mississippi">Mississippi</option>
-                        <option value="missouri">Missouri</option>
-                        <option value="montana">Montana</option>
-                        <option value="nebraska">Nebraska</option>
-                        <option value="nevada">Nevada</option>
-                        <option value="newhampshire">New Hampshire</option>
-                        <option value="newjersey">New Jersey</option>
-                        <option value="newmexico">New Mexico</option>
-                        <option value="newyork">New York</option>
-                        <option value="northcarolina">North Carolina</option>
-                        <option value="northdakota">North Dakota</option>
-                        <option value="ohio">Ohio</option>
-                        <option value="oklahoma">Oklahoma</option>
-                        <option value="oregon">Oregon</option>
-                        <option value="pennsylvania">Pennsylvania</option>
-                        <option value="rhodeisland">Rhode Island</option>
-                        <option value="southcarolina">South Carolina</option>
-                        <option value="southdakota">South Dakota</option>
-                        <option value="tennessee">Tennessee</option>
-                        <option value="texas">Texas</option>
-                        <option value="utah">Utah</option>
-                        <option value="vermont">Vermont</option>
-                        <option value="virginia">Virginia</option>
-                        <option value="washington">Washington</option>
-                        <option value="westvirginia">West Virginia</option>
-                        <option value="wisconsin">Wisconsin</option>
-                        <option value="wyoming">Wyoming</option>
-                    </select>
-                    <div id="spouseStateCalculatorLink" class="label-link" style="display: none;"></div>
-                </div>
-
-                <div class="form-group">
                     <label for="spousePension">Spouse's Estimated Monthly Pension
-                        <div class="label-hint">From their state calculator or pension statement</div>
+                        <div class="label-hint">Use their state's teacher pension calculator to get their estimate</div>
                     </label>
                     <input type="number" id="spousePension" placeholder="e.g., 3500" min="0" value="0" step="100">
                 </div>
@@ -708,15 +572,6 @@
     </div>
 
     <script>
-        // State pension calculator links
-        const stateCalculatorLinks = {
-            california: { name: 'CalSTRS', url: 'https://www.calstrs.com/retirement-calculator' },
-            texas: { name: 'Texas TRS', url: 'https://www.trs.texas.gov/Pages/ActiveMember/estimate_retirement_benefits.aspx' },
-            newyork: { name: 'NYSTRS', url: 'https://www.nystrs.org/NYSTRS/media/PDF/Library/Benefits/Pension-Calculator.pdf' },
-            florida: { name: 'Florida FRS', url: 'https://www.myfrs.com/FRSPlanChoice.htm' },
-            illinois: { name: 'Illinois TRS', url: 'https://trs.illinois.gov/members/calculators/index.html' },
-        };
-
         // Toggle spouse section
         document.getElementById('includeSpouse').addEventListener('change', function() {
             const spouseSection = document.getElementById('spouseSection');
@@ -724,40 +579,6 @@
                 spouseSection.classList.add('active');
             } else {
                 spouseSection.classList.remove('active');
-            }
-        });
-
-        // Show state calculator link
-        document.getElementById('state').addEventListener('change', function() {
-            const linkDiv = document.getElementById('stateCalculatorLink');
-            const state = this.value;
-            
-            if (state) {
-                if (stateCalculatorLinks[state]) {
-                    linkDiv.innerHTML = `📊 Calculate your pension: <a href="${stateCalculatorLinks[state].url}" target="_blank">${stateCalculatorLinks[state].name} Calculator</a>`;
-                } else {
-                    linkDiv.innerHTML = `📊 Search Google for: "<strong>${this.options[this.selectedIndex].text} teacher pension calculator</strong>"`;
-                }
-                linkDiv.style.display = 'block';
-            } else {
-                linkDiv.style.display = 'none';
-            }
-        });
-
-        // Show spouse state calculator link
-        document.getElementById('spouseState').addEventListener('change', function() {
-            const linkDiv = document.getElementById('spouseStateCalculatorLink');
-            const state = this.value;
-            
-            if (state) {
-                if (stateCalculatorLinks[state]) {
-                    linkDiv.innerHTML = `📊 Calculate spouse's pension: <a href="${stateCalculatorLinks[state].url}" target="_blank">${stateCalculatorLinks[state].name} Calculator</a>`;
-                } else {
-                    linkDiv.innerHTML = `📊 Search Google for: "<strong>${this.options[this.selectedIndex].text} teacher pension calculator</strong>"`;
-                }
-                linkDiv.style.display = 'block';
-            } else {
-                linkDiv.style.display = 'none';
             }
         });
 
