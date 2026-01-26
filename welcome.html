@@ -4,192 +4,556 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to TeacherFinCoach</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #06b6d4 100%);
-            min-height: 100vh;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        h1, h2 { font-family: 'Righteous', sans-serif; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Righteous', sans-serif;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #2E5C8A 0%, #1B3A57 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".1" fill="%236BC9BC"/></svg>') no-repeat bottom;
+            background-size: cover;
+            opacity: 0.3;
+        }
+
+        .logo {
+            max-width: 150px;
+            margin: 0 auto 20px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            position: relative;
+        }
+
+        .hero .subtitle {
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: 500;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+
+        .personal-greeting {
+            background: #6BC9BC;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+
+        .personal-greeting h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-header {
+            margin-bottom: 30px;
+        }
+
+        .section-header h2 {
+            font-size: 32px;
+            color: #2E5C8A;
+            margin-bottom: 10px;
+        }
+
+        .coach-intro {
+            display: flex;
+            align-items: start;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .coach-icon {
+            font-size: 60px;
+            flex-shrink: 0;
+        }
+
+        .coach-intro h3 {
+            font-size: 28px;
+            color: #2E5C8A;
+            margin-bottom: 5px;
+        }
+
+        .coach-intro .subtitle {
+            color: #666;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .coach-story {
+            background: #FFF3CD;
+            border-left: 4px solid #FFC107;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+            font-style: italic;
+        }
+
+        .coach-story strong {
+            color: #856404;
+        }
+
+        .text-content {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .text-content strong {
+            color: #2E5C8A;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .module-card {
+            background: white;
+            border: 2px solid #E8F7F5;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            border-color: #6BC9BC;
+            box-shadow: 0 10px 30px rgba(107, 201, 188, 0.3);
+        }
+
+        .module-number {
+            display: inline-block;
+            background: #2E5C8A;
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            line-height: 45px;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .module-card h4 {
+            font-size: 18px;
+            color: #2E5C8A;
+            margin-bottom: 8px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        .module-card p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .stats-section {
+            background: #E8F7F5;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 900;
+            color: #2E5C8A;
+            font-family: 'Righteous', sans-serif;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .stat-note {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-style: italic;
+            font-size: 14px;
+        }
+
+        .features-list {
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .feature-check {
+            color: #6BC9BC;
+            font-size: 24px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .feature-item span {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .cta-box {
+            background: white;
+            border: 3px solid #6BC9BC;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(107, 201, 188, 0.3);
+        }
+
+        .cta-box h3 {
+            font-size: 32px;
+            color: #2E5C8A;
+            margin-bottom: 15px;
+        }
+
+        .cta-box p {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .cta-primary {
+            display: inline-block;
+            background: linear-gradient(135deg, #2E5C8A 0%, #6BC9BC 100%);
+            color: white;
+            padding: 18px 40px;
+            font-size: 20px;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(107, 201, 188, 0.4);
+            border: none;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(107, 201, 188, 0.6);
+        }
+
+        .cta-note {
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        footer {
+            background: #1B3A57;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            color: #6BC9BC;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero .subtitle {
+                font-size: 16px;
+            }
+
+            .content-card {
+                padding: 25px;
+            }
+
+            .section-header h2 {
+                font-size: 24px;
+            }
+
+            .coach-intro {
+                flex-direction: column;
+            }
+
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="min-h-screen py-12 px-4">
-        <div class="max-w-4xl mx-auto">
-            <!-- Logo Header -->
-            <div class="text-center mb-8">
-                <img src="IMG_1337.jpeg" alt="TFC Logo" class="w-24 h-auto mx-auto mb-4">
-                <h1 class="text-5xl font-bold text-white mb-2">Welcome to TeacherFinCoach!</h1>
-                <p class="text-xl text-white/90">You're about to discover how to build real wealth using benefits you already have</p>
-            </div>
-
-            <!-- Main Welcome Card -->
-            <div class="bg-white rounded-2xl shadow-2xl p-8 mb-6">
-                <!-- Personal Greeting -->
-                <div class="bg-gradient-to-r from-blue-50 to-purple-50 border-l-4 border-blue-600 rounded-lg p-6 mb-8">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-2">
-                        <span id="greeting">Great to have you here</span>, <span id="state-name">California</span> Teacher! 🎉
-                    </h2>
-                    <p class="text-gray-700" id="personalized-intro">
-                        I've customized this entire course specifically for your state's pension system and your retirement timeline.
-                    </p>
-                </div>
-
-                <!-- Coach Marty Introduction -->
-                <div class="mb-8">
-                    <div class="flex items-start gap-4 mb-6">
-                        <div class="text-6xl">🏀</div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Meet Coach Marty</h3>
-                            <p class="text-sm text-gray-600 font-semibold">Your Guide to Teacher Retirement Wealth</p>
-                        </div>
-                    </div>
-
-                    <div class="space-y-4 text-gray-700 leading-relaxed">
-                        <p>
-                            Hey there! I'm Coach Marty. I spent 31 years teaching PE and coaching varsity basketball in California. 
-                            I loved every minute of it—the wins, the losses, the life lessons, teaching kids about teamwork and perseverance.
-                        </p>
-                        <p>
-                            But here's the thing: <strong>whether you're teaching 2nd grade, high school English, art, music, special education, 
-                            or AP Calculus—we ALL face the same retirement challenges.</strong> The pension gap doesn't care what subject you teach.
-                        </p>
-                        <p>
-                            What I didn't love was watching my fellow teachers make costly retirement mistakes. Teachers losing 
-                            tens of thousands to high fees. Teachers who waited too long to start saving. Teachers who had NO IDEA their 
-                            pension would only replace 60-70% of their income.
-                        </p>
-                        <p>
-                            I made some of those mistakes too. I procrastinated for TWO YEARS before signing up for my 403(b). 
-                            That delay cost me $15,000 in lost growth that I'll never get back.
-                        </p>
-                        <p class="font-semibold text-lg text-blue-900">
-                            I created TeacherFinCoach so you don't have to learn these lessons the hard way. Whether you're a kindergarten 
-                            teacher, a high school math teacher, or anything in between—you're going to discover exactly how to fill the 
-                            retirement income gap and build real wealth, starting today.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- What You'll Learn -->
-                <div class="mb-8">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-6">What You'll Learn in This Course:</h3>
-                    
-                    <div class="space-y-4">
-                        <div class="flex gap-4 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-600">
-                            <div class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
-                            <div>
-                                <div class="font-semibold text-gray-900">The 30% Income Gap (And Why Your Pension Isn't Enough)</div>
-                                <div class="text-sm text-gray-600 mt-1">Discover exactly how much you'll be short in retirement—and what to do about it</div>
-                            </div>
-                        </div>
-
-                        <div class="flex gap-4 p-4 bg-purple-50 rounded-lg border-l-4 border-purple-600">
-                            <div class="flex-shrink-0 w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
-                            <div>
-                                <div class="font-semibold text-gray-900">403(b) vs 457(b): The Dynamic Duo</div>
-                                <div class="text-sm text-gray-600 mt-1">Why you need BOTH accounts and how they work together to fill your gap</div>
-                            </div>
-                        </div>
-
-                        <div class="flex gap-4 p-4 bg-green-50 rounded-lg border-l-4 border-green-600">
-                            <div class="flex-shrink-0 w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
-                            <div>
-                                <div class="font-semibold text-gray-900">Avoiding the Costly Mistakes</div>
-                                <div class="text-sm text-gray-600 mt-1">High-fee vendors, bad investments, and procrastination—how to avoid losing thousands</div>
-                            </div>
-                        </div>
-
-                        <div class="flex gap-4 p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-600">
-                            <div class="flex-shrink-0 w-10 h-10 bg-yellow-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
-                            <div>
-                                <div class="font-semibold text-gray-900">Your Step-by-Step Action Plan</div>
-                                <div class="text-sm text-gray-600 mt-1">Exactly how to sign up, which vendors to choose, and how much to contribute</div>
-                            </div>
-                        </div>
-
-                        <div class="flex gap-4 p-4 bg-red-50 rounded-lg border-l-4 border-red-600">
-                            <div class="flex-shrink-0 w-10 h-10 bg-red-600 text-white rounded-full flex items-center justify-center font-bold">5</div>
-                            <div>
-                                <div class="font-semibold text-gray-900">Long-Term Wealth Building Strategies</div>
-                                <div class="text-sm text-gray-600 mt-1">Advanced strategies to maximize growth and retire with confidence</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Course Structure -->
-                <div class="bg-gray-50 rounded-xl p-6 mb-8">
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">📚 Course Structure</h3>
-                    <div class="grid md:grid-cols-3 gap-4 text-sm">
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-blue-600">9</div>
-                            <div class="text-gray-600">Comprehensive Modules</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-purple-600">4</div>
-                            <div class="text-gray-600">Interactive Calculators</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-green-600">~2</div>
-                            <div class="text-gray-600">Hours Total Time</div>
-                        </div>
-                    </div>
-                    <p class="text-sm text-gray-600 text-center mt-4 italic">
-                        Complete at your own pace. Most teachers finish in 1-2 sessions.
-                    </p>
-                </div>
-
-                <!-- What Makes This Different -->
-                <div class="mb-8">
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Why This Course is Different:</h3>
-                    <div class="space-y-2 text-gray-700">
-                        <div class="flex items-start gap-3">
-                            <span class="text-green-600 font-bold">✓</span>
-                            <span><strong>State-specific:</strong> Customized for YOUR pension system (not generic advice)</span>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <span class="text-green-600 font-bold">✓</span>
-                            <span><strong>Created by a teacher:</strong> Real classroom experience, not theory from financial advisors</span>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <span class="text-green-600 font-bold">✓</span>
-                            <span><strong>For ALL educators:</strong> Elementary, middle, high school, art, music, special ed—this works for everyone</span>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <span class="text-green-600 font-bold">✓</span>
-                            <span><strong>Action-focused:</strong> Step-by-step guides you can implement TODAY</span>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <span class="text-green-600 font-bold">✓</span>
-                            <span><strong>No jargon:</strong> Explained like I'm talking to you in the teacher's lounge</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Call to Action -->
-                <div class="bg-gradient-to-r from-green-50 to-blue-50 border-2 border-green-500 rounded-xl p-6 text-center">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Ready to Build Your Retirement Wealth?</h3>
-                    <p class="text-gray-700 mb-6">
-                        Your customized course is waiting. Let's turn that pension into a championship retirement!
-                    </p>
-                    <button onclick="window.location.href='dashboard.html'" 
-                            class="bg-green-600 hover:bg-green-700 text-white px-12 py-4 rounded-xl font-bold text-xl transition shadow-lg hover:shadow-xl">
-                        Let's Get Started! 🚀
-                    </button>
-                    <p class="text-sm text-gray-600 mt-4">Takes about 2 hours total • Start anytime • Complete at your pace</p>
-                </div>
-            </div>
-
-            <!-- Footer -->
-            <div class="text-center text-white text-sm">
-                <p>&copy; 2026 TeacherFinCoach. Building Wealth for Educators.</p>
-            </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="IMG_1337.jpeg" alt="TeacherFinCoach Logo" class="logo">
+        <h1>Welcome to TeacherFinCoach!</h1>
+        <p class="subtitle">You're about to discover how to build real wealth using benefits you already have</p>
+        
+        <div class="personal-greeting">
+            <h2><span id="greeting">Great to have you here</span>, <span id="state-name">California</span> Teacher! 🎉</h2>
+            <p id="personalized-intro" style="margin: 0; font-size: 16px; line-height: 1.6;">
+                I've customized this entire course specifically for your state's pension system and your retirement timeline.
+            </p>
         </div>
+    </section>
+
+    <div class="container">
+        <!-- Coach Marty Introduction -->
+        <section class="section">
+            <div class="content-card">
+                <div class="coach-intro">
+                    <div class="coach-icon">🏀</div>
+                    <div>
+                        <h3>Meet Coach Marty</h3>
+                        <div class="subtitle">Your Guide to Teacher Retirement Wealth</div>
+                    </div>
+                </div>
+
+                <p class="text-content">
+                    Hey there! I'm Coach Marty. I spent 31 years as a California PE teacher, 17 years as a varsity basketball coach, and 10 years as an athletic director. I loved every minute of it—but by not understanding my retirement options, I delayed my own retirement plan by 25 years.
+                </p>
+
+                <p class="text-content">
+                    But here's the thing: <strong>whether you're teaching 2nd grade, high school English, art, music, special education, or AP Calculus—we ALL face the same retirement challenges.</strong> The pension gap doesn't care what subject you teach.
+                </p>
+
+                <p class="text-content">
+                    Too many teachers struggle financially and never set themselves up for retirement because they don't get proper guidance. The information out there is either too generic or comes with a sales pitch. And let's face it—even if you do know about the options available through your school district, many questions arise, including: where do I even begin?
+                </p>
+
+                <div class="coach-story">
+                    <p><strong>Coach Marty:</strong> I waited 25 years to start saving beyond my pension. Why? Everyone said, "You have a pension—you're set." So I thought my CalSTRS pension would be enough. I had heard of the 403(b), but I didn't really know what it was or why I'd need it. It wasn't until later that I realized there's a 30% gap—the difference between what your pension pays and what you actually need in retirement.</p>
+                </div>
+
+                <p class="text-content">
+                    That's why I built TeacherFinCoach—the lessons, calculators, and personalized plan I wish I had 31 years ago. No financial jargon. No sales pitches. Just straight talk about your pension, your 403(b), your 457(b), and your path to a secure retirement.
+                </p>
+
+                <p class="text-content" style="font-weight: 600; color: #2E5C8A; font-size: 18px;">
+                    This is a teacher talking to teachers. Let's fix this together.
+                </p>
+            </div>
+        </section>
+
+        <!-- What You'll Learn -->
+        <section class="section">
+            <div class="section-header">
+                <h2>Your 8-Module Roadmap to Retirement Security</h2>
+                <p style="color: #666; font-size: 18px;">Each module builds on the last, taking you from problem to solution in clear, actionable steps.</p>
+            </div>
+
+            <div class="modules-grid">
+                <div class="module-card">
+                    <div class="module-number">1</div>
+                    <h4>Your Pension Isn't Enough: The 30% Gap</h4>
+                    <p>You have a problem</p>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-number">2</div>
+                    <h4>403(b) & 457(b): Your Two Secret Weapons</h4>
+                    <p>Here are your tools</p>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-number">3</div>
+                    <h4>Fees: The Silent Wealth Killer</h4>
+                    <p>Here's what to avoid</p>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-number">4</div>
+                    <h4>Choosing the Right Vendor</h4>
+                    <p>Here's where to invest</p>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-number">5</div>
+                    <h4>Your Savings Game Plan</h4>
+                    <p>Here's how much and what to buy</p>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-number">6</div>
+                    <h4>Enrollment: Step-by-Step</h4>
+                    <p>Here's how to sign up</p>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-number">7</div>
+                    <h4>Life Happens: Adjusting Your Plan</h4>
+                    <p>Here's help for your situation</p>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-number">8</div>
+                    <h4>Your Retirement Game Plan</h4>
+                    <p>Here's YOUR personalized plan</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Course Structure -->
+        <section class="section">
+            <div class="stats-section">
+                <div class="section-header" style="text-align: center;">
+                    <h2>📚 Everything You Need in One Place</h2>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Comprehensive Modules</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Interactive Calculators</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">~2</div>
+                        <div class="stat-label">Hours Total Time</div>
+                    </div>
+                </div>
+
+                <p class="stat-note">Complete at your own pace. Most teachers finish in 1-2 sessions.</p>
+            </div>
+        </section>
+
+        <!-- What Makes This Different -->
+        <section class="section">
+            <div class="content-card">
+                <div class="section-header">
+                    <h2>Why This Course is Different</h2>
+                </div>
+
+                <div class="features-list">
+                    <div class="feature-item">
+                        <div class="feature-check">✓</div>
+                        <span><strong>State-specific:</strong> Customized for YOUR pension system (not generic advice)</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-check">✓</div>
+                        <span><strong>Created by a teacher:</strong> Real classroom experience, not theory from financial advisors</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-check">✓</div>
+                        <span><strong>For ALL educators:</strong> Elementary, middle, high school, art, music, special ed—this works for everyone</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-check">✓</div>
+                        <span><strong>Action-focused:</strong> Step-by-step guides you can implement TODAY</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-check">✓</div>
+                        <span><strong>No jargon:</strong> Explained like I'm talking to you in the teacher's lounge</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="section">
+            <div class="cta-box">
+                <h3>Ready to Build Your Retirement Wealth?</h3>
+                <p>Your customized course is waiting. Let's turn that pension into a championship retirement!</p>
+                <button onclick="goToDashboard()" class="cta-primary">Let's Get Started! 🚀</button>
+                <p class="cta-note">Takes about 2 hours total • Start anytime • Complete at your pace</p>
+            </div>
+        </section>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 TeacherFinCoach. Building Wealth for Educators.</p>
+        <p>Educational purposes only. Not financial advice.</p>
+        <p style="margin-top: 15px;"><a href="terms.html">Terms & Disclaimers</a></p>
+    </footer>
 
     <script>
         // Load user data from localStorage
@@ -236,6 +600,25 @@
             }
             
             document.getElementById('personalized-intro').textContent = intro;
+        }
+
+        // CRITICAL: Function to set seenWelcome flag and start trial
+        function goToDashboard() {
+            const userData = JSON.parse(localStorage.getItem('teacherfincoach_user'));
+            
+            // Set seenWelcome flag
+            userData.seenWelcome = true;
+            
+            // Start 7-day trial if not already started
+            if (!userData.trialStartDate) {
+                userData.trialStartDate = new Date().toISOString();
+            }
+            
+            // Save updated data
+            localStorage.setItem('teacherfincoach_user', JSON.stringify(userData));
+            
+            // Redirect to dashboard
+            window.location.href = 'dashboard.html';
         }
     </script>
 </body>
