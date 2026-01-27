@@ -10,7 +10,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #06b6d4 100%);
+            background: linear-gradient(135deg, #2E5C8A 0%, #1B3A57 100%);
             min-height: 100vh;
         }
         h1, h2 { font-family: 'Righteous', sans-serif; }
@@ -24,6 +24,17 @@
         
         .progress-bar {
             transition: width 0.3s ease;
+        }
+
+        .error-message {
+            background: #FEE2E2;
+            border-left: 4px solid #DC2626;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-top: 16px;
+            color: #991B1B;
+            font-size: 14px;
+            font-weight: 500;
         }
     </style>
 </head>
@@ -44,7 +55,7 @@
                     <span><span id="progress-percent">25</span>% Complete</span>
                 </div>
                 <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div id="progress-bar" class="progress-bar bg-blue-600 h-2 rounded-full" style="width: 25%"></div>
+                    <div id="progress-bar" class="progress-bar h-2 rounded-full" style="width: 25%; background: linear-gradient(135deg, #2E5C8A 0%, #6BC9BC 100%);"></div>
                 </div>
             </div>
 
@@ -57,7 +68,7 @@
                 </div>
                 
                 <div class="space-y-3">
-                    <select id="state" class="w-full p-4 border-2 border-gray-300 rounded-lg text-lg focus:border-blue-600 focus:outline-none">
+                    <select id="state" class="w-full p-4 border-2 border-gray-300 rounded-lg text-lg focus:outline-none" style="border-color: #6BC9BC;">
                         <option value="">Select your state...</option>
                         <option value="california">California</option>
                         <option value="texas">Texas</option>
@@ -86,7 +97,7 @@
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">How many years have you been teaching?</label>
                         <input type="number" id="years-teaching" min="0" max="50" value="5" 
-                               class="w-full p-4 border-2 border-gray-300 rounded-lg text-lg focus:border-blue-600 focus:outline-none">
+                               class="w-full p-4 border-2 border-gray-300 rounded-lg text-lg focus:outline-none" style="border-color: #6BC9BC;">
                         <input type="range" id="years-slider" min="0" max="50" value="5" 
                                class="w-full mt-2">
                         <p class="text-sm text-gray-500 mt-1"><span id="years-display">5</span> years of service</p>
@@ -95,24 +106,27 @@
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">What's your current age?</label>
                         <input type="number" id="current-age" min="22" max="75" value="35" 
-                               class="w-full p-4 border-2 border-gray-300 rounded-lg text-lg focus:border-blue-600 focus:outline-none">
+                               class="w-full p-4 border-2 border-gray-300 rounded-lg text-lg focus:outline-none" style="border-color: #6BC9BC;">
                     </div>
 
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">When do you plan to retire?</label>
                         <input type="number" id="retirement-age" min="55" max="75" value="62" 
-                               class="w-full p-4 border-2 border-gray-300 rounded-lg text-lg focus:border-blue-600 focus:outline-none">
+                               class="w-full p-4 border-2 border-gray-300 rounded-lg text-lg focus:outline-none" style="border-color: #6BC9BC;">
                         <p class="text-xs text-gray-500 mt-1">Most teachers retire between 60-65</p>
                     </div>
                 </div>
+
+                <div id="step2-error" class="error-message" style="display: none;"></div>
 
                 <div class="flex gap-4 mt-8">
                     <button onclick="prevStep()" 
                             class="w-1/3 py-4 rounded-lg font-semibold text-lg transition bg-gray-200 hover:bg-gray-300 text-gray-700">
                         ← Back
                     </button>
-                    <button onclick="nextStep()" 
-                            class="w-2/3 py-4 rounded-lg font-semibold text-lg transition bg-blue-600 hover:bg-blue-700 text-white">
+                    <button onclick="validateStep2()" 
+                            class="w-2/3 py-4 rounded-lg font-semibold text-lg transition text-white"
+                            style="background: linear-gradient(135deg, #2E5C8A 0%, #6BC9BC 100%);">
                         Continue →
                     </button>
                 </div>
@@ -132,7 +146,7 @@
                         <div class="relative">
                             <span class="absolute left-4 top-4 text-gray-600 font-semibold text-lg">$</span>
                             <input type="number" id="salary" min="30000" max="150000" step="1000" value="70000" 
-                                   class="w-full pl-8 pr-4 p-4 border-2 border-gray-300 rounded-lg text-lg focus:border-blue-600 focus:outline-none">
+                                   class="w-full pl-8 pr-4 p-4 border-2 border-gray-300 rounded-lg text-lg focus:outline-none" style="border-color: #6BC9BC;">
                         </div>
                         <input type="range" id="salary-slider" min="30000" max="150000" step="1000" value="70000" 
                                class="w-full mt-2">
@@ -143,7 +157,7 @@
                         <div class="relative">
                             <span class="absolute left-4 top-4 text-gray-600 font-semibold text-lg">$</span>
                             <input type="number" id="current-savings" min="0" max="5000000" step="10000" value="0" 
-                                   class="w-full pl-8 pr-4 p-4 border-2 border-gray-300 rounded-lg text-lg focus:border-blue-600 focus:outline-none">
+                                   class="w-full pl-8 pr-4 p-4 border-2 border-gray-300 rounded-lg text-lg focus:outline-none" style="border-color: #6BC9BC;">
                         </div>
                         <p class="text-xs text-gray-500 mt-1">Include 403(b), 457(b), IRAs, and other retirement accounts. Enter 0 if starting fresh.</p>
                     </div>
@@ -155,7 +169,8 @@
                         ← Back
                     </button>
                     <button onclick="nextStep()" 
-                            class="w-2/3 py-4 rounded-lg font-semibold text-lg transition bg-blue-600 hover:bg-blue-700 text-white">
+                            class="w-2/3 py-4 rounded-lg font-semibold text-lg transition text-white"
+                            style="background: linear-gradient(135deg, #2E5C8A 0%, #6BC9BC 100%);">
                         Continue →
                     </button>
                 </div>
@@ -170,40 +185,40 @@
                 </div>
                 
                 <div class="space-y-3">
-                    <label class="flex items-start p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 hover:border-blue-400 transition">
-                        <input type="checkbox" name="goals" value="understand-gap" class="mt-1 w-5 h-5 text-blue-600">
+                    <label class="flex items-start p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition" style="hover:border-color: #6BC9BC;">
+                        <input type="checkbox" name="goals" value="understand-gap" class="mt-1 w-5 h-5" style="accent-color: #2E5C8A;">
                         <span class="ml-3 text-gray-700">
                             <strong class="block">Understand my retirement income gap</strong>
                             <span class="text-sm text-gray-500">Learn if my pension will be enough</span>
                         </span>
                     </label>
 
-                    <label class="flex items-start p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 hover:border-blue-400 transition">
-                        <input type="checkbox" name="goals" value="start-saving" class="mt-1 w-5 h-5 text-blue-600">
+                    <label class="flex items-start p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                        <input type="checkbox" name="goals" value="start-saving" class="mt-1 w-5 h-5" style="accent-color: #2E5C8A;">
                         <span class="ml-3 text-gray-700">
                             <strong class="block">Start saving with 403(b) or 457(b)</strong>
                             <span class="text-sm text-gray-500">I'm ready to take action</span>
                         </span>
                     </label>
 
-                    <label class="flex items-start p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 hover:border-blue-400 transition">
-                        <input type="checkbox" name="goals" value="avoid-fees" class="mt-1 w-5 h-5 text-blue-600">
+                    <label class="flex items-start p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                        <input type="checkbox" name="goals" value="avoid-fees" class="mt-1 w-5 h-5" style="accent-color: #2E5C8A;">
                         <span class="ml-3 text-gray-700">
                             <strong class="block">Avoid high fees and bad investments</strong>
                             <span class="text-sm text-gray-500">Learn which vendors to choose</span>
                         </span>
                     </label>
 
-                    <label class="flex items-start p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 hover:border-blue-400 transition">
-                        <input type="checkbox" name="goals" value="maximize-wealth" class="mt-1 w-5 h-5 text-blue-600">
+                    <label class="flex items-start p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                        <input type="checkbox" name="goals" value="maximize-wealth" class="mt-1 w-5 h-5" style="accent-color: #2E5C8A;">
                         <span class="ml-3 text-gray-700">
                             <strong class="block">Maximize my retirement wealth</strong>
                             <span class="text-sm text-gray-500">Build the biggest nest egg possible</span>
                         </span>
                     </label>
 
-                    <label class="flex items-start p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 hover:border-blue-400 transition">
-                        <input type="checkbox" name="goals" value="retire-early" class="mt-1 w-5 h-5 text-blue-600">
+                    <label class="flex items-start p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                        <input type="checkbox" name="goals" value="retire-early" class="mt-1 w-5 h-5" style="accent-color: #2E5C8A;">
                         <span class="ml-3 text-gray-700">
                             <strong class="block">Retire early (before 62)</strong>
                             <span class="text-sm text-gray-500">Learn about the Rule of 55</span>
@@ -217,7 +232,8 @@
                         ← Back
                     </button>
                     <button onclick="completeOnboarding()" 
-                            class="w-2/3 py-4 rounded-lg font-semibold text-lg transition bg-green-600 hover:bg-green-700 text-white">
+                            class="w-2/3 py-4 rounded-lg font-semibold text-lg transition text-white"
+                            style="background: linear-gradient(135deg, #6BC9BC 0%, #2E5C8A 100%);">
                         Complete Setup →
                     </button>
                 </div>
@@ -234,7 +250,8 @@
             const btn = document.getElementById('step1-btn');
             if (this.value) {
                 btn.disabled = false;
-                btn.className = 'w-full mt-8 py-4 rounded-lg font-semibold text-lg transition bg-blue-600 hover:bg-blue-700 text-white';
+                btn.style.background = 'linear-gradient(135deg, #2E5C8A 0%, #6BC9BC 100%)';
+                btn.className = 'w-full mt-8 py-4 rounded-lg font-semibold text-lg transition text-white';
             } else {
                 btn.disabled = true;
                 btn.className = 'w-full mt-8 py-4 rounded-lg font-semibold text-lg transition bg-gray-300 text-gray-500 cursor-not-allowed';
@@ -290,6 +307,34 @@
             }
         }
 
+        // VALIDATION FUNCTION for Step 2
+        function validateStep2() {
+            const currentAge = parseInt(document.getElementById('current-age').value);
+            const retirementAge = parseInt(document.getElementById('retirement-age').value);
+            const yearsTeaching = parseInt(document.getElementById('years-teaching').value);
+            const errorDiv = document.getElementById('step2-error');
+
+            // Validation 1: Retirement age must be greater than current age
+            if (retirementAge <= currentAge) {
+                errorDiv.textContent = "⚠️ Your retirement age must be greater than your current age. Please adjust your retirement age.";
+                errorDiv.style.display = 'block';
+                return false;
+            }
+
+            // Validation 2: Years teaching shouldn't mean starting before age 18
+            const startingAge = currentAge - yearsTeaching;
+            if (startingAge < 18) {
+                errorDiv.textContent = `⚠️ Your teaching start age would be ${startingAge}, which is before 18. Please check your years of teaching or current age.`;
+                errorDiv.style.display = 'block';
+                return false;
+            }
+
+            // All validation passed
+            errorDiv.style.display = 'none';
+            nextStep();
+            return true;
+        }
+
         function completeOnboarding() {
             // Collect all data
             const userData = {
@@ -301,6 +346,7 @@
                 currentSavings: document.getElementById('current-savings').value,
                 goals: Array.from(document.querySelectorAll('input[name="goals"]:checked')).map(cb => cb.value),
                 completedOnboarding: true,
+                seenWelcome: false,
                 onboardingDate: new Date().toISOString()
             };
 
