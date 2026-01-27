@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to TeacherFinCoach! - Purchase Complete</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #2E5C8A 0%, #1B3A57 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Righteous', sans-serif;
+        }
+
+        .success-container {
+            max-width: 700px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 50px;
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        @keyframes scaleIn {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .success-container h1 {
+            font-size: 36px;
+            color: #2E5C8A;
+            margin-bottom: 15px;
+        }
+
+        .success-container .subtitle {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .confirmation-box {
+            background: #E8F7F5;
+            border: 2px solid #6BC9BC;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 40px;
+        }
+
+        .confirmation-box h3 {
+            color: #2E5C8A;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .confirmation-box p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .next-steps {
+            text-align: left;
+            margin: 40px 0;
+        }
+
+        .next-steps h3 {
+            color: #2E5C8A;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: start;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #F9FAFB;
+            border-radius: 12px;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #2E5C8A 0%, #6BC9BC 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            color: #2E5C8A;
+            font-size: 18px;
+            margin-bottom: 5px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        .step-content p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        .cta-primary {
+            display: inline-block;
+            background: linear-gradient(135deg, #2E5C8A 0%, #6BC9BC 100%);
+            color: white;
+            padding: 18px 50px;
+            font-size: 20px;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(107, 201, 188, 0.4);
+            border: none;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            margin-top: 20px;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(107, 201, 188, 0.6);
+        }
+
+        .support-note {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #E5E7EB;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .support-note a {
+            color: #2E5C8A;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .support-note a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .success-container {
+                padding: 40px 25px;
+            }
+
+            .success-container h1 {
+                font-size: 28px;
+            }
+
+            .success-container .subtitle {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-icon">✓</div>
+        
+        <h1>Welcome to TeacherFinCoach!</h1>
+        <p class="subtitle">Your purchase was successful. You now have lifetime access!</p>
+
+        <div class="confirmation-box">
+            <h3>✉️ Check Your Email</h3>
+            <p>A confirmation email with your receipt has been sent to your email address. Save it for your records.</p>
+        </div>
+
+        <div class="next-steps">
+            <h3>What Happens Next?</h3>
+            
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Access All 8 Modules</h4>
+                    <p>Head to your dashboard to unlock all course content immediately</p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Use the 5 Calculators</h4>
+                    <p>Calculate your retirement gap, compare fees, and plan your savings strategy</p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Download Your Action Plan</h4>
+                    <p>Get your personalized retirement roadmap at the end of Module 8</p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>Come Back Anytime</h4>
+                    <p>This is yours forever - revisit any module or calculator whenever you need</p>
+                </div>
+            </div>
+        </div>
+
+        <button onclick="goToDashboard()" class="cta-primary">Go to Your Dashboard →</button>
+
+        <div class="support-note">
+            <p><strong>Need help?</strong> Have questions about the course? Email me directly and I'll get back to you within 24 hours.</p>
+            <p style="margin-top: 10px;"><strong>Remember:</strong> You have a 7-day money-back guarantee. Not happy? Just let me know.</p>
+        </div>
+    </div>
+
+    <script>
+        // CRITICAL: Update localStorage to mark user as purchased
+        window.addEventListener('DOMContentLoaded', function() {
+            const userData = JSON.parse(localStorage.getItem('teacherfincoach_user'));
+            
+            if (!userData) {
+                // No user data found - shouldn't happen, but redirect to landing
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Mark as purchased
+            userData.hasPurchased = true;
+            userData.purchaseDate = new Date().toISOString();
+            
+            // Save updated data
+            localStorage.setItem('teacherfincoach_user', JSON.stringify(userData));
+        });
+
+        function goToDashboard() {
+            window.location.href = 'dashboard.html';
+        }
+    </script>
+</body>
+</html>
