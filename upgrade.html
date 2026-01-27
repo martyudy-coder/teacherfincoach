@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upgrade to Lifetime Access - TeacherFinCoach</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Righteous', sans-serif;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #2E5C8A 0%, #1B3A57 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".1" fill="%236BC9BC"/></svg>') no-repeat bottom;
+            background-size: cover;
+            opacity: 0.3;
+        }
+
+        .logo {
+            max-width: 150px;
+            margin: 0 auto 20px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            position: relative;
+        }
+
+        .hero .subtitle {
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: 500;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .pricing-box {
+            background: white;
+            border: 3px solid #6BC9BC;
+            border-radius: 20px;
+            padding: 50px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(107, 201, 188, 0.3);
+            margin-bottom: 40px;
+        }
+
+        .pricing-badge {
+            background: #6BC9BC;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .pricing-amount {
+            font-size: 64px;
+            font-weight: 900;
+            color: #2E5C8A;
+            margin-bottom: 10px;
+            font-family: 'Righteous', sans-serif;
+        }
+
+        .pricing-period {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .pricing-features {
+            text-align: left;
+            margin: 30px 0;
+            list-style: none;
+        }
+
+        .pricing-features li {
+            font-size: 18px;
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .pricing-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #6BC9BC;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .cta-primary {
+            display: inline-block;
+            background: linear-gradient(135deg, #2E5C8A 0%, #6BC9BC 100%);
+            color: white;
+            padding: 20px 50px;
+            font-size: 22px;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(107, 201, 188, 0.4);
+            border: none;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            margin-top: 20px;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(107, 201, 188, 0.6);
+        }
+
+        .pricing-guarantee {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #E8F7F5;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            color: #2E5C8A;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        .urgency-box {
+            background: #FFF3CD;
+            border-left: 4px solid #FFC107;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 40px 0;
+        }
+
+        .urgency-box h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .urgency-box p {
+            color: #856404;
+            margin: 0;
+        }
+
+        footer {
+            background: #1B3A57;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            color: #6BC9BC;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .pricing-box {
+                padding: 30px 20px;
+            }
+
+            .pricing-amount {
+                font-size: 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="IMG_1337.jpeg" alt="TeacherFinCoach Logo" class="logo">
+        <h1>Your Trial Has Ended</h1>
+        <p class="subtitle">Continue your journey to retirement security with lifetime access for just $99</p>
+    </section>
+
+    <div class="container">
+        <!-- Urgency Message -->
+        <div class="urgency-box">
+            <h3>⏰ Don't Lose Your Progress</h3>
+            <p>You've started learning how to fill your 30% retirement gap. Keep going! Upgrade now to unlock all 8 modules, 5 calculators, and your personalized retirement plan.</p>
+        </div>
+
+        <!-- Pricing Box -->
+        <div class="pricing-box">
+            <div class="pricing-badge">LIFETIME ACCESS</div>
+            <div class="pricing-amount">$99</div>
+            <div class="pricing-period">one-time payment • no subscriptions ever</div>
+            
+            <ul class="pricing-features">
+                <li>All 8 comprehensive modules</li>
+                <li>5 interactive calculators</li>
+                <li>State-specific pension guidance</li>
+                <li>Downloadable action plans</li>
+                <li>Lifetime access (yours forever)</li>
+                <li>All future updates included</li>
+                <li>Access from any device</li>
+            </ul>
+            
+            <button onclick="handlePurchase()" class="cta-primary">Unlock Lifetime Access Now →</button>
+            
+            <div class="pricing-guarantee">
+                <strong>7-Day Money-Back Guarantee</strong><br>
+                After you purchase, you have 7 more days to explore everything.<br>
+                Not for you? Just email me and I'll refund your $99. No hassle.
+            </div>
+        </div>
+
+        <!-- What You're Getting -->
+        <h2 style="text-align: center; font-size: 32px; color: #2E5C8A; margin-bottom: 30px;">What You Get for $99</h2>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3>8 Complete Modules</h3>
+                <p>Step-by-step lessons that build your retirement plan from the ground up</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🧮</div>
+                <h3>5 Calculators</h3>
+                <p>Calculate your gap, compare fees, see compound growth, plan contributions, and understand paycheck impact</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🗺️</div>
+                <h3>State-Specific Guidance</h3>
+                <p>Tailored information for CA, TX, NY, FL, IL pension systems</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📄</div>
+                <h3>Your Personal Game Plan</h3>
+                <p>A downloadable, actionable retirement plan customized to your numbers</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">♾️</div>
+                <h3>Lifetime Access</h3>
+                <p>Pay once, access forever. All future updates at no extra cost</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🎓</div>
+                <h3>Built by a Teacher</h3>
+                <p>31 years in the classroom means I speak your language</p>
+            </div>
+        </div>
+
+        <!-- Why Now Section -->
+        <div style="background: white; border-radius: 15px; padding: 40px; margin-top: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            <h2 style="font-size: 28px; color: #2E5C8A; margin-bottom: 20px; text-align: center;">Why Upgrade Now?</h2>
+            
+            <div style="color: #666; font-size: 16px; line-height: 1.8; max-width: 600px; margin: 0 auto;">
+                <p style="margin-bottom: 15px;">✓ <strong>Every day you wait costs money</strong> - Lost compound growth adds up</p>
+                <p style="margin-bottom: 15px;">✓ <strong>You've already started</strong> - Don't lose the momentum you've built</p>
+                <p style="margin-bottom: 15px;">✓ <strong>It's a one-time payment</strong> - No subscriptions, no recurring charges</p>
+                <p style="margin-bottom: 15px;">✓ <strong>7-day money-back guarantee</strong> - Zero risk, all upside</p>
+            </div>
+        </div>
+
+        <!-- Final CTA -->
+        <div style="text-align: center; margin: 60px 0;">
+            <h2 style="font-size: 32px; color: #2E5C8A; margin-bottom: 20px;">Ready to Secure Your Retirement?</h2>
+            <button onclick="handlePurchase()" class="cta-primary">Get Lifetime Access for $99 →</button>
+            <p style="margin-top: 20px; color: #666; font-size: 14px;">One-time payment • 7-day money-back guarantee</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 TeacherFinCoach. Building Wealth for Educators.</p>
+        <p>Educational purposes only. Not financial advice.</p>
+        <p style="margin-top: 15px;"><a href="terms.html">Terms & Disclaimers</a> | <a href="dashboard.html">Back to Dashboard</a></p>
+    </footer>
+
+    <script>
+        // Check if user is supposed to be here
+        window.addEventListener('DOMContentLoaded', function() {
+            const userData = JSON.parse(localStorage.getItem('teacherfincoach_user'));
+            
+            if (!userData) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // If already purchased, redirect to dashboard
+            if (userData.hasPurchased === true) {
+                window.location.href = 'dashboard.html';
+                return;
+            }
+        });
+
+        function handlePurchase() {
+            // PLACEHOLDER: This is where Lemon Squeezy integration will go
+            // For now, we'll show an alert
+            
+            alert('🚀 Payment Integration Coming Soon!\n\nThis is where Lemon Squeezy checkout will open.\n\nFor now, you can continue exploring in trial mode.\n\nClick OK to return to dashboard.');
+            
+            // TODO: Replace with actual Lemon Squeezy checkout
+            // Example:
+            // window.location.href = 'https://teacherfincoach.lemonsqueezy.com/checkout/buy/...';
+            
+            // For development, just return to dashboard
+            window.location.href = 'dashboard.html';
+        }
+    </script>
+</body>
+</html>
