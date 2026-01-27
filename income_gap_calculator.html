@@ -245,60 +245,6 @@
             font-weight: bold;
         }
 
-        .comparison-section {
-            background: #fff;
-            border: 3px solid #6BC9BC;
-            border-radius: 12px;
-            padding: 25px;
-            margin: 30px 0;
-        }
-
-        .comparison-title {
-            font-size: 20px;
-            color: #2E5C8A;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .comparison-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-
-        .comparison-row:last-child {
-            margin-bottom: 0;
-        }
-
-        .comparison-label {
-            font-weight: 500;
-            color: #333;
-        }
-
-        .comparison-amount {
-            font-size: 24px;
-            font-weight: bold;
-            color: #2E5C8A;
-        }
-
-        .savings-impact {
-            background: #d4edda;
-            border-left: 4px solid #28a745;
-            padding: 15px;
-            margin-top: 15px;
-            border-radius: 5px;
-        }
-
-        .savings-impact-text {
-            color: #155724;
-            font-weight: 500;
-            font-size: 16px;
-        }
-
         .info-box {
             background: #E8F7F5;
             padding: 20px;
@@ -310,6 +256,71 @@
             font-weight: 600;
             color: #2E5C8A;
             margin-bottom: 10px;
+        }
+
+        .sustainability-section {
+            background: #fff;
+            border: 3px solid #2E5C8A;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .sustainability-title {
+            font-size: 22px;
+            color: #2E5C8A;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .projection-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .projection-table th {
+            background: #2E5C8A;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .projection-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .projection-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .projection-table .depleted {
+            background: #FEE2E2;
+            color: #991B1B;
+            font-weight: 600;
+        }
+
+        .verdict {
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .verdict.success {
+            background: #D1FAE5;
+            color: #065F46;
+            border: 2px solid #10B981;
+        }
+
+        .verdict.warning {
+            background: #FEE2E2;
+            color: #991B1B;
+            border: 2px solid #EF4444;
         }
 
         .action-steps {
@@ -354,15 +365,6 @@
             margin-bottom: 4px;
         }
 
-        .footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 2px solid #e0e0e0;
-            text-align: center;
-            color: #666;
-            font-size: 14px;
-        }
-
         @media (max-width: 768px) {
             .container {
                 padding: 20px;
@@ -374,6 +376,15 @@
 
             .income-breakdown {
                 grid-template-columns: 1fr;
+            }
+
+            .projection-table {
+                font-size: 14px;
+            }
+
+            .projection-table th,
+            .projection-table td {
+                padding: 8px;
             }
         }
     </style>
@@ -435,6 +446,20 @@
                 <input type="number" id="currentSavings" placeholder="e.g., 50000" required min="0" step="1000">
             </div>
 
+            <div class="form-group">
+                <label for="retirementAge">Your Retirement Age
+                    <div class="label-hint">When you plan to retire</div>
+                </label>
+                <input type="number" id="retirementAge" value="65" required min="55" max="75" step="1">
+            </div>
+
+            <div class="form-group">
+                <label for="planToAge">Plan for Living Until Age
+                    <div class="label-hint">Planning horizon for retirement (default is 95)</div>
+                </label>
+                <input type="number" id="planToAge" value="95" required min="70" max="105" step="1">
+            </div>
+
             <!-- Spouse Section -->
             <div class="checkbox-container" onclick="document.getElementById('includeSpouse').click();">
                 <input type="checkbox" id="includeSpouse" onclick="event.stopPropagation();">
@@ -475,7 +500,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="calculate-btn">Calculate My Income Gap</button>
+            <button type="button" onclick="calculateGap()" class="calculate-btn">Calculate My Income Gap</button>
         </form>
 
         <!-- Results Section -->
@@ -497,27 +522,6 @@
                 </div>
             </div>
 
-            <!-- Household Comparison (shown when spouse included) -->
-            <div id="householdComparison" class="comparison-section" style="display: none;">
-                <div class="comparison-title">💑 Individual vs. Household Gap Comparison</div>
-                
-                <div class="comparison-row">
-                    <div class="comparison-label">Your Individual Gap:</div>
-                    <div class="comparison-amount" id="individualGap">$0/mo</div>
-                </div>
-
-                <div class="comparison-row">
-                    <div class="comparison-label">Combined Household Gap:</div>
-                    <div class="comparison-amount" id="householdGap">$0/mo</div>
-                </div>
-
-                <div class="savings-impact">
-                    <div class="savings-impact-text" id="savingsImpact">
-                        💡 Your spouse's pension and income reduce your household gap significantly!
-                    </div>
-                </div>
-            </div>
-
             <div class="info-box">
                 <div class="info-box-title">💰 Your Current Savings Will Grow!</div>
                 <div id="savingsGrowth"></div>
@@ -526,6 +530,30 @@
             <div class="info-box">
                 <div class="info-box-title" id="contributionHeader">MONTHLY CONTRIBUTION NEEDED</div>
                 <div id="contributionAmount"></div>
+            </div>
+
+            <!-- NEW: Will Your Money Last Section -->
+            <div id="sustainabilitySection" class="sustainability-section">
+                <div class="sustainability-title">💵 Will Your Money Last?</div>
+                
+                <div id="verdict"></div>
+
+                <table class="projection-table">
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Age</th>
+                            <th>Annual Withdrawal</th>
+                            <th>Portfolio Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody id="projectionTableBody">
+                    </tbody>
+                </table>
+
+                <div class="coach-note">
+                    This projection assumes 7% annual growth. In retirement, many people shift to more conservative investments with lower returns — but also lower risk. Your actual results will vary.
+                </div>
             </div>
 
             <div class="action-steps">
@@ -560,12 +588,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="footer">
-            <div>© 2026 TeacherFinCoach. Building Wealth for Educators.</div>
-            <div style="margin-top: 10px;">Educational purposes only. Not financial advice.</div>
-            <div style="margin-top: 5px;"><a href="terms.html" style="color: #6BC9BC;">Terms & Disclaimers</a></div>
-        </div>
     </div>
 
     <script>
@@ -589,13 +611,11 @@
         }
 
         // Calculate future value with compound interest
-        // Formula: FV = PV × (1 + r)^n
         function calculateFutureValue(presentValue, annualRate, years) {
             return presentValue * Math.pow(1 + annualRate, years);
         }
 
         // Calculate monthly payment needed to reach future value
-        // Formula: PMT = FV × (r / ((1+r)^n - 1))
         function calculateMonthlyContribution(futureValueNeeded, annualRate, years) {
             const monthlyRate = annualRate / 12;
             const totalMonths = years * 12;
@@ -608,15 +628,52 @@
             return (futureValueNeeded * monthlyRate) / denominator;
         }
 
-        document.getElementById('gapCalculator').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // NEW: Calculate retirement sustainability projection
+        function calculateSustainability(startingBalance, annualWithdrawal, retirementAge, planToAge, growthRate = 0.07) {
+            const years = planToAge - retirementAge;
+            const projectionYears = [1, 5, 10, 15, 20, 25, 30];
+            const projection = [];
+            let balance = startingBalance;
+            let depletionYear = null;
 
+            for (let year = 1; year <= years; year++) {
+                // Withdraw at beginning of year
+                balance -= annualWithdrawal;
+                
+                // Check if depleted
+                if (balance <= 0 && depletionYear === null) {
+                    depletionYear = year;
+                    balance = 0;
+                }
+
+                // Grow remaining balance
+                if (balance > 0) {
+                    balance = balance * (1 + growthRate);
+                }
+
+                // Store milestone years
+                if (projectionYears.includes(year)) {
+                    projection.push({
+                        year: year,
+                        age: retirementAge + year,
+                        withdrawal: annualWithdrawal,
+                        balance: Math.max(0, balance)
+                    });
+                }
+            }
+
+            return { projection, depletionYear, finalBalance: balance };
+        }
+
+        function calculateGap() {
             // Get primary user inputs
             const desiredIncome = parseFloat(document.getElementById('desiredIncome').value);
             const yearsToRetirement = parseFloat(document.getElementById('yearsToRetirement').value);
             const monthlyPension = parseFloat(document.getElementById('monthlyPension').value);
             const socialSecurity = parseFloat(document.getElementById('socialSecurity').value) || 0;
             const currentSavings = parseFloat(document.getElementById('currentSavings').value);
+            const retirementAge = parseInt(document.getElementById('retirementAge').value);
+            const planToAge = parseInt(document.getElementById('planToAge').value);
 
             // Check if spouse is included
             const includeSpouse = document.getElementById('includeSpouse').checked;
@@ -632,13 +689,14 @@
                 spouseSavings = parseFloat(document.getElementById('spouseSavings').value) || 0;
             }
 
-            // Calculate gap (desiredIncome is already household total)
+            // Calculate gap
             let totalGuaranteedIncome = monthlyPension + socialSecurity;
             if (includeSpouse) {
                 totalGuaranteedIncome += spousePension + spouseSocialSecurity;
             }
             
             const monthlyGap = Math.max(0, desiredIncome - totalGuaranteedIncome);
+            const annualGap = monthlyGap * 12;
             
             // Total needed: Gap × 12 months × 25 years (4% withdrawal rule)
             const totalNeeded = monthlyGap * 12 * 25;
@@ -677,9 +735,6 @@
             document.getElementById('guaranteedIncome').textContent = formatCurrency(totalGuaranteedIncome);
             document.getElementById('gapAmount').textContent = formatCurrency(monthlyGap);
 
-            // Hide household comparison section (not needed with this approach)
-            document.getElementById('householdComparison').style.display = 'none';
-
             // Savings growth display
             if (includeSpouse && spouseSavings > 0) {
                 document.getElementById('savingsGrowth').innerHTML = 
@@ -705,16 +760,48 @@
                         ${formatCurrency(monthlyContribution)}
                     </div>
                     <div style="margin-top: 10px;">
-                        This monthly contribution will help you bridge the ${formatCurrency(monthlyGap)}/month gap.
+                        Contribute this amount for <strong>${yearsToRetirement} years</strong> (until retirement at age ${retirementAge}) to bridge your ${formatCurrency(monthlyGap)}/month gap.
                     </div>`;
             }
+
+            // NEW: Calculate and display sustainability projection
+            const sustainability = calculateSustainability(totalFutureSavings, annualGap, retirementAge, planToAge);
+            
+            // Display verdict
+            const verdictDiv = document.getElementById('verdict');
+            if (sustainability.depletionYear === null) {
+                verdictDiv.className = 'verdict success';
+                verdictDiv.innerHTML = '✅ Your money lasts 30+ years! You\'re on track for a secure retirement.';
+            } else {
+                const depletionAge = retirementAge + sustainability.depletionYear;
+                verdictDiv.className = 'verdict warning';
+                verdictDiv.innerHTML = `⚠️ Warning: Your portfolio may run out at age ${depletionAge} (year ${sustainability.depletionYear} of retirement). Consider increasing your savings or reducing your retirement spending.`;
+            }
+
+            // Build projection table
+            const tableBody = document.getElementById('projectionTableBody');
+            tableBody.innerHTML = '';
+            
+            sustainability.projection.forEach(row => {
+                const tr = document.createElement('tr');
+                if (row.balance === 0) {
+                    tr.className = 'depleted';
+                }
+                tr.innerHTML = `
+                    <td>${row.year}</td>
+                    <td>${row.age}</td>
+                    <td>${formatCurrency(row.withdrawal)}</td>
+                    <td>${row.balance === 0 ? 'DEPLETED' : formatCurrency(row.balance)}</td>
+                `;
+                tableBody.appendChild(tr);
+            });
 
             // Show results
             document.getElementById('results').classList.add('active');
             
             // Scroll to results
             document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
+        }
     </script>
     
     <!-- Footer -->
