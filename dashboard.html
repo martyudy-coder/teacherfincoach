@@ -4,46 +4,153 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - TeacherFinCoach</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #06b6d4 100%);
+            background: linear-gradient(135deg, #2E5C8A 0%, #1B3A57 100%);
             min-height: 100vh;
         }
         h1, h2 { font-family: 'Righteous', sans-serif; }
+        
+        .trial-banner {
+            background: linear-gradient(135deg, #6BC9BC 0%, #2E5C8A 100%);
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .lifetime-banner {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
         .module-card {
             transition: transform 0.2s, box-shadow 0.2s;
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
+        
         .module-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 24px rgba(107, 201, 188, 0.3);
         }
+        
         .module-card.locked {
             opacity: 0.6;
             cursor: not-allowed;
         }
+        
         .module-card.locked:hover {
             transform: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .module-number {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .module-number.active {
+            background: linear-gradient(135deg, #2E5C8A 0%, #6BC9BC 100%);
+        }
+
+        .module-number.locked {
+            background: #9CA3AF;
+        }
+
+        .badge-available {
+            background: #D1FAE5;
+            color: #065F46;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge-locked {
+            background: #F3F4F6;
+            color: #6B7280;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            background: linear-gradient(135deg, #2E5C8A 0%, #6BC9BC 100%);
+            height: 12px;
+            border-radius: 6px;
+            transition: width 0.3s;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            display: block;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(107, 201, 188, 0.3);
+        }
+
+        .tool-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2E5C8A 0%, #6BC9BC 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-modules {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Trial Status Banner -->
+    <div id="trial-banner" style="display: none;"></div>
+
     <div class="min-h-screen">
         <!-- Header -->
-        <nav class="bg-white shadow-md">
-            <div class="max-w-6xl mx-auto px-6 py-4">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <img src="IMG_1337.jpeg" alt="TFC Logo" class="w-14 h-auto">
+        <nav style="background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <div style="max-width: 1200px; margin: 0 auto; padding: 16px 24px;">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <img src="IMG_1337.jpeg" alt="TFC Logo" style="width: 56px; height: auto;">
                         <div>
-                            <h1 class="text-xl font-bold text-gray-900">TeacherFinCoach</h1>
-                            <p class="text-xs text-gray-600">Building Wealth for Educators</p>
+                            <h1 style="font-size: 20px; font-weight: 700; color: #111827;">TeacherFinCoach</h1>
+                            <p style="font-size: 12px; color: #6B7280;">Building Wealth for Educators</p>
                         </div>
                     </div>
-                    <div class="text-sm text-gray-600">
+                    <div style="font-size: 14px; color: #6B7280;">
                         <span id="user-greeting">Welcome back!</span>
                     </div>
                 </div>
@@ -51,207 +158,209 @@
         </nav>
 
         <!-- Main Content -->
-        <div class="max-w-6xl mx-auto px-6 py-8">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 32px 24px;">
             <!-- Progress Overview -->
-            <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
-                <div class="flex items-center justify-between mb-4">
+            <div style="background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 24px; margin-bottom: 32px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 16px;">
                     <div>
-                        <h2 class="text-2xl font-bold text-gray-900">Your Learning Journey</h2>
-                        <p class="text-gray-600">Complete all 9 modules to master teacher retirement planning</p>
+                        <h2 style="font-size: 24px; font-weight: 700; color: #111827; margin-bottom: 8px;">Your Learning Journey</h2>
+                        <p style="color: #6B7280;">Complete all 8 modules to master teacher retirement planning</p>
                     </div>
-                    <div class="text-right">
-                        <div class="text-3xl font-bold text-blue-600" id="progress-percent">11%</div>
-                        <div class="text-sm text-gray-600">Complete</div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 32px; font-weight: 700; color: #2E5C8A;" id="progress-percent">0%</div>
+                        <div style="font-size: 14px; color: #6B7280;">Complete</div>
                     </div>
                 </div>
-                <div class="w-full bg-gray-200 rounded-full h-3">
-                    <div id="progress-bar" class="bg-blue-600 h-3 rounded-full transition-all" style="width: 11%"></div>
+                <div style="width: 100%; background: #E5E7EB; border-radius: 6px; height: 12px;">
+                    <div id="progress-bar" class="progress-bar" style="width: 0%"></div>
                 </div>
             </div>
 
             <!-- Course Modules -->
-            <div class="mb-8">
-                <h2 class="text-2xl font-bold text-white mb-6">📚 Course Modules</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div style="margin-bottom: 32px;">
+                <h2 style="font-size: 24px; font-weight: 700; color: white; margin-bottom: 24px;">📚 Course Modules</h2>
+                <div class="grid-modules" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+                    
                     <!-- Module 1 - ACTIVE -->
-                    <a href="module1.html" class="module-card bg-white rounded-xl shadow-md p-6 block">
-                        <div class="flex items-start justify-between mb-3">
-                            <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold">
-                                1
-                            </div>
-                            <span class="bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">
-                                Available
-                            </span>
+                    <a href="module1.html" class="module-card">
+                        <div style="display: flex; align-items: start; justify-content: space-between; margin-bottom: 12px;">
+                            <div class="module-number active">1</div>
+                            <span class="badge-available">Available</span>
                         </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">How Teacher Retirement Systems Actually Work</h3>
-                        <p class="text-sm text-gray-600 mb-3">Discover the 30% income gap and why your pension alone isn't enough</p>
-                        <div class="text-blue-600 font-semibold text-sm">Start Module →</div>
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Your Pension Isn't Enough: The 30% Gap</h3>
+                        <p style="font-size: 14px; color: #6B7280; margin-bottom: 12px;">Discover exactly how much you'll be short in retirement</p>
+                        <div style="color: #2E5C8A; font-weight: 600; font-size: 14px;">Start Module →</div>
                     </a>
 
-                    <!-- Module 2 - LOCKED -->
-                    <div class="module-card locked bg-white rounded-xl shadow-md p-6">
-                        <div class="flex items-start justify-between mb-3">
-                            <div class="w-12 h-12 bg-gray-400 text-white rounded-full flex items-center justify-center text-xl font-bold">
-                                2
-                            </div>
-                            <span class="bg-gray-200 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full">
-                                🔒 Locked
-                            </span>
+                    <!-- Module 2 - ACTIVE -->
+                    <a href="module2.html" class="module-card">
+                        <div style="display: flex; align-items: start; justify-content: space-between; margin-bottom: 12px;">
+                            <div class="module-number active">2</div>
+                            <span class="badge-available">Available</span>
                         </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">403(b) vs 457(b): Understanding the Difference</h3>
-                        <p class="text-sm text-gray-600">Learn about both accounts and why you might need BOTH</p>
-                    </div>
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">403(b) & 457(b): Your Two Secret Weapons</h3>
+                        <p style="font-size: 14px; color: #6B7280; margin-bottom: 12px;">Why you need BOTH accounts and how they work together</p>
+                        <div style="color: #2E5C8A; font-weight: 600; font-size: 14px;">Start Module →</div>
+                    </a>
 
                     <!-- Module 3 - LOCKED -->
-                    <div class="module-card locked bg-white rounded-xl shadow-md p-6">
-                        <div class="flex items-start justify-between mb-3">
-                            <div class="w-12 h-12 bg-gray-400 text-white rounded-full flex items-center justify-center text-xl font-bold">
-                                3
-                            </div>
-                            <span class="bg-gray-200 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full">
-                                🔒 Locked
-                            </span>
+                    <div class="module-card locked">
+                        <div style="display: flex; align-items: start; justify-content: space-between; margin-bottom: 12px;">
+                            <div class="module-number locked">3</div>
+                            <span class="badge-locked">🔒 Locked</span>
                         </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">Why Both Accounts Matter</h3>
-                        <p class="text-sm text-gray-600">How 403(b) and 457(b) work together to fill your gap</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Fees: The Silent Wealth Killer</h3>
+                        <p style="font-size: 14px; color: #6B7280;">How high-fee vendors can cost you hundreds of thousands</p>
                     </div>
 
                     <!-- Module 4 - LOCKED -->
-                    <div class="module-card locked bg-white rounded-xl shadow-md p-6">
-                        <div class="flex items-start justify-between mb-3">
-                            <div class="w-12 h-12 bg-gray-400 text-white rounded-full flex items-center justify-center text-xl font-bold">
-                                4
-                            </div>
-                            <span class="bg-gray-200 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full">
-                                🔒 Locked
-                            </span>
+                    <div class="module-card locked">
+                        <div style="display: flex; align-items: start; justify-content: space-between; margin-bottom: 12px;">
+                            <div class="module-number locked">4</div>
+                            <span class="badge-locked">🔒 Locked</span>
                         </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">The Costly Mistakes Teachers Make</h3>
-                        <p class="text-sm text-gray-600">High-fee vendors, bad investments, and procrastination—avoid them all</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Choosing the Right Vendor</h3>
+                        <p style="font-size: 14px; color: #6B7280;">Which low-cost vendors to choose and which to avoid</p>
                     </div>
 
                     <!-- Module 5 - LOCKED -->
-                    <div class="module-card locked bg-white rounded-xl shadow-md p-6">
-                        <div class="flex items-start justify-between mb-3">
-                            <div class="w-12 h-12 bg-gray-400 text-white rounded-full flex items-center justify-center text-xl font-bold">
-                                5
-                            </div>
-                            <span class="bg-gray-200 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full">
-                                🔒 Locked
-                            </span>
+                    <div class="module-card locked">
+                        <div style="display: flex; align-items: start; justify-content: space-between; margin-bottom: 12px;">
+                            <div class="module-number locked">5</div>
+                            <span class="badge-locked">🔒 Locked</span>
                         </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">Building Your Wealth Strategy</h3>
-                        <p class="text-sm text-gray-600">Calculate how much to save and create your personalized plan</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Your Savings Game Plan</h3>
+                        <p style="font-size: 14px; color: #6B7280;">Exactly how much to save, where to put it, and what to invest in</p>
                     </div>
 
                     <!-- Module 6 - LOCKED -->
-                    <div class="module-card locked bg-white rounded-xl shadow-md p-6">
-                        <div class="flex items-start justify-between mb-3">
-                            <div class="w-12 h-12 bg-gray-400 text-white rounded-full flex items-center justify-center text-xl font-bold">
-                                6
-                            </div>
-                            <span class="bg-gray-200 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full">
-                                🔒 Locked
-                            </span>
+                    <div class="module-card locked">
+                        <div style="display: flex; align-items: start; justify-content: space-between; margin-bottom: 12px;">
+                            <div class="module-number locked">6</div>
+                            <span class="badge-locked">🔒 Locked</span>
                         </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">Navigating Vendor Options</h3>
-                        <p class="text-sm text-gray-600">Which vendors to choose and which to avoid</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Enrollment: Step-by-Step</h3>
+                        <p style="font-size: 14px; color: #6B7280;">Walk through the exact enrollment process</p>
                     </div>
 
                     <!-- Module 7 - LOCKED -->
-                    <div class="module-card locked bg-white rounded-xl shadow-md p-6">
-                        <div class="flex items-start justify-between mb-3">
-                            <div class="w-12 h-12 bg-gray-400 text-white rounded-full flex items-center justify-center text-xl font-bold">
-                                7
-                            </div>
-                            <span class="bg-gray-200 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full">
-                                🔒 Locked
-                            </span>
+                    <div class="module-card locked">
+                        <div style="display: flex; align-items: start; justify-content: space-between; margin-bottom: 12px;">
+                            <div class="module-number locked">7</div>
+                            <span class="badge-locked">🔒 Locked</span>
                         </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">Step-by-Step Enrollment Guide</h3>
-                        <p class="text-sm text-gray-600">Exactly how to sign up and start contributing</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Life Happens: Adjusting Your Plan</h3>
+                        <p style="font-size: 14px; color: #6B7280;">Late starters, summer gaps, early retirement strategies</p>
                     </div>
 
                     <!-- Module 8 - LOCKED -->
-                    <div class="module-card locked bg-white rounded-xl shadow-md p-6">
-                        <div class="flex items-start justify-between mb-3">
-                            <div class="w-12 h-12 bg-gray-400 text-white rounded-full flex items-center justify-center text-xl font-bold">
-                                8
-                            </div>
-                            <span class="bg-gray-200 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full">
-                                🔒 Locked
-                            </span>
+                    <div class="module-card locked">
+                        <div style="display: flex; align-items: start; justify-content: space-between; margin-bottom: 12px;">
+                            <div class="module-number locked">8</div>
+                            <span class="badge-locked">🔒 Locked</span>
                         </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">Summer Income Gaps: Strategies to Stay on Track</h3>
-                        <p class="text-sm text-gray-600">Managing your finances during summer months</p>
-                    </div>
-
-                    <!-- Module 9 - LOCKED -->
-                    <div class="module-card locked bg-white rounded-xl shadow-md p-6">
-                        <div class="flex items-start justify-between mb-3">
-                            <div class="w-12 h-12 bg-gray-400 text-white rounded-full flex items-center justify-center text-xl font-bold">
-                                9
-                            </div>
-                            <span class="bg-gray-200 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full">
-                                🔒 Locked
-                            </span>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">Long-Term Wealth Building</h3>
-                        <p class="text-sm text-gray-600">Advanced strategies to maximize your retirement wealth</p>
+                        <h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 8px;">Your Retirement Game Plan</h3>
+                        <p style="font-size: 14px; color: #6B7280;">Your personalized action plan, glossary, FAQ, and resources</p>
                     </div>
                 </div>
             </div>
 
             <!-- Tools & Resources -->
-            <div class="mb-8">
-                <h2 class="text-2xl font-bold text-white mb-6">🧮 Tools & Resources</h2>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <a href="calculators.html" class="bg-white rounded-xl shadow-md p-6 block hover:shadow-lg transition">
-                        <div class="flex items-center gap-4 mb-3">
-                            <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl">
-                                📊
-                            </div>
+            <div style="margin-bottom: 32px;">
+                <h2 style="font-size: 24px; font-weight: 700; color: white; margin-bottom: 24px;">🧮 Tools & Resources</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+                    
+                    <a href="calculators.html" class="tool-card">
+                        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 12px;">
+                            <div class="tool-icon">📊</div>
                             <div>
-                                <h3 class="text-lg font-bold text-gray-900">Calculators</h3>
-                                <p class="text-sm text-gray-600">4 interactive financial calculators</p>
+                                <h3 style="font-size: 18px; font-weight: 600; color: #111827;">Calculators</h3>
+                                <p style="font-size: 14px; color: #6B7280;">5 interactive financial calculators</p>
                             </div>
                         </div>
-                        <span class="text-blue-600 font-semibold text-sm">View →</span>
+                        <span style="color: #2E5C8A; font-weight: 600; font-size: 14px;">View →</span>
                     </a>
 
-                    <a href="terms.html" class="bg-white rounded-xl shadow-md p-6 block hover:shadow-lg transition">
-                        <div class="flex items-center gap-4 mb-3">
-                            <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl">
-                                📋
-                            </div>
+                    <a href="terms.html" class="tool-card">
+                        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 12px;">
+                            <div class="tool-icon">📋</div>
                             <div>
-                                <h3 class="text-lg font-bold text-gray-900">Terms & Disclaimers</h3>
-                                <p class="text-sm text-gray-600">Legal information and policies</p>
+                                <h3 style="font-size: 18px; font-weight: 600; color: #111827;">Terms & Disclaimers</h3>
+                                <p style="font-size: 14px; color: #6B7280;">Legal information and policies</p>
                             </div>
                         </div>
-                        <span class="text-blue-600 font-semibold text-sm">View →</span>
+                        <span style="color: #2E5C8A; font-weight: 600; font-size: 14px;">View →</span>
                     </a>
                 </div>
             </div>
         </div>
 
         <!-- Footer -->
-        <footer class="bg-white/10 backdrop-blur-sm py-8 mt-12">
-            <div class="max-w-6xl mx-auto px-6 text-center">
-                <p class="text-white text-sm mb-3">&copy; 2026 TeacherFinCoach. Building Wealth for Educators.</p>
-                <p class="text-white/80 text-xs mb-2">
-                    <strong>Educational Purposes Only:</strong> Teacher Fin Coach provides general educational information about retirement planning for teachers. 
+        <footer style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 32px 24px; margin-top: 48px;">
+            <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+                <p style="color: white; font-size: 14px; margin-bottom: 12px;">&copy; 2026 TeacherFinCoach. Building Wealth for Educators.</p>
+                <p style="color: rgba(255,255,255,0.8); font-size: 12px; margin-bottom: 8px;">
+                    <strong>Educational Purposes Only:</strong> TeacherFinCoach provides general educational information about retirement planning for teachers. 
                     This content does not constitute financial, investment, tax, or legal advice.
                 </p>
-                <p class="text-white/70 text-xs">
+                <p style="color: rgba(255,255,255,0.7); font-size: 12px;">
                     Consult with a qualified financial advisor for personalized guidance. 
-                    <a href="terms.html" class="underline hover:text-white">Terms & Disclaimers</a>
+                    <a href="terms.html" style="color: #6BC9BC; text-decoration: underline;">Terms & Disclaimers</a>
                 </p>
             </div>
         </footer>
     </div>
 
     <script>
+        // TRIAL SYSTEM - Check expiration and display countdown
+        function checkTrialStatus() {
+            const userDataStr = localStorage.getItem('teacherfincoach_user');
+            if (!userDataStr) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            const userData = JSON.parse(userDataStr);
+            
+            // Check if user has purchased
+            if (userData.hasPurchased === true) {
+                const banner = document.getElementById('trial-banner');
+                banner.className = 'lifetime-banner';
+                banner.innerHTML = '✓ Lifetime Access - Thank you for being a TeacherFinCoach member!';
+                banner.style.display = 'block';
+                return;
+            }
+
+            // Check trial status
+            if (!userData.trialStartDate) {
+                // No trial started yet - shouldn't happen but redirect to welcome
+                window.location.href = 'welcome.html';
+                return;
+            }
+
+            const trialStart = new Date(userData.trialStartDate);
+            const now = new Date();
+            const daysElapsed = Math.floor((now - trialStart) / (1000 * 60 * 60 * 24));
+            const daysRemaining = 7 - daysElapsed;
+
+            // Check if trial expired
+            if (daysRemaining <= 0) {
+                window.location.href = 'upgrade.html';
+                return;
+            }
+
+            // Display trial countdown
+            const banner = document.getElementById('trial-banner');
+            banner.className = 'trial-banner';
+            
+            if (daysRemaining === 1) {
+                banner.innerHTML = `⏰ Trial: ${daysRemaining} day remaining - <a href="upgrade.html" style="color: white; text-decoration: underline; font-weight: 700;">Upgrade to Lifetime Access</a>`;
+            } else {
+                banner.innerHTML = `⏰ Trial: ${daysRemaining} days remaining - <a href="upgrade.html" style="color: white; text-decoration: underline; font-weight: 700;">Upgrade to Lifetime Access</a>`;
+            }
+            banner.style.display = 'block';
+        }
+
         // Load user data and personalize greeting
         const userDataStr = localStorage.getItem('teacherfincoach_user');
         
@@ -273,6 +382,9 @@
                 document.getElementById('user-greeting').textContent = `Welcome, ${stateName} Teacher!`;
             }
         }
+
+        // Run trial check on page load
+        checkTrialStatus();
     </script>
 </body>
 </html>
