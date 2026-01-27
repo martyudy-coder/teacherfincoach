@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paycheck Impact Calculator - TeacherFinCoach</title>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #2E5C8A 0%, #1B3A57 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        h1, h2, h3 { font-family: 'Righteous', sans-serif; }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .back-link {
+            display: inline-block;
+            color: #6BC9BC;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        .disclaimer {
+            background: #E8F7F5;
+            border-left: 4px solid #6BC9BC;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        
+        .disclaimer-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2E5C8A;
+        }
+        
+        .disclaimer-text {
+            color: #2E5C8A;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .coach-note {
+            background: #E8F7F5;
+            border-left: 4px solid #6BC9BC;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-style: italic;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .label-hint {
+            font-size: 13px;
+            color: #666;
+            font-weight: 400;
+            margin-top: 4px;
+        }
+        
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="number"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #6BC9BC;
+        }
+        
+        input[type="range"] {
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .calculate-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #2E5C8A 0%, #6BC9BC 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 10px;
+        }
+        
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 92, 138, 0.4);
+        }
+        
+        .results {
+            display: none;
+        }
+        
+        .results.active {
+            display: block;
+        }
+        
+        .results-header {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #6BC9BC;
+            padding-bottom: 10px;
+        }
+        
+        .impact-breakdown {
+            background: linear-gradient(135deg, #2E5C8A 0%, #6BC9BC 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .impact-label {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+        
+        .impact-amount {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 5px;
+        }
+        
+        .impact-subtext {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .comparison-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .comparison-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .comparison-amount {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2E5C8A;
+        }
+        
+        .savings-breakdown {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .savings-breakdown h3 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .savings-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #6BC9BC;
+        }
+        
+        .savings-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .savings-label {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .savings-amount {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2E5C8A;
+        }
+        
+        .info-box {
+            background: #E8F7F5;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .info-box-title {
+            font-weight: 600;
+            color: #2E5C8A;
+            margin-bottom: 10px;
+        }
+        
+        .action-steps {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .action-steps h3 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .step {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            align-items: start;
+        }
+        
+        .step-number {
+            background: #2E5C8A;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        
+        @media (max-width: 768px) {
+            .card {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="dashboard.html" class="back-link">← Back to Dashboard</a>
+        
+        <div class="disclaimer">
+            <div class="disclaimer-title">⚠️ Calculator Disclaimer</div>
+            <div class="disclaimer-text">
+                This calculator provides educational estimates based on the information you provide. Actual tax savings will depend on your specific tax situation, including state taxes, deductions, and other factors. This tool does not constitute tax or financial advice. Consult a tax professional for personalized guidance.
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="header">
+                <div class="header-icon">💵</div>
+                <h1>Paycheck Impact Calculator</h1>
+                <p>See how pre-tax contributions reduce your actual paycheck cost</p>
+            </div>
+            
+            <div class="coach-note">
+                <img src="coach-icon.jpg" alt="" style="width: 40px; height: 40px; vertical-align: middle; margin-right: 6px;">
+                <span style="font-weight: bold; color: #2E5C8A;">Coach Marty says:</span>
+                <span style="color: #333; line-height: 1.6;">
+                    Here's the secret most teachers don't realize: When you contribute $500/month to your 403(b) or 457(b), you're NOT losing $500 from your paycheck. Because these are pre-tax contributions, you save on taxes! In the 22% bracket, that $500 only costs you about $390. Let me show you the math.
+                </span>
+            </div>
+            
+            <form id="paycheckCalculator">
+                <div class="form-group">
+                    <label for="monthlyContribution">Monthly Retirement Contribution
+                        <div class="label-hint">How much you want to save each month in your 403(b) or 457(b)</div>
+                    </label>
+                    <input type="number" id="monthlyContribution" value="500" min="50" max="3500" step="50" required>
+                    <input type="range" id="contribution-slider" min="50" max="3500" step="50" value="500">
+                </div>
+                
+                <div class="form-group">
+                    <label for="taxBracket">Your Federal Tax Bracket
+                        <div class="label-hint">Your marginal tax rate (not your average rate). Most teachers are in the 12-24% brackets.</div>
+                    </label>
+                    <select id="taxBracket" required>
+                        <option value="0.10">10% - Single: $0-$11,600 | Married: $0-$23,200</option>
+                        <option value="0.12" selected>12% - Single: $11,600-$47,150 | Married: $23,200-$94,300</option>
+                        <option value="0.22">22% - Single: $47,150-$100,525 | Married: $94,300-$201,050</option>
+                        <option value="0.24">24% - Single: $100,525-$191,950 | Married: $201,050-$383,900</option>
+                        <option value="0.32">32% - Single: $191,950-$243,725 | Married: $383,900-$487,450</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="stateTax">State Income Tax Rate (optional)
+                        <div class="label-hint">Add your state's tax rate for total savings. Leave at 0 if no state income tax.</div>
+                    </label>
+                    <input type="number" id="stateTax" value="0" min="0" max="13.3" step="0.1">
+                    <div class="label-hint" style="margin-top: 8px;">
+                        Common state rates: CA 9.3%, NY 6.5%, TX 0%, FL 0%, IL 4.95%, PA 3.07%
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="yearsToRetirement">Years Until Retirement
+                        <div class="label-hint">For calculating lifetime tax savings</div>
+                    </label>
+                    <input type="number" id="yearsToRetirement" value="25" min="1" max="40" step="1" required>
+                </div>
+                
+                <button type="button" onclick="calculatePaycheckImpact()" class="calculate-btn">Calculate Paycheck Impact</button>
+            </form>
+            
+            <div id="results" class="results">
+                <hr style="margin: 40px 0; border: none; border-top: 2px solid #e0e0e0;">
+                
+                <div class="results-header">Your Actual Paycheck Cost</div>
+                
+                <div class="impact-breakdown">
+                    <div class="impact-label">Your Actual Paycheck Reduction</div>
+                    <div class="impact-amount" id="actualCost">$0</div>
+                    <div class="impact-subtext">Instead of the full <span id="grossContribution">$0</span> you're contributing</div>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <div class="comparison-label">Monthly Contribution</div>
+                        <div class="comparison-amount" id="monthlyContrib">$0</div>
+                    </div>
+                    <div class="comparison-card">
+                        <div class="comparison-label">Monthly Tax Savings</div>
+                        <div class="comparison-amount" id="monthlyTaxSavings">$0</div>
+                    </div>
+                    <div class="comparison-card">
+                        <div class="comparison-label">Net Paycheck Reduction</div>
+                        <div class="comparison-amount" id="netReduction">$0</div>
+                    </div>
+                </div>
+                
+                <div class="savings-breakdown">
+                    <h3>💰 Tax Savings Breakdown</h3>
+                    
+                    <div class="savings-item">
+                        <div class="savings-label">Annual Tax Savings</div>
+                        <div class="savings-amount" id="annualSavings">$0</div>
+                    </div>
+                    
+                    <div class="savings-item">
+                        <div class="savings-label">Lifetime Tax Savings (<span id="yearsDisplay">25</span> years)</div>
+                        <div class="savings-amount" id="lifetimeSavings">$0</div>
+                    </div>
+                    
+                    <div class="savings-item" style="background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%); border-left-color: #10B981;">
+                        <div class="savings-label" style="font-weight: 700;">Effective Discount Rate</div>
+                        <div class="savings-amount" style="color: #059669;" id="discountRate">0%</div>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <div class="info-box-title">🎯 What This Means</div>
+                    <div id="meaningText" style="color: #333; line-height: 1.6;"></div>
+                </div>
+                
+                <div class="coach-note">
+                    <img src="coach-icon.jpg" alt="" style="width: 40px; height: 40px; vertical-align: middle; margin-right: 6px;">
+                    <span style="font-weight: bold; color: #2E5C8A;">Coach Marty says:</span>
+                    <span style="color: #333; line-height: 1.6;">
+                        This is why I tell every teacher: "You can't afford NOT to contribute to your retirement accounts!" You're essentially getting a guaranteed return equal to your tax bracket — plus all the compound growth. It's the best deal in personal finance.
+                    </span>
+                </div>
+                
+                <div class="action-steps">
+                    <h3>Next Steps:</h3>
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-title">Contact your payroll department</div>
+                            <div>Set up automatic contributions starting with your next paycheck</div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-title">Choose low-cost index funds</div>
+                            <div>Target expense ratios of 0.15% or less</div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-title">Increase gradually</div>
+                            <div>Bump up your contribution by 1% each year when you get raises</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Sync slider with input
+        document.getElementById('monthlyContribution').addEventListener('input', function() {
+            document.getElementById('contribution-slider').value = this.value;
+        });
+        document.getElementById('contribution-slider').addEventListener('input', function() {
+            document.getElementById('monthlyContribution').value = this.value;
+        });
+        
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(amount);
+        }
+        
+        function calculatePaycheckImpact() {
+            // Get inputs
+            const monthlyContribution = parseFloat(document.getElementById('monthlyContribution').value);
+            const federalTaxRate = parseFloat(document.getElementById('taxBracket').value);
+            const stateTaxRate = parseFloat(document.getElementById('stateTax').value) / 100;
+            const yearsToRetirement = parseInt(document.getElementById('yearsToRetirement').value);
+            
+            // Calculate combined tax rate
+            const combinedTaxRate = federalTaxRate + stateTaxRate;
+            
+            // Calculate tax savings
+            const monthlyTaxSavings = monthlyContribution * combinedTaxRate;
+            const netPaycheckReduction = monthlyContribution - monthlyTaxSavings;
+            
+            // Annual and lifetime
+            const annualTaxSavings = monthlyTaxSavings * 12;
+            const lifetimeTaxSavings = annualTaxSavings * yearsToRetirement;
+            
+            // Discount rate (percentage saved)
+            const discountRate = combinedTaxRate * 100;
+            
+            // Update display
+            document.getElementById('actualCost').textContent = formatCurrency(netPaycheckReduction);
+            document.getElementById('grossContribution').textContent = formatCurrency(monthlyContribution);
+            
+            document.getElementById('monthlyContrib').textContent = formatCurrency(monthlyContribution);
+            document.getElementById('monthlyTaxSavings').textContent = formatCurrency(monthlyTaxSavings);
+            document.getElementById('netReduction').textContent = formatCurrency(netPaycheckReduction);
+            
+            document.getElementById('annualSavings').textContent = formatCurrency(annualTaxSavings);
+            document.getElementById('lifetimeSavings').textContent = formatCurrency(lifetimeTaxSavings);
+            document.getElementById('yearsDisplay').textContent = yearsToRetirement;
+            document.getElementById('discountRate').textContent = discountRate.toFixed(1) + '%';
+            
+            // Dynamic meaning text
+            const meaningText = `
+                By contributing ${formatCurrency(monthlyContribution)}/month pre-tax, you're only reducing your take-home pay by 
+                ${formatCurrency(netPaycheckReduction)}/month. That's a ${discountRate.toFixed(1)}% "discount" on your retirement savings! 
+                Over ${yearsToRetirement} years, you'll save ${formatCurrency(lifetimeTaxSavings)} in taxes that you can reinvest 
+                and let compound. That's like getting a ${discountRate.toFixed(0)}% match before your employer even contributes!
+            `;
+            document.getElementById('meaningText').textContent = meaningText.trim();
+            
+            // Show results
+            document.getElementById('results').classList.add('active');
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    </script>
+    
+    <!-- Footer -->
+    <footer style="background: #1B3A57; color: white; padding: 32px 20px; margin-top: 48px; text-align: center;">
+        <p style="font-size: 14px; margin-bottom: 12px;">&copy; 2026 TeacherFinCoach. Building Wealth for Educators.</p>
+        <p style="font-size: 12px; color: rgba(255,255,255,0.8); margin-bottom: 8px;">
+            <strong>Educational Purposes Only:</strong> TeacherFinCoach provides general educational information about retirement planning for teachers. 
+            This content does not constitute financial, investment, tax, or legal advice.
+        </p>
+        <p style="font-size: 12px; color: rgba(255,255,255,0.7);">
+            Consult with a qualified financial advisor for personalized guidance. 
+            <a href="terms.html" style="color: #6BC9BC; text-decoration: underline;">Terms & Disclaimers</a>
+        </p>
+    </footer>
+</body>
+</html>

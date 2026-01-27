@@ -4,126 +4,277 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Financial Calculators - TeacherFinCoach</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #06b6d4 100%);
+            background: linear-gradient(135deg, #2E5C8A 0%, #1B3A57 100%);
             min-height: 100vh;
+            padding: 20px;
         }
         h1, h2 { font-family: 'Righteous', sans-serif; }
-        .calculator-card {
-            transition: transform 0.2s, box-shadow 0.2s;
+        
+        .container {
+            max-w: 1200px;
+            margin: 0 auto;
         }
+        
+        .back-link {
+            display: inline-block;
+            color: #6BC9BC;
+            text-decoration: none;
+            margin-bottom: 30px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .header-icon {
+            font-size: 70px;
+            margin-bottom: 20px;
+        }
+        
+        .header h1 {
+            font-size: 42px;
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .header p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .calculator-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            display: block;
+        }
+        
         .calculator-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(107, 201, 188, 0.3);
+        }
+        
+        .calculator-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+        
+        .calculator-card h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .calculator-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .calculator-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #2E5C8A;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .coach-tip {
+            background: white;
+            border-radius: 15px;
+            padding: 35px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            gap: 20px;
+            align-items: start;
+        }
+        
+        .coach-icon {
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+        }
+        
+        .coach-content {
+            flex: 1;
+        }
+        
+        .coach-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2E5C8A;
+            margin-bottom: 15px;
+        }
+        
+        .coach-text {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+        
+        footer {
+            text-align: center;
+            color: white;
+            padding: 40px 0 20px 0;
+            font-size: 14px;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+        }
+        
+        footer a {
+            color: #6BC9BC;
+            text-decoration: underline;
+        }
+        
+        footer a:hover {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 32px;
+            }
+            
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .coach-tip {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="min-h-screen py-8 px-4">
-        <div class="max-w-5xl mx-auto">
-            <!-- Back Button -->
-            <a href="dashboard.html" class="inline-block mb-6 text-white hover:text-blue-100 font-semibold">
-                ← Back to Dashboard
-            </a>
-
-            <!-- Header -->
-            <div class="text-center mb-12">
-                <div class="text-6xl mb-4">🧮</div>
-                <h1 class="text-4xl font-bold text-white mb-3">Financial Calculators</h1>
-                <p class="text-white/90 text-lg">Powerful tools to plan your retirement wealth</p>
-            </div>
-
-            <!-- Calculator Grid -->
-            <div class="grid md:grid-cols-2 gap-6 mb-12">
-                <!-- Income Gap Calculator -->
-                <a href="income_gap_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-8 block">
-                    <div class="text-5xl mb-4">📊</div>
-                    <h2 class="text-2xl font-bold text-gray-900 mb-3">Income Gap Calculator</h2>
-                    <p class="text-gray-600 mb-4 leading-relaxed">
-                        Calculate your retirement income gap based on your state's pension formula and Social Security. 
-                        See exactly how much you need to save each month to close the 30% gap.
-                    </p>
-                    <div class="flex items-center gap-2 text-blue-600 font-semibold">
-                        <span>Launch Calculator</span>
-                        <span>→</span>
-                    </div>
-                </a>
-
-                <!-- Vendor Fee Comparison -->
-                <a href="vendor_fee_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-8 block">
-                    <div class="text-5xl mb-4">💰</div>
-                    <h2 class="text-2xl font-bold text-gray-900 mb-3">Vendor Fee Comparison</h2>
-                    <p class="text-gray-600 mb-4 leading-relaxed">
-                        See the devastating impact of high fees vs. low-cost index funds. 
-                        A 1% fee difference can cost you $100,000+ over your career. Don't let vendors steal your wealth!
-                    </p>
-                    <div class="flex items-center gap-2 text-blue-600 font-semibold">
-                        <span>Launch Calculator</span>
-                        <span>→</span>
-                    </div>
-                </a>
-
-                <!-- 403(b) vs 457(b) Strategy -->
-                <a href="contribution_strategy_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-8 block">
-                    <div class="text-5xl mb-4">⚖️</div>
-                    <h2 class="text-2xl font-bold text-gray-900 mb-3">403(b) vs 457(b) Strategy</h2>
-                    <p class="text-gray-600 mb-4 leading-relaxed">
-                        Get personalized recommendations on how to split your contributions between 403(b) and 457(b) accounts. 
-                        Based on your age, retirement timeline, and emergency fund status.
-                    </p>
-                    <div class="flex items-center gap-2 text-blue-600 font-semibold">
-                        <span>Launch Calculator</span>
-                        <span>→</span>
-                    </div>
-                </a>
-
-                <!-- Compound Interest -->
-                <a href="compound_interest_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-8 block">
-                    <div class="text-5xl mb-4">📈</div>
-                    <h2 class="text-2xl font-bold text-gray-900 mb-3">Compound Interest Calculator</h2>
-                    <p class="text-gray-600 mb-4 leading-relaxed">
-                        See the magic of compound growth over time. Discover how much your monthly contributions will grow 
-                        and what you'd lose by waiting just 5 more years to start.
-                    </p>
-                    <div class="flex items-center gap-2 text-blue-600 font-semibold">
-                        <span>Launch Calculator</span>
-                        <span>→</span>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Coach Marty Tip -->
-            <div class="bg-white rounded-xl shadow-lg p-8">
-                <div class="flex items-start gap-4">
-                    <div class="text-5xl">🏀</div>
-                    <div>
-                        <p class="font-bold text-blue-900 text-xl mb-3">Coach Marty's Advice:</p>
-                        <p class="text-gray-700 leading-relaxed mb-3">
-                            These calculators are powerful tools, but they're just the starting point. The real magic happens when you 
-                            <strong>take action</strong>—set up automatic contributions, choose low-cost index funds, and stay consistent.
-                        </p>
-                        <p class="text-gray-700 leading-relaxed">
-                            Run these calculators with your real numbers. Share them with your spouse. Make a plan. Then execute. 
-                            Your future self will thank you!
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Footer -->
-            <footer class="text-center text-white text-sm mt-12 pb-8">
-                <p>&copy; 2026 TeacherFinCoach. Building Wealth for Educators.</p>
-                <p class="text-xs text-white/80 mt-2">
-                    Educational purposes only. Not financial advice. 
-                    <a href="terms.html" class="underline hover:text-white">Terms & Disclaimers</a>
-                </p>
-            </footer>
+    <div class="container">
+        <a href="dashboard.html" class="back-link">← Back to Dashboard</a>
+        
+        <div class="header">
+            <div class="header-icon">🧮</div>
+            <h1>Financial Calculators</h1>
+            <p>Powerful tools to plan your retirement wealth</p>
         </div>
+        
+        <div class="calculator-grid">
+            <!-- Income Gap Calculator -->
+            <a href="income_gap_calculator.html" class="calculator-card">
+                <div class="calculator-icon">📊</div>
+                <h2>Income Gap Calculator</h2>
+                <p>
+                    Calculate your retirement income gap based on your state's pension formula and Social Security. 
+                    See exactly how much you need to save each month to close the gap.
+                </p>
+                <div class="calculator-link">
+                    <span>Launch Calculator</span>
+                    <span>→</span>
+                </div>
+            </a>
+            
+            <!-- Vendor Fee Comparison -->
+            <a href="vendor_fee_calculator.html" class="calculator-card">
+                <div class="calculator-icon">💰</div>
+                <h2>Fee Comparison Calculator</h2>
+                <p>
+                    See the devastating impact of high fees vs. low-cost index funds. 
+                    A 1% fee difference can cost you $100,000+ over your career. Don't let vendors steal your wealth!
+                </p>
+                <div class="calculator-link">
+                    <span>Launch Calculator</span>
+                    <span>→</span>
+                </div>
+            </a>
+            
+            <!-- NEW: Paycheck Impact Calculator -->
+            <a href="paycheck_impact_calculator.html" class="calculator-card">
+                <div class="calculator-icon">💵</div>
+                <h2>Paycheck Impact Calculator</h2>
+                <p>
+                    See how pre-tax retirement contributions reduce your actual paycheck cost. 
+                    Discover that a $500/month contribution only costs you ~$350 after tax savings!
+                </p>
+                <div class="calculator-link">
+                    <span>Launch Calculator</span>
+                    <span>→</span>
+                </div>
+            </a>
+            
+            <!-- 403(b) vs 457(b) Strategy -->
+            <a href="contribution_strategy_calculator.html" class="calculator-card">
+                <div class="calculator-icon">⚖️</div>
+                <h2>403(b) vs 457(b) Strategy</h2>
+                <p>
+                    Get personalized recommendations on how to split your contributions between 403(b) and 457(b) accounts. 
+                    Based on your age, retirement timeline, and emergency fund status.
+                </p>
+                <div class="calculator-link">
+                    <span>Launch Calculator</span>
+                    <span>→</span>
+                </div>
+            </a>
+            
+            <!-- Compound Interest -->
+            <a href="compound_interest_calculator.html" class="calculator-card">
+                <div class="calculator-icon">📈</div>
+                <h2>Compound Interest Calculator</h2>
+                <p>
+                    See the magic of compound growth over time. Discover how much your monthly contributions will grow 
+                    and what you'd lose by waiting just 5 more years to start.
+                </p>
+                <div class="calculator-link">
+                    <span>Launch Calculator</span>
+                    <span>→</span>
+                </div>
+            </a>
+        </div>
+        
+        <!-- Coach Marty Tip -->
+        <div class="coach-tip">
+            <img src="coach-icon.jpg" alt="" class="coach-icon">
+            <div class="coach-content">
+                <div class="coach-title">Coach Marty's Advice:</div>
+                <p class="coach-text">
+                    These calculators are powerful tools, but they're just the starting point. The real magic happens when you 
+                    <strong>take action</strong>—set up automatic contributions, choose low-cost index funds, and stay consistent.
+                </p>
+                <p class="coach-text">
+                    Run these calculators with your real numbers. Share them with your spouse. Make a plan. Then execute. 
+                    Your future self will thank you!
+                </p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 TeacherFinCoach. Building Wealth for Educators.</p>
+            <p style="font-size: 12px; opacity: 0.8;">
+                Educational purposes only. Not financial advice. 
+                <a href="terms.html">Terms & Disclaimers</a>
+            </p>
+        </footer>
     </div>
 </body>
 </html>
