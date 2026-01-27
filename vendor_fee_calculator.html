@@ -3,226 +3,471 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vendor Fee Comparison Calculator - TeacherFinCoach</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Fee Comparison Calculator - TeacherFinCoach</title>
     <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #06b6d4 100%);
+            background: linear-gradient(135deg, #2E5C8A 0%, #1B3A57 100%);
             min-height: 100vh;
+            padding: 20px;
         }
-        h1, h2 { font-family: 'Righteous', sans-serif; }
+        h1, h2, h3 { font-family: 'Righteous', sans-serif; }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .back-link {
+            display: inline-block;
+            color: #6BC9BC;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        .disclaimer {
+            background: #FFF3CD;
+            border-left: 4px solid #FFC107;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .disclaimer-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 8px;
+        }
+        
+        .disclaimer-text {
+            color: #856404;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .coach-note {
+            background: #E8F7F5;
+            border-left: 4px solid #6BC9BC;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .coach-note::before {
+            content: "🏀 Coach Marty Says: ";
+            font-weight: bold;
+            color: #2E5C8A;
+        }
+        
+        .coach-note-text {
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .input-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #6BC9BC;
+        }
+        
+        input[type="range"] {
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .hint {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .calculate-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #2E5C8A 0%, #6BC9BC 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 20px;
+        }
+        
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 92, 138, 0.4);
+        }
+        
+        #results {
+            display: none;
+        }
+        
+        #results.active {
+            display: block;
+        }
+        
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .tier-card {
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 3px solid;
+        }
+        
+        .tier-card.tier-1 {
+            background: #D1FAE5;
+            border-color: #10B981;
+        }
+        
+        .tier-card.tier-2 {
+            background: #FEF3C7;
+            border-color: #F59E0B;
+        }
+        
+        .tier-card.tier-3 {
+            background: #FED7AA;
+            border-color: #F97316;
+        }
+        
+        .tier-card.tier-4 {
+            background: #FEE2E2;
+            border-color: #EF4444;
+        }
+        
+        .tier-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .tier-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .tier-fee {
+            font-size: 20px;
+            font-weight: 700;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .tier-balance {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+        
+        .tier-1 .tier-balance {
+            color: #10B981;
+        }
+        
+        .tier-2 .tier-balance {
+            color: #F59E0B;
+        }
+        
+        .tier-3 .tier-balance {
+            color: #F97316;
+        }
+        
+        .tier-4 .tier-balance {
+            color: #EF4444;
+        }
+        
+        .tier-fees-paid {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .comparison-box {
+            background: linear-gradient(135deg, #FFF3CD 0%, #FBBF24 100%);
+            border: 3px solid #F59E0B;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .comparison-label {
+            font-size: 14px;
+            font-weight: 700;
+            color: #78350F;
+            margin-bottom: 10px;
+        }
+        
+        .comparison-amount {
+            font-size: 48px;
+            font-weight: 900;
+            color: #B45309;
+            margin-bottom: 10px;
+        }
+        
+        .comparison-note {
+            color: #78350F;
+            font-size: 14px;
+        }
+        
+        .breakdown {
+            background: #F9FAFB;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .breakdown h3 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .breakdown-item {
+            display: flex;
+            align-items: start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .breakdown-icon {
+            font-size: 24px;
+        }
+        
+        .breakdown-content strong {
+            color: #333;
+        }
+        
+        .breakdown-hint {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .coach-bottom {
+            background: #2E5C8A;
+            color: white;
+            border-radius: 12px;
+            padding: 25px;
+        }
+        
+        .coach-bottom::before {
+            content: "🏀 Coach Marty's Bottom Line: ";
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        footer {
+            text-align: center;
+            color: white;
+            padding: 30px 0;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .card {
+                padding: 25px;
+            }
+            
+            .tier-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="min-h-screen py-8 px-4">
-        <div class="max-w-4xl mx-auto">
-            <!-- Back Button -->
-            <a href="dashboard.html" class="inline-block mb-6 text-white hover:text-blue-100 font-semibold">
-                ← Back to Dashboard
-            </a>
-
-            <!-- Calculator Disclaimer -->
-            <div class="bg-yellow-50 border-l-4 border-yellow-500 rounded-lg p-6 mb-6">
-                <div class="flex items-start gap-3">
-                    <div class="text-3xl">⚠️</div>
-                    <div>
-                        <p class="font-bold text-yellow-900 mb-2">Calculator Disclaimer</p>
-                        <p class="text-sm text-gray-700 leading-relaxed">
-                            This calculator provides educational estimates based on the information you provide. Results are hypothetical projections 
-                            and do not guarantee future performance. Actual investment returns will vary based on market conditions, fees, and other factors. 
-                            This tool does not constitute financial advice.
-                        </p>
-                    </div>
-                </div>
+    <div class="container">
+        <a href="dashboard.html" class="back-link">← Back to Dashboard</a>
+        
+        <div class="disclaimer">
+            <div class="disclaimer-title">⚠️ Calculator Disclaimer</div>
+            <div class="disclaimer-text">
+                This calculator provides educational estimates based on the information you provide. Results are hypothetical projections 
+                and do not guarantee future performance. Actual investment returns will vary based on market conditions, fees, and other factors. 
+                This tool does not constitute financial advice.
             </div>
-
-            <!-- Main Calculator Card -->
-            <div class="bg-white rounded-2xl shadow-2xl p-8 mb-6">
-                <div class="text-center mb-8">
-                    <div class="text-6xl mb-4">💰</div>
-                    <h1 class="text-3xl font-bold text-gray-900 mb-2">Vendor Fee Comparison Calculator</h1>
-                    <p class="text-gray-600">See how fees can cost you tens of thousands in retirement</p>
-                </div>
-
-                <!-- Coach Marty Tip -->
-                <div class="bg-blue-50 border-l-4 border-blue-600 rounded-lg p-5 mb-8">
-                    <div class="flex items-start gap-3">
-                        <div class="text-3xl">🏀</div>
-                        <div>
-                            <p class="font-bold text-blue-900 mb-2">Coach Marty Says:</p>
-                            <p class="text-gray-700 text-sm leading-relaxed">
-                                A 1% difference in fees might not sound like much, but over 30 years? It can cost you $100,000 or more! 
-                                This is why choosing low-cost index funds over high-fee annuities is so critical. Let me show you the math.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Input Fields -->
-                <div class="space-y-6 mb-8">
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">
-                            Monthly Contribution
-                        </label>
-                        <div class="relative">
-                            <span class="absolute left-4 top-4 text-gray-600 font-semibold">$</span>
-                            <input type="number" id="monthly" value="500" min="50" max="3000" step="50"
-                                   class="w-full pl-8 pr-4 py-3 border-2 border-gray-300 rounded-lg text-lg focus:border-blue-600 focus:outline-none">
-                        </div>
-                        <input type="range" id="monthly-slider" min="50" max="3000" step="50" value="500" 
-                               class="w-full mt-2">
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">
-                            Years Until Retirement
-                        </label>
-                        <input type="number" id="years" value="30" min="5" max="40" step="1"
-                               class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-lg focus:border-blue-600 focus:outline-none">
-                        <input type="range" id="years-slider" min="5" max="40" step="1" value="30" 
-                               class="w-full mt-2">
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">
-                            Expected Annual Return (before fees)
-                        </label>
-                        <div class="relative">
-                            <input type="number" id="return" value="7" min="4" max="10" step="0.5"
-                                   class="w-full pr-10 px-4 py-3 border-2 border-gray-300 rounded-lg text-lg focus:border-blue-600 focus:outline-none">
-                            <span class="absolute right-4 top-4 text-gray-600 font-semibold">%</span>
-                        </div>
-                        <p class="text-xs text-gray-500 mt-1">Typical stock market average is 7-8%</p>
-                    </div>
-                </div>
-
-                <!-- Calculate Button -->
-                <button onclick="calculate()" 
-                        class="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-lg font-bold text-lg transition mb-8">
-                    Calculate Fee Impact
-                </button>
-
-                <!-- Results -->
-                <div id="results" class="hidden">
-                    <!-- Comparison Cards -->
-                    <div class="grid md:grid-cols-2 gap-6 mb-8">
-                        <!-- Low Fee -->
-                        <div class="bg-green-50 border-2 border-green-500 rounded-xl p-6">
-                            <div class="flex items-center gap-2 mb-4">
-                                <span class="text-3xl">✅</span>
-                                <h3 class="text-xl font-bold text-green-900">Low-Cost Index Fund</h3>
-                            </div>
-                            <div class="space-y-3">
-                                <div>
-                                    <p class="text-sm text-gray-600">Annual Fee</p>
-                                    <p class="text-2xl font-bold text-gray-900">0.15%</p>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-600">Final Balance</p>
-                                    <p class="text-4xl font-bold text-green-600" id="low-fee-total">$0</p>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-600">Total Fees Paid</p>
-                                    <p class="text-xl font-semibold text-gray-700" id="low-fee-fees">$0</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- High Fee -->
-                        <div class="bg-red-50 border-2 border-red-500 rounded-xl p-6">
-                            <div class="flex items-center gap-2 mb-4">
-                                <span class="text-3xl">❌</span>
-                                <h3 class="text-xl font-bold text-red-900">High-Fee Annuity</h3>
-                            </div>
-                            <div class="space-y-3">
-                                <div>
-                                    <p class="text-sm text-gray-600">Annual Fee</p>
-                                    <p class="text-2xl font-bold text-gray-900">1.5%</p>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-600">Final Balance</p>
-                                    <p class="text-4xl font-bold text-red-600" id="high-fee-total">$0</p>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-600">Total Fees Paid</p>
-                                    <p class="text-xl font-semibold text-gray-700" id="high-fee-fees">$0</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Big Difference Box -->
-                    <div class="bg-gradient-to-r from-yellow-100 to-orange-100 border-2 border-orange-500 rounded-xl p-8 text-center mb-8">
-                        <p class="text-sm font-semibold text-gray-700 mb-2">HIGH FEES COST YOU</p>
-                        <p class="text-5xl font-bold text-orange-600 mb-2" id="difference">$0</p>
-                        <p class="text-sm text-gray-700">That's money OUT of your retirement and INTO the vendor's pocket!</p>
-                    </div>
-
-                    <!-- Breakdown -->
-                    <div class="bg-gray-50 rounded-xl p-6 mb-8">
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">What This Means:</h3>
-                        <div class="space-y-3 text-gray-700">
-                            <div class="flex items-start gap-3">
-                                <span class="text-xl">📊</span>
-                                <div>
-                                    <p><strong>Your contributions:</strong> <span id="total-contributions">$0</span></p>
-                                    <p class="text-sm text-gray-600">This is money YOU put in from your paycheck</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <span class="text-xl">📈</span>
-                                <div>
-                                    <p><strong>Low-fee growth:</strong> <span id="low-growth">$0</span></p>
-                                    <p class="text-sm text-gray-600">How much your money grew with 0.15% fees</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <span class="text-xl">📉</span>
-                                <div>
-                                    <p><strong>High-fee growth:</strong> <span id="high-growth">$0</span></p>
-                                    <p class="text-sm text-gray-600">How much your money grew with 1.5% fees</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <span class="text-xl">💸</span>
-                                <div>
-                                    <p><strong>Wealth stolen by high fees:</strong> <span class="text-red-600 font-bold" id="stolen">$0</span></p>
-                                    <p class="text-sm text-gray-600">Money you'll NEVER see in retirement</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Coach Marty Bottom Line -->
-                    <div class="bg-blue-600 text-white rounded-xl p-6">
-                        <div class="flex items-start gap-3">
-                            <div class="text-3xl">🏀</div>
-                            <div>
-                                <p class="font-bold text-lg mb-2">Coach Marty's Bottom Line:</p>
-                                <p class="leading-relaxed" id="coach-advice">
-                                    Every dollar you pay in fees is a dollar that can't compound and grow. Choose low-cost index funds from vendors like Vanguard, 
-                                    Fidelity, or Schwab. Avoid high-fee annuities and products with surrender charges. Your future self will thank you!
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Footer -->
-            <footer class="text-center text-white text-sm pb-8">
-                <p>&copy; 2026 TeacherFinCoach. Building Wealth for Educators.</p>
-                <p class="text-xs text-white/80 mt-2">
-                    Educational purposes only. Not financial advice. 
-                    <a href="terms.html" class="underline hover:text-white">Terms & Disclaimers</a>
-                </p>
-            </footer>
         </div>
+        
+        <div class="card">
+            <div class="header">
+                <div class="header-icon">💰</div>
+                <h1>Fee Comparison Calculator</h1>
+                <p>See exactly how fees impact your retirement wealth</p>
+            </div>
+            
+            <div class="coach-note">
+                <span class="coach-note-text">
+                    A 1% difference in fees might not sound like much, but over 30 years? It can cost you $100,000 or more! 
+                    This calculator shows you the FULL spectrum — from ultra-low-cost to very expensive vendors.
+                </span>
+            </div>
+            
+            <div class="input-group">
+                <label for="monthly">Monthly Contribution</label>
+                <input type="number" id="monthly" value="500" min="50" max="3000" step="50">
+                <input type="range" id="monthly-slider" min="50" max="3000" step="50" value="500">
+            </div>
+            
+            <div class="input-group">
+                <label for="years">Years Until Retirement</label>
+                <input type="number" id="years" value="30" min="5" max="40" step="1">
+                <input type="range" id="years-slider" min="5" max="40" step="1" value="30">
+            </div>
+            
+            <div class="input-group">
+                <label for="return">Expected Annual Return (before fees)</label>
+                <input type="number" id="return" value="7" min="4" max="10" step="0.5">
+                <div class="hint">Typical stock market average is 7-8%</div>
+            </div>
+            
+            <button onclick="calculate()" class="calculate-btn">Calculate Fee Impact</button>
+            
+            <div id="results">
+                <hr style="margin: 40px 0; border: none; border-top: 2px solid #e0e0e0;">
+                
+                <h2 style="text-align: center; color: #333; margin-bottom: 25px;">Your Results: 4-Tier Comparison</h2>
+                
+                <div class="tier-grid">
+                    <div class="tier-card tier-1">
+                        <div class="tier-icon">✅</div>
+                        <div class="tier-title">Ultra Low-Cost</div>
+                        <div class="tier-fee">0.15% fee</div>
+                        <div class="tier-balance" id="tier1-balance">$0</div>
+                        <div class="tier-fees-paid">Total fees paid: <span id="tier1-fees">$0</span></div>
+                    </div>
+                    
+                    <div class="tier-card tier-2">
+                        <div class="tier-icon">⚠️</div>
+                        <div class="tier-title">Moderate Fee</div>
+                        <div class="tier-fee">1.0% fee</div>
+                        <div class="tier-balance" id="tier2-balance">$0</div>
+                        <div class="tier-fees-paid">Total fees paid: <span id="tier2-fees">$0</span></div>
+                    </div>
+                    
+                    <div class="tier-card tier-3">
+                        <div class="tier-icon">⛔</div>
+                        <div class="tier-title">High Fee</div>
+                        <div class="tier-fee">2.0% fee</div>
+                        <div class="tier-balance" id="tier3-balance">$0</div>
+                        <div class="tier-fees-paid">Total fees paid: <span id="tier3-fees">$0</span></div>
+                    </div>
+                    
+                    <div class="tier-card tier-4">
+                        <div class="tier-icon">❌</div>
+                        <div class="tier-title">Very High Fee</div>
+                        <div class="tier-fee">3.0% fee</div>
+                        <div class="tier-balance" id="tier4-balance">$0</div>
+                        <div class="tier-fees-paid">Total fees paid: <span id="tier4-fees">$0</span></div>
+                    </div>
+                </div>
+                
+                <div class="comparison-box">
+                    <div class="comparison-label">COST OF HIGH FEES</div>
+                    <div class="comparison-amount" id="max-difference">$0</div>
+                    <div class="comparison-note">Ultra low-cost vs. very high fee — money you'll NEVER see in retirement!</div>
+                </div>
+                
+                <div class="breakdown">
+                    <h3>What This Means:</h3>
+                    <div class="breakdown-item">
+                        <div class="breakdown-icon">📊</div>
+                        <div class="breakdown-content">
+                            <div><strong>Your contributions:</strong> <span id="total-contributions">$0</span></div>
+                            <div class="breakdown-hint">Money YOU put in from your paycheck</div>
+                        </div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-icon">💸</div>
+                        <div class="breakdown-content">
+                            <div><strong>Comparing ultra low-cost (0.15%) to very high (3%):</strong> <span style="color: #EF4444; font-weight: bold;" id="stolen">$0</span></div>
+                            <div class="breakdown-hint">The cost of choosing the wrong vendor</div>
+                        </div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-icon">📈</div>
+                        <div class="breakdown-content">
+                            <div><strong>Even moderate fees (1%) cost you:</strong> <span style="color: #F59E0B; font-weight: bold;" id="moderate-cost">$0</span></div>
+                            <div class="breakdown-hint">Compared to ultra low-cost options</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="coach-bottom">
+                    <span id="coach-advice">
+                        Choose ultra low-cost index funds from vendors like Vanguard, Fidelity, or Schwab. Every percentage point in fees is wealth you're giving away. 
+                        Your future self will thank you!
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 TeacherFinCoach. Building Wealth for Educators.</p>
+            <p style="font-size: 12px; margin-top: 10px; opacity: 0.8;">
+                Educational purposes only. Not financial advice. 
+                <a href="terms.html" style="color: #6BC9BC; text-decoration: underline;">Terms & Disclaimers</a>
+            </p>
+        </footer>
     </div>
-
+    
     <script>
         // Sync sliders with inputs
         document.getElementById('monthly').addEventListener('input', function() {
@@ -231,81 +476,85 @@
         document.getElementById('monthly-slider').addEventListener('input', function() {
             document.getElementById('monthly').value = this.value;
         });
-
+        
         document.getElementById('years').addEventListener('input', function() {
             document.getElementById('years-slider').value = this.value;
         });
         document.getElementById('years-slider').addEventListener('input', function() {
             document.getElementById('years').value = this.value;
         });
-
+        
+        function calculateWithFees(monthly, years, returnRate, fee) {
+            const months = years * 12;
+            const monthlyReturn = (returnRate - fee) / 12;
+            const monthlyFeeRate = fee / 12;
+            
+            let balance = 0;
+            let totalFees = 0;
+            
+            for (let i = 0; i < months; i++) {
+                balance += monthly;
+                const monthlyGrowth = balance * monthlyReturn;
+                const monthlyFee = balance * monthlyFeeRate;
+                balance += monthlyGrowth;
+                totalFees += monthlyFee;
+            }
+            
+            return { futureValue: balance, feesPaid: totalFees };
+        }
+        
         function calculate() {
             const monthly = parseFloat(document.getElementById('monthly').value);
             const years = parseInt(document.getElementById('years').value);
             const returnRate = parseFloat(document.getElementById('return').value) / 100;
-
-            const lowFee = 0.0015; // 0.15%
-            const highFee = 0.015; // 1.5%
-
-            // Calculate future value with fees
-            const lowFeeReturn = returnRate - lowFee;
-            const highFeeReturn = returnRate - highFee;
-
-            const months = years * 12;
-
-            // Future value formula with monthly contributions
-            const lowFeeTotal = monthly * (Math.pow(1 + lowFeeReturn/12, months) - 1) / (lowFeeReturn/12);
-            const highFeeTotal = monthly * (Math.pow(1 + highFeeReturn/12, months) - 1) / (highFeeReturn/12);
-
-            const totalContributions = monthly * months;
-            const lowFeeGrowth = lowFeeTotal - totalContributions;
-            const highFeeGrowth = highFeeTotal - totalContributions;
-
-            const difference = lowFeeTotal - highFeeTotal;
-
-            // Approximate total fees paid
-            const lowFeePaid = lowFeeTotal * lowFee * years * 0.5; // Rough approximation
-            const highFeePaid = highFeeTotal * highFee * years * 0.5;
-
-            // Update display
-            document.getElementById('low-fee-total').textContent = '$' + lowFeeTotal.toLocaleString('en-US', {maximumFractionDigits: 0});
-            document.getElementById('high-fee-total').textContent = '$' + highFeeTotal.toLocaleString('en-US', {maximumFractionDigits: 0});
-            document.getElementById('low-fee-fees').textContent = '$' + lowFeePaid.toLocaleString('en-US', {maximumFractionDigits: 0});
-            document.getElementById('high-fee-fees').textContent = '$' + highFeePaid.toLocaleString('en-US', {maximumFractionDigits: 0});
-            document.getElementById('difference').textContent = '$' + difference.toLocaleString('en-US', {maximumFractionDigits: 0});
             
+            // 4 fee tiers
+            const fees = [0.0015, 0.01, 0.02, 0.03]; // 0.15%, 1%, 2%, 3%
+            const totalContributions = monthly * years * 12;
+            
+            // Calculate for each tier using accurate fee tracking
+            const results = fees.map(fee => calculateWithFees(monthly, years, returnRate, fee));
+            
+            // Update display
+            document.getElementById('tier1-balance').textContent = '$' + results[0].futureValue.toLocaleString('en-US', {maximumFractionDigits: 0});
+            document.getElementById('tier1-fees').textContent = '$' + results[0].feesPaid.toLocaleString('en-US', {maximumFractionDigits: 0});
+            
+            document.getElementById('tier2-balance').textContent = '$' + results[1].futureValue.toLocaleString('en-US', {maximumFractionDigits: 0});
+            document.getElementById('tier2-fees').textContent = '$' + results[1].feesPaid.toLocaleString('en-US', {maximumFractionDigits: 0});
+            
+            document.getElementById('tier3-balance').textContent = '$' + results[2].futureValue.toLocaleString('en-US', {maximumFractionDigits: 0});
+            document.getElementById('tier3-fees').textContent = '$' + results[2].feesPaid.toLocaleString('en-US', {maximumFractionDigits: 0});
+            
+            document.getElementById('tier4-balance').textContent = '$' + results[3].futureValue.toLocaleString('en-US', {maximumFractionDigits: 0});
+            document.getElementById('tier4-fees').textContent = '$' + results[3].feesPaid.toLocaleString('en-US', {maximumFractionDigits: 0});
+            
+            // Max difference (tier 1 vs tier 4)
+            const maxDifference = results[0].futureValue - results[3].futureValue;
+            document.getElementById('max-difference').textContent = '$' + maxDifference.toLocaleString('en-US', {maximumFractionDigits: 0});
+            
+            // Moderate cost (tier 1 vs tier 2)
+            const moderateCost = results[0].futureValue - results[1].futureValue;
+            document.getElementById('moderate-cost').textContent = '$' + moderateCost.toLocaleString('en-US', {maximumFractionDigits: 0});
+            
+            // Breakdown
             document.getElementById('total-contributions').textContent = '$' + totalContributions.toLocaleString('en-US', {maximumFractionDigits: 0});
-            document.getElementById('low-growth').textContent = '$' + lowFeeGrowth.toLocaleString('en-US', {maximumFractionDigits: 0});
-            document.getElementById('high-growth').textContent = '$' + highFeeGrowth.toLocaleString('en-US', {maximumFractionDigits: 0});
-            document.getElementById('stolen').textContent = '$' + difference.toLocaleString('en-US', {maximumFractionDigits: 0});
-
+            document.getElementById('stolen').textContent = '$' + maxDifference.toLocaleString('en-US', {maximumFractionDigits: 0});
+            
             // Dynamic coach advice
             let advice = '';
-            if (difference > 100000) {
-                advice = `Over ${years} years, high fees would cost you over $${(difference/1000).toFixed(0)}k! That's enough to fund an extra ${Math.floor(difference/50000)} years of retirement. Choose low-cost index funds—it's not even close!`;
-            } else if (difference > 50000) {
-                advice = `High fees would cost you $${(difference/1000).toFixed(0)}k over ${years} years. That's a brand new car, a down payment on a house, or college tuition for a grandkid. Don't let vendors steal your wealth!`;
+            if (maxDifference > 200000) {
+                advice = `Over ${years} years, choosing a 3% fee over 0.15% would cost you over $${(maxDifference/1000).toFixed(0)}k! That's generational wealth you're giving away. Even "moderate" 1% fees cost you $${(moderateCost/1000).toFixed(0)}k compared to ultra low-cost options. Choose Vanguard, Fidelity, or Schwab — it's not even close!`;
+            } else if (maxDifference > 100000) {
+                advice = `High fees would cost you $${(maxDifference/1000).toFixed(0)}k over ${years} years. Even moderate 1% fees cost you $${(moderateCost/1000).toFixed(0)}k compared to ultra low-cost. That's multiple years of retirement income! Don't let vendors steal your wealth!`;
             } else {
-                advice = `Even with smaller contributions, high fees cost you $${(difference/1000).toFixed(0)}k over ${years} years. Every dollar counts! Choose low-cost index funds and keep your money working for YOU, not the vendor.`;
+                advice = `Over ${years} years, the fee difference costs you $${(maxDifference/1000).toFixed(0)}k. Every dollar counts! Choose ultra low-cost index funds and keep your money working for YOU, not the vendor.`;
             }
             document.getElementById('coach-advice').textContent = advice;
-
+            
             // Show results
-            document.getElementById('results').classList.remove('hidden');
-            document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            document.getElementById('results').classList.add('active');
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     </script>
- <!-- Footer -->
-    <footer style="background: #1B3A57; color: white; padding: 32px 20px; margin-top: 48px; text-align: center;">
-        <p style="font-size: 14px; margin-bottom: 12px;">&copy; 2026 TeacherFinCoach. Building Wealth for Educators.</p>
-        <p style="font-size: 12px; color: rgba(255,255,255,0.8); margin-bottom: 8px;">
-            <strong>Educational Purposes Only:</strong> TeacherFinCoach provides general educational information about retirement planning for teachers. 
-            This content does not constitute financial, investment, tax, or legal advice.
-        </p>
-        <p style="font-size: 12px; color: rgba(255,255,255,0.7);">
-            Consult with a qualified financial advisor for personalized guidance. 
-            <a href="terms.html" style="color: #6BC9BC; text-decoration: underline;">Terms & Disclaimers</a>
-        </p>
-    </footer>   
 </body>
 </html>
