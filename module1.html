@@ -10,7 +10,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #06b6d4 100%);
+            background: linear-gradient(135deg, #2E5C8A 0%, #1B3A57 100%);
             min-height: 100vh;
         }
         h1, h2 { font-family: 'Righteous', sans-serif; }
@@ -19,20 +19,20 @@
 <body>
     <div class="min-h-screen bg-gray-50">
         <!-- Header -->
-        <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6">
+        <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6" style="background: linear-gradient(135deg, #2E5C8A 0%, #6BC9BC 100%);">
             <div class="max-w-4xl mx-auto">
                 <div class="flex items-center justify-between mb-2">
                     <a href="dashboard.html" class="text-white hover:text-blue-100 font-medium">← Back to Dashboard</a>
-                    <span class="text-blue-200 text-sm font-semibold">MODULE 1 OF 9</span>
+                    <span class="text-blue-200 text-sm font-semibold">MODULE 1 OF 8</span>
                 </div>
-                <h1 class="text-4xl font-bold mb-2">📊 How Teacher Retirement Systems Actually Work</h1>
-                <p class="text-blue-100 text-lg">Discover the 30% income gap and why your pension alone isn't enough</p>
+                <h1 class="text-4xl font-bold mb-2">📊 Your Pension Isn't Enough: The 30% Gap</h1>
+                <p class="text-blue-100 text-lg">Discover exactly how much you'll be short in retirement</p>
             </div>
         </div>
 
         <div class="max-w-4xl mx-auto p-4 space-y-6">
             <!-- State Selector -->
-            <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-purple-600">
+            <div class="bg-white rounded-xl shadow-md p-6 border-l-4" style="border-left-color: #2E5C8A;">
                 <div class="flex items-start gap-3">
                     <div class="text-3xl">📍</div>
                     <div class="flex-1">
@@ -51,11 +51,11 @@
             </div>
 
             <!-- Important Notice Disclaimer -->
-            <div class="bg-blue-50 border-l-4 border-blue-600 rounded-lg p-5">
+            <div class="bg-blue-50 border-l-4 rounded-lg p-5" style="border-left-color: #2E5C8A;">
                 <div class="flex items-start gap-3">
                     <div class="text-3xl">📋</div>
                     <div>
-                        <div class="font-bold text-lg text-blue-900 mb-2">Important Notice</div>
+                        <div class="font-bold text-lg mb-2" style="color: #2E5C8A;">Important Notice</div>
                         <p class="text-sm text-gray-700 leading-relaxed mb-2">
                             The strategies and examples discussed in this course are for educational purposes only. Teacher Fin Coach does not recommend specific investment products, financial institutions, or vendors.
                         </p>
@@ -77,11 +77,11 @@
             </div>
 
             <!-- Coach Intro -->
-            <div class="bg-blue-50 border-l-4 border-blue-600 rounded-lg p-5">
+            <div class="bg-blue-50 border-l-4 rounded-lg p-5" style="border-left-color: #6BC9BC;">
                 <div class="flex items-start gap-3">
                     <div class="text-3xl">🏀</div>
                     <div>
-                        <div class="font-bold text-xl text-blue-900 mb-2">💬 From Coach Marty:</div>
+                        <div class="font-bold text-xl mb-2" style="color: #2E5C8A;">💬 From Coach Marty:</div>
                         <p class="text-gray-700 leading-relaxed">
                             I spent 31 years teaching PE and coaching basketball in California. For the first 15 years, I thought my <span id="pension-name-1">CalSTRS</span> pension 
                             would be enough for retirement. "Teachers have great benefits," everyone said. Then I actually did the math. 
@@ -147,7 +147,7 @@
                         Understanding how your pension is calculated is crucial. <span id="pension-name-6">CalSTRS</span> uses a simple formula <span id="formula-context">(if you're in CalSTRS 2% at 62, 
                         which covers most teachers hired after 2013)</span>:
                     </p>
-                    <div class="bg-blue-50 border-2 border-blue-300 rounded-xl p-5 mb-4">
+                    <div class="bg-blue-50 border-2 rounded-xl p-5 mb-4" style="border-color: #2E5C8A;">
                         <div class="font-bold text-lg text-gray-900 mb-3"><span id="pension-name-7">CalSTRS</span> Formula <span id="formula-note">(2% at 62)</span>:</div>
                         <div class="bg-white rounded-lg p-4 mb-4 font-mono text-center text-lg">
                             Years of Service × <span id="multiplier-display">2%</span> × Final Compensation = Annual Pension
@@ -156,7 +156,7 @@
                             <!-- Dynamically populated -->
                         </div>
                     </div>
-                    <div id="tier-note" class="bg-purple-50 border-l-4 border-purple-500 rounded-lg p-4">
+                    <div id="tier-note" class="border-l-4 rounded-lg p-4" style="background: #F3E8FF; border-left-color: #A855F7;">
                         <!-- Dynamically populated if needed -->
                     </div>
                 </section>
@@ -246,8 +246,8 @@
                         But as of <strong>January 2025</strong>, that penalty was eliminated. Let me explain what this means for you.
                     </p>
                     
-                    <div class="bg-blue-50 border-2 border-blue-400 rounded-lg p-5 mb-4">
-                        <div class="font-bold text-lg text-blue-900 mb-3">📚 What is the Windfall Elimination Provision (WEP)?</div>
+                    <div class="bg-blue-50 border-2 rounded-lg p-5 mb-4" style="border-color: #2E5C8A;">
+                        <div class="font-bold text-lg mb-3" style="color: #2E5C8A;">📚 What is the Windfall Elimination Provision (WEP)?</div>
                         <p class="text-gray-700 leading-relaxed mb-3">
                             The WEP was a 1983 law that <strong>reduced Social Security benefits</strong> for people who also received a pension 
                             from work where they didn't pay Social Security taxes—like teachers with <span id="pension-name-wep">CalSTRS</span>.
@@ -280,8 +280,8 @@
                         </div>
                     </div>
 
-                    <div class="bg-purple-50 border-2 border-purple-400 rounded-lg p-5 mb-4">
-                        <div class="font-bold text-lg text-purple-900 mb-3">💰 Real-World Impact: What This Means for You</div>
+                    <div class="border-2 rounded-lg p-5 mb-4" style="background: #F3E8FF; border-color: #A855F7;">
+                        <div class="font-bold text-lg mb-3" style="color: #7E22CE;">💰 Real-World Impact: What This Means for You</div>
                         <div class="space-y-3 text-gray-700">
                             <div class="bg-white rounded-lg p-4">
                                 <div class="font-semibold text-gray-900 mb-1">Scenario 1: Career Changer</div>
@@ -339,7 +339,7 @@
                             <div class="text-sm text-gray-700 mb-3">Tax-deferred retirement savings. Money grows tax-free until you withdraw it in retirement.</div>
                             <div class="text-xs text-gray-600">Similar to a 401(k), but specifically for educators and non-profit employees</div>
                         </div>
-                        <div class="bg-purple-50 border-2 border-purple-400 rounded-lg p-5">
+                        <div class="border-2 rounded-lg p-5" style="background: #F3E8FF; border-color: #A855F7;">
                             <div class="text-3xl mb-2">🏦</div>
                             <div class="font-bold text-lg text-gray-900 mb-2">457(b) Account</div>
                             <div class="text-sm text-gray-700 mb-3">Deferred compensation plan. The BEST part: No 10% early withdrawal penalty—access at ANY age when you retire.</div>
@@ -348,14 +348,14 @@
                     </div>
                     <p class="text-gray-700 leading-relaxed">
                         These accounts exist <strong>specifically</strong> to fill the 20-40% income gap your pension leaves behind. 
-                        In Modules 2-9, you'll learn exactly how to use them—how they work, how much to contribute, which vendors to choose, 
+                        In Modules 2-8, you'll learn exactly how to use them—how they work, how much to contribute, which vendors to choose, 
                         and how to actually sign up.
                     </p>
                 </section>
 
                 <section>
                     <h2 class="text-2xl font-bold text-gray-900 mb-3">Coach Marty's Real Talk: My $15,000 Mistake</h2>
-                    <div class="bg-blue-50 border-l-4 border-blue-600 rounded-lg p-5">
+                    <div class="bg-blue-50 border-l-4 rounded-lg p-5" style="border-left-color: #6BC9BC;">
                         <p class="text-gray-700 leading-relaxed mb-3">
                             I'm going to be brutally honest with you. When I first learned about 403(b) accounts, I was in my late 20s. 
                             A colleague showed me the projections. I KNEW I should sign up. But I procrastinated for <strong>TWO FULL YEARS</strong>.
@@ -390,31 +390,31 @@
                 <section>
                     <h2 class="text-2xl font-bold text-gray-900 mb-4">Key Takeaways from Module 1</h2>
                     <div class="space-y-3">
-                        <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border-l-4 border-blue-500">
+                        <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border-l-4" style="border-left-color: #2E5C8A;">
                             <div class="text-2xl">1️⃣</div>
                             <div class="text-gray-700">
                                 <strong><span id="pension-name-11">CalSTRS</span> is a strong pension</strong>, but it only replaces <span id="takeaway-range">50-70%</span> of your income (most teachers never hit the 80% cap)
                             </div>
                         </div>
-                        <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border-l-4 border-blue-500">
+                        <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border-l-4" style="border-left-color: #2E5C8A;">
                             <div class="text-2xl">2️⃣</div>
                             <div class="text-gray-700">
                                 The <strong>30% income gap</strong> is real—$750,000+ in lost income over a typical retirement
                             </div>
                         </div>
-                        <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border-l-4 border-blue-500">
+                        <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border-l-4" style="border-left-color: #2E5C8A;">
                             <div class="text-2xl">3️⃣</div>
                             <div class="text-gray-700">
                                 Your expenses won't drop 30% in retirement (healthcare, travel, inflation all increase costs)
                             </div>
                         </div>
-                        <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border-l-4 border-blue-500">
+                        <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border-l-4" style="border-left-color: #2E5C8A;">
                             <div class="text-2xl">4️⃣</div>
                             <div class="text-gray-700">
                                 <strong>403(b) and 457(b) accounts</strong> exist specifically to fill this gap—they're not optional luxuries
                             </div>
                         </div>
-                        <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border-l-4 border-blue-500">
+                        <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border-l-4" style="border-left-color: #2E5C8A;">
                             <div class="text-2xl">5️⃣</div>
                             <div class="text-gray-700">
                                 Starting early = <strong>massive difference</strong> due to compound growth (even delaying 2 years costs tens of thousands)
@@ -449,18 +449,16 @@
             </div>
         </div>
 
-        <footer class="mt-12 pb-8 text-center text-gray-600">
-            <div class="max-w-4xl mx-auto px-6">
-                <p class="text-sm mb-3">&copy; 2026 TeacherFinCoach. Building Wealth for Educators.</p>
-                <p class="text-xs text-gray-600 mb-2">
-                    <strong>Educational Purposes Only:</strong> Teacher Fin Coach provides general educational information about retirement planning for teachers. 
-                    This content does not constitute financial, investment, tax, or legal advice. All information is for educational purposes only.
-                </p>
-                <p class="text-xs text-gray-500">
-                    Consult with a qualified financial advisor, tax professional, or attorney for personalized guidance based on your individual circumstances. 
-                    <a href="terms.html" class="underline hover:text-gray-700">Terms & Disclaimers</a>
-                </p>
-            </div>
+        <footer style="background: #1B3A57; color: white; padding: 32px 20px; margin-top: 48px; text-align: center;">
+            <p style="font-size: 14px; margin-bottom: 12px;">&copy; 2026 TeacherFinCoach. Building Wealth for Educators.</p>
+            <p style="font-size: 12px; color: rgba(255,255,255,0.8); margin-bottom: 8px;">
+                <strong>Educational Purposes Only:</strong> TeacherFinCoach provides general educational information about retirement planning for teachers. 
+                This content does not constitute financial, investment, tax, or legal advice.
+            </p>
+            <p style="font-size: 12px; color: rgba(255,255,255,0.7);">
+                Consult with a qualified financial advisor for personalized guidance. 
+                <a href="terms.html" style="color: #6BC9BC; text-decoration: underline;">Terms & Disclaimers</a>
+            </p>
         </footer>
     </div>
 
@@ -776,9 +774,9 @@
                     <button onclick="submitQuiz()" ${allAnswered ? '' : 'disabled'}
                             class="w-full py-3 rounded-lg font-semibold transition ${
                                 allAnswered 
-                                ? 'bg-blue-600 hover:bg-blue-700 text-white' 
+                                ? 'text-white' 
                                 : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                            }">
+                            }" style="${allAnswered ? 'background: linear-gradient(135deg, #2E5C8A 0%, #6BC9BC 100%);' : ''}">
                         Submit Quiz
                     </button>
                 </div>`;
@@ -813,9 +811,9 @@
                     `;
                     if (!isCorrect) {
                         html += `
-                            <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg mb-2">
-                                <div class="text-sm font-semibold text-blue-900">Correct answer:</div>
-                                <div class="text-blue-800">${q.opts[q.correct]}</div>
+                            <div class="p-3 border rounded-lg mb-2" style="background: #E8F7F5; border-color: #6BC9BC;">
+                                <div class="text-sm font-semibold" style="color: #2E5C8A;">Correct answer:</div>
+                                <div style="color: #2E5C8A;">${q.opts[q.correct]}</div>
                             </div>
                         `;
                     }
@@ -824,7 +822,7 @@
                 
                 html += `
                     </div>
-                    <button onclick="resetQuiz()" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition">
+                    <button onclick="resetQuiz()" class="w-full text-white py-3 rounded-lg font-semibold transition" style="background: linear-gradient(135deg, #2E5C8A 0%, #6BC9BC 100%);">
                         Retake Quiz
                     </button>
                 `;
@@ -833,7 +831,8 @@
                 if (passed) {
                     const nextBtn = document.getElementById('next-btn');
                     nextBtn.disabled = false;
-                    nextBtn.className = 'bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition';
+                    nextBtn.className = 'text-white px-6 py-3 rounded-lg font-semibold transition';
+                    nextBtn.style.background = 'linear-gradient(135deg, #2E5C8A 0%, #6BC9BC 100%)';
                     nextBtn.onclick = () => window.location.href = 'module2.html';
                 }
             }
@@ -861,17 +860,5 @@
         updateContent('california');
         renderQuiz();
     </script>
- <!-- Footer -->
-    <footer style="background: #1B3A57; color: white; padding: 32px 20px; margin-top: 48px; text-align: center;">
-        <p style="font-size: 14px; margin-bottom: 12px;">&copy; 2026 TeacherFinCoach. Building Wealth for Educators.</p>
-        <p style="font-size: 12px; color: rgba(255,255,255,0.8); margin-bottom: 8px;">
-            <strong>Educational Purposes Only:</strong> TeacherFinCoach provides general educational information about retirement planning for teachers. 
-            This content does not constitute financial, investment, tax, or legal advice.
-        </p>
-        <p style="font-size: 12px; color: rgba(255,255,255,0.7);">
-            Consult with a qualified financial advisor for personalized guidance. 
-            <a href="terms.html" style="color: #6BC9BC; text-decoration: underline;">Terms & Disclaimers</a>
-        </p>
-    </footer>   
 </body>
 </html>
