@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 7: Life Happens - Adjusting Your Plan | TeacherFinCoach</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #2E5C8A 0%, #1B3A57 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        
+        .logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .header-content {
+            flex: 1;
+        }
+        
+        .module-number {
+            color: #6BC9BC;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        
+        h1 {
+            color: #1B3A57;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            color: #64748B;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .content-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: #1B3A57;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #6BC9BC;
+        }
+        
+        h3 {
+            color: #2E5C8A;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 28px 0 16px 0;
+        }
+        
+        h4 {
+            color: #1B3A57;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 20px 0 12px 0;
+        }
+        
+        p {
+            color: #334155;
+            line-height: 1.8;
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+        
+        ul, ol {
+            margin-left: 24px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            color: #334155;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        strong {
+            color: #1B3A57;
+            font-weight: 600;
+        }
+        
+        .warning-box {
+            background: #FEF2F2;
+            border: 3px solid #EF4444;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .warning-box h3 {
+            color: #991B1B;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .warning-box p, .warning-box ul, .warning-box li {
+            color: #7F1D1D;
+        }
+        
+        .success-box {
+            background: #F0FDF4;
+            border: 3px solid #10B981;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .success-box h3 {
+            color: #065F46;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .success-box p, .success-box ul, .success-box li {
+            color: #064E3B;
+        }
+        
+        .highlight-box {
+            background: #FEF3C7;
+            border-left: 4px solid #F59E0B;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .highlight-box p {
+            color: #78350F;
+            margin-bottom: 0;
+        }
+        
+        .info-box {
+            background: #EFF6FF;
+            border: 2px solid #3B82F6;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .info-box h3 {
+            color: #1E40AF;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-box p, .info-box ul, .info-box li {
+            color: #1E3A8A;
+        }
+        
+        .decision-box {
+            background: #F8FAFC;
+            border: 3px solid #6BC9BC;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 25px 0;
+        }
+        
+        .decision-box h4 {
+            color: #065F46;
+            margin-top: 0;
+            font-size: 17px;
+        }
+        
+        .decision-option {
+            background: white;
+            border-left: 4px solid #6BC9BC;
+            padding: 16px;
+            margin: 12px 0;
+            border-radius: 6px;
+        }
+        
+        .decision-option strong {
+            color: #065F46;
+        }
+        
+        .cost-calculator-box {
+            background: #FFF7ED;
+            border: 3px solid #F97316;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .cost-calculator-box h3 {
+            color: #9A3412;
+            margin-top: 0;
+        }
+        
+        .cost-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 6px;
+        }
+        
+        .cost-label {
+            color: #7C2D12;
+            font-weight: 600;
+        }
+        
+        .cost-value {
+            color: #9A3412;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        
+        .total-cost {
+            background: #9A3412;
+            color: white;
+            font-size: 22px;
+            font-weight: 700;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 16px;
+        }
+        
+        .coach-note {
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+            border: 3px solid #0EA5E9;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 30px 0;
+        }
+        
+        .coach-note-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .coach-note-header img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 3px solid #0EA5E9;
+        }
+        
+        .coach-note-title {
+            color: #075985;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        
+        .coach-note-text {
+            color: #0C4A6E;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+        
+        .scenario-box {
+            background: #F0FDF4;
+            border: 2px solid #10B981;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .scenario-title {
+            color: #065F46;
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+        
+        .scenario-content {
+            color: #064E3B;
+            line-height: 1.8;
+        }
+        
+        .key-takeaways-box {
+            background: linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%);
+            border: 3px solid #F97316;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .key-takeaways-box h3 {
+            color: #9A3412;
+            margin-top: 0;
+        }
+        
+        .key-takeaways-box ul {
+            margin-left: 20px;
+        }
+        
+        .key-takeaways-box li {
+            color: #7C2D12;
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+        
+        .quiz-section {
+            margin-top: 40px;
+        }
+        
+        .quiz-question {
+            background: #F8FAFC;
+            border: 2px solid #CBD5E1;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+        
+        .quiz-question-text {
+            color: #1B3A57;
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 16px;
+        }
+        
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px;
+            background: white;
+            border: 2px solid #E2E8F0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .quiz-option:hover {
+            border-color: #6BC9BC;
+            background: #F0FDFA;
+        }
+        
+        .quiz-option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .quiz-option span {
+            color: #334155;
+            font-size: 15px;
+        }
+        
+        .navigation-footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 32px;
+        }
+        
+        .nav-button {
+            flex: 1;
+            padding: 16px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            text-align: center;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .nav-button.primary {
+            background: #6BC9BC;
+            color: white;
+        }
+        
+        .nav-button.primary:hover {
+            background: #59B8AA;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(107, 201, 188, 0.4);
+        }
+        
+        .nav-button.secondary {
+            background: white;
+            color: #2E5C8A;
+            border: 2px solid #2E5C8A;
+        }
+        
+        .nav-button.secondary:hover {
+            background: #2E5C8A;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(46, 92, 138, 0.3);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+        }
+        
+        th {
+            background: #2E5C8A;
+            color: white;
+            padding: 14px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 14px;
+            border-bottom: 1px solid #E2E8F0;
+            color: #334155;
+        }
+        
+        tr:hover {
+            background: #F8FAFC;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            h1 {
+                font-size: 26px;
+            }
+            
+            .navigation-footer {
+                flex-direction: column;
+            }
+            
+            .content-card {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <img src="coach-icon.jpg" alt="Coach Marty" class="logo">
+            <div class="header-content">
+                <div class="module-number">Module 7 of 8</div>
+                <h1>Life Happens: Adjusting Your Plan</h1>
+                <p class="subtitle">How to stay on track through life's curveballs without derailing your retirement</p>
+            </div>
+        </div>
+        
+        <!-- Section 1: Introduction -->
+        <div class="content-card">
+            <h2>The Game Plan Changes. You Don't Quit.</h2>
+            
+            <p>You enrolled. You're contributing. You picked solid low-cost index funds. You're building wealth.</p>
+            
+            <p><strong>Then life happens.</strong></p>
+            
+            <p>Medical bills. Car repairs. Job changes. Divorce. Kids. Market crashes. Caring for aging parents. Unexpected windfalls. The house needs a new roof.</p>
+            
+            <p>Life isn't static. Your financial situation will change—sometimes gradually, sometimes overnight. The question isn't IF you'll face financial challenges. The question is HOW you'll respond when they happen.</p>
+            
+            <div class="coach-note">
+                <div class="coach-note-header">
+                    <img src="coach-icon.jpg" alt="Coach Marty">
+                    <span class="coach-note-title">Coach Marty says:</span>
+                </div>
+                <div class="coach-note-text">
+                    In basketball, you don't abandon your game plan the first time the other team scores. You adjust, adapt, and keep playing. Same with retirement savings. Life will test you—medical emergencies, job changes, unexpected expenses. The teachers who retire comfortably aren't the ones who never faced obstacles. They're the ones who stayed in the game and adjusted their strategy without quitting.
+                </div>
+            </div>
+            
+            <h3>This Module Covers:</h3>
+            
+            <ul>
+                <li><strong>When to adjust contributions</strong> (and when NOT to)</li>
+                <li><strong>403(b) and 457(b) loans</strong> vs. hardship withdrawals</li>
+                <li><strong>Job changes and rollovers</strong> (don't cash out!)</li>
+                <li><strong>Life events</strong> that require beneficiary updates</li>
+                <li><strong>Market volatility</strong> and staying the course</li>
+                <li><strong>Getting back on track</strong> after setbacks</li>
+            </ul>
+            
+            <p>By the end of this module, you'll know exactly how to navigate life's financial challenges WITHOUT destroying 30 years of compound growth.</p>
+        </div>
+        
+        <!-- Section 2: When to Pause or Reduce Contributions -->
+        <div class="content-card">
+            <h2>Should I Pause or Reduce My Contributions?</h2>
+            
+            <p>This is the #1 question teachers ask when facing financial stress. Here's the honest answer:</p>
+            
+            <div class="highlight-box">
+                <p><strong>Pausing contributions should be your LAST resort, not your first move.</strong> Every month you stop contributing is a month of lost compounding you can never get back.</p>
+            </div>
+            
+            <h3>Decision Framework: Should You Reduce Contributions?</h3>
+            
+            <div class="decision-box">
+                <h4>✅ YES, Consider Reducing If:</h4>
+                
+                <div class="decision-option">
+                    <strong>1. You have ZERO emergency fund and face immediate bills</strong><br>
+                    Example: $2,000 car repair and you have $50 in savings. Temporarily reduce contributions to build a $1,000 starter emergency fund, then resume.
+                </div>
+                
+                <div class="decision-option">
+                    <strong>2. You're drowning in high-interest debt (credit cards >15%)</strong><br>
+                    Example: $8,000 credit card debt at 22% APR. Temporarily reduce contributions to aggressively pay off the debt in 12-18 months, then resume at HIGHER rate.
+                </div>
+                
+                <div class="decision-option">
+                    <strong>3. You face a TRUE financial emergency you can't solve any other way</strong><br>
+                    Example: Medical emergency not covered by insurance, job loss, family crisis. Reduce to minimum (3-5%) while dealing with emergency, then ramp back up ASAP.
+                </div>
+                
+                <div class="decision-option">
+                    <strong>4. You're temporarily in survival mode (laid off, on unpaid leave)</strong><br>
+                    Example: Taking unpaid maternity leave for 3 months. Pause contributions during unpaid period, resume immediately when paychecks restart.
+                </div>
+            </div>
+            
+            <div class="warning-box">
+                <h3>⚠️ NEVER Reduce Contributions For:</h3>
+                <ul>
+                    <li><strong>Vacations:</strong> That's stealing from Future You to fund a trip</li>
+                    <li><strong>Wants vs. needs:</strong> New car, bigger TV, home renovations (unless critical repairs)</li>
+                    <li><strong>Market downturns:</strong> This is the WORST time to stop—you're buying low!</li>
+                    <li><strong>"I'll start saving later":</strong> Later never comes. Compounding needs TIME.</li>
+                    <li><strong>Short-term cash crunches:</strong> Tighten the budget elsewhere first</li>
+                    <li><strong>Keeping up with neighbors:</strong> They're probably broke. You're building wealth.</li>
+                </ul>
+            </div>
+            
+            <h3>The 6-Month Rule</h3>
+            
+            <p>Here's a simple test: <strong>Can you solve this problem in 6 months or less without touching retirement savings?</strong></p>
+            
+            <ul>
+                <li><strong>YES:</strong> Don't reduce contributions. Tighten the budget, pick up overtime, sell stuff—find another way.</li>
+                <li><strong>NO:</strong> If it's a true 12+ month crisis, consider TEMPORARILY reducing to minimum (3-5%) while you solve it.</li>
+            </ul>
+            
+            <div class="coach-note">
+                <div class="coach-note-header">
+                    <img src="coach-icon.jpg" alt="Coach Marty">
+                    <span class="coach-note-title">Coach Marty says:</span>
+                </div>
+                <div class="coach-note-text">
+                    Too many teachers pause contributions for a small emergency and never restart. Five years later, they've missed out on tens of thousands in contributions and growth. Don't let that be you. If you MUST reduce, set a specific date to resume and stick to it like a game plan. Better yet—reduce to 3-5% instead of pausing completely. STAY IN THE GAME.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: 403(b) and 457(b) Loans -->
+        <div class="content-card">
+            <h2>Borrowing From Your Retirement: Loans vs. Withdrawals</h2>
+            
+            <p>If you're facing a financial emergency and have exhausted all other options, you might consider accessing your retirement accounts. Here's what you need to know:</p>
+            
+            <h3>403(b) and 457(b) Loans</h3>
+            
+            <p>Many 403(b) plans (and some 457(b) plans) allow you to <strong>borrow money from your own account</strong> and pay yourself back with interest.</p>
+            
+            <h4>How Loans Work:</h4>
+            
+            <ul>
+                <li><strong>Maximum loan amount:</strong> Lesser of $50,000 or 50% of your vested balance</li>
+                <li><strong>Repayment period:</strong> 5 years for most loans (up to 15 years for home purchase)</li>
+                <li><strong>Interest rate:</strong> Usually prime rate + 1-2% (you pay yourself this interest)</li>
+                <li><strong>Repayment method:</strong> Automatic payroll deductions</li>
+                <li><strong>No credit check:</strong> It's your money—approval is usually automatic</li>
+                <li><strong>No tax or penalty</strong> as long as you repay on time</li>
+            </ul>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>403(b) Loan</th>
+                        <th>457(b) Loan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Loan allowed?</strong></td>
+                        <td>Usually yes (check your plan)</td>
+                        <td>Sometimes (less common)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Max loan amount</strong></td>
+                        <td>$50K or 50% of balance</td>
+                        <td>$50K or 50% of balance</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Repayment period</strong></td>
+                        <td>5 years (15 for home)</td>
+                        <td>5 years (if allowed)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>If you leave job before repaid</strong></td>
+                        <td>Full balance due (or becomes taxable withdrawal)</td>
+                        <td>Full balance due (or becomes taxable)</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h4>The Hidden Costs of Loans:</h4>
+            
+            <div class="warning-box">
+                <h3>⚠️ Why Loans Aren't Free Money</h3>
+                <p>Even though you're "paying yourself back," retirement loans cost you in these ways:</p>
+                <ul>
+                    <li><strong>Lost growth:</strong> The money you borrow isn't invested—you miss market gains</li>
+                    <li><strong>Double taxation (403(b) loans):</strong> You repay with after-tax dollars, then pay taxes again when you withdraw in retirement</li>
+                    <li><strong>Reduced contributions:</strong> Loan payments often replace or reduce your regular contributions</li>
+                    <li><strong>Job change risk:</strong> If you leave your district, the full loan is due immediately (usually 60-90 days)</li>
+                </ul>
+            </div>
+            
+            <h3>Hardship Withdrawals (Last Resort ONLY)</h3>
+            
+            <p>If your plan doesn't allow loans (or you don't qualify), you might be able to take a <strong>hardship withdrawal</strong>. This is NOT a loan—you're permanently removing money from your account.</p>
+            
+            <h4>Hardship Withdrawal Rules:</h4>
+            
+            <ul>
+                <li><strong>IRS-approved hardships only:</strong> Medical expenses, preventing eviction/foreclosure, funeral costs, home repairs (disaster damage), education expenses</li>
+                <li><strong>403(b) penalty:</strong> 10% early withdrawal penalty if under 59½ PLUS regular income tax</li>
+                <li><strong>457(b) advantage:</strong> NO 10% penalty at any age (you still pay income tax)</li>
+                <li><strong>Can't repay it:</strong> The money is GONE from your retirement account forever</li>
+            </ul>
+            
+            <div class="cost-calculator-box">
+                <h3>💰 True Cost of a $10,000 Hardship Withdrawal</h3>
+                
+                <p><strong>Scenario:</strong> 35-year-old teacher, 22% tax bracket, withdraws $10,000 from 403(b)</p>
+                
+                <div class="cost-row">
+                    <span class="cost-label">Amount withdrawn:</span>
+                    <span class="cost-value">$10,000</span>
+                </div>
+                
+                <div class="cost-row">
+                    <span class="cost-label">Federal income tax (22%):</span>
+                    <span class="cost-value">-$2,200</span>
+                </div>
+                
+                <div class="cost-row">
+                    <span class="cost-label">Early withdrawal penalty (10%):</span>
+                    <span class="cost-value">-$1,000</span>
+                </div>
+                
+                <div class="cost-row">
+                    <span class="cost-label">State income tax (~5%):</span>
+                    <span class="cost-value">-$500</span>
+                </div>
+                
+                <div class="cost-row">
+                    <span class="cost-label"><strong>Cash you actually receive:</strong></span>
+                    <span class="cost-value">$6,300</span>
+                </div>
+                
+                <div class="cost-row">
+                    <span class="cost-label">Lost growth over 30 years (8% return):</span>
+                    <span class="cost-value">-$100,627</span>
+                </div>
+                
+                <div class="total-cost">
+                    TOTAL ACTUAL COST: $110,627
+                </div>
+                
+                <p style="margin-top: 20px; color: #7C2D12;"><strong>You got $6,300 in your pocket. It cost you $110,627 in retirement savings.</strong> That's why hardship withdrawals are absolutely the last resort.</p>
+            </div>
+            
+            <h3>457(b): The Better Emergency Option</h3>
+            
+            <p>This is one reason 457(b) plans are so valuable: <strong>No 10% early withdrawal penalty at any age.</strong></p>
+            
+            <p>If you separate from service (leave your job), you can withdraw from your 457(b) penalty-free, even if you're 35 years old. You still pay regular income tax, but you avoid the brutal 10% penalty.</p>
+            
+            <div class="highlight-box">
+                <p><strong>Strategy:</strong> If you have both 403(b) and 457(b), use your 457(b) as your "emergency backup" since there's no penalty. Touch your 403(b) only after exhausting all other options.</p>
+            </div>
+            
+            <div class="coach-note">
+                <div class="coach-note-header">
+                    <img src="coach-icon.jpg" alt="Coach Marty">
+                    <span class="coach-note-title">Coach Marty says:</span>
+                </div>
+                <div class="coach-note-text">
+                    Here's the brutal truth: Taking a hardship withdrawal for anything other than a life-or-death emergency is stealing from your 65-year-old self to give money to your current self. That $10,000 withdrawal? It could've been $100,000+ in retirement. Build an emergency fund. Avoid debt. Protect your retirement accounts like they're sacred—because they are.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 4: Job Changes and Rollovers -->
+        <div class="content-card">
+            <h2>Changing Jobs? Don't Touch That Money!</h2>
+            
+            <p>When you leave your school district—whether you're moving to another district, switching careers, or retiring—you have important decisions to make about your 403(b) and 457(b) accounts.</p>
+            
+            <h3>Your 4 Rollover Options</h3>
+            
+            <div class="info-box">
+                <h3>Option 1: Leave It Where It Is</h3>
+                <p><strong>How it works:</strong> Your money stays invested with your old district's vendor</p>
+                <p style="margin-top: 12px;"><strong>Pros:</strong></p>
+                <ul>
+                    <li>No action required—easiest option</li>
+                    <li>Familiar platform</li>
+                    <li>No risk of missing deadlines or making mistakes</li>
+                </ul>
+                <p style="margin-top: 12px;"><strong>Cons:</strong></p>
+                <ul>
+                    <li>Harder to track multiple old accounts over time</li>
+                    <li>May have limited investment options or higher fees</li>
+                    <li>Can't make new contributions</li>
+                </ul>
+                <p style="margin-top: 12px;"><strong>Best for:</strong> If you have a great low-cost vendor (Fidelity, Vanguard) and don't mind managing multiple accounts</p>
+            </div>
+            
+            <div class="info-box">
+                <h3>Option 2: Roll Over to New Employer's Plan</h3>
+                <p><strong>How it works:</strong> Transfer your old 403(b)/457(b) into your new district's plan</p>
+                <p style="margin-top: 12px;"><strong>Pros:</strong></p>
+                <ul>
+                    <li>Consolidates everything in one place</li>
+                    <li>Easier to manage and track</li>
+                    <li>Can continue contributing to the same account</li>
+                </ul>
+                <p style="margin-top: 12px;"><strong>Cons:</strong></p>
+                <ul>
+                    <li>New plan might have higher fees or worse investment options</li>
+                    <li>Some plans don't accept rollovers</li>
+                    <li>May lose access to unique funds from old plan</li>
+                </ul>
+                <p style="margin-top: 12px;"><strong>Best for:</strong> If your new district has excellent low-cost options and you want everything consolidated</p>
+            </div>
+            
+            <div class="info-box">
+                <h3>Option 3: Roll Over to an IRA</h3>
+                <p><strong>How it works:</strong> Transfer your 403(b) to a Traditional IRA, or your 457(b) to a Traditional IRA</p>
+                <p style="margin-top: 12px;"><strong>Pros:</strong></p>
+                <ul>
+                    <li>Complete investment freedom—any fund or stock you want</li>
+                    <li>Often lower fees than employer plans</li>
+                    <li>Full control over vendor selection (Fidelity, Vanguard, Schwab)</li>
+                    <li>Consolidates old 403(b)s from multiple districts</li>
+                </ul>
+                <p style="margin-top: 12px;"><strong>Cons:</strong></p>
+                <ul>
+                    <li>Loses 457(b) penalty-free withdrawal advantage (becomes subject to 10% penalty before 59½)</li>
+                    <li>Can't take loans from IRAs</li>
+                    <li>Requires more active management</li>
+                </ul>
+                <p style="margin-top: 12px;"><strong>Best for:</strong> If you want maximum investment control and lower fees, and you're rolling over a 403(b) (think twice before rolling a 457(b))</p>
+            </div>
+            
+            <div class="warning-box">
+                <h3>❌ Option 4: CASH OUT (Don't Do This!)</h3>
+                <p><strong>How it works:</strong> Take the money as a lump sum</p>
+                <p style="margin-top: 12px;"><strong>"Pros":</strong> You get cash immediately (terrible idea)</p>
+                <p style="margin-top: 12px;"><strong>Cons:</strong></p>
+                <ul>
+                    <li>Federal income tax + 10% penalty (403(b)) or just federal tax (457(b))</li>
+                    <li>Lose decades of compound growth</li>
+                    <li>Destroys your retirement security</li>
+                    <li>Cannot undo this decision</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Example disaster:</strong> Cash out $50,000 at age 35. After taxes and penalties, you get ~$32,000. That $50,000 would've grown to $500,000+ by age 65. You just traded half a million dollars for thirty-two thousand.</p>
+                <p style="margin-top: 15px;"><strong>NEVER cash out. EVER.</strong></p>
+            </div>
+            
+            <h3>How to Do a Rollover (The Right Way)</h3>
+            
+            <p>Follow these steps to avoid taxes and penalties:</p>
+            
+            <ol>
+                <li><strong>Choose your destination:</strong> New employer plan or IRA at Fidelity/Vanguard/Schwab</li>
+                <li><strong>Open the new account</strong> (if rolling to IRA)</li>
+                <li><strong>Request a DIRECT rollover:</strong> Tell your old vendor to send the money directly to your new account (NOT to you)</li>
+                <li><strong>Complete rollover paperwork:</strong> Both old and new institutions will have forms</li>
+                <li><strong>Track the transfer:</strong> Usually takes 2-4 weeks</li>
+                <li><strong>Verify deposit:</strong> Log into new account and confirm money arrived</li>
+                <li><strong>Invest the funds:</strong> Don't leave it sitting in cash!</li>
+            </ol>
+            
+            <div class="warning-box">
+                <h3>⚠️ Direct vs. Indirect Rollover</h3>
+                <p><strong>DIRECT rollover:</strong> Old vendor sends money directly to new account. Clean, simple, no taxes or penalties.</p>
+                <p style="margin-top: 12px;"><strong>INDIRECT rollover:</strong> Vendor sends YOU a check. You have 60 days to deposit it into another retirement account or you face taxes + penalties. They withhold 20% for taxes. MESSY. Risky.</p>
+                <p style="margin-top: 12px;"><strong>Always choose DIRECT.</strong> Never let them send you a check.</p>
+            </div>
+            
+            <div class="scenario-box">
+                <div class="scenario-title">📖 Real Example: Mike's Rollover</div>
+                <div class="scenario-content">
+                    <p>Mike taught in California for 8 years, then moved to Texas for a new teaching job. He had $62,000 in his California 403(b) with a high-fee vendor (1.2% annual fee).</p>
+                    
+                    <p style="margin-top: 12px;"><strong>What Mike did:</strong></p>
+                    <ul>
+                        <li>Opened a Traditional IRA at Fidelity</li>
+                        <li>Requested a direct rollover from his old 403(b) vendor</li>
+                        <li>Money transferred in 3 weeks</li>
+                        <li>Invested in low-cost index funds (0.04% fee instead of 1.2%)</li>
+                    </ul>
+                    
+                    <p style="margin-top: 12px;"><strong>The impact:</strong> By switching from 1.2% fees to 0.04% fees, Mike will save ~$200,000 over 30 years on a $62,000 balance. The rollover saved his retirement.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 5: Life Events Requiring Updates -->
+        <div class="content-card">
+            <h2>Major Life Events: What to Update</h2>
+            
+            <p>Certain life events require you to update your retirement accounts. Don't skip these steps—they protect you and your loved ones.</p>
+            
+            <h3>Marriage</h3>
+            
+            <div class="success-box">
+                <h3>✅ Action Items:</h3>
+                <ul>
+                    <li><strong>Update beneficiaries:</strong> Add your spouse as primary beneficiary (unless you have kids and want to split it)</li>
+                    <li><strong>Review contribution strategy:</strong> Dual income = higher combined savings potential</li>
+                    <li><strong>Coordinate accounts:</strong> Make sure you both know where all retirement accounts are</li>
+                    <li><strong>Consider spousal IRA:</strong> If one spouse doesn't work, you can still contribute to an IRA for them</li>
+                </ul>
+            </div>
+            
+            <h3>Divorce</h3>
+            
+            <div class="warning-box">
+                <h3>⚠️ Action Items:</h3>
+                <ul>
+                    <li><strong>Update beneficiaries IMMEDIATELY:</strong> Remove ex-spouse (unless court order requires otherwise)</li>
+                    <li><strong>QDROs (Qualified Domestic Relations Orders):</strong> If divorce settlement splits retirement assets, get a QDRO drafted by a lawyer to avoid taxes/penalties</li>
+                    <li><strong>Restart contributions if you paused:</strong> Divorce is expensive, but don't abandon retirement savings</li>
+                    <li><strong>Update contact information:</strong> If you moved, update address with vendors</li>
+                </ul>
+            </div>
+            
+            <h3>Having Children (Birth or Adoption)</h3>
+            
+            <div class="success-box">
+                <h3>✅ Action Items:</h3>
+                <ul>
+                    <li><strong>Add children as beneficiaries:</strong> Primary or contingent, depending on your wishes</li>
+                    <li><strong>Name a guardian:</strong> Who manages the money if something happens to you before kids are adults?</li>
+                    <li><strong>Resist the temptation to pause contributions:</strong> Kids are expensive, but Future You needs this money too</li>
+                    <li><strong>Consider 529 plans:</strong> After maxing emergency fund and retirement, save for college</li>
+                </ul>
+            </div>
+            
+            <h3>Death of a Beneficiary</h3>
+            
+            <div class="warning-box">
+                <h3>⚠️ Action Items:</h3>
+                <ul>
+                    <li><strong>Update beneficiaries immediately:</strong> Promote contingent to primary, add new contingent</li>
+                    <li><strong>Review percentages:</strong> If splitting between multiple people, adjust allocations</li>
+                    <li><strong>Don't leave it blank:</strong> Always have primary AND contingent beneficiaries listed</li>
+                </ul>
+            </div>
+            
+            <h3>Buying a Home</h3>
+            
+            <div class="info-box">
+                <h3>💡 Smart Strategy:</h3>
+                <ul>
+                    <li><strong>Don't raid retirement for a down payment:</strong> That's robbing Future You</li>
+                    <li><strong>If you MUST reduce contributions temporarily:</strong> Only during the saving-for-down-payment phase (12-24 months max), then resume at higher rate after closing</li>
+                    <li><strong>First-time homebuyer exception:</strong> You can withdraw up to $10,000 from an IRA penalty-free (once in lifetime)—but you still pay taxes and lose growth</li>
+                    <li><strong>Better option:</strong> Save down payment from current income, keep retirement contributions going</li>
+                </ul>
+            </div>
+            
+            <h3>Caring for Aging Parents</h3>
+            
+            <div class="highlight-box">
+                <p><strong>The sandwich generation struggle:</strong> You're supporting kids AND aging parents. Don't sacrifice your retirement—you can't borrow for retirement like kids can borrow for college.</p>
+            </div>
+            
+            <ul>
+                <li><strong>Explore other resources first:</strong> Medicare, Medicaid, VA benefits, long-term care insurance</li>
+                <li><strong>Set boundaries:</strong> Help within your means, but don't destroy your financial future</li>
+                <li><strong>Family meeting:</strong> Siblings share the financial burden if possible</li>
+                <li><strong>Keep contributing:</strong> Even 3-5% is better than zero</li>
+            </ul>
+        </div>
+        
+        <!-- Section 6: Market Volatility -->
+        <div class="content-card">
+            <h2>Market Crashes: Your Buying Opportunity</h2>
+            
+            <p>The market WILL crash while you're investing. It's not "if," it's "when." And when it happens, here's what you need to know:</p>
+            
+            <h3>What Happens During a Market Crash</h3>
+            
+            <ul>
+                <li>Your account balance drops 20-40% (or more)</li>
+                <li>The news is terrifying</li>
+                <li>Your colleagues panic and stop contributing</li>
+                <li>You're tempted to sell everything and "wait for it to recover"</li>
+            </ul>
+            
+            <div class="warning-box">
+                <h3>⚠️ The WRONG Move: Panic Selling</h3>
+                <p>When you sell during a crash, you:</p>
+                <ul>
+                    <li>Lock in your losses permanently</li>
+                    <li>Miss the recovery (which often happens fast)</li>
+                    <li>Destroy decades of compound growth</li>
+                    <li>Guarantee a poor retirement</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Historical fact:</strong> Every market crash in history has eventually recovered. Every single one. The S&P 500 has always made new highs. Always.</p>
+            </div>
+            
+            <div class="success-box">
+                <h3>✅ The RIGHT Move: Stay the Course (or Invest MORE)</h3>
+                <p><strong>When the market crashes, you should:</strong></p>
+                <ul>
+                    <li><strong>Keep contributing:</strong> You're now buying shares at a discount</li>
+                    <li><strong>Increase contributions if possible:</strong> This is the BEST time to invest</li>
+                    <li><strong>Ignore your balance:</strong> Don't even look at it for 6-12 months</li>
+                    <li><strong>Remember your timeline:</strong> You're not retiring for 20-30 years—you have TIME</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Think of it this way:</strong> If your favorite grocery store put everything on sale for 40% off, would you stop shopping? No! You'd buy MORE. Same with stocks during a crash.</p>
+            </div>
+            
+            <h3>Historical Market Performance</h3>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Market Event</th>
+                        <th>Year</th>
+                        <th>Market Drop</th>
+                        <th>Time to Recover</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2008 Financial Crisis</td>
+                        <td>2008-2009</td>
+                        <td>-57%</td>
+                        <td>4 years</td>
+                    </tr>
+                    <tr>
+                        <td>Dot-com Crash</td>
+                        <td>2000-2002</td>
+                        <td>-49%</td>
+                        <td>5 years</td>
+                    </tr>
+                    <tr>
+                        <td>COVID-19 Crash</td>
+                        <td>2020</td>
+                        <td>-34%</td>
+                        <td>5 months</td>
+                    </tr>
+                    <tr>
+                        <td>Black Monday</td>
+                        <td>1987</td>
+                        <td>-22% (in 1 day!)</td>
+                        <td>2 years</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p><strong>Notice the pattern:</strong> Every crash recovered. Investors who stayed invested made their money back (and more). Those who panic-sold locked in losses forever.</p>
+            
+            <div class="coach-note">
+                <div class="coach-note-header">
+                    <img src="coach-icon.jpg" alt="Coach Marty">
+                    <span class="coach-note-title">Coach Marty says:</span>
+                </div>
+                <div class="coach-note-text">
+                    During the 2008 crash, teachers who kept contributing watched their balances drop 40%. It was brutal. But those who stayed the course? The shares they bought at rock-bottom prices in 2009 are now worth 5-6 times what they paid. That crash made them WEALTHY—because they didn't panic. The market WILL crash again. Don't be the teacher who sells. Be the teacher who stays in the game and buys the discount.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 7: Getting Back on Track -->
+        <div class="content-card">
+            <h2>Getting Back on Track After Setbacks</h2>
+            
+            <p>Maybe you had to pause contributions during a crisis. Maybe you cashed out a 403(b) early in your career (ouch). Maybe you didn't start until your 40s.</p>
+            
+            <p><strong>It's not too late. Here's how to get back in the game:</strong></p>
+            
+            <h3>Step 1: Restart Contributions Immediately</h3>
+            
+            <p>Don't wait for the "perfect time." Don't wait until you have $5,000 saved. Don't wait until debt is paid off.</p>
+            
+            <p><strong>Start NOW, even if it's just 3%.</strong> You can increase it later. The key is to START.</p>
+            
+            <h3>Step 2: Set a Clear Resumption Plan</h3>
+            
+            <p>If you reduced or paused contributions during an emergency, set a specific date to resume:</p>
+            
+            <ul>
+                <li><strong>Example 1:</strong> "I'll resume 10% contributions on January 1, 2027 (after car loan is paid off in December 2026)"</li>
+                <li><strong>Example 2:</strong> "I'll increase from 3% to 8% when I return from unpaid maternity leave in April"</li>
+                <li><strong>Example 3:</strong> "I'll contribute an extra 2% every year for the next 5 years to catch up"</li>
+            </ul>
+            
+            <p>Write it down. Set a calendar reminder. COMMIT to the plan.</p>
+            
+            <h3>Step 3: Redirect "Found Money" to Retirement</h3>
+            
+            <p>Anytime you free up cash flow, redirect it to retirement instead of lifestyle inflation:</p>
+            
+            <div class="success-box">
+                <h3>✅ Found Money Opportunities:</h3>
+                <ul>
+                    <li><strong>Debt paid off:</strong> Car loan done? Redirect that $350/month to 403(b)</li>
+                    <li><strong>Raise or step increase:</strong> Increase contribution by 2-3%</li>
+                    <li><strong>Spouse gets a job/raise:</strong> Boost contributions with new income</li>
+                    <li><strong>Kids done with daycare:</strong> $1,500/month freed up? Boom—retirement</li>
+                    <li><strong>Kids done with college:</strong> $500/month? Straight to 403(b)</li>
+                    <li><strong>Tax refund:</strong> One-time contribution to catch up</li>
+                    <li><strong>Inheritance or windfall:</strong> Max out IRA, increase 403(b) contributions</li>
+                </ul>
+            </div>
+            
+            <h3>Step 4: Catch-Up Contributions After Age 50</h3>
+            
+            <p>Once you turn 50, the IRS allows you to contribute EXTRA to retirement accounts:</p>
+            
+            <ul>
+                <li><strong>403(b):</strong> $24,500 standard + $8,000 catch-up = <strong>$32,500 total</strong></li>
+                <li><strong>457(b):</strong> $24,500 standard + $8,000 catch-up = <strong>$32,500 total</strong></li>
+                <li><strong>Both accounts:</strong> Up to $65,000/year if you max both out</li>
+            </ul>
+            
+            <p>If you got a late start or had to pause for several years, catch-up contributions are your second chance.</p>
+            
+            <div class="scenario-box">
+                <div class="scenario-title">📖 Real Example: Lisa's Comeback</div>
+                <div class="scenario-content">
+                    <p>Lisa started teaching at 25 but didn't enroll in her 403(b) until age 42 (17 years lost). She kicked herself for waiting so long.</p>
+                    
+                    <p style="margin-top: 12px;"><strong>Her comeback plan:</strong></p>
+                    <ul>
+                        <li>Age 42-50: Contribute 15% ($9,750/year on $65K salary)</li>
+                        <li>Age 50-65: Max out with catch-up ($32,500/year)</li>
+                        <li>Total invested: $565,500 over 23 years</li>
+                    </ul>
+                    
+                    <p style="margin-top: 12px;"><strong>Result at age 65:</strong> ~$1.3 million (at 8% average return)</p>
+                    
+                    <p style="margin-top: 12px;"><strong>Lesson:</strong> She didn't have 40 years to save, but aggressive contributions in her final 23 years still built a solid retirement. It's NEVER too late.</p>
+                </div>
+            </div>
+            
+            <h3>Step 5: Automate the Increase</h3>
+            
+            <p>Set a recurring calendar reminder every September to increase your contribution by 1-2%. Or switch to percentage-based contributions so raises automatically increase your savings.</p>
+            
+            <p><strong>The goal:</strong> Get to 15-20% total retirement savings (including pension) as fast as possible, then maintain it for life.</p>
+        </div>
+        
+        <!-- Section 8: Quick Decision Guide -->
+        <div class="content-card">
+            <h2>Quick Decision Guide: What Should I Do?</h2>
+            
+            <p>Use this guide when life throws you a curveball:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Situation</th>
+                        <th>What to Do</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Market crashes 30%</strong></td>
+                        <td>Keep contributing (or increase if possible). Don't sell. You're buying low.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>$3,000 car repair, no emergency fund</strong></td>
+                        <td>Use credit card or small personal loan, DON'T touch retirement. Pay it off fast.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>$15,000 medical bill</strong></td>
+                        <td>Payment plan with hospital, negotiate bill, use 457(b) if truly no other option (no penalty).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Laid off for 3 months</strong></td>
+                        <td>Pause contributions if needed, restart IMMEDIATELY when employed again.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Got a 5% raise</strong></td>
+                        <td>Increase contribution by 2-3%. You won't miss it.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Paid off car loan</strong></td>
+                        <td>Redirect entire payment amount to retirement. Keep same budget.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Getting married</strong></td>
+                        <td>Update beneficiaries immediately. Coordinate dual-income savings strategy.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Getting divorced</strong></td>
+                        <td>Update beneficiaries immediately (remove ex unless court order says otherwise).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Changing school districts</strong></td>
+                        <td>Roll over old 403(b)/457(b) to new plan or IRA. NEVER cash out.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Want to buy a new car</strong></td>
+                        <td>Save from current income. DON'T reduce retirement contributions for wants.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kids starting college</strong></td>
+                        <td>They can borrow for college. You can't borrow for retirement. Keep contributing.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Unexpected $20K inheritance</strong></td>
+                        <td>Max out Roth IRA ($7,000), emergency fund boost ($8K), increase 403(b) contributions.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Key Takeaways -->
+        <div class="content-card">
+            <div class="key-takeaways-box">
+                <h3>📌 Key Takeaways</h3>
+                <ul>
+                    <li>Pausing contributions should be your LAST resort—every month costs you compounding growth</li>
+                    <li>Use the 6-month rule: If you can solve it in 6 months, DON'T touch retirement savings</li>
+                    <li>Never reduce for wants, vacations, or keeping up with neighbors—only for TRUE emergencies</li>
+                    <li>403(b) and 457(b) loans let you borrow from yourself, but they have hidden costs (lost growth, double taxation)</li>
+                    <li>Hardship withdrawals are the absolute last resort—$10K withdrawal costs $110K+ in lost retirement savings</li>
+                    <li>457(b) has NO early withdrawal penalty, making it better for emergencies than 403(b)</li>
+                    <li>When changing jobs, NEVER cash out—roll over to new plan or IRA via DIRECT rollover</li>
+                    <li>Update beneficiaries after marriage, divorce, births, adoptions, and deaths—don't leave accounts unprotected</li>
+                    <li>Market crashes are buying opportunities, not selling signals—keep contributing or increase if possible</li>
+                    <li>After setbacks, restart contributions immediately (even at 3%), redirect "found money," use catch-up contributions after 50</li>
+                    <li>The teachers who retire comfortably aren't the ones who never faced obstacles—they're the ones who stayed in the game</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Quiz -->
+        <div class="content-card">
+            <div class="quiz-section">
+                <h3>🧠 Quick Knowledge Check</h3>
+                
+                <div class="quiz-question">
+                    <div class="quiz-question-text">1. When should you consider pausing or reducing retirement contributions?</div>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="a">
+                            <span>Anytime you want to buy something big</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="b">
+                            <span>When the stock market crashes</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="c">
+                            <span>Only for true financial emergencies you can't solve any other way</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="d">
+                            <span>Whenever money feels tight</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <div class="quiz-question-text">2. What's the main advantage of a 457(b) over a 403(b) for emergency withdrawals?</div>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" value="a">
+                            <span>You can withdraw unlimited amounts tax-free</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" value="b">
+                            <span>457(b) has NO 10% early withdrawal penalty at any age after separation from service</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" value="c">
+                            <span>457(b) allows you to avoid income taxes on withdrawals</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" value="d">
+                            <span>There's no difference between the two</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <div class="quiz-question-text">3. What should you do when the market crashes and your balance drops 30%?</div>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" value="a">
+                            <span>Immediately sell everything and wait for the market to recover</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" value="b">
+                            <span>Stop contributing until the market recovers</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" value="c">
+                            <span>Keep contributing (or increase if possible)—you're buying shares at a discount</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" value="d">
+                            <span>Cash out your account to avoid further losses</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <div class="quiz-question-text">4. When changing jobs, what should you do with your old 403(b) or 457(b)?</div>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="a">
+                            <span>Cash it out and use the money for moving expenses</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="b">
+                            <span>Leave it where it is, roll it to new employer plan, or roll to IRA—but NEVER cash out</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="c">
+                            <span>You lose the money when you leave your job</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="d">
+                            <span>Wait 5 years before deciding what to do</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation Footer -->
+        <div class="navigation-footer">
+            <a href="module6.html" class="nav-button secondary">← Previous: Enrollment Step-by-Step</a>
+            <a href="module8.html" class="nav-button primary">Next: Your Retirement Game Plan →</a>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer style="background: #1B3A57; color: white; padding: 32px 20px; margin-top: 48px; text-align: center;">
+        <p style="font-size: 14px; margin-bottom: 12px;">&copy; 2026 TeacherFinCoach. Building Wealth for Educators.</p>
+        <p style="font-size: 12px; color: rgba(255,255,255,0.8); margin-bottom: 8px;">
+            <strong>Educational Purposes Only:</strong> TeacherFinCoach provides general educational information about retirement planning for teachers. 
+            This content does not constitute financial, investment, tax, or legal advice.
+        </p>
+        <p style="font-size: 12px; color: rgba(255,255,255,0.7);">
+            Consult with a qualified financial advisor for personalized guidance. 
+            <a href="terms.html" style="color: #6BC9BC; text-decoration: underline;">Terms & Disclaimers</a>
+        </p>
+    </footer>
+</body>
+</html>
