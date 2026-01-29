@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 8: Your Retirement Game Plan | TeacherFinCoach</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #2E5C8A 0%, #1B3A57 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        
+        .logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .header-content {
+            flex: 1;
+        }
+        
+        .module-number {
+            color: #6BC9BC;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        
+        h1 {
+            color: #1B3A57;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            color: #64748B;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .content-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: #1B3A57;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #6BC9BC;
+        }
+        
+        h3 {
+            color: #2E5C8A;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 28px 0 16px 0;
+        }
+        
+        h4 {
+            color: #1B3A57;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 20px 0 12px 0;
+        }
+        
+        p {
+            color: #334155;
+            line-height: 1.8;
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+        
+        ul, ol {
+            margin-left: 24px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            color: #334155;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        strong {
+            color: #1B3A57;
+            font-weight: 600;
+        }
+        
+        .warning-box {
+            background: #FEF2F2;
+            border: 3px solid #EF4444;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .warning-box h3 {
+            color: #991B1B;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .warning-box p, .warning-box ul, .warning-box li {
+            color: #7F1D1D;
+        }
+        
+        .success-box {
+            background: #F0FDF4;
+            border: 3px solid #10B981;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .success-box h3 {
+            color: #065F46;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .success-box p, .success-box ul, .success-box li {
+            color: #064E3B;
+        }
+        
+        .highlight-box {
+            background: #FEF3C7;
+            border-left: 4px solid #F59E0B;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .highlight-box p {
+            color: #78350F;
+            margin-bottom: 0;
+        }
+        
+        .info-box {
+            background: #EFF6FF;
+            border: 2px solid #3B82F6;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .info-box h3 {
+            color: #1E40AF;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-box p, .info-box ul, .info-box li {
+            color: #1E3A8A;
+        }
+        
+        .trophy-box {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            border: 4px solid #F59E0B;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+        }
+        
+        .trophy-box h3 {
+            color: #92400E;
+            font-size: 24px;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .trophy-box p {
+            color: #78350F;
+            line-height: 1.8;
+            font-size: 17px;
+        }
+        
+        .decade-box {
+            background: #F0FDF4;
+            border-left: 4px solid #10B981;
+            padding: 20px;
+            margin: 16px 0;
+            border-radius: 8px;
+        }
+        
+        .decade-title {
+            color: #065F46;
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+        
+        .decade-content {
+            color: #064E3B;
+            line-height: 1.8;
+        }
+        
+        .mistake-box {
+            background: #FFF7ED;
+            border: 2px solid #F97316;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .mistake-box h4 {
+            color: #9A3412;
+            margin: 0 0 10px 0;
+            font-size: 17px;
+        }
+        
+        .mistake-box p {
+            color: #7C2D12;
+            margin: 0;
+        }
+        
+        .resource-category {
+            background: #F8FAFC;
+            border: 2px solid #CBD5E1;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 16px 0;
+        }
+        
+        .resource-category h4 {
+            color: #1B3A57;
+            margin-top: 0;
+        }
+        
+        .resource-link {
+            display: block;
+            color: #2E5C8A;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 0;
+            border-bottom: 1px solid #E2E8F0;
+        }
+        
+        .resource-link:last-child {
+            border-bottom: none;
+        }
+        
+        .resource-link:hover {
+            color: #6BC9BC;
+        }
+        
+        .resource-description {
+            color: #64748B;
+            font-size: 14px;
+            margin-left: 12px;
+            font-weight: 400;
+        }
+        
+        .glossary-term {
+            background: white;
+            border-left: 3px solid #6BC9BC;
+            padding: 16px;
+            margin: 12px 0;
+            border-radius: 6px;
+        }
+        
+        .glossary-word {
+            color: #1B3A57;
+            font-weight: 700;
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+        
+        .glossary-definition {
+            color: #334155;
+            line-height: 1.7;
+        }
+        
+        .faq-item {
+            background: #F8FAFC;
+            border: 2px solid #CBD5E1;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 16px 0;
+        }
+        
+        .faq-question {
+            color: #1B3A57;
+            font-weight: 700;
+            font-size: 17px;
+            margin-bottom: 12px;
+        }
+        
+        .faq-answer {
+            color: #334155;
+            line-height: 1.8;
+        }
+        
+        .coach-note {
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+            border: 3px solid #0EA5E9;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 30px 0;
+        }
+        
+        .coach-note-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .coach-note-header img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 3px solid #0EA5E9;
+        }
+        
+        .coach-note-title {
+            color: #075985;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        
+        .coach-note-text {
+            color: #0C4A6E;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+        
+        .final-speech {
+            background: linear-gradient(135deg, #1B3A57 0%, #2E5C8A 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        
+        .final-speech h2 {
+            color: #6BC9BC;
+            border-bottom: 3px solid #6BC9BC;
+            font-size: 28px;
+        }
+        
+        .final-speech p {
+            color: white;
+            font-size: 18px;
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+        
+        .final-speech strong {
+            color: #FDE68A;
+        }
+        
+        .key-takeaways-box {
+            background: linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%);
+            border: 3px solid #F97316;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .key-takeaways-box h3 {
+            color: #9A3412;
+            margin-top: 0;
+        }
+        
+        .key-takeaways-box ul {
+            margin-left: 20px;
+        }
+        
+        .key-takeaways-box li {
+            color: #7C2D12;
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+        
+        .navigation-footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 32px;
+        }
+        
+        .nav-button {
+            flex: 1;
+            padding: 16px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            text-align: center;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .nav-button.primary {
+            background: #6BC9BC;
+            color: white;
+        }
+        
+        .nav-button.primary:hover {
+            background: #59B8AA;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(107, 201, 188, 0.4);
+        }
+        
+        .nav-button.secondary {
+            background: white;
+            color: #2E5C8A;
+            border: 2px solid #2E5C8A;
+        }
+        
+        .nav-button.secondary:hover {
+            background: #2E5C8A;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(46, 92, 138, 0.3);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+        }
+        
+        th {
+            background: #2E5C8A;
+            color: white;
+            padding: 14px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 14px;
+            border-bottom: 1px solid #E2E8F0;
+            color: #334155;
+        }
+        
+        tr:hover {
+            background: #F8FAFC;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            h1 {
+                font-size: 26px;
+            }
+            
+            .navigation-footer {
+                flex-direction: column;
+            }
+            
+            .content-card {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <img src="coach-icon.jpg" alt="Coach Marty" class="logo">
+            <div class="header-content">
+                <div class="module-number">Module 8 of 8 - FINAL MODULE</div>
+                <h1>Your Retirement Game Plan</h1>
+                <p class="subtitle">You made it to the championship. Here's your playbook for winning retirement.</p>
+            </div>
+        </div>
+        
+        <!-- Section 1: Congratulations -->
+        <div class="content-card">
+            <div class="trophy-box">
+                <h3>🏆 Congratulations! You Did It!</h3>
+                <p>You just completed something most teachers never do: You built a comprehensive retirement plan.</p>
+                <p style="margin-top: 16px;">You now know MORE about teacher retirement than 95% of your colleagues. You understand the 30% income gap. You know how to pick vendors, avoid fees, maximize contributions, and stay the course through market volatility.</p>
+                <p style="margin-top: 16px;"><strong>That knowledge will be worth hundreds of thousands—or millions—of dollars over your career.</strong></p>
+            </div>
+            
+            <h2>What You've Accomplished</h2>
+            
+            <p>Over the past 7 modules, you've learned:</p>
+            
+            <ul>
+                <li><strong>Module 1:</strong> The 30% income gap and why your pension isn't enough</li>
+                <li><strong>Module 2:</strong> How 403(b) and 457(b) accounts work and why you need both</li>
+                <li><strong>Module 3:</strong> How fees destroy wealth and how to check your vendor on 403bwise.org</li>
+                <li><strong>Module 4:</strong> How to pick low-cost index funds and avoid expensive mistakes</li>
+                <li><strong>Module 5:</strong> Your savings game plan including the holy grail HSA</li>
+                <li><strong>Module 6:</strong> How to actually enroll with confidence</li>
+                <li><strong>Module 7:</strong> How to adjust your plan when life happens (and it will)</li>
+            </ul>
+            
+            <p><strong>Now you're ready for Module 8:</strong> Your complete retirement playbook and ongoing resource guide.</p>
+        </div>
+        
+        <!-- Section 2: Your 4 Income Sources -->
+        <div class="content-card">
+            <h2>Your 4 Retirement Income Sources</h2>
+            
+            <p>A comfortable teacher retirement comes from <strong>four sources</strong> working together:</p>
+            
+            <h3>1. Pension (30-50% of final salary)</h3>
+            <p>Your state pension system provides guaranteed monthly income for life. The exact amount depends on your years of service and final average salary. Most teachers get 40-60% of their working income from pension.</p>
+            
+            <h3>2. Social Security (20-30% of final salary)</h3>
+            <p>Social Security provides additional guaranteed income. The average teacher receives $1,500-$2,500/month. Note: Some states (CA, TX, IL, OH, MA, etc.) have pension systems that reduce or eliminate Social Security—check your state.</p>
+            
+            <h3>3. 403(b) and/or 457(b) (Fills the 30% Gap!)</h3>
+            <p>Your voluntary retirement accounts fill the income gap between your pension/Social Security and your actual retirement needs. This is where YOU control your financial future.</p>
+            
+            <h3>4. HSA (Tax-Free Healthcare Fund)</h3>
+            <p>If you have a high-deductible health plan, your HSA provides tax-free money for healthcare costs in retirement. Healthcare expenses average $165K-$315K per couple even WITH Medicare.</p>
+            
+            <div class="success-box">
+                <h3>✅ Sample Retirement Income Breakdown</h3>
+                <p><strong>Teacher: Sarah, 35 years of service, $70,000 final average salary</strong></p>
+                <ul>
+                    <li><strong>Pension:</strong> $42,000/year (60% replacement, 2% multiplier)</li>
+                    <li><strong>Social Security:</strong> $24,000/year (if eligible in your state)</li>
+                    <li><strong>403(b) withdrawals:</strong> $18,000/year (4% rule on $450K balance)</li>
+                    <li><strong>HSA withdrawals:</strong> $8,000/year (tax-free for medical expenses)</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Total retirement income: $92,000/year</strong></p>
+                <p style="margin-top: 10px;">Sarah's working income: $70,000. Retirement income: $92,000. She actually makes MORE in retirement because she saved aggressively in her 403(b) and maxed out her HSA.</p>
+            </div>
+        </div>
+        
+        <!-- Section 3: Retirement Scenarios -->
+        <div class="content-card">
+            <h2>What Your Retirement Looks Like</h2>
+            
+            <p>Your retirement lifestyle depends heavily on how much you save in your 403(b) and 457(b). Here are three real scenarios:</p>
+            
+            <h3>Scenario 1: The Struggler (Saved 0-3%)</h3>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Income Source</th>
+                        <th>Monthly Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pension</td>
+                        <td>$3,500</td>
+                    </tr>
+                    <tr>
+                        <td>Social Security</td>
+                        <td>$2,000</td>
+                    </tr>
+                    <tr>
+                        <td>403(b)/457(b)</td>
+                        <td>$200 (tiny balance)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total</strong></td>
+                        <td><strong>$5,700/month</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p><strong>Reality check:</strong> Working income was $5,833/month. Retirement income is LESS. The Struggler has to cut expenses, delay retirement, or work part-time. No travel budget. No financial cushion for emergencies.</p>
+            
+            <h3>Scenario 2: The Comfortable Retiree (Saved 10-15%)</h3>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Income Source</th>
+                        <th>Monthly Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pension</td>
+                        <td>$3,500</td>
+                    </tr>
+                    <tr>
+                        <td>Social Security</td>
+                        <td>$2,000</td>
+                    </tr>
+                    <tr>
+                        <td>403(b)/457(b)</td>
+                        <td>$1,500 (4% of $450K)</td>
+                    </tr>
+                    <tr>
+                        <td>HSA</td>
+                        <td>$500 (healthcare)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total</strong></td>
+                        <td><strong>$7,500/month</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p><strong>Reality check:</strong> Working income was $5,833/month. Retirement income is MORE. The Comfortable Retiree travels, helps grandkids with college, handles medical expenses without stress. Financial security achieved.</p>
+            
+            <h3>Scenario 3: The Wealthy Retiree (Saved 20%+)</h3>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Income Source</th>
+                        <th>Monthly Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pension</td>
+                        <td>$3,500</td>
+                    </tr>
+                    <tr>
+                        <td>Social Security</td>
+                        <td>$2,000</td>
+                    </tr>
+                    <tr>
+                        <td>403(b)/457(b)</td>
+                        <td>$3,300 (4% of $1M+)</td>
+                    </tr>
+                    <tr>
+                        <td>HSA</td>
+                        <td>$1,000 (healthcare)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total</strong></td>
+                        <td><strong>$9,800/month</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p><strong>Reality check:</strong> Working income was $5,833/month. Retirement income is SIGNIFICANTLY MORE. The Wealthy Retiree has complete financial freedom. Extensive travel, leaving a legacy for kids, retiring early if desired. Teaching for passion, not paychecks.</p>
+            
+            <div class="highlight-box">
+                <p><strong>Which scenario do you want to live?</strong> The difference between Struggler and Wealthy Retiree is a 20% savings rate maintained for 30 years. That's it. Same job. Same pension. Different choices.</p>
+            </div>
+        </div>
+        
+        <!-- Section 4: Timeline by Decade -->
+        <div class="content-card">
+            <h2>Your Game Plan by Decade</h2>
+            
+            <p>What you should focus on in each decade of your teaching career:</p>
+            
+            <div class="decade-box">
+                <div class="decade-title">👶 Your 20s: Build the Foundation</div>
+                <div class="decade-content">
+                    <strong>Priority:</strong> Start contributing to 403(b) or 457(b) IMMEDIATELY (even 5%)
+                    <ul style="margin-top: 8px;">
+                        <li>Enroll in your first year of teaching</li>
+                        <li>Pick a low-cost vendor (Fidelity, Vanguard)</li>
+                        <li>Choose target-date fund or total market index</li>
+                        <li>Build $1,000 emergency fund</li>
+                        <li>Avoid lifestyle inflation as salary increases</li>
+                        <li>If eligible, open an HSA and max it out</li>
+                    </ul>
+                    <strong style="margin-top: 12px; display: block;">Why this matters:</strong> Starting at 25 vs. 35 means an extra $400,000+ in retirement due to compounding.
+                </div>
+            </div>
+            
+            <div class="decade-box">
+                <div class="decade-title">💼 Your 30s: Increase Contributions</div>
+                <div class="decade-content">
+                    <strong>Priority:</strong> Increase to 10-15% total savings, build emergency fund to 6 months
+                    <ul style="margin-top: 8px;">
+                        <li>Increase contribution by 1-2% every year</li>
+                        <li>Check vendor fees on 403bwise.org—switch if red light</li>
+                        <li>Build 6-month emergency fund ($15K-$25K)</li>
+                        <li>Update beneficiaries after marriage/kids</li>
+                        <li>Resist temptation to raid retirement for house down payment</li>
+                        <li>Consider opening 457(b) if not already enrolled</li>
+                    </ul>
+                    <strong style="margin-top: 12px; display: block;">Why this matters:</strong> Your 30s are peak earning growth years—maximize contributions before life gets expensive.
+                </div>
+            </div>
+            
+            <div class="decade-box">
+                <div class="decade-title">🎯 Your 40s: Maximize & Optimize</div>
+                <div class="decade-content">
+                    <strong>Priority:</strong> Target 15-20% total savings, consider maxing out accounts
+                    <ul style="margin-top: 8px;">
+                        <li>Push toward $24,500/year contributions (max out one account)</li>
+                        <li>If you have both 403(b) AND 457(b), consider maxing both ($49,000/year)</li>
+                        <li>Pay off high-interest debt (credit cards, car loans)</li>
+                        <li>Don't let college costs for kids derail retirement savings</li>
+                        <li>Stay the course through market volatility—you have 20 years until retirement</li>
+                        <li>Review asset allocation (still 80-90% stocks at this age)</li>
+                    </ul>
+                    <strong style="margin-top: 12px; display: block;">Why this matters:</strong> Your 40s are your power decade—highest salary, most financial discipline, kids becoming independent.
+                </div>
+            </div>
+            
+            <div class="decade-box">
+                <div class="decade-title">🚀 Your 50s: Catch-Up Mode</div>
+                <div class="decade-content">
+                    <strong>Priority:</strong> Use catch-up contributions, max out everything possible
+                    <ul style="margin-top: 8px;">
+                        <li>Contribute $32,500/year to 403(b) (includes $8,000 catch-up)</li>
+                        <li>Contribute $32,500/year to 457(b) (includes $8,000 catch-up)</li>
+                        <li>Combined max: $65,000/year if you can swing it</li>
+                        <li>Shift asset allocation slightly (70-80% stocks, 20-30% bonds)</li>
+                        <li>Calculate retirement date and income needs</li>
+                        <li>Pay off mortgage if possible (optional)</li>
+                    </ul>
+                    <strong style="margin-top: 12px; display: block;">Why this matters:</strong> This is your last chance to catch up if you started late. Every dollar counts.
+                </div>
+            </div>
+            
+            <div class="decade-box">
+                <div class="decade-title">🏖️ Your 60s: Transition to Retirement</div>
+                <div class="decade-content">
+                    <strong>Priority:</strong> Finalize retirement date, shift to conservative allocation
+                    <ul style="margin-top: 8px;">
+                        <li>Continue maxing contributions until retirement day</li>
+                        <li>Shift to 60% stocks / 40% bonds (or target-date fund handles this)</li>
+                        <li>Meet with HR to confirm pension calculation and start date</li>
+                        <li>Apply for Social Security 3 months before desired start date</li>
+                        <li>Plan healthcare coverage if retiring before 65 (Medicare age)</li>
+                        <li>Finalize withdrawal strategy (4% rule from 403(b)/457(b))</li>
+                    </ul>
+                    <strong style="margin-top: 12px; display: block;">Why this matters:</strong> Proper planning in your 60s ensures a smooth transition to retirement without financial stress.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 5: Annual Financial Checkup -->
+        <div class="content-card">
+            <h2>Your Annual Financial Checkup</h2>
+            
+            <p>Set a recurring calendar reminder every September (during open enrollment) to complete this checklist:</p>
+            
+            <div class="success-box">
+                <h3>✅ September Financial Checkup Checklist</h3>
+                <ul>
+                    <li><strong>☐ Increase contributions by 1-2%:</strong> Especially if you got a raise or step increase</li>
+                    <li><strong>☐ Check vendor fees on 403bwise.org:</strong> Red light? Time to switch vendors (Module 7)</li>
+                    <li><strong>☐ Review beneficiaries:</strong> Marriage, divorce, births, deaths—update immediately</li>
+                    <li><strong>☐ Verify you're on track:</strong> Use Income Gap Calculator to see if you're closing the 30% gap</li>
+                    <li><strong>☐ Log into vendor account:</strong> Confirm contributions are being invested (not sitting in cash)</li>
+                    <li><strong>☐ Review emergency fund:</strong> Still have 6 months of expenses saved?</li>
+                    <li><strong>☐ Check HSA balance:</strong> If eligible, are you maxing it out?</li>
+                    <li><strong>☐ Update contact info:</strong> Make sure vendor has current email/phone/address</li>
+                    <li><strong>☐ Celebrate progress:</strong> Look at your balance growth—you're building wealth!</li>
+                </ul>
+            </div>
+            
+            <p><strong>Time required:</strong> 30-60 minutes once per year. That's it.</p>
+            
+            <p><strong>Impact:</strong> This annual checkup keeps you on track, catches problems early, and ensures you don't miss opportunities to increase savings.</p>
+            
+            <div class="coach-note">
+                <div class="coach-note-header">
+                    <img src="coach-icon.jpg" alt="Coach Marty">
+                    <span class="coach-note-title">Coach Marty says:</span>
+                </div>
+                <div class="coach-note-text">
+                    Championship teams don't wing it. They review game film, adjust strategy, and practice fundamentals. Your annual financial checkup is your game film review. 30 minutes once a year to protect hundreds of thousands of dollars. Best time investment you'll ever make.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 6: Top 10 Mistakes -->
+        <div class="content-card">
+            <h2>Top 10 Teacher Retirement Mistakes (And How to Avoid Them)</h2>
+            
+            <p>Don't make these common (and costly) mistakes:</p>
+            
+            <div class="mistake-box">
+                <h4>❌ Mistake #1: Cashing Out When Changing Jobs</h4>
+                <p><strong>The disaster:</strong> Taking $40,000 as cash when switching districts. After taxes and penalties, you get $26,000. That $40,000 would've been $400,000 at retirement.</p>
+                <p style="margin-top: 10px;"><strong>The fix:</strong> ALWAYS roll over to new employer plan or IRA. Use direct rollover. Never take a check made out to you.</p>
+            </div>
+            
+            <div class="mistake-box">
+                <h4>❌ Mistake #2: Paying High Fees</h4>
+                <p><strong>The disaster:</strong> Staying with a 1.5% fee vendor for 30 years. Cost: $250,000+ in lost wealth.</p>
+                <p style="margin-top: 10px;"><strong>The fix:</strong> Check 403bwise.org. Red or yellow light? Switch to green light vendor. Target fees under 0.20% total.</p>
+            </div>
+            
+            <div class="mistake-box">
+                <h4>❌ Mistake #3: Not Starting Early Enough</h4>
+                <p><strong>The disaster:</strong> Waiting until age 40 to start saving. Missing 15 years of compounding = $300,000+ less at retirement.</p>
+                <p style="margin-top: 10px;"><strong>The fix:</strong> Enroll in your first year of teaching. Even 3-5% is better than zero. Time is your biggest advantage.</p>
+            </div>
+            
+            <div class="mistake-box">
+                <h4>❌ Mistake #4: Stopping Contributions During Market Crashes</h4>
+                <p><strong>The disaster:</strong> Panic selling in 2008 and stopping contributions. Missing the 2009-2020 bull market recovery = $200,000+ lost.</p>
+                <p style="margin-top: 10px;"><strong>The fix:</strong> NEVER stop contributing during market downturns. You're buying shares on sale. Keep contributing or increase if possible.</p>
+            </div>
+            
+            <div class="mistake-box">
+                <h4>❌ Mistake #5: No Emergency Fund (Then Raiding Retirement)</h4>
+                <p><strong>The disaster:</strong> $3,000 car repair, no emergency fund, withdraw from 403(b). Taxes + penalties + lost growth = $40,000+ true cost.</p>
+                <p style="margin-top: 10px;"><strong>The fix:</strong> Build a 6-month emergency fund FIRST. Keep it separate from retirement accounts. Never touch retirement for emergencies.</p>
+            </div>
+            
+            <div class="mistake-box">
+                <h4>❌ Mistake #6: Ignoring the Employer Match (If Offered)</h4>
+                <p><strong>The disaster:</strong> Some districts match contributions up to 3-5%. Not contributing = leaving free money on the table.</p>
+                <p style="margin-top: 10px;"><strong>The fix:</strong> If your district offers a match, contribute AT LEAST enough to get the full match. It's instant 100% return.</p>
+            </div>
+            
+            <div class="mistake-box">
+                <h4>❌ Mistake #7: Forgetting About HSAs</h4>
+                <p><strong>The disaster:</strong> Eligible for HSA but never opening one. Missing triple tax advantage + $200,000+ tax-free healthcare fund.</p>
+                <p style="margin-top: 10px;"><strong>The fix:</strong> If you have a high-deductible health plan, open and max out an HSA. It's the best retirement account that exists.</p>
+            </div>
+            
+            <div class="mistake-box">
+                <h4>❌ Mistake #8: Wrong Asset Allocation</h4>
+                <p><strong>The disaster:</strong> Being 100% bonds at age 30 (too conservative) or 100% stocks at age 64 (too aggressive).</p>
+                <p style="margin-top: 10px;"><strong>The fix:</strong> Use a target-date fund OR follow age-based allocation (stocks = 110 minus your age). Rebalance annually.</p>
+            </div>
+            
+            <div class="mistake-box">
+                <h4>❌ Mistake #9: No Beneficiaries Listed</h4>
+                <p><strong>The disaster:</strong> Dying without beneficiaries on file. Account goes through probate. Family waits months/years to access money.</p>
+                <p style="margin-top: 10px;"><strong>The fix:</strong> Designate primary AND contingent beneficiaries. Update after major life events (marriage, divorce, births, deaths).</p>
+            </div>
+            
+            <div class="mistake-box">
+                <h4>❌ Mistake #10: Not Increasing Contributions After Raises</h4>
+                <p><strong>The disaster:</strong> Getting 3% raises every year but never increasing retirement contributions. Lifestyle inflation eats all raises.</p>
+                <p style="margin-top: 10px;"><strong>The fix:</strong> Every time you get a raise, increase retirement contributions by 1-2%. You won't miss it, and it compounds into six figures.</p>
+            </div>
+        </div>
+        
+        <!-- Section 7: Resources & Tools -->
+        <div class="content-card">
+            <h2>Resources & Tools</h2>
+            
+            <p>Here are the essential tools and resources mentioned throughout this course:</p>
+            
+            <div class="resource-category">
+                <h4>📊 TeacherFinCoach Tools (Internal)</h4>
+                <a href="income_gap_calculator.html" class="resource-link">Income Gap Calculator <span class="resource-description">Calculate your 30% income gap and target savings</span></a>
+                <a href="fee_comparison_calculator.html" class="resource-link">Fee Comparison Calculator <span class="resource-description">See how fees destroy wealth over time</span></a>
+                <a href="contribution_strategy_calculator.html" class="resource-link">403(b) vs 457(b) Strategy Calculator <span class="resource-description">Which account to prioritize</span></a>
+                <a href="compound_interest_calculator.html" class="resource-link">Compound Interest Calculator <span class="resource-description">See your money grow over time</span></a>
+            </div>
+            
+            <div class="resource-category">
+                <h4>🔍 Vendor & Fee Research</h4>
+                <a href="https://403bwise.org" target="_blank" class="resource-link">403bwise.org <span class="resource-description">Check your vendor's rating (green/yellow/red light system)</span></a>
+                <a href="https://www.fidelity.com" target="_blank" class="resource-link">Fidelity.com <span class="resource-description">Low-cost 403(b)/457(b) provider</span></a>
+                <a href="https://www.vanguard.com" target="_blank" class="resource-link">Vanguard.com <span class="resource-description">Low-cost index fund pioneer</span></a>
+                <a href="https://www.tiaa.org" target="_blank" class="resource-link">TIAA.org <span class="resource-description">Common teacher retirement vendor</span></a>
+            </div>
+            
+            <div class="resource-category">
+                <h4>💰 Pension & Social Security Calculators</h4>
+                <a href="https://www.calstrs.com/benefit-estimates" target="_blank" class="resource-link">CalSTRS Benefit Calculator (CA) <span class="resource-description">California teachers</span></a>
+                <a href="https://www.trs.texas.gov" target="_blank" class="resource-link">TRS Calculator (TX) <span class="resource-description">Texas teachers</span></a>
+                <a href="https://www.nystrs.org" target="_blank" class="resource-link">NYSTRS Calculator (NY) <span class="resource-description">New York teachers</span></a>
+                <a href="https://www.ssa.gov/benefits/retirement/estimator.html" target="_blank" class="resource-link">Social Security Quick Calculator <span class="resource-description">Estimate your Social Security benefits</span></a>
+            </div>
+            
+            <div class="resource-category">
+                <h4>📚 Recommended Reading & Education</h4>
+                <a href="https://jlcollinsnh.com/stock-series/" target="_blank" class="resource-link">JL Collins Stock Series <span class="resource-description">Free investing education (The Simple Path to Wealth)</span></a>
+                <a href="https://www.bogleheads.org/wiki/Main_Page" target="_blank" class="resource-link">Bogleheads Wiki <span class="resource-description">Evidence-based investing philosophy</span></a>
+                <a href="https://www.mrmoneymustache.com" target="_blank" class="resource-link">Mr. Money Mustache <span class="resource-description">Financial independence blog</span></a>
+            </div>
+            
+            <div class="resource-category">
+                <h4>🔥 Financial Independence & Early Retirement</h4>
+                <a href="https://www.choosefi.com" target="_blank" class="resource-link">ChooseFI.com <span class="resource-description">Podcast & community for financial independence (life-changing resource!)</span></a>
+                <a href="https://www.reddit.com/r/financialindependence/" target="_blank" class="resource-link">r/FinancialIndependence <span class="resource-description">Reddit community for FIRE movement</span></a>
+            </div>
+            
+            <div class="resource-category">
+                <h4>💵 Budgeting Tools</h4>
+                <a href="https://www.everydollar.com" target="_blank" class="resource-link">EveryDollar.com <span class="resource-description">Simple budgeting app</span></a>
+                <a href="https://www.ynab.com" target="_blank" class="resource-link">YNAB.com (You Need A Budget) <span class="resource-description">Zero-based budgeting system</span></a>
+            </div>
+            
+            <div class="resource-category">
+                <h4>📖 Books Worth Reading</h4>
+                <p style="color: #334155; margin: 12px 0; line-height: 1.7;">
+                    <strong>"The Simple Path to Wealth"</strong> by JL Collins<br>
+                    <strong>"The Bogleheads' Guide to Retirement Planning"</strong> by Taylor Larimore<br>
+                    <strong>"Your Money or Your Life"</strong> by Vicki Robin<br>
+                    <strong>"The Little Book of Common Sense Investing"</strong> by John Bogle
+                </p>
+            </div>
+        </div>
+        
+        <!-- Section 8: Glossary -->
+        <div class="content-card">
+            <h2>Glossary: Key Terms</h2>
+            
+            <p>Quick reference for all the terms used in this course:</p>
+            
+            <div class="glossary-term">
+                <div class="glossary-word">403(b)</div>
+                <div class="glossary-definition">Tax-advantaged retirement account for teachers and nonprofit employees. Contributions are pre-tax (reduce taxable income now), growth is tax-free, withdrawals in retirement are taxed as income. 2026 limit: $24,500 ($32,500 if 50+).</div>
+            </div>
+            
+            <div class="glossary-term">
+                <div class="glossary-word">457(b)</div>
+                <div class="glossary-definition">Tax-advantaged retirement account for government employees. Similar to 403(b) but with one major advantage: no 10% early withdrawal penalty if you separate from service. 2026 limit: $24,500 ($32,500 if 50+). Can contribute to BOTH 403(b) AND 457(b) in the same year.</div>
+            </div>
+            
+            <div class="glossary-term">
+                <div class="glossary-word">Asset Allocation</div>
+                <div class="glossary-definition">How your money is divided between stocks, bonds, and cash. Younger investors typically hold 80-90% stocks for growth. Older investors shift toward 60-70% stocks and 30-40% bonds for stability.</div>
+            </div>
+            
+            <div class="glossary-term">
+                <div class="glossary-word">Compound Interest</div>
+                <div class="glossary-definition">Earning returns on your returns. Your money grows exponentially over time. Example: $10,000 at 8% annual return becomes $100,627 in 30 years without adding a single dollar.</div>
+            </div>
+            
+            <div class="glossary-term">
+                <div class="glossary-word">Expense Ratio</div>
+                <div class="glossary-definition">Annual fee charged by mutual funds and ETFs, expressed as a percentage. Example: 0.04% fee on $100,000 = $40/year. Keep total fees under 0.20% for maximum wealth building.</div>
+            </div>
+            
+            <div class="glossary-term">
+                <div class="glossary-word">HSA (Health Savings Account)</div>
+                <div class="glossary-definition">Triple tax-advantaged account for people with high-deductible health plans. Tax-deductible contributions, tax-free growth, tax-free withdrawals for qualified medical expenses. 2026 limits: $4,400 (individual), $8,750 (family).</div>
+            </div>
+            
+            <div class="glossary-term">
+                <div class="glossary-word">Index Fund</div>
+                <div class="glossary-definition">Mutual fund or ETF that tracks a market index (like S&P 500 or Total Stock Market). Low-cost, diversified, passive investing. Beats 90%+ of actively managed funds over time.</div>
+            </div>
+            
+            <div class="glossary-term">
+                <div class="glossary-word">Pension</div>
+                <div class="glossary-definition">Guaranteed monthly income for life provided by your state's teacher retirement system. Calculated based on years of service and final average salary (usually highest 3-5 years). Most teachers receive 40-60% of working income from pension.</div>
+            </div>
+            
+            <div class="glossary-term">
+                <div class="glossary-word">Rebalancing</div>
+                <div class="glossary-definition">Adjusting your portfolio back to target allocation. Example: If stocks grow from 80% to 90%, you sell some stocks and buy bonds to get back to 80/20. Target-date funds rebalance automatically.</div>
+            </div>
+            
+            <div class="glossary-term">
+                <div class="glossary-word">Rollover</div>
+                <div class="glossary-definition">Moving retirement money from one account to another without taxes or penalties. Example: Rolling 403(b) from old district to new district or to an IRA. Always choose "direct rollover" to avoid withholding.</div>
+            </div>
+            
+            <div class="glossary-term">
+                <div class="glossary-word">Roth 403(b)</div>
+                <div class="glossary-definition">After-tax version of 403(b). You pay taxes NOW on contributions, but growth and withdrawals in retirement are 100% tax-free. Good for young teachers in low tax brackets who expect higher taxes in retirement.</div>
+            </div>
+            
+            <div class="glossary-term">
+                <div class="glossary-word">Target-Date Fund</div>
+                <div class="glossary-definition">All-in-one fund that automatically adjusts from aggressive (stocks) to conservative (bonds) as you approach retirement. Pick the fund with the year closest to your retirement (e.g., Target 2055 if retiring in 2055). Simple, effective, automatic.</div>
+            </div>
+            
+            <div class="glossary-term">
+                <div class="glossary-word">Vesting</div>
+                <div class="glossary-definition">The number of years you must work before you own your pension benefits. Most states require 5-10 years of service. If you leave before vesting, you may lose pension benefits (but you always keep your own 403(b)/457(b) contributions).</div>
+            </div>
+        </div>
+        
+        <!-- Section 9: FAQ -->
+        <div class="content-card">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: I'm 45 and haven't started saving. Is it too late?</div>
+                <div class="faq-answer">A: NO! It's not too late. You have 20 years until retirement. If you save aggressively (15-20%) and use catch-up contributions after age 50, you can still build $300K-$500K. That's $1,200-$2,000/month in retirement income on top of pension. Start TODAY.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: Should I pay off my mortgage or save for retirement?</div>
+                <div class="faq-answer">A: Do BOTH. Contribute at least 10-15% to retirement while making regular mortgage payments. Don't sacrifice retirement to pay off a low-interest mortgage faster. The tax-deferred growth in your 403(b) typically beats the mortgage interest rate.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: My district only has high-fee vendors. What should I do?</div>
+                <div class="faq-answer">A: First, ask HR to add Fidelity or Vanguard to the approved list (many districts will). Second, pick the BEST available option even if not perfect (Module 3 fee tiers). Third, contribute anyway—a high-fee 403(b) is still better than no 403(b). You can roll over to a low-fee IRA when you leave the district.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: Should I contribute to 403(b) or 457(b) first?</div>
+                <div class="faq-answer">A: If you can only max one, choose 457(b) because of the no-penalty early withdrawal advantage. If you can max both, do it! Combined limit: $49,000/year (or $65,000 if 50+). Most teachers start with 403(b), add 457(b) later as income grows.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: What if the market crashes right before I retire?</div>
+                <div class="faq-answer">A: This is why you shift to bonds as you age (60% stocks / 40% bonds by age 60). The bond portion provides stability during crashes. You can delay retirement by 1-2 years if needed to let the market recover. Or use the 4% rule—withdraw from bonds while letting stocks recover.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: Can I retire early as a teacher?</div>
+                <div class="faq-answer">A: Yes, but it requires planning. Many pension systems allow retirement with reduced benefits after 20-25 years of service. You'll need a larger 403(b)/457(b) balance to cover the gap until full pension and Social Security kick in. Healthcare before Medicare (age 65) is the biggest challenge.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: How much should I have saved by age 40? Age 50?</div>
+                <div class="faq-answer">A: <strong>Age 30:</strong> 1x annual salary. <strong>Age 40:</strong> 3x annual salary. <strong>Age 50:</strong> 6x annual salary. <strong>Age 60:</strong> 8-10x annual salary. These are ballpark targets—if you're behind, don't panic. Increase contributions and use catch-up after 50.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: Should I do traditional 403(b) or Roth 403(b)?</div>
+                <div class="faq-answer">A: For most teachers, traditional (pre-tax) is better because you're in a higher tax bracket now than you'll be in retirement. Roth makes sense if: (1) you're early in your career with low salary, (2) you expect to be in a higher tax bracket in retirement, or (3) you want tax diversification. When in doubt, choose traditional.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: My vendor charges 1.2% fees. Should I switch?</div>
+                <div class="faq-answer">A: YES. Absolutely. A 1.2% fee will cost you $100,000-$200,000+ over a career compared to a 0.04% fee. Check 403bwise.org for your vendor's rating. If red or yellow, switch to a green-light vendor (Module 7 covers exactly how to do this).</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: What's the 4% rule?</div>
+                <div class="faq-answer">A: Withdraw 4% of your retirement account balance in year 1 of retirement, then adjust for inflation each year. Example: $500,000 balance = $20,000/year in withdrawals. Historically, this makes your money last 30+ years without running out.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: Should I invest in individual stocks?</div>
+                <div class="faq-answer">A: NO. Stick with low-cost index funds. Individual stock picking is gambling, not investing. 90%+ of professional fund managers can't beat the S&P 500 over time. You won't either. Buy the whole market through index funds and let it compound.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: How do I know if I'm on track?</div>
+                <div class="faq-answer">A: Use the Income Gap Calculator to see if your current savings rate will close the 30% income gap. Check your balance against the age milestones (1x salary by 30, 3x by 40, 6x by 50). If you're behind, increase contributions now.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: What happens to my 403(b) when I die?</div>
+                <div class="faq-answer">A: It goes to your named beneficiaries immediately (bypasses probate). This is why designating beneficiaries is CRITICAL. If no beneficiaries are listed, it goes through your estate (probate = months or years of delays). Update beneficiaries after every major life event.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: Can I contribute to an IRA AND a 403(b)?</div>
+                <div class="faq-answer">A: Yes! 403(b) limit ($24,500) and IRA limit ($7,000) are separate. You can contribute to both. Max your 403(b) first, then add IRA contributions if you have extra money. Roth IRA is especially good for younger teachers.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: I got laid off. What do I do with my 403(b)?</div>
+                <div class="faq-answer">A: You have 4 options: (1) Leave it where it is, (2) Roll to new employer plan, (3) Roll to IRA, (4) Cash out (NEVER do this). Best option: Roll to an IRA at Fidelity or Vanguard for maximum investment control and low fees. Use DIRECT rollover.</div>
+            </div>
+        </div>
+        
+        <!-- Section 10: Coach Marty's Final Pep Talk -->
+        <div class="content-card">
+            <div class="final-speech">
+                <h2>🏆 Coach Marty's Championship Speech</h2>
+                
+                <p>Alright team, gather around. This is it. You've made it through all 8 modules. You've learned the plays. You've got the playbook. Now it's time to execute.</p>
+                
+                <p>Here's what I want you to understand: <strong>The difference between teachers who retire comfortably and those who struggle isn't luck. It's not intelligence. It's not even salary.</strong></p>
+                
+                <p><strong>It's this plan. And the discipline to stick with it for 30 years.</strong></p>
+                
+                <p>You now know more about teacher retirement than 95% of your colleagues. You understand the 30% income gap. You know how to pick vendors, avoid fees, maximize contributions, invest in low-cost index funds, and stay the course through market crashes.</p>
+                
+                <p><strong>That knowledge is worth hundreds of thousands—or millions—of dollars.</strong></p>
+                
+                <p>But here's the thing: Knowledge without action is worthless. You can't win the championship by reading the playbook. You have to get on the court and play.</p>
+                
+                <p><strong>So here's what I need you to do:</strong></p>
+                
+                <p><strong>1. If you're not enrolled yet, enroll THIS WEEK.</strong> Not next month. Not next year. This week. Every month you wait costs you compound growth you can never get back.</p>
+                
+                <p><strong>2. If you're already enrolled, check your vendor on 403bwise.org RIGHT NOW.</strong> Red light? Switch vendors. Yellow light? Consider switching. Don't let high fees steal your retirement.</p>
+                
+                <p><strong>3. Set your annual reminder for September.</strong> Every year during open enrollment, run through the financial checkup. Increase contributions by 1-2%. Update beneficiaries. Stay on track.</p>
+                
+                <p><strong>4. When life throws you a curveball—and it will—don't quit.</strong> Market crash? Keep contributing. Medical emergency? Build an emergency fund, protect retirement. Job change? Roll over, don't cash out.</p>
+                
+                <p><strong>Stay in the game.</strong></p>
+                
+                <p>Every championship team faces adversity. Injuries. Bad calls. Tough opponents. What separates champions from everyone else isn't avoiding adversity—it's pushing through it.</p>
+                
+                <p><strong>You're going to face adversity too.</strong> The market will crash. Bills will pile up. Colleagues will tell you to stop contributing and "enjoy life now." Family emergencies will test your commitment.</p>
+                
+                <p><strong>Don't quit. Adjust your strategy. Stay in the game.</strong></p>
+                
+                <p>Because here's what I've learned after 31 years in education: The teachers who retire wealthy aren't the ones who made perfect decisions. They're the ones who made good decisions and stuck with them for decades.</p>
+                
+                <p><strong>They enrolled early. They contributed consistently. They ignored the noise. They stayed the course.</strong></p>
+                
+                <p>And 30 years later? They're traveling the world, helping their grandkids with college, retiring early if they want, and sleeping soundly knowing they're financially secure.</p>
+                
+                <p><strong>That can be you. That WILL be you if you execute this plan.</strong></p>
+                
+                <p>You've got everything you need. The knowledge. The tools. The plan. Now go out there and WIN your retirement.</p>
+                
+                <p><strong>I'm proud of you for making it this far. Now finish strong.</strong></p>
+                
+                <p style="font-size: 22px; margin-top: 30px; text-align: center;"><strong>Now go build your wealth. 🏀</strong></p>
+                
+                <p style="text-align: center; margin-top: 20px;">— Coach Marty</p>
+            </div>
+        </div>
+        
+        <!-- Key Takeaways -->
+        <div class="content-card">
+            <div class="key-takeaways-box">
+                <h3>📌 Module 8 Summary</h3>
+                <ul>
+                    <li>You now control your financial future—you're in the top 5% of teachers with an actual plan</li>
+                    <li>Your retirement income comes from 4 sources: pension, Social Security, 403(b)/457(b), and HSA</li>
+                    <li>Save 15-20% total (including pension) to close the 30% income gap and retire comfortably</li>
+                    <li>Set annual September reminder: increase contributions, check fees, update beneficiaries, verify progress</li>
+                    <li>Avoid the top 10 mistakes: cashing out, high fees, starting late, panic selling, no emergency fund, wrong allocation, no beneficiaries, not increasing with raises</li>
+                    <li>Use the resources: 403bwise.org (vendor check), Income Gap Calculator, ChooseFI.com (financial independence)</li>
+                    <li>Timeline: 20s = start, 30s = increase, 40s = maximize, 50s = catch-up, 60s = transition to retirement</li>
+                    <li>Knowledge without action is worthless—enroll this week if you haven't already</li>
+                    <li>Stay in the game for 30 years. Don't quit when it gets hard. Champions push through adversity.</li>
+                    <li>This plan will be worth hundreds of thousands or millions over your career. Execute it.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Navigation Footer -->
+        <div class="navigation-footer">
+            <a href="module7.html" class="nav-button secondary">← Previous: Life Happens - Adjusting Your Plan</a>
+            <a href="dashboard.html" class="nav-button primary">Return to Dashboard 🏆</a>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer style="background: #1B3A57; color: white; padding: 32px 20px; margin-top: 48px; text-align: center;">
+        <p style="font-size: 14px; margin-bottom: 12px;">&copy; 2026 TeacherFinCoach. Building Wealth for Educators.</p>
+        <p style="font-size: 12px; color: rgba(255,255,255,0.8); margin-bottom: 8px;">
+            <strong>Educational Purposes Only:</strong> TeacherFinCoach provides general educational information about retirement planning for teachers. 
+            This content does not constitute financial, investment, tax, or legal advice.
+        </p>
+        <p style="font-size: 12px; color: rgba(255,255,255,0.7);">
+            Consult with a qualified financial advisor for personalized guidance. 
+            <a href="terms.html" style="color: #6BC9BC; text-decoration: underline;">Terms & Disclaimers</a>
+        </p>
+    </footer>
+</body>
+</html>
