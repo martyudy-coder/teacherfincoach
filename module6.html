@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 6: Enrollment Step-by-Step | TeacherFinCoach</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #2E5C8A 0%, #1B3A57 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        
+        .logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .header-content {
+            flex: 1;
+        }
+        
+        .module-number {
+            color: #6BC9BC;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        
+        h1 {
+            color: #1B3A57;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            color: #64748B;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .content-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: #1B3A57;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #6BC9BC;
+        }
+        
+        h3 {
+            color: #2E5C8A;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 28px 0 16px 0;
+        }
+        
+        p {
+            color: #334155;
+            line-height: 1.8;
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+        
+        ul, ol {
+            margin-left: 24px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            color: #334155;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        strong {
+            color: #1B3A57;
+            font-weight: 600;
+        }
+        
+        .warning-box {
+            background: #FEF2F2;
+            border: 3px solid #EF4444;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .warning-box h3 {
+            color: #991B1B;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .warning-box p, .warning-box ul, .warning-box li {
+            color: #7F1D1D;
+        }
+        
+        .success-box {
+            background: #F0FDF4;
+            border: 3px solid #10B981;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .success-box h3 {
+            color: #065F46;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .success-box p, .success-box ul, .success-box li {
+            color: #064E3B;
+        }
+        
+        .highlight-box {
+            background: #FEF3C7;
+            border-left: 4px solid #F59E0B;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .highlight-box p {
+            color: #78350F;
+            margin-bottom: 0;
+        }
+        
+        .info-box {
+            background: #EFF6FF;
+            border: 2px solid #3B82F6;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .info-box h3 {
+            color: #1E40AF;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-box p, .info-box ul, .info-box li {
+            color: #1E3A8A;
+        }
+        
+        .enrollment-step {
+            background: #F8FAFC;
+            border: 2px solid #CBD5E1;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .enrollment-step::before {
+            content: attr(data-step);
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: #2E5C8A;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        
+        .enrollment-step h3 {
+            margin-top: 10px;
+            color: #1B3A57;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin: 16px 0;
+            padding: 16px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #6BC9BC;
+        }
+        
+        .checklist-item::before {
+            content: "✓";
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: #10B981;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .mistake-box {
+            background: #FFF7ED;
+            border: 2px solid #F97316;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .mistake-box h4 {
+            color: #9A3412;
+            margin: 0 0 10px 0;
+            font-size: 17px;
+        }
+        
+        .mistake-box p {
+            color: #7C2D12;
+            margin: 0;
+        }
+        
+        .coach-note {
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+            border: 3px solid #0EA5E9;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 30px 0;
+        }
+        
+        .coach-note-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .coach-note-header img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 3px solid #0EA5E9;
+        }
+        
+        .coach-note-title {
+            color: #075985;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        
+        .coach-note-text {
+            color: #0C4A6E;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+        
+        .key-takeaways-box {
+            background: linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%);
+            border: 3px solid #F97316;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .key-takeaways-box h3 {
+            color: #9A3412;
+            margin-top: 0;
+        }
+        
+        .key-takeaways-box ul {
+            margin-left: 20px;
+        }
+        
+        .key-takeaways-box li {
+            color: #7C2D12;
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+        
+        .quiz-section {
+            margin-top: 40px;
+        }
+        
+        .quiz-question {
+            background: #F8FAFC;
+            border: 2px solid #CBD5E1;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+        
+        .quiz-question-text {
+            color: #1B3A57;
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 16px;
+        }
+        
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px;
+            background: white;
+            border: 2px solid #E2E8F0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .quiz-option:hover {
+            border-color: #6BC9BC;
+            background: #F0FDFA;
+        }
+        
+        .quiz-option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .quiz-option span {
+            color: #334155;
+            font-size: 15px;
+        }
+        
+        .navigation-footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 32px;
+        }
+        
+        .nav-button {
+            flex: 1;
+            padding: 16px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            text-align: center;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .nav-button.primary {
+            background: #6BC9BC;
+            color: white;
+        }
+        
+        .nav-button.primary:hover {
+            background: #59B8AA;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(107, 201, 188, 0.4);
+        }
+        
+        .nav-button.secondary {
+            background: white;
+            color: #2E5C8A;
+            border: 2px solid #2E5C8A;
+        }
+        
+        .nav-button.secondary:hover {
+            background: #2E5C8A;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(46, 92, 138, 0.3);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+        }
+        
+        th {
+            background: #2E5C8A;
+            color: white;
+            padding: 14px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 14px;
+            border-bottom: 1px solid #E2E8F0;
+            color: #334155;
+        }
+        
+        tr:hover {
+            background: #F8FAFC;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            h1 {
+                font-size: 26px;
+            }
+            
+            .navigation-footer {
+                flex-direction: column;
+            }
+            
+            .content-card {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <img src="coach-icon.jpg" alt="Coach Marty" class="logo">
+            <div class="header-content">
+                <div class="module-number">Module 6 of 8</div>
+                <h1>Enrollment: Step-by-Step</h1>
+                <p class="subtitle">Your complete guide to enrolling in your 403(b) and/or 457(b) with confidence</p>
+            </div>
+        </div>
+        
+        <!-- Section 1: Introduction -->
+        <div class="content-card">
+            <h2>You're Ready. Let's Do This.</h2>
+            
+            <p>You've learned about the 30% income gap. You understand fees and vendor selection. You know your savings priorities and how HSAs work. You've built the knowledge foundation.</p>
+            
+            <p><strong>Now it's time to actually enroll.</strong></p>
+            
+            <p>This module walks you through the entire enrollment process step-by-step. By the end, you'll know exactly what to do, what to avoid, and how to verify everything is set up correctly.</p>
+            
+            <div class="coach-note">
+                <div class="coach-note-header">
+                    <img src="coach-icon.jpg" alt="Coach Marty">
+                    <span class="coach-note-title">Coach Marty says:</span>
+                </div>
+                <div class="coach-note-text">
+                    I've seen thousands of teachers delay enrollment because they're overwhelmed or confused. Don't be that teacher. Enrollment takes 15-30 minutes tops. The cost of waiting is massive—every month you wait is a month of lost compounding. Let's get you enrolled TODAY.
+                </div>
+            </div>
+            
+            <h3>When Should You Enroll?</h3>
+            
+            <p>The best time to enroll is <strong>as soon as possible</strong>. Here's why:</p>
+            
+            <ul>
+                <li><strong>Time in the market beats timing the market:</strong> The earlier you start, the more your money compounds</li>
+                <li><strong>Dollar-cost averaging works in your favor:</strong> Automatic contributions smooth out market volatility</li>
+                <li><strong>Tax benefits start immediately:</strong> Your contributions reduce your taxable income right away</li>
+                <li><strong>Behavioral momentum:</strong> Once you enroll, it's automatic—you don't have to think about it</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <p><strong>Real talk:</strong> Waiting for "the right time" or "when I have more money" is the #1 mistake teachers make. There's no perfect time. The best time was yesterday. The second best time is today.</p>
+            </div>
+            
+            <h3>Typical Enrollment Windows</h3>
+            
+            <p>Most districts allow enrollment during these periods:</p>
+            
+            <ul>
+                <li><strong>Open enrollment:</strong> Usually in the fall (September-November)</li>
+                <li><strong>New hire enrollment:</strong> Within 30-60 days of starting your position</li>
+                <li><strong>Year-round enrollment:</strong> Some districts allow enrollment anytime (check with HR)</li>
+                <li><strong>Life event enrollment:</strong> Marriage, birth, adoption (usually 30-60 days after event)</li>
+            </ul>
+            
+            <p><strong>Check with your HR/benefits office</strong> to confirm your district's enrollment deadlines and windows.</p>
+        </div>
+        
+        <!-- Section 2: Before You Enroll -->
+        <div class="content-card">
+            <h2>Before You Enroll: Your Preparation Checklist</h2>
+            
+            <p>Don't just wing it. Gather this information BEFORE you start the enrollment process:</p>
+            
+            <div class="checklist-item">
+                <div>
+                    <strong>Your chosen vendor(s)</strong><br>
+                    Know which 403(b) and/or 457(b) vendor you're selecting (e.g., Fidelity, Vanguard, TIAA). Refer to Module 4 if you haven't decided yet.
+                </div>
+            </div>
+            
+            <div class="checklist-item">
+                <div>
+                    <strong>Your contribution amount</strong><br>
+                    Decide how much you'll contribute per paycheck (percentage or dollar amount). We'll cover this in detail below.
+                </div>
+            </div>
+            
+            <div class="checklist-item">
+                <div>
+                    <strong>Your beneficiary information</strong><br>
+                    Full legal names, dates of birth, Social Security numbers, and relationship to you for primary and contingent beneficiaries.
+                </div>
+            </div>
+            
+            <div class="checklist-item">
+                <div>
+                    <strong>Your district's enrollment forms</strong><br>
+                    Get the official 403(b) and/or 457(b) enrollment paperwork from your HR/benefits office or district website.
+                </div>
+            </div>
+            
+            <div class="checklist-item">
+                <div>
+                    <strong>Your Social Security number</strong><br>
+                    You'll need this for the enrollment forms and vendor account setup.
+                </div>
+            </div>
+            
+            <div class="checklist-item">
+                <div>
+                    <strong>Your employment start date</strong><br>
+                    Some forms ask for this—have it ready.
+                </div>
+            </div>
+            
+            <div class="warning-box">
+                <h3>⚠️ Don't Skip the Beneficiary Step!</h3>
+                <p>I cannot stress this enough: <strong>You MUST designate beneficiaries.</strong> If you die without a beneficiary on file, your retirement account could go through probate, creating legal headaches and delays for your family.</p>
+                <p style="margin-top: 15px;"><strong>Primary beneficiary:</strong> The person(s) who receive your account if you die (usually spouse, children, or parents).</p>
+                <p style="margin-top: 10px;"><strong>Contingent beneficiary:</strong> Backup beneficiaries if your primary beneficiaries are deceased.</p>
+                <p style="margin-top: 15px;">Update beneficiaries whenever you have major life changes (marriage, divorce, births, deaths).</p>
+            </div>
+        </div>
+        
+        <!-- Section 3: Step-by-Step Enrollment Process -->
+        <div class="content-card">
+            <h2>Step-by-Step Enrollment Process</h2>
+            
+            <p>Here's exactly what to do. Follow these steps in order:</p>
+            
+            <div class="enrollment-step" data-step="STEP 1">
+                <h3>Confirm Your District's Approved Vendor List</h3>
+                <p>Go to your HR/benefits office or district website and get the official list of approved 403(b) and 457(b) vendors. You can ONLY choose from this list.</p>
+                <p style="margin-top: 12px;"><strong>Where to find it:</strong></p>
+                <ul>
+                    <li>District benefits portal (login required)</li>
+                    <li>HR office (ask for the "403(b) vendor list" and "457(b) vendor list")</li>
+                    <li>Your district's finance/payroll department</li>
+                </ul>
+                <p style="margin-top: 12px;"><strong>Pro tip:</strong> If your district doesn't have Fidelity or Vanguard on the list, ask HR if they can add them. Many districts will add vendors upon request.</p>
+            </div>
+            
+            <div class="enrollment-step" data-step="STEP 2">
+                <h3>Get the Enrollment Paperwork</h3>
+                <p>Download or pick up the official enrollment forms from your HR office. You'll likely need:</p>
+                <ul>
+                    <li><strong>403(b) Salary Reduction Agreement (SRA):</strong> This authorizes payroll deductions</li>
+                    <li><strong>457(b) Enrollment Form:</strong> Similar to the 403(b) form but for 457(b) accounts</li>
+                    <li><strong>Vendor account application:</strong> Some districts require you to open the account with the vendor first, others handle it for you</li>
+                </ul>
+                <p style="margin-top: 12px;"><strong>Ask HR:</strong> "Do I need to open the vendor account before submitting the district enrollment form, or does the district set it up for me?"</p>
+            </div>
+            
+            <div class="enrollment-step" data-step="STEP 3">
+                <h3>Open Your Vendor Account (If Required)</h3>
+                <p>If your district requires you to open the account first, go to your chosen vendor's website (e.g., Fidelity.com, Vanguard.com) and complete their online account application.</p>
+                <p style="margin-top: 12px;"><strong>What you'll need:</strong></p>
+                <ul>
+                    <li>Social Security number</li>
+                    <li>Date of birth</li>
+                    <li>Employment information (employer name, start date)</li>
+                    <li>Beneficiary information</li>
+                </ul>
+                <p style="margin-top: 12px;"><strong>Time required:</strong> 10-15 minutes</p>
+                <p style="margin-top: 12px;">Once your account is opened, the vendor will give you an <strong>account number</strong>. Write this down—you'll need it for the district enrollment form.</p>
+            </div>
+            
+            <div class="enrollment-step" data-step="STEP 4">
+                <h3>Complete the District Enrollment Form</h3>
+                <p>Fill out your district's 403(b) and/or 457(b) enrollment form. Here's what you'll typically need to provide:</p>
+                <ul>
+                    <li><strong>Personal information:</strong> Name, SSN, date of birth, address, phone, email</li>
+                    <li><strong>Vendor selection:</strong> Choose your vendor from the approved list</li>
+                    <li><strong>Account number:</strong> Your vendor account number (if you opened it in Step 3)</li>
+                    <li><strong>Contribution amount:</strong> How much per paycheck (we'll cover this next)</li>
+                    <li><strong>Contribution type:</strong> Pre-tax, Roth, or both (most teachers choose pre-tax)</li>
+                    <li><strong>Start date:</strong> When you want deductions to begin (usually "as soon as possible")</li>
+                </ul>
+            </div>
+            
+            <div class="enrollment-step" data-step="STEP 5">
+                <h3>Designate Your Beneficiaries</h3>
+                <p>This is done either on the district form or directly with your vendor. Don't skip this step!</p>
+                <p style="margin-top: 12px;"><strong>Primary beneficiaries:</strong> List the person(s) who will receive your account if you die. Include:</p>
+                <ul>
+                    <li>Full legal name</li>
+                    <li>Date of birth</li>
+                    <li>Social Security number</li>
+                    <li>Relationship to you</li>
+                    <li>Percentage allocation (if multiple beneficiaries, must total 100%)</li>
+                </ul>
+                <p style="margin-top: 12px;"><strong>Contingent beneficiaries:</strong> Backups in case your primary beneficiaries are deceased. Same information as above.</p>
+            </div>
+            
+            <div class="enrollment-step" data-step="STEP 6">
+                <h3>Submit Your Enrollment Form to HR/Payroll</h3>
+                <p>Turn in your completed enrollment form to your district's HR or payroll office. Get confirmation that it was received.</p>
+                <p style="margin-top: 12px;"><strong>Submission methods:</strong></p>
+                <ul>
+                    <li>In person (best—get a stamped copy for your records)</li>
+                    <li>Email (ask for a confirmation reply)</li>
+                    <li>Online portal (screenshot the confirmation page)</li>
+                </ul>
+                <p style="margin-top: 12px;"><strong>Pro tip:</strong> Ask HR, "When will my first contribution be deducted?" This helps you verify everything later.</p>
+            </div>
+            
+            <div class="enrollment-step" data-step="STEP 7">
+                <h3>Verify Your First Paycheck Deduction</h3>
+                <p>After submitting, check your next 1-2 paychecks to confirm the deduction is happening correctly.</p>
+                <p style="margin-top: 12px;"><strong>What to verify:</strong></p>
+                <ul>
+                    <li>Deduction amount matches what you requested</li>
+                    <li>Deduction is labeled correctly (403(b) or 457(b), not pension)</li>
+                    <li>Vendor name is correct</li>
+                </ul>
+                <p style="margin-top: 12px;"><strong>If something's wrong:</strong> Contact HR/payroll immediately. Mistakes happen—catch them early.</p>
+            </div>
+            
+            <div class="enrollment-step" data-step="STEP 8">
+                <h3>Log Into Your Vendor Account & Verify Deposits</h3>
+                <p>Within 1-2 pay periods after your first deduction, log into your vendor account (Fidelity, Vanguard, etc.) and confirm:</p>
+                <ul>
+                    <li>Your contributions are showing up</li>
+                    <li>The amounts match your paycheck deductions</li>
+                    <li>Money is being invested (not just sitting in cash/money market)</li>
+                </ul>
+                <p style="margin-top: 12px;"><strong>If contributions aren't showing up after 2 pay periods:</strong> Call your vendor's customer service AND your district payroll office to investigate.</p>
+            </div>
+            
+            <div class="success-box">
+                <h3>✅ You're Enrolled! Now What?</h3>
+                <p>Once you've completed all 8 steps and verified everything is working, you're officially building wealth. Here's what happens next:</p>
+                <ul>
+                    <li>Contributions are deducted automatically from every paycheck</li>
+                    <li>Money is invested according to your fund selections (see Module 4)</li>
+                    <li>You receive quarterly or annual statements from your vendor</li>
+                    <li>You can log in anytime to check your balance and make changes</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Set it and forget it.</strong> Let compounding do the work.</p>
+            </div>
+        </div>
+        
+        <!-- Section 4: Setting Your Contribution Amount -->
+        <div class="content-card">
+            <h2>How Much Should You Contribute?</h2>
+            
+            <p>This is the most common question teachers ask. Here's how to decide:</p>
+            
+            <h3>The Quick Answer: Start with 5-10%</h3>
+            
+            <p>If you're brand new to retirement saving, <strong>start with 5-10% of your gross salary</strong> and increase it by 1% every year (or whenever you get a raise).</p>
+            
+            <div class="highlight-box">
+                <p><strong>Example:</strong> If you make $60,000/year, 5% = $3,000/year = $250/month. If you're paid monthly, that's $250/paycheck. If you're paid semi-monthly (24 paychecks), that's $125/paycheck.</p>
+            </div>
+            
+            <h3>The Better Answer: Target 15-20% Total</h3>
+            
+            <p>Remember from Module 5: Your total retirement savings (including pension contributions) should be <strong>15-20% of gross income</strong>.</p>
+            
+            <p>Here's how to calculate your target 403(b)/457(b) contribution:</p>
+            
+            <ol>
+                <li><strong>Find your pension contribution rate:</strong> Check your paycheck stub (usually 7-10% of salary)</li>
+                <li><strong>Calculate 15-20% of your gross salary:</strong> This is your total savings target</li>
+                <li><strong>Subtract your pension contribution:</strong> What's left is your 403(b)/457(b) target</li>
+            </ol>
+            
+            <div class="info-box">
+                <h3>📊 Example Calculation</h3>
+                <p><strong>Scenario:</strong> Sarah makes $65,000/year and contributes 8% to her pension.</p>
+                <ul>
+                    <li>Target total savings: 15% of $65,000 = $9,750/year</li>
+                    <li>Pension contribution: 8% of $65,000 = $5,200/year</li>
+                    <li>403(b) target: $9,750 - $5,200 = <strong>$4,550/year</strong></li>
+                    <li>Monthly contribution: $4,550 ÷ 12 = <strong>$379/month</strong></li>
+                </ul>
+                <p style="margin-top: 15px;">Sarah should contribute <strong>$379/month</strong> (or $189.50 per paycheck if paid semi-monthly).</p>
+            </div>
+            
+            <h3>Percentage vs. Dollar Amount: Which Should You Choose?</h3>
+            
+            <p>When you enroll, you'll choose to contribute either a <strong>percentage of salary</strong> or a <strong>fixed dollar amount</strong>. Here's the difference:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Contribution Type</th>
+                        <th>How It Works</th>
+                        <th>Best For</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Percentage</strong></td>
+                        <td>Contribution automatically increases when your salary increases (raises, step increases)</td>
+                        <td>Teachers who want automatic increases and don't want to manually adjust contributions every year</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dollar Amount</strong></td>
+                        <td>Fixed amount per paycheck—stays the same unless you manually change it</td>
+                        <td>Teachers who want precise control over cash flow and prefer predictable deductions</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="coach-note">
+                <div class="coach-note-header">
+                    <img src="coach-icon.jpg" alt="Coach Marty">
+                    <span class="coach-note-title">Coach Marty says:</span>
+                </div>
+                <div class="coach-note-text">
+                    I recommend <strong>percentage-based contributions</strong> for most teachers. Here's why: When you get a raise, your contribution automatically increases WITHOUT you having to update any forms. This is called "paying yourself first"—your retirement savings grows with your income, and you never see the extra money in your paycheck so you're not tempted to spend it.
+                </div>
+            </div>
+            
+            <h3>What If You Can't Afford 15-20% Right Now?</h3>
+            
+            <p>That's okay! <strong>Start where you can and increase over time.</strong> Here's the strategy:</p>
+            
+            <ul>
+                <li><strong>Year 1:</strong> Start with 3-5% (just get in the game)</li>
+                <li><strong>Year 2:</strong> Increase to 6-8%</li>
+                <li><strong>Year 3:</strong> Increase to 9-11%</li>
+                <li><strong>Year 4+:</strong> Increase to 12-15% or higher</li>
+            </ul>
+            
+            <p>Every time you get a raise or step increase, <strong>increase your contribution by 1-2%</strong>. You won't even notice the difference in your paycheck, but it makes a massive difference in your retirement account.</p>
+            
+            <div class="warning-box">
+                <h3>⚠️ Don't Exceed the Annual Limits</h3>
+                <p>Remember the 2026 contribution limits:</p>
+                <ul>
+                    <li><strong>403(b) and 457(b):</strong> $24,500 per account ($32,500 if 50+)</li>
+                    <li><strong>403(b) AND 457(b) combined:</strong> You can contribute up to $24,500 to EACH account in the same year (total of $49,000 if under 50, or $65,000 if 50+)</li>
+                </ul>
+                <p style="margin-top: 15px;">Your payroll system should prevent over-contributions, but if you're contributing to both accounts, monitor your year-to-date totals to ensure you don't exceed limits.</p>
+            </div>
+        </div>
+        
+        <!-- Section 5: Common Enrollment Mistakes -->
+        <div class="content-card">
+            <h2>8 Enrollment Mistakes to Avoid</h2>
+            
+            <p>I've seen these mistakes cost teachers thousands (or tens of thousands) of dollars. Don't let this be you.</p>
+            
+            <div class="mistake-box">
+                <h4>❌ Mistake #1: Not Designating a Beneficiary</h4>
+                <p><strong>The fix:</strong> Fill out the beneficiary form IMMEDIATELY. Don't leave it blank. Update it after major life events (marriage, divorce, births, deaths).</p>
+            </div>
+            
+            <div class="mistake-box">
+                <h4>❌ Mistake #2: Choosing the Wrong Vendor</h4>
+                <p><strong>The fix:</strong> Don't pick the vendor that sends the flashiest brochure or whose rep visits your school. Pick a low-cost index fund provider like Fidelity or Vanguard. Refer to Module 4 for vendor selection guidance.</p>
+            </div>
+            
+            <div class="mistake-box">
+                <h4>❌ Mistake #3: Leaving Money in Cash/Money Market</h4>
+                <p><strong>The fix:</strong> After enrolling, log into your account and verify your contributions are being INVESTED, not sitting in cash. Choose your investment funds (low-cost index funds) immediately.</p>
+            </div>
+            
+            <div class="mistake-box">
+                <h4>❌ Mistake #4: Contributing Too Little</h4>
+                <p><strong>The fix:</strong> Start with at least 5% if you can. Increase by 1% every year. Target 15-20% total savings (including pension). The difference between 3% and 10% contributions is life-changing over 30 years.</p>
+            </div>
+            
+            <div class="mistake-box">
+                <h4>❌ Mistake #5: Not Verifying the First Paycheck Deduction</h4>
+                <p><strong>The fix:</strong> Check your paycheck after enrollment to confirm the deduction is happening and the amount is correct. If it's wrong, contact HR immediately—don't wait.</p>
+            </div>
+            
+            <div class="mistake-box">
+                <h4>❌ Mistake #6: Stopping Contributions During Market Downturns</h4>
+                <p><strong>The fix:</strong> NEVER stop contributing when the market crashes. That's when you're buying low. Keep contributing through market volatility—it's how you build wealth.</p>
+            </div>
+            
+            <div class="mistake-box">
+                <h4>❌ Mistake #7: Forgetting to Increase Contributions After a Raise</h4>
+                <p><strong>The fix:</strong> Set a calendar reminder every August/September (when raises usually happen) to increase your contribution by 1-2%. Or choose percentage-based contributions so it happens automatically.</p>
+            </div>
+            
+            <div class="mistake-box">
+                <h4>❌ Mistake #8: Not Reading Your Vendor Statements</h4>
+                <p><strong>The fix:</strong> Review your quarterly/annual statements. Make sure contributions are showing up, fees are low, and your balance is growing. If something looks wrong, call your vendor immediately.</p>
+            </div>
+        </div>
+        
+        <!-- Section 6: After You Enroll -->
+        <div class="content-card">
+            <h2>What Happens After You Enroll?</h2>
+            
+            <p>Once you're enrolled and everything is verified, here's what to expect:</p>
+            
+            <h3>Automatic Paycheck Deductions</h3>
+            
+            <p>Your contributions will be deducted from every paycheck automatically. You'll see the deduction on your pay stub, usually labeled something like:</p>
+            
+            <ul>
+                <li>"403(b) Retirement"</li>
+                <li>"457(b) Deferred Comp"</li>
+                <li>"Tax Sheltered Annuity (TSA)"</li>
+                <li>Your vendor name (e.g., "Fidelity 403b")</li>
+            </ul>
+            
+            <p>Your <strong>taxable income</strong> is reduced by the contribution amount, which means you pay less in federal and state income taxes immediately.</p>
+            
+            <h3>Vendor Statements & Account Access</h3>
+            
+            <p>You'll receive statements from your vendor (Fidelity, Vanguard, etc.) either:</p>
+            <ul>
+                <li><strong>Quarterly:</strong> Every 3 months</li>
+                <li><strong>Annually:</strong> Once per year</li>
+            </ul>
+            
+            <p>You can also log into your account online anytime to check:</p>
+            <ul>
+                <li>Current balance</li>
+                <li>Contribution history</li>
+                <li>Investment performance</li>
+                <li>Beneficiary information</li>
+            </ul>
+            
+            <h3>Making Changes</h3>
+            
+            <p>You can typically change your contribution amount, investment funds, or beneficiaries anytime by:</p>
+            <ul>
+                <li><strong>Contribution changes:</strong> Submit a new enrollment form to your district HR/payroll office</li>
+                <li><strong>Investment changes:</strong> Log into your vendor account and change your fund allocations</li>
+                <li><strong>Beneficiary changes:</strong> Update through your vendor's website or by submitting a beneficiary form</li>
+            </ul>
+            
+            <div class="info-box">
+                <h3>💡 When to Make Changes</h3>
+                <p><strong>Increase contributions when:</strong></p>
+                <ul>
+                    <li>You get a raise or step increase</li>
+                    <li>You pay off debt (redirect that payment to retirement)</li>
+                    <li>Your spouse or partner starts working or gets a raise</li>
+                    <li>Your kids finish daycare or college</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Decrease contributions only if:</strong></p>
+                <ul>
+                    <li>You face a true financial emergency (medical crisis, job loss)</li>
+                    <li>You're redirecting money to pay off high-interest debt (>7%)</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Never decrease because:</strong> "The market is down" or "I want to buy something." Stay the course.</p>
+            </div>
+            
+            <h3>Annual Limits Reset</h3>
+            
+            <p>Contribution limits reset every January 1. If you maxed out in 2026, you can start contributing again in 2027 with the new limits.</p>
+            
+            <p>Your payroll system should automatically track your year-to-date contributions and stop deductions when you hit the limit.</p>
+        </div>
+        
+        <!-- Section 7: Verification Checklist -->
+        <div class="content-card">
+            <h2>30-Day Verification Checklist</h2>
+            
+            <p>Use this checklist to verify everything is working correctly within 30 days of enrollment:</p>
+            
+            <div class="success-box">
+                <h3>✅ Your 30-Day Checklist</h3>
+                <ul>
+                    <li><strong>☐ Paycheck deduction verified:</strong> Check your pay stub—contribution amount is correct</li>
+                    <li><strong>☐ Vendor account accessible:</strong> You can log into your account online</li>
+                    <li><strong>☐ Contributions appearing:</strong> Money is showing up in your vendor account</li>
+                    <li><strong>☐ Funds invested:</strong> Contributions are invested in your chosen funds (not sitting in cash)</li>
+                    <li><strong>☐ Beneficiaries confirmed:</strong> Log in and verify beneficiaries are listed correctly</li>
+                    <li><strong>☐ Statements enrolled:</strong> You're signed up for electronic statements (paperless)</li>
+                    <li><strong>☐ Contact info updated:</strong> Vendor has your current email and phone number</li>
+                    <li><strong>☐ Annual increase planned:</strong> Set a reminder to increase contributions next year</li>
+                </ul>
+            </div>
+            
+            <div class="coach-note">
+                <div class="coach-note-header">
+                    <img src="coach-icon.jpg" alt="Coach Marty">
+                    <span class="coach-note-title">Coach Marty says:</span>
+                </div>
+                <div class="coach-note-text">
+                    Don't just enroll and forget about it. Take 15 minutes to verify everything is working correctly. I've seen too many teachers discover months (or years!) later that their contributions were going into cash instead of being invested, or that beneficiaries were never updated after a divorce. Verify now, relax later.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 8: Coach Marty's Final Enrollment Tips -->
+        <div class="content-card">
+            <h2>Coach Marty's Final Enrollment Tips</h2>
+            
+            <div class="highlight-box">
+                <p><strong>1. Don't overthink it.</strong> Enrolling is straightforward. Get the forms, fill them out, submit them. Don't let analysis paralysis keep you from starting.</p>
+            </div>
+            
+            <div class="highlight-box">
+                <p><strong>2. Start small if you have to, but START.</strong> Contributing 3% is infinitely better than contributing 0%. You can always increase later.</p>
+            </div>
+            
+            <div class="highlight-box">
+                <p><strong>3. Automate the increase.</strong> Set a calendar reminder every September to increase your contribution by 1%. Or choose percentage-based contributions so raises automatically increase your savings.</p>
+            </div>
+            
+            <div class="highlight-box">
+                <p><strong>4. Ignore your balance for 5 years.</strong> Seriously. Market volatility will make you panic. Don't look. Just keep contributing. Check back in 5 years and you'll be amazed.</p>
+            </div>
+            
+            <div class="highlight-box">
+                <p><strong>5. Share your plan with your loved ones.</strong> Make sure your spouse, partner, or trusted family member knows where your retirement accounts are, who your beneficiaries are, and how to access the accounts if something happens to you.</p>
+            </div>
+            
+            <div class="highlight-box">
+                <p><strong>6. Don't wait for "the right time."</strong> There's never a perfect time to start saving. Start now. Adjust later if needed.</p>
+            </div>
+            
+            <div class="highlight-box">
+                <p><strong>7. Celebrate the win.</strong> You just made one of the most important financial decisions of your life. You're building wealth. You're securing your future. Be proud.</p>
+            </div>
+        </div>
+        
+        <!-- Key Takeaways -->
+        <div class="content-card">
+            <div class="key-takeaways-box">
+                <h3>📌 Key Takeaways</h3>
+                <ul>
+                    <li>The best time to enroll is NOW—every month you wait costs you compounding growth</li>
+                    <li>Gather your information BEFORE starting: vendor choice, contribution amount, beneficiary info, SSN</li>
+                    <li>Follow the 8-step enrollment process: confirm vendors → get forms → open account → complete district forms → designate beneficiaries → submit → verify paycheck → verify vendor deposits</li>
+                    <li>Start with 5-10% if you're new, target 15-20% total savings (including pension)</li>
+                    <li>Choose percentage-based contributions so your savings increase automatically with raises</li>
+                    <li>ALWAYS designate beneficiaries—update them after major life events</li>
+                    <li>Verify within 30 days that contributions are being deducted AND invested correctly</li>
+                    <li>Avoid the 8 common mistakes: no beneficiary, wrong vendor, money in cash, contributing too little, not verifying, stopping during downturns, forgetting to increase, ignoring statements</li>
+                    <li>Set a reminder to increase contributions by 1% every year</li>
+                    <li>Once enrolled, let it run automatically—don't panic during market volatility</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Quiz -->
+        <div class="content-card">
+            <div class="quiz-section">
+                <h3>🧠 Quick Knowledge Check</h3>
+                
+                <div class="quiz-question">
+                    <div class="quiz-question-text">1. What is the FIRST step you should take before enrolling in a 403(b)?</div>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="a">
+                            <span>Open an account with any vendor you like</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="b">
+                            <span>Confirm your district's approved vendor list and choose a low-cost provider</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="c">
+                            <span>Wait until you have $10,000 saved up</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="d">
+                            <span>Talk to an insurance salesperson</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <div class="quiz-question-text">2. Why is designating a beneficiary so important?</div>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" value="a">
+                            <span>It's not important—you can do it later</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" value="b">
+                            <span>Without a beneficiary, your account could go through probate, creating legal delays for your family</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" value="c">
+                            <span>It only matters if you're over 65</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" value="d">
+                            <span>The government will automatically distribute your account to your family</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <div class="quiz-question-text">3. What percentage of your gross salary should you target for TOTAL retirement savings (including pension contributions)?</div>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" value="a">
+                            <span>5-7%</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" value="b">
+                            <span>10-12%</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" value="c">
+                            <span>15-20%</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" value="d">
+                            <span>25-30%</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="quiz-question">
+                    <div class="quiz-question-text">4. What should you do within 30 days of enrolling?</div>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="a">
+                            <span>Nothing—just wait for your retirement statements</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="b">
+                            <span>Check your paycheck to verify deductions, log into your vendor account to confirm contributions are being invested</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="c">
+                            <span>Cancel your contributions if the market is down</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="d">
+                            <span>Switch to a different vendor</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation Footer -->
+        <div class="navigation-footer">
+            <a href="module5.html" class="nav-button secondary">← Previous: Your Savings Game Plan</a>
+            <a href="module7.html" class="nav-button primary">Next: Life Happens: Adjusting Your Plan →</a>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer style="background: #1B3A57; color: white; padding: 32px 20px; margin-top: 48px; text-align: center;">
+        <p style="font-size: 14px; margin-bottom: 12px;">&copy; 2026 TeacherFinCoach. Building Wealth for Educators.</p>
+        <p style="font-size: 12px; color: rgba(255,255,255,0.8); margin-bottom: 8px;">
+            <strong>Educational Purposes Only:</strong> TeacherFinCoach provides general educational information about retirement planning for teachers. 
+            This content does not constitute financial, investment, tax, or legal advice.
+        </p>
+        <p style="font-size: 12px; color: rgba(255,255,255,0.7);">
+            Consult with a qualified financial advisor for personalized guidance. 
+            <a href="terms.html" style="color: #6BC9BC; text-decoration: underline;">Terms & Disclaimers</a>
+        </p>
+    </footer>
+</body>
+</html>
